@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.2",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.2": {
+      "MDMS.Data.Models/1.0.0": {
+        "runtime": {
+          "MDMS.Data.Models.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MDMS.Data.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

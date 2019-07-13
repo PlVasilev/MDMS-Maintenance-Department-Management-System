@@ -1,0 +1,9 @@
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data.Models\bin\Debug\netcoreapp2.2\MDMS.Data.Models.deps.json
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data.Models\bin\Debug\netcoreapp2.2\MDMS.Data.Models.dll
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data.Models\bin\Debug\netcoreapp2.2\MDMS.Data.Models.pdb
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data.Models\obj\Debug\netcoreapp2.2\MDMS.Data.Models.csprojAssemblyReference.cache
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data.Models\obj\Debug\netcoreapp2.2\MDMS.Data.Models.csproj.CoreCompileInputs.cache
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data.Models\obj\Debug\netcoreapp2.2\MDMS.Data.Models.AssemblyInfoInputs.cache
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data.Models\obj\Debug\netcoreapp2.2\MDMS.Data.Models.AssemblyInfo.cs
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data.Models\obj\Debug\netcoreapp2.2\MDMS.Data.Models.dll
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data.Models\obj\Debug\netcoreapp2.2\MDMS.Data.Models.pdb
