@@ -26,5 +26,18 @@ namespace MDMS.Data
         public MdmsDbContext(DbContextOptions options) : base(options)
         {
         }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<MdmsUserRepair>()
+                .HasKey(k => new { k.MdmsUserId, k.RepairId });
+
+
+
+            builder.Entity<RepairPart>()
+                .HasKey(k => new { k.RepairId, k.PartId });
+
+            base.OnModelCreating(builder);
+        }
     }
 }

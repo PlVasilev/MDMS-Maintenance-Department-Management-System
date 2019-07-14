@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -13,18 +14,22 @@ namespace MDMS.Data.Models
 
         public string SalarySlipTitle => Year + " " + Month + " " + Mechanic.FirstName + " " + Mechanic.LastName;
 
+        [Range(1, 12)]
         public int Month { get; set; }
 
+        [Range(1900, 2200)]
         public int Year { get; set; }
 
         public MdmsUser Mechanic { get; set; }
 
-        public decimal TotalSalary => Mechanic.BaseSalary + 
-                                      ((decimal) Mechanic.MdmsUserRepairs
-                                           .Where(x => x.Repair.FinishedOn.Month == Month && 
-                                                       x.Repair.FinishedOn.Year == Year)
-                                           .Sum(x => x.HoursWorked) * (decimal) Mechanic.AdditionalOnHourPayment) * 1.18m;
+        public decimal TotalSalary => Mechanic.BaseSalary +
+                                      ((decimal)Mechanic.MdmsUserRepairs
+                                           .Where(x => x.Repair.FinishedOn != null &&
+                                                       x.Repair.FinishedOn.Value.Month == Month &&
+                                                       x.Repair.FinishedOn.Value.Year == Year)
+                                           .Sum(x => x.HoursWorked) * (decimal)Mechanic.AdditionalOnHourPayment) * 1.18m;
 
+        [Range(0, 1000)]
         public double HoursWorked { get; set; }
 
     }
