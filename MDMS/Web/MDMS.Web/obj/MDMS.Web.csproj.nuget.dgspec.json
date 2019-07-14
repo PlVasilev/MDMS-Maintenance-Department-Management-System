@@ -4,14 +4,14 @@
     "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj": {
+    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj",
-        "projectName": "MDMS.Web",
-        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj",
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj",
+        "projectName": "MDMS.Data.Models",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj",
         "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\obj\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -47,6 +47,152 @@
       "frameworks": {
         "netcoreapp2.2": {
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj",
+        "projectName": "MDMS.Data",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj",
+        "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\plamen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/aspnet-aspnetcore-tooling/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/aspnet-aspnetcore/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/aspnet-entityframeworkcore/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/aspnet-extensions/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/dotnet-windowsdesktop/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj": {
+                "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+              "target": "Package",
+              "version": "[1.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj",
+        "projectName": "MDMS.Web",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj",
+        "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\plamen\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/aspnet-aspnetcore-tooling/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/aspnet-aspnetcore/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/aspnet-entityframeworkcore/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/aspnet-extensions/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/dotnet-core/index.json": {},
+          "https://dotnetfeed.blob.core.windows.net/dotnet-windowsdesktop/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj": {
+                "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",
               "target": "Package",
@@ -63,6 +209,10 @@
               "target": "Package",
               "version": "[2.2.0, )",
               "autoReferenced": true
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[2.2.3, )"
             }
           },
           "imports": [
