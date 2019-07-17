@@ -29,13 +29,15 @@ namespace MDMS.Data.Models
         public DateTime AcquiredOn { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.00", "100000")]
+        [Range(typeof(decimal), "0.00", "1000000")]
         public decimal Depreciation { get; set; }
 
         [Required]
         public DateTime ManufacturedOn { get; set; }
 
         public ICollection<Repair> Repairs { get; set; } = new HashSet<Repair>();
+
+        public VehicleType VehicleType { get; set; }
 
         public bool IsActive { get; set; } = false;
     }

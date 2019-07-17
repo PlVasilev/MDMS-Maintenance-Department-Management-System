@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using MDMS.Data;
 using Mdms.Data.Models;
+using MDMS.Data.Seeding;
+using MDMS.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +31,12 @@ namespace MDMS.Web
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<MdmsUserRoleSeeder>();
+            services.AddScoped<MdmsRootUserSeeder>();
+            services.AddScoped<RepairedSystemSeeder>();
+            services.AddScoped<ReportTypeSeeder>();
+            services.AddScoped<VehicleTypeSeeder>();
+
             services.AddIdentity<MdmsUser, IdentityRole>()
                 .AddEntityFrameworkStores<MdmsDbContext>()
                 .AddDefaultTokenProviders();
@@ -50,25 +58,27 @@ namespace MDMS.Web
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            using (var serviceScope = app.ApplicationServices.CreateScope())
-            {
-                using (var context = serviceScope.ServiceProvider.GetRequiredService<MdmsDbContext>())
-                {
-                    context.Database.EnsureCreated();
+            //using (var serviceScope = app.ApplicationServices.CreateScope())
+            //{
+            //    using (var context = serviceScope.ServiceProvider.GetRequiredService<MdmsDbContext>())
+            //    {
+            //        context.Database.EnsureCreated();
+            //
+            //        if (!context.Roles.Any())
+            //        {
+            //            context.Add(new IdentityRole() {Name = "Admin"});
+            //            context.Add(new IdentityRole() {Name = "User"});
+            //        }
+            //    }
+            //}
 
-                    if (!context.Roles.Any())
-                    {
-                        context.Add(new IdentityRole() {Name = "Admin"});
-                        context.Add(new IdentityRole() {Name = "User"});
-                    }
-                }
-            }
-
-
+           
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();
             // app.UseExceptionHandler("/Home/Error");
             app.UseHsts();
+
+            app.UseDatabaseSeeding();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

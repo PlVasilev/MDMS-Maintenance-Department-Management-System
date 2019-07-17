@@ -21,7 +21,7 @@ namespace MDMS.Data.Models
         public string PartsProviderId { get; set; }
         public PartsProvider AcquiredFrom { get; set; }
 
-        ICollection<RepairPart> Repairs { get; set; } = new HashSet<RepairPart>();
+        public ICollection<RepairPart> RepairParts { get; set; } = new HashSet<RepairPart>();
 
         [Required]
         [Range(0, 100000)]

@@ -71,12 +71,12 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             returnUrl = "Identity/Account/Login";
             if (ModelState.IsValid)
             {
-                var isRoot = _userManager.Users.Any();
+                var isAdmin = _userManager.Users.Count() == 1;
                 var user = new MdmsUser { UserName = Input.Username, Email = Input.Email };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
-                    if (!isRoot)
+                    if (isAdmin)
                     {
                         await _userManager.AddToRoleAsync(user, "Admin");
                     }

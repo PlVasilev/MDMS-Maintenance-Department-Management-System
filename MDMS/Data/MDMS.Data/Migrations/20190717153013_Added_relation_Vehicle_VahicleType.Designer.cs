@@ -4,14 +4,16 @@ using MDMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MDMS.Data.Migrations
 {
     [DbContext(typeof(MdmsDbContext))]
-    partial class MdmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190717153013_Added_relation_Vehicle_VahicleType")]
+    partial class Added_relation_Vehicle_VahicleType
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -453,12 +455,12 @@ namespace MDMS.Data.Migrations
                     b.HasOne("Mdms.Data.Models.MdmsUser", "MdmsUser")
                         .WithMany("MdmsUserRepairs")
                         .HasForeignKey("MdmsUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MDMS.Data.Models.Repair", "Repair")
                         .WithMany("MdmsUserRepairs")
                         .HasForeignKey("RepairId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MDMS.Data.Models.MonthlySalary", b =>
@@ -500,14 +502,14 @@ namespace MDMS.Data.Migrations
             modelBuilder.Entity("MDMS.Data.Models.RepairPart", b =>
                 {
                     b.HasOne("MDMS.Data.Models.Part", "Part")
-                        .WithMany("RepairParts")
+                        .WithMany()
                         .HasForeignKey("PartId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("MDMS.Data.Models.Repair", "Repair")
                         .WithMany("RepairParts")
                         .HasForeignKey("RepairId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MDMS.Data.Models.Report", b =>

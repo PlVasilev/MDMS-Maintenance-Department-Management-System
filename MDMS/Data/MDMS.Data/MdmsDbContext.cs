@@ -32,10 +32,32 @@ namespace MDMS.Data
             builder.Entity<MdmsUserRepair>()
                 .HasKey(k => new { k.MdmsUserId, k.RepairId });
 
+            builder.Entity<MdmsUserRepair>()
+                .HasOne(ur => ur.MdmsUser)
+                .WithMany(u => u.MdmsUserRepairs)
+                .HasForeignKey(ur => ur.MdmsUserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
+            builder.Entity<MdmsUserRepair>()
+                .HasOne(ur => ur.Repair)
+                .WithMany(r => r.MdmsUserRepairs)
+                .HasForeignKey(ur => ur.RepairId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<RepairPart>()
                 .HasKey(k => new { k.RepairId, k.PartId });
+
+            builder.Entity<RepairPart>()
+                .HasOne(rp => rp.Repair)
+                .WithMany(r => r.RepairParts)
+                .HasForeignKey(rp => rp.RepairId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<RepairPart>()
+                .HasOne(rp => rp.Part)
+                .WithMany(p => p.RepairParts)
+                .HasForeignKey(rp => rp.PartId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(builder);
         }
