@@ -29,6 +29,10 @@ namespace MDMS.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            builder.Entity<MdmsUser>()
+                .HasIndex(u => u.Email)
+                .IsUnique();
+
             builder.Entity<MdmsUserRepair>()
                 .HasKey(k => new { k.MdmsUserId, k.RepairId });
 

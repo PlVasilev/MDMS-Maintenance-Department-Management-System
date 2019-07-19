@@ -1,0 +1,9 @@
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Infrastucture\GlobalConstants\bin\Debug\netcoreapp3.0\GlobalConstants.deps.json
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Infrastucture\GlobalConstants\bin\Debug\netcoreapp3.0\GlobalConstants.dll
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Infrastucture\GlobalConstants\bin\Debug\netcoreapp3.0\GlobalConstants.pdb
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Infrastucture\GlobalConstants\obj\Debug\netcoreapp3.0\GlobalConstants.csprojAssemblyReference.cache
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Infrastucture\GlobalConstants\obj\Debug\netcoreapp3.0\GlobalConstants.csproj.CoreCompileInputs.cache
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Infrastucture\GlobalConstants\obj\Debug\netcoreapp3.0\GlobalConstants.AssemblyInfoInputs.cache
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Infrastucture\GlobalConstants\obj\Debug\netcoreapp3.0\GlobalConstants.AssemblyInfo.cs
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Infrastucture\GlobalConstants\obj\Debug\netcoreapp3.0\GlobalConstants.dll
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Infrastucture\GlobalConstants\obj\Debug\netcoreapp3.0\GlobalConstants.pdb

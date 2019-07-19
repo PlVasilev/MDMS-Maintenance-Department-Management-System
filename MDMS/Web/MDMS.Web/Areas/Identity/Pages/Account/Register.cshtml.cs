@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -47,7 +48,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             public string Username { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 3)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
@@ -68,7 +69,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = "Identity/Account/Login";
+            returnUrl = "~/Identity/Account/Login";
             if (ModelState.IsValid)
             {
                 var isAdmin = _userManager.Users.Count() == 1;

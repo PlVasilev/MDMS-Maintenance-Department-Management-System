@@ -289,13 +289,11 @@ namespace MDMS.Data.Migrations
                     b.Property<bool>("EmailConfirmed");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasMaxLength(30);
 
                     b.Property<bool>("IsAuthorized");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasMaxLength(30);
 
                     b.Property<bool>("LockoutEnabled");
@@ -324,6 +322,10 @@ namespace MDMS.Data.Migrations
                         .HasMaxLength(256);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
 
                     b.HasIndex("NormalizedEmail")
                         .HasName("EmailIndex");
