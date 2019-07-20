@@ -12,5 +12,7 @@ namespace MDMS.Data.Models
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+
+        public ICollection<Report> Reports { get; set; }  = new HashSet<Report>();
     }
 }

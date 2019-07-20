@@ -12,5 +12,7 @@ namespace MDMS.Data.Models
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+
+        public ICollection<Repair> Repairs { get; set; }  = new HashSet<Repair>();
     }
 }

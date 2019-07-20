@@ -33,7 +33,7 @@ namespace MDMS.Data.Models
 
         public ICollection<Vehicle> Vehicles { get; set; } = new HashSet<Vehicle>();
 
-        public ICollection<Repair> RepairsInReport => Repairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        private ICollection<Repair> RepairsInReport => Repairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
 
         public decimal RepairsConst => RepairsInReport.Sum(z => z.RepairParts.Sum(c => c.Part.Price * c.Quantity));
 

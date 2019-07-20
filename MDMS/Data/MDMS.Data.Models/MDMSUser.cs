@@ -8,7 +8,7 @@ namespace Mdms.Data.Models
     public class MdmsUser : IdentityUser<string>
     {
         public MdmsUser()
-        {
+        { 
         }
 
         [MaxLength(30)]
@@ -24,6 +24,8 @@ namespace Mdms.Data.Models
         [Required]
         [Range(typeof(decimal), "0.00", "1000")]
         public decimal AdditionalOnHourPayment { get; set; }
+
+        public bool IsDeleted { get; set; }
 
         public bool IsAuthorized { get; set; } = false;
 

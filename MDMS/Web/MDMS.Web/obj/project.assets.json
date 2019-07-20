@@ -651,7 +651,7 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Html.Abstractions.dll": {}
         }
       },
-      "Microsoft.AspNetCore.Http/2.2.0": {
+      "Microsoft.AspNetCore.Http/2.2.2": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
@@ -4768,6 +4768,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
+          "Microsoft.AspNetCore.Http": "2.2.2",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "2.2.0"
         },
         "compile": {
@@ -4776,6 +4777,22 @@
         "runtime": {
           "bin/placeholder/MDMS.Data.Models.dll": {}
         }
+      },
+      "MDMS.Web.BindingModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http": "2.2.2"
+        },
+        "compile": {
+          "bin/placeholder/MDMS.Web.BindingModels.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MDMS.Web.BindingModels.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.NETCore.App"
+        ]
       }
     }
   },
@@ -5242,16 +5259,16 @@
         "microsoft.aspnetcore.html.abstractions.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Http/2.2.0": {
-      "sha512": "YogBSMotWPAS/X5967pZ+yyWPQkThxhmzAwyCHCSSldzYBkW5W5d6oPfBaPqQOnSHYTpSOSOkpZoAce0vwb6+A==",
+    "Microsoft.AspNetCore.Http/2.2.2": {
+      "sha512": "BAibpoItxI5puk7YJbIGj95arZueM8B8M5xT1fXBn3hb3L2G3ucrZcYXv1gXdaroLbntUs8qeV8iuBrpjQsrKw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.http/2.2.0",
+      "path": "microsoft.aspnetcore.http/2.2.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Http.xml",
-        "microsoft.aspnetcore.http.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.http.2.2.2.nupkg.sha512",
         "microsoft.aspnetcore.http.nuspec"
       ]
     },
@@ -13040,11 +13057,17 @@
       "type": "project",
       "path": "../../Data/MDMS.Data.Models/MDMS.Data.Models.csproj",
       "msbuildProject": "../../Data/MDMS.Data.Models/MDMS.Data.Models.csproj"
+    },
+    "MDMS.Web.BindingModels/1.0.0": {
+      "type": "project",
+      "path": "../MDMS.Web.BindingModels/MDMS.Web.BindingModels.csproj",
+      "msbuildProject": "../MDMS.Web.BindingModels/MDMS.Web.BindingModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "MDMS.Data >= 1.0.0",
+      "MDMS.Web.BindingModels >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
@@ -13089,6 +13112,9 @@
           "projectReferences": {
             "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj": {
               "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj"
+            },
+            "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj": {
+              "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj"
             }
           }
         }

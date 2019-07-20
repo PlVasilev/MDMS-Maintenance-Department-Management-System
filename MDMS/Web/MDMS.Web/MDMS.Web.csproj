@@ -16,6 +16,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\MDMS.Data\MDMS.Data.csproj" />
+    <ProjectReference Include="..\MDMS.Web.BindingModels\MDMS.Web.BindingModels.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Areas\Administration\Views\" />
   </ItemGroup>
 
 </Project>

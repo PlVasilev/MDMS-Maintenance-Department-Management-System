@@ -35,6 +35,9 @@ namespace MDMS.Data.Models
         [Required]
         public DateTime ManufacturedOn { get; set; }
 
+        [Required]
+        public string Picture { get; set; }
+
         public ICollection<Repair> Repairs { get; set; } = new HashSet<Repair>();
 
         public VehicleType VehicleType { get; set; }

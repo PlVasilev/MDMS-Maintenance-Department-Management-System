@@ -1,0 +1,9 @@
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.ViewModels\bin\Debug\netcoreapp2.2\MDMS.Web.ViewModels.deps.json
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.ViewModels\bin\Debug\netcoreapp2.2\MDMS.Web.ViewModels.dll
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.ViewModels\bin\Debug\netcoreapp2.2\MDMS.Web.ViewModels.pdb
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.ViewModels\obj\Debug\netcoreapp2.2\MDMS.Web.ViewModels.csprojAssemblyReference.cache
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.ViewModels\obj\Debug\netcoreapp2.2\MDMS.Web.ViewModels.csproj.CoreCompileInputs.cache
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.ViewModels\obj\Debug\netcoreapp2.2\MDMS.Web.ViewModels.AssemblyInfoInputs.cache
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.ViewModels\obj\Debug\netcoreapp2.2\MDMS.Web.ViewModels.AssemblyInfo.cs
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.ViewModels\obj\Debug\netcoreapp2.2\MDMS.Web.ViewModels.dll
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.ViewModels\obj\Debug\netcoreapp2.2\MDMS.Web.ViewModels.pdb
