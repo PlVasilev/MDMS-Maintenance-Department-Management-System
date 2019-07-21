@@ -23,14 +23,25 @@
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
+                    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item active">
-                                <a class="nav-link font-weight-bold" href="/Administration/Product/Type/Create">Create Product Type</a>
+                                <div class="dropdown show">
+                                    <a class="nav-link font-weight-bold active dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</a>
+                                    <div class="dropdown-menu"
+                                         aria-labelledby="dropdownMenuLink">
+                                        <a class="dropdown-item" href="/Administration/Vehicle/Provider/Create">Create Vehicle Provider</a>
+                                        <a class="dropdown-item" href="/Administration/Vehicle/Type/Create">Create Vehicle Type</a>
+                                        <a class="dropdown-item" href="/Administration/Vehicle/Create">Create Vehicle</a>
+                                    </div>
+                                </div>
                             </li>
                             <li class="nav-item active">
-                                <a class="nav-link font-weight-bold" href="/Administration/Product/Create">Create Product</a>
+                                <a class="nav-link font-weight-bold" href="/Administration/Vehicle/Provider/Create">Mechanics</a>
                             </li>
+                        </ul>
+                        <ul class="navbar-nav">
                             <li class="nav-item active">
                                 <a class="nav-link font-weight-bold" href="/Identity/Account/Logout">Logout</a>
                             </li>

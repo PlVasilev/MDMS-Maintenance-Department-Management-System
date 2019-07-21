@@ -215,6 +215,8 @@ namespace MDMS.Data.Migrations
                     b.Property<string>("Picture")
                         .IsRequired();
 
+                    b.Property<decimal>("Price");
+
                     b.Property<string>("ReportId");
 
                     b.Property<string>("ReportId1");

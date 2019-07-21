@@ -23,8 +23,18 @@ using MDMS.Web.Models;
 
 #line default
 #line hidden
+#line 3 "C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web\Views\_ViewImports.cshtml"
+using MDMS.Web.ViewModels;
+
+#line default
+#line hidden
+#line 4 "C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web\Views\_ViewImports.cshtml"
+using MDMS.Web.BindingModels;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"f784b962837de9c7802c2a90db4790aa59bbc4f1", @"/Views/Shared/_ValidationScriptsPartial.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ef088bd7c66c77d3885e8fbeb6f72dc3e1ffae4a", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"b0387a42fdcf6479fe81dffa17119b181d141db5", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared__ValidationScriptsPartial : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

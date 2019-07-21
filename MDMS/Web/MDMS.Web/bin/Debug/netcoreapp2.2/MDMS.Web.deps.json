@@ -25,7 +25,10 @@
       "MDMS.Web/1.0.0": {
         "dependencies": {
           "MDMS.Data": "1.0.0",
+          "MDMS.Services": "1.0.0",
+          "MDMS.Services.Models": "1.0.0",
           "MDMS.Web.BindingModels": "1.0.0",
+          "MDMS.Web.ViewModels": "1.0.0",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
@@ -616,6 +619,26 @@
           "MDMS.Data.Models.dll": {}
         }
       },
+      "MDMS.Services/1.0.0": {
+        "dependencies": {
+          "MDMS.Data": "1.0.0",
+          "MDMS.Services.Models": "1.0.0"
+        },
+        "runtime": {
+          "MDMS.Services.dll": {}
+        },
+        "compile": {
+          "MDMS.Services.dll": {}
+        }
+      },
+      "MDMS.Services.Models/1.0.0": {
+        "runtime": {
+          "MDMS.Services.Models.dll": {}
+        },
+        "compile": {
+          "MDMS.Services.Models.dll": {}
+        }
+      },
       "MDMS.Web.BindingModels/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Http": "2.2.2"
@@ -625,6 +648,14 @@
         },
         "compile": {
           "MDMS.Web.BindingModels.dll": {}
+        }
+      },
+      "MDMS.Web.ViewModels/1.0.0": {
+        "runtime": {
+          "MDMS.Web.ViewModels.dll": {}
+        },
+        "compile": {
+          "MDMS.Web.ViewModels.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3955,7 +3986,22 @@
       "serviceable": false,
       "sha512": ""
     },
+    "MDMS.Services/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MDMS.Services.Models/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
     "MDMS.Web.BindingModels/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "MDMS.Web.ViewModels/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

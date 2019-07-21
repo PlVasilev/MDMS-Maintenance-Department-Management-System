@@ -17,6 +17,8 @@ namespace MDMS.Web.BindingModels
 
         public DateTime AcquiredOn { get; set; }
 
+        public decimal Price { get; set; }
+
         public decimal Depreciation { get; set; }
 
         public DateTime ManufacturedOn { get; set; }

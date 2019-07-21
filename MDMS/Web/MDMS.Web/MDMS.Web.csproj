@@ -16,12 +16,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\MDMS.Data\MDMS.Data.csproj" />
+    <ProjectReference Include="..\..\Services\MDMS.Services.Models\MDMS.Services.Models.csproj" />
+    <ProjectReference Include="..\..\Services\MDMS.Services\MDMS.Services.csproj" />
     <ProjectReference Include="..\MDMS.Web.BindingModels\MDMS.Web.BindingModels.csproj" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Areas\Administration\Views\" />
+    <ProjectReference Include="..\MDMS.Web.ViewModels\MDMS.Web.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

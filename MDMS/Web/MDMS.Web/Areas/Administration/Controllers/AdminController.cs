@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace MDMS.Web.Areas.Administration.Controllers
 {
     [Authorize(Roles = "Admin")]
+    [Area("Administration")]
     public abstract class AdminController : Controller
     {
     }

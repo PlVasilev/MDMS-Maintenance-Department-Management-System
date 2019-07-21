@@ -30,6 +30,10 @@ namespace MDMS.Data.Models
 
         [Required]
         [Range(typeof(decimal), "0.00", "1000000")]
+        public decimal Price { get; set; }
+
+        [Required]
+        [Range(typeof(decimal), "0.00", "1000000")]
         public decimal Depreciation { get; set; }
 
         [Required]

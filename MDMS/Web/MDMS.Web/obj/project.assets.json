@@ -4778,6 +4778,30 @@
           "bin/placeholder/MDMS.Data.Models.dll": {}
         }
       },
+      "MDMS.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "dependencies": {
+          "MDMS.Data": "1.0.0",
+          "MDMS.Services.Models": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/MDMS.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MDMS.Services.dll": {}
+        }
+      },
+      "MDMS.Services.Models/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/MDMS.Services.Models.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/MDMS.Services.Models.dll": {}
+        }
+      },
       "MDMS.Web.BindingModels/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
@@ -4789,10 +4813,17 @@
         },
         "runtime": {
           "bin/placeholder/MDMS.Web.BindingModels.dll": {}
+        }
+      },
+      "MDMS.Web.ViewModels/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.2",
+        "compile": {
+          "bin/placeholder/MDMS.Web.ViewModels.dll": {}
         },
-        "frameworkReferences": [
-          "Microsoft.NETCore.App"
-        ]
+        "runtime": {
+          "bin/placeholder/MDMS.Web.ViewModels.dll": {}
+        }
       }
     }
   },
@@ -13058,16 +13089,34 @@
       "path": "../../Data/MDMS.Data.Models/MDMS.Data.Models.csproj",
       "msbuildProject": "../../Data/MDMS.Data.Models/MDMS.Data.Models.csproj"
     },
+    "MDMS.Services/1.0.0": {
+      "type": "project",
+      "path": "../../Services/MDMS.Services/MDMS.Services.csproj",
+      "msbuildProject": "../../Services/MDMS.Services/MDMS.Services.csproj"
+    },
+    "MDMS.Services.Models/1.0.0": {
+      "type": "project",
+      "path": "../../Services/MDMS.Services.Models/MDMS.Services.Models.csproj",
+      "msbuildProject": "../../Services/MDMS.Services.Models/MDMS.Services.Models.csproj"
+    },
     "MDMS.Web.BindingModels/1.0.0": {
       "type": "project",
       "path": "../MDMS.Web.BindingModels/MDMS.Web.BindingModels.csproj",
       "msbuildProject": "../MDMS.Web.BindingModels/MDMS.Web.BindingModels.csproj"
+    },
+    "MDMS.Web.ViewModels/1.0.0": {
+      "type": "project",
+      "path": "../MDMS.Web.ViewModels/MDMS.Web.ViewModels.csproj",
+      "msbuildProject": "../MDMS.Web.ViewModels/MDMS.Web.ViewModels.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
       "MDMS.Data >= 1.0.0",
+      "MDMS.Services >= 1.0.0",
+      "MDMS.Services.Models >= 1.0.0",
       "MDMS.Web.BindingModels >= 1.0.0",
+      "MDMS.Web.ViewModels >= 1.0.0",
       "Microsoft.AspNetCore.App >= 2.2.0",
       "Microsoft.AspNetCore.Razor.Design >= 2.2.0",
       "Microsoft.NETCore.App >= 2.2.0",
@@ -13113,8 +13162,17 @@
             "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj": {
               "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj"
             },
+            "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj": {
+              "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj"
+            },
+            "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj": {
+              "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj"
+            },
             "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj": {
               "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj"
+            },
+            "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj": {
+              "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj"
             }
           }
         }

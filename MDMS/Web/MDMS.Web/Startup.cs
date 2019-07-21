@@ -2,6 +2,7 @@
 using MDMS.Data;
 using Mdms.Data.Models;
 using MDMS.Data.Seeding;
+using MDMS.Services;
 using MDMS.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -52,6 +53,8 @@ namespace MDMS.Web
 
                 options.User.RequireUniqueEmail = true;
             });
+
+            services.AddTransient<IVehicleService, VehicleService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
