@@ -531,7 +531,7 @@ namespace MDMS.Data.Migrations
                         .WithMany("Vehicles")
                         .HasForeignKey("ReportId1");
 
-                    b.HasOne("MDMS.Data.Models.VehicleProvider", "AcquiredBy")
+                    b.HasOne("MDMS.Data.Models.VehicleProvider", "VehicleProvider")
                         .WithMany("VehiclesBought")
                         .HasForeignKey("VehicleProviderId")
                         .OnDelete(DeleteBehavior.Cascade);

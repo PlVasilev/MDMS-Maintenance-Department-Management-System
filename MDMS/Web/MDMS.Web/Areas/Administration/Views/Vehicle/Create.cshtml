@@ -9,7 +9,13 @@
 <h1 class="bg-primary text-white font-weight-bold text-center p-3 w-60 mx-auto rounded">Create Vehicle</h1>
 <form method="post" class="form border-primary-4 rounded p-3 w-60 mx-auto mt-3" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly"></div>
-    <div id="name-and-price-holder" class="d-flex justify-content-between">
+    @if (this.ViewData["error"] != null)
+    {
+        <ul>
+            <li>@this.ViewData["error"]</li>
+        </ul>
+    }
+    <div id="make-and-model-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
                 <label asp-for="Make" class="text-primary h5">Make</label>
@@ -33,7 +39,7 @@
             <span asp-validation-for="Model" class="text-danger"></span>
         </div>
     </div>
-    <div id="name-and-price-holder" class="d-flex justify-content-between">
+    <div id="vsn-and-picture-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
                 <label asp-for="VSN" class="text-primary h5">VSN</label>
@@ -57,7 +63,7 @@
             <span asp-validation-for="Picture" class="text-danger"></span>
         </div>
     </div>
-    <div id="date-and-picture-holder" class="d-flex justify-content-between">
+    <div id="ManufacturedOn-and-AcquiredOn-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
                 <label asp-for="ManufacturedOn" class="text-primary h5">Manufactured On</label>
@@ -81,7 +87,7 @@
             <span asp-validation-for="AcquiredOn" class="text-danger"></span>
         </div>
     </div>
-    <div id="date-and-picture-holder" class="d-flex justify-content-between">
+    <div id="date-and-Depreciation-holder" class="d-flex justify-content-between">
         <div class="form-group mx-auto w-45">
             <div class="d-flex justify-content-center">
                 <label asp-for="Price" class="text-primary h5">Price</label>
@@ -107,49 +113,49 @@
             <span asp-validation-for="Depreciation" class="text-danger"></span>
         </div>
     </div>
-        <hr class="hr-2 bg-primary mt-4">
-        <div class="form-group mx-auto w-45">
-            <div class="d-flex justify-content-center">
-                <label asp-for="VehicleType" class="text-primary h5">Product Type</label>
-            </div>
-            <select class="form-control text-primary" id="vehicleType" asp-for="VehicleType">
-                <option selected disabled>--- Select Product Type ---</option>
-                @foreach (var type in (IEnumerable<VehicleCreateVehicleTypeViewModel>)this.ViewData["types"])
-                {
-                    <option value="@type.Name">@type.Name</option>
-                }
-            </select>
-            <span asp-validation-for="VehicleType" class="text-danger"></span>
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="VehicleType" class="text-primary h5">Product Type</label>
         </div>
-        <hr class="hr-2 bg-primary mt-4">
-        <div class="form-group mx-auto w-45">
-            <div class="d-flex justify-content-center">
-                <label asp-for="AcquiredBy" class="text-primary h5">AcquiredBy</label>
-            </div>
-            <select class="form-control text-primary" id="vehicleProvider" asp-for="AcquiredBy">
-                <option selected disabled>--- Select Product Type ---</option>
-                @foreach (var type in (IEnumerable<VehicleCreateVehicleProviderViewModel>)this.ViewData["providers"])
-                {
-                    <option value="@type.Name">@type.Name</option>
-                }
-            </select>
-            <span asp-validation-for="AcquiredBy" class="text-danger"></span>
+        <select class="form-control text-primary" id="vehicleType" asp-for="VehicleType">
+            <option selected disabled>--- Select Product Type ---</option>
+            @foreach (var type in (IEnumerable<VehicleCreateVehicleTypeViewModel>)this.ViewData["types"])
+            {
+                <option value="@type.Name">@type.Name</option>
+            }
+        </select>
+        <span asp-validation-for="VehicleType" class="text-danger"></span>
+    </div>
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="VehicleProvider" class="text-primary h5">VehicleProvider</label>
         </div>
-        <hr class="hr-2 bg-primary mt-4">
-        <div class="d-flex justify-content-center mt-3">
-            <button class="btn btn-primary font-weight-bold">Create Product</button>
-        </div>
+        <select class="form-control text-primary" id="vehicleProvider" asp-for="VehicleProvider">
+            <option selected disabled>--- Select Product Type ---</option>
+            @foreach (var type in (IEnumerable<VehicleCreateVehicleProviderViewModel>)this.ViewData["providers"])
+            {
+                <option value="@type.Name">@type.Name</option>
+            }
+        </select>
+        <span asp-validation-for="VehicleProvider" class="text-danger"></span>
+    </div>
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary font-weight-bold">Create Product</button>
+    </div>
 </form>
 
 
 <script>
     window.onload = () => {
         $('#manufacturedOn').datetimepicker({
-            format: 'd.m.Y H:i',
+            format: 'm.d.Y H:i',
             lang: 'en'
         });
         $('#acquiredOn').datetimepicker({
-            format: 'd.m.Y H:i',
+            format: 'm.d.Y H:i',
             lang: 'en'
         });
     };

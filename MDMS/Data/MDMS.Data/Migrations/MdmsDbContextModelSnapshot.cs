@@ -212,8 +212,7 @@ namespace MDMS.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Picture")
-                        .IsRequired();
+                    b.Property<string>("Picture");
 
                     b.Property<decimal>("Price");
 
@@ -234,6 +233,9 @@ namespace MDMS.Data.Migrations
                     b.HasIndex("ReportId");
 
                     b.HasIndex("ReportId1");
+
+                    b.HasIndex("VSN")
+                        .IsUnique();
 
                     b.HasIndex("VehicleProviderId");
 
@@ -529,7 +531,7 @@ namespace MDMS.Data.Migrations
                         .WithMany("Vehicles")
                         .HasForeignKey("ReportId1");
 
-                    b.HasOne("MDMS.Data.Models.VehicleProvider", "AcquiredBy")
+                    b.HasOne("MDMS.Data.Models.VehicleProvider", "VehicleProvider")
                         .WithMany("VehiclesBought")
                         .HasForeignKey("VehicleProviderId")
                         .OnDelete(DeleteBehavior.Cascade);

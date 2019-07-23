@@ -1,9 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MDMS.Services;
 using MDMS.Services.Models;
 using MDMS.Web.BindingModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Security.Cryptography;
 using MDMS.Web.ViewModels;
 
 namespace MDMS.Web.Areas.Administration.Controllers
@@ -63,8 +65,52 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpGet(Name = "Create")]
         public async Task<IActionResult> Create()
         {
-            var allVehicleTypes = await _vehicleService.GetAllVehicleTypes();
+            await VehicleCreateViewData();
+            return this.View();
+        }
 
+        [HttpPost(Name = "Create")]
+        public async Task<IActionResult> Create(VehicleCreateBindingModel vehicleCreateBindingModel)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    VehicleServiceModel vehicleServiceModel = new VehicleServiceModel()
+                    {
+                        Make = vehicleCreateBindingModel.Make,
+                        Model = vehicleCreateBindingModel.Model,
+                        VSN = vehicleCreateBindingModel.VSN,
+                        VehicleProvider = new VehicleProviderServiceModel() { Name = vehicleCreateBindingModel.VehicleProvider },
+                        AcquiredOn = vehicleCreateBindingModel.AcquiredOn,
+                        Depreciation = vehicleCreateBindingModel.Depreciation,
+                        ManufacturedOn = vehicleCreateBindingModel.ManufacturedOn,
+                        VehicleType = new VehicleTypeServiceModel() { Name = vehicleCreateBindingModel.VehicleType }
+                    };
+
+                    var result = await _vehicleService.Create(vehicleServiceModel);
+
+                    if (result) return this.Redirect("/");
+                    await VehicleCreateViewData();
+                    this.ViewData["error"] = "Vehicle VSN already Exists, change VSN.";
+                    return this.View(vehicleCreateBindingModel);
+                }
+                catch (Exception ex)
+                {
+                   await VehicleCreateViewData();
+                   this.ViewData["error"] = "Unexpected error: try again, if problem persists: Please contact administrator.";
+                   return View(vehicleCreateBindingModel);
+                }
+            }
+            await VehicleCreateViewData();
+            return this.View(vehicleCreateBindingModel);
+        }
+
+        private async Task VehicleCreateViewData()
+        {
+            this.ViewData["error"] = null;
+
+            var allVehicleTypes = await _vehicleService.GetAllVehicleTypes();
             this.ViewData["types"] = allVehicleTypes.Select(pt => new VehicleCreateVehicleTypeViewModel
             {
                 Name = pt.Name
@@ -76,28 +122,6 @@ namespace MDMS.Web.Areas.Administration.Controllers
             {
                 Name = pt.Name
             }).ToList();
-
-            return this.View();
-        }
-
-        [HttpPost(Name = "Create")]
-        public async Task<IActionResult> Create(VehicleCreateBindingModel vehicleCreateBindingModel)
-        {
-            VehicleServiceModel vehicleServiceModel = new VehicleServiceModel()
-            {
-                Make = vehicleCreateBindingModel.Make,
-                Model = vehicleCreateBindingModel.Model,
-                VSN = vehicleCreateBindingModel.VSN,
-                AcquiredBy = new VehicleProviderServiceModel() { Name = vehicleCreateBindingModel.AcquiredBy},
-                AcquiredOn = vehicleCreateBindingModel.AcquiredOn,
-                Depreciation = vehicleCreateBindingModel.Depreciation,
-                ManufacturedOn = vehicleCreateBindingModel.ManufacturedOn,
-                VehicleType = new VehicleTypeServiceModel() { Name = vehicleCreateBindingModel.VehicleType}
-            };
-
-            await _vehicleService.Create(vehicleServiceModel);
-
-            return this.Redirect("/");
         }
     }
 }

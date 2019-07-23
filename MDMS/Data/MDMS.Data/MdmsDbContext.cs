@@ -33,6 +33,10 @@ namespace MDMS.Data
                 .HasIndex(u => u.Email)
                 .IsUnique();
 
+            builder.Entity<Vehicle>()
+                .HasIndex(u => u.VSN)
+                .IsUnique();
+
             builder.Entity<MdmsUserRepair>()
                 .HasKey(k => new { k.MdmsUserId, k.RepairId });
 

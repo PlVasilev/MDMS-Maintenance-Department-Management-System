@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Text;
 
 namespace MDMS.Data.Models
 {
-    public class Vehicle
+    public class Vehicle : IValidatableObject
     {
         public string Id { get; set; }
 
@@ -18,12 +19,12 @@ namespace MDMS.Data.Models
         public string Model { get; set; }
 
         [Required]
-        [RegularExpression("[A-Za-z0-9]{17}")]
+        [MaxLength(17)]
         public string VSN { get; set; }
 
         [Required]
         public string VehicleProviderId { get; set; }
-        public VehicleProvider AcquiredBy { get; set; }
+        public VehicleProvider VehicleProvider { get; set; }
 
         [Required]
         public DateTime AcquiredOn { get; set; }
@@ -39,7 +40,6 @@ namespace MDMS.Data.Models
         [Required]
         public DateTime ManufacturedOn { get; set; }
 
-        [Required]
         public string Picture { get; set; }
 
         public ICollection<Repair> Repairs { get; set; } = new HashSet<Repair>();
@@ -47,5 +47,13 @@ namespace MDMS.Data.Models
         public VehicleType VehicleType { get; set; }
 
         public bool IsActive { get; set; } = false;
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (ManufacturedOn >= AcquiredOn)
+            {
+                yield return new ValidationResult("The Vehicle Acquired must be after Manufactured!");
+            }
+        }
     }
 }

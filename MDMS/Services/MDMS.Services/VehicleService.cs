@@ -20,7 +20,12 @@ namespace MDMS.Services
 
         public async Task<bool> Create(VehicleServiceModel vehicleServiceModel)
         {
-           Vehicle vehicle = new Vehicle()
+            if (_context.Vehicles.Any(v => v.VSN == vehicleServiceModel.VSN))
+            {
+                return false;
+            }
+
+            Vehicle vehicle = new Vehicle()
            {
                Make = vehicleServiceModel.Make,
                Model = vehicleServiceModel.Model,
@@ -28,12 +33,25 @@ namespace MDMS.Services
                AcquiredOn = vehicleServiceModel.AcquiredOn,
                Depreciation = vehicleServiceModel.Depreciation,
                ManufacturedOn = vehicleServiceModel.ManufacturedOn,
+               VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name),
+               VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name),
            };
 
+        
            _context.Vehicles.Add(vehicle);
            var result = await _context.SaveChangesAsync();
 
            return result > 0;
+        }
+
+        private async Task<VehicleType> GetVehicleTypeByName(string vehicleTypeName)
+        {
+            return await _context.VehicleTypes.FirstOrDefaultAsync(x => x.Name == vehicleTypeName);
+        }
+
+        private async Task<VehicleProvider> GetVehicleProviderByName(string vehicleProviderName)
+        {
+            return await _context.VehicleProviders.FirstOrDefaultAsync(x => x.Name == vehicleProviderName);
         }
 
         public async Task<bool> CreateVehicleType(VehicleTypeServiceModel vehicleTypeServiceModel)
