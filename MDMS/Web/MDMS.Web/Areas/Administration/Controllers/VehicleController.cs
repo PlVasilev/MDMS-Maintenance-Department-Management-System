@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using MDMS.Services;
 using MDMS.Services.Models;
@@ -7,16 +8,19 @@ using Microsoft.AspNetCore.Mvc;
 using System.Linq;
 using System.Security.Cryptography;
 using MDMS.Web.ViewModels;
+using MDMS.Web.ViewModels.Vehicle.All;
 
 namespace MDMS.Web.Areas.Administration.Controllers
 {
     public class VehicleController : AdminController 
     {
         private readonly IVehicleService _vehicleService;
+        private readonly ICloudinaryService _cloudinaryService;
 
-        public VehicleController(IVehicleService vehicleService)
+        public VehicleController(IVehicleService vehicleService, ICloudinaryService cloudinaryService)
         {
             _vehicleService = vehicleService;
+            _cloudinaryService = cloudinaryService;
         }
 
         [HttpGet]
@@ -61,6 +65,21 @@ namespace MDMS.Web.Areas.Administration.Controllers
             return this.Redirect("/");
         }
 
+        [HttpGet(Name = "All")]
+        public async Task<IActionResult> All()
+        {
+            var allVehicles = await _vehicleService.GetAllVehicles();
+            List<VehicleAllViewModel> allViewModels = allVehicles.Select(v => new VehicleAllViewModel()
+            {
+                Id = v.Id,
+                Model = v.Model,
+                Make = v.Make,
+                VSN = v.VSN,
+                Picture = v.Picture
+
+            }).ToList();
+            return this.View(allViewModels);
+        }
 
         [HttpGet(Name = "Create")]
         public async Task<IActionResult> Create()
@@ -72,10 +91,15 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpPost(Name = "Create")]
         public async Task<IActionResult> Create(VehicleCreateBindingModel vehicleCreateBindingModel)
         {
+
             if (ModelState.IsValid)
             {
                 try
                 {
+                    string pictureUrl = await _cloudinaryService.UploadPictureAsync(
+                        vehicleCreateBindingModel.Picture,
+                        vehicleCreateBindingModel.VSN); 
+
                     VehicleServiceModel vehicleServiceModel = new VehicleServiceModel()
                     {
                         Make = vehicleCreateBindingModel.Make,
@@ -85,7 +109,9 @@ namespace MDMS.Web.Areas.Administration.Controllers
                         AcquiredOn = vehicleCreateBindingModel.AcquiredOn,
                         Depreciation = vehicleCreateBindingModel.Depreciation,
                         ManufacturedOn = vehicleCreateBindingModel.ManufacturedOn,
-                        VehicleType = new VehicleTypeServiceModel() { Name = vehicleCreateBindingModel.VehicleType }
+                        VehicleType = new VehicleTypeServiceModel() { Name = vehicleCreateBindingModel.VehicleType },
+                        Price = vehicleCreateBindingModel.Price,
+                        Picture = pictureUrl
                     };
 
                     var result = await _vehicleService.Create(vehicleServiceModel);

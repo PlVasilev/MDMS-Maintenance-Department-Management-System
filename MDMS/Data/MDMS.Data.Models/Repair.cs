@@ -11,7 +11,9 @@ namespace MDMS.Data.Models
     {
         public string Id { get; set; }
 
-        public string Name => Vehicle.Make + " " + Vehicle.Model + " " + RepairedSystem.Name;
+        [Required]
+        [MaxLength(250)]
+        public string Name { get; set; } // Vehicle.Make + " " + Vehicle.Model + " " + RepairedSystem.Name;
 
         [Required]
         [MaxLength(1000)]
@@ -26,7 +28,7 @@ namespace MDMS.Data.Models
         public RepairedSystem RepairedSystem { get; set; }
 
         [Required]
-        [Range(0,10000000)]
+        [Range(0,int.MaxValue)]
         public int Mileage { get; set; }
 
         public ICollection<MdmsUserRepair> MdmsUserRepairs { get; set; } = new HashSet<MdmsUserRepair>();

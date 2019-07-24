@@ -45,11 +45,18 @@ namespace MDMS.Data.Migrations
 
                     b.Property<int>("Month");
 
+                    b.Property<string>("SalarySlipTitle")
+                        .IsRequired()
+                        .HasMaxLength(100);
+
                     b.Property<int>("Year");
 
                     b.HasKey("Id");
 
                     b.HasIndex("MechanicId");
+
+                    b.HasIndex("SalarySlipTitle")
+                        .IsUnique();
 
                     b.ToTable("MonthlySalaries");
                 });
@@ -72,6 +79,9 @@ namespace MDMS.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.HasIndex("PartsProviderId");
 
                     b.ToTable("Parts");
@@ -87,6 +97,9 @@ namespace MDMS.Data.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("PartsProviders");
                 });
@@ -104,6 +117,10 @@ namespace MDMS.Data.Migrations
 
                     b.Property<int>("Mileage");
 
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(250);
+
                     b.Property<string>("RepairedSystemId")
                         .IsRequired();
 
@@ -115,6 +132,9 @@ namespace MDMS.Data.Migrations
                         .IsRequired();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.HasIndex("RepairedSystemId");
 
@@ -151,6 +171,9 @@ namespace MDMS.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("RepairedSystems");
                 });
 
@@ -172,6 +195,9 @@ namespace MDMS.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.HasIndex("ReportTypeId");
 
                     b.ToTable("Reports");
@@ -187,6 +213,9 @@ namespace MDMS.Data.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("ReportTypes");
                 });
@@ -212,7 +241,8 @@ namespace MDMS.Data.Migrations
                         .IsRequired()
                         .HasMaxLength(50);
 
-                    b.Property<string>("Picture");
+                    b.Property<string>("Picture")
+                        .IsRequired();
 
                     b.Property<decimal>("Price");
 
@@ -221,7 +251,8 @@ namespace MDMS.Data.Migrations
                     b.Property<string>("ReportId1");
 
                     b.Property<string>("VSN")
-                        .IsRequired();
+                        .IsRequired()
+                        .HasMaxLength(17);
 
                     b.Property<string>("VehicleProviderId")
                         .IsRequired();
@@ -255,6 +286,9 @@ namespace MDMS.Data.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Name")
+                        .IsUnique();
+
                     b.ToTable("VehicleProviders");
                 });
 
@@ -268,6 +302,9 @@ namespace MDMS.Data.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
 
                     b.ToTable("VehicleTypes");
                 });

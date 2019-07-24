@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Globalization;
+using System.Threading.Tasks;
+using CloudinaryDotNet;
 using MDMS.Data;
 using Mdms.Data.Models;
 using MDMS.Data.Seeding;
@@ -41,6 +43,17 @@ namespace MDMS.Web
             services.AddIdentity<MdmsUser, IdentityRole>()
                 .AddEntityFrameworkStores<MdmsDbContext>()
                 .AddDefaultTokenProviders();
+
+
+            //Cloud
+            Account cloudinaryCredentials = new Account(
+                this.Configuration["Cloudinary:CloudName"],
+                this.Configuration["Cloudinary:ApiKey"],
+                this.Configuration["Cloudinary:ApiSecret"]);
+
+            Cloudinary cloudinaryUtility = new Cloudinary(cloudinaryCredentials);
+
+            services.AddSingleton(cloudinaryUtility);
             
             services.Configure<IdentityOptions>(options =>
             {
@@ -55,6 +68,8 @@ namespace MDMS.Web
             });
 
             services.AddTransient<IVehicleService, VehicleService>();
+            services.AddTransient<ICloudinaryService, CloudinaryService>();
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -74,7 +89,8 @@ namespace MDMS.Web
             //        }
             //    }
             //}
-
+            CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+            CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
            
             app.UseDeveloperExceptionPage();
             app.UseDatabaseErrorPage();

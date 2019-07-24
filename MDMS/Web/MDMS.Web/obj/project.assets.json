@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.2": {
+      "CloudinaryDotNet/1.8.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.3/CloudinaryDotNet.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/CloudinaryDotNet.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -4782,6 +4794,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.2",
         "dependencies": {
+          "CloudinaryDotNet": "1.8.0",
           "MDMS.Data": "1.0.0",
           "MDMS.Services.Models": "1.0.0"
         },
@@ -4828,6 +4841,23 @@
     }
   },
   "libraries": {
+    "CloudinaryDotNet/1.8.0": {
+      "sha512": "jrxUPvVmdGL+8wDGQn4rBrRh7jKPDTqUW1kBj+fwmGdiMW5aBArQ3P2ErnYA84AQgvJnb2JwP3WTlwD2Yc/kdA==",
+      "type": "package",
+      "path": "cloudinarydotnet/1.8.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "cloudinarydotnet.1.8.0.nupkg.sha512",
+        "cloudinarydotnet.nuspec",
+        "lib/net40/CloudinaryDotNet.dll",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/netcore/CloudinaryDotNet.deps.json",
+        "lib/netcore/CloudinaryDotNet.dll",
+        "lib/netstandard1.3/CloudinaryDotNet.deps.json",
+        "lib/netstandard1.3/CloudinaryDotNet.dll"
+      ]
+    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "owAlEIUZXWSnkK8Z1c+zR47A0X6ykF4XjbPok4lQKNuciUfHLGPd6QnI+rt/8KlQ17PmF+I4S3f+m+Qe4IvViw==",
       "type": "package",
@@ -13112,6 +13142,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.2": [
+      "CloudinaryDotNet >= 1.8.0",
       "MDMS.Data >= 1.0.0",
       "MDMS.Services >= 1.0.0",
       "MDMS.Services.Models >= 1.0.0",
@@ -13186,6 +13217,10 @@
     "frameworks": {
       "netcoreapp2.2": {
         "dependencies": {
+          "CloudinaryDotNet": {
+            "target": "Package",
+            "version": "[1.8.0, )"
+          },
           "Microsoft.AspNetCore.App": {
             "suppressParent": "All",
             "target": "Package",

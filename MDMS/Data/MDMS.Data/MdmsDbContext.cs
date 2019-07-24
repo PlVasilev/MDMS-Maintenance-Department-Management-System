@@ -34,7 +34,43 @@ namespace MDMS.Data
                 .IsUnique();
 
             builder.Entity<Vehicle>()
-                .HasIndex(u => u.VSN)
+                .HasIndex(v => v.VSN)
+                .IsUnique();
+
+            builder.Entity<VehicleProvider>()
+                .HasIndex(vp => vp.Name)
+                .IsUnique();
+
+            builder.Entity<VehicleType>()
+                .HasIndex(vt => vt.Name)
+                .IsUnique();
+
+            builder.Entity<MonthlySalary>()
+                .HasIndex(ms => ms.SalarySlipTitle)
+                .IsUnique();
+
+            builder.Entity<Part>()
+                .HasIndex(p => p.Name)
+                .IsUnique();
+
+            builder.Entity<PartsProvider>()
+                .HasIndex(pp => pp.Name)
+                .IsUnique();
+
+            builder.Entity<Repair>()
+                .HasIndex(r => r.Name)
+                .IsUnique();
+
+            builder.Entity<RepairedSystem>()
+                .HasIndex(rs => rs.Name)
+                .IsUnique();
+
+            builder.Entity<Report>()
+                .HasIndex(r => r.Name)
+                .IsUnique();
+
+            builder.Entity<ReportType>()
+                .HasIndex(rt => rt.Name)
                 .IsUnique();
 
             builder.Entity<MdmsUserRepair>()

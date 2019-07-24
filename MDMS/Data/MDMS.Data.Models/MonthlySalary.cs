@@ -12,7 +12,9 @@ namespace MDMS.Data.Models
     {
         public string Id { get; set; }
 
-        public string SalarySlipTitle => Year + " " + Month + " " + Mechanic.FirstName + " " + Mechanic.LastName;
+        [Required]
+        [MaxLength(100)]
+        public string SalarySlipTitle { get; set; }// = Year + "_" + Month + "_" + Mechanic.FirstName + "_" + Mechanic.LastName;
 
         [Range(1, 12)]
         public int Month { get; set; }

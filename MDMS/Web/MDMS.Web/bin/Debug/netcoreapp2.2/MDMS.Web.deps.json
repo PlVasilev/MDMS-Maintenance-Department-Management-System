@@ -24,6 +24,7 @@
     ".NETCoreApp,Version=v2.2": {
       "MDMS.Web/1.0.0": {
         "dependencies": {
+          "CloudinaryDotNet": "1.8.0",
           "MDMS.Data": "1.0.0",
           "MDMS.Services": "1.0.0",
           "MDMS.Services.Models": "1.0.0",
@@ -39,6 +40,20 @@
         },
         "compile": {
           "MDMS.Web.dll": {}
+        }
+      },
+      "CloudinaryDotNet/1.8.0": {
+        "dependencies": {
+          "Newtonsoft.Json": "11.0.2"
+        },
+        "runtime": {
+          "lib/netstandard1.3/CloudinaryDotNet.dll": {
+            "assemblyVersion": "1.8.0.0",
+            "fileVersion": "1.8.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard1.3/CloudinaryDotNet.dll": {}
         }
       },
       "Microsoft.AspNetCore.Http/2.2.2": {
@@ -621,6 +636,7 @@
       },
       "MDMS.Services/1.0.0": {
         "dependencies": {
+          "CloudinaryDotNet": "1.8.0",
           "MDMS.Data": "1.0.0",
           "MDMS.Services.Models": "1.0.0"
         },
@@ -3723,6 +3739,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "CloudinaryDotNet/1.8.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-jrxUPvVmdGL+8wDGQn4rBrRh7jKPDTqUW1kBj+fwmGdiMW5aBArQ3P2ErnYA84AQgvJnb2JwP3WTlwD2Yc/kdA==",
+      "path": "cloudinarydotnet/1.8.0",
+      "hashPath": "cloudinarydotnet.1.8.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Http/2.2.2": {
       "type": "package",

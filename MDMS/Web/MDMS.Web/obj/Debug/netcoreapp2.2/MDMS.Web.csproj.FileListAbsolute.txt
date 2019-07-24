@@ -50,3 +50,4 @@ C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\
 C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web\bin\Debug\netcoreapp2.2\MDMS.Services.pdb
 C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web\bin\Debug\netcoreapp2.2\MDMS.Web.ViewModels.dll
 C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web\bin\Debug\netcoreapp2.2\MDMS.Web.ViewModels.pdb
+C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web\obj\Debug\netcoreapp2.2\Razor\Views\Shared\All.cshtml.g.cs

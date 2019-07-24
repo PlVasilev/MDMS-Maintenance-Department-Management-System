@@ -35,6 +35,8 @@ namespace MDMS.Services
                ManufacturedOn = vehicleServiceModel.ManufacturedOn,
                VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name),
                VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name),
+               Price = vehicleServiceModel.Price,
+               Picture = vehicleServiceModel.Picture
            };
 
         
@@ -44,14 +46,16 @@ namespace MDMS.Services
            return result > 0;
         }
 
+
+
         private async Task<VehicleType> GetVehicleTypeByName(string vehicleTypeName)
         {
-            return await _context.VehicleTypes.FirstOrDefaultAsync(x => x.Name == vehicleTypeName);
+            return await _context.VehicleTypes.SingleOrDefaultAsync(x => x.Name == vehicleTypeName);
         }
 
         private async Task<VehicleProvider> GetVehicleProviderByName(string vehicleProviderName)
         {
-            return await _context.VehicleProviders.FirstOrDefaultAsync(x => x.Name == vehicleProviderName);
+            return await _context.VehicleProviders.SingleOrDefaultAsync(x => x.Name == vehicleProviderName);
         }
 
         public async Task<bool> CreateVehicleType(VehicleTypeServiceModel vehicleTypeServiceModel)
@@ -79,6 +83,19 @@ namespace MDMS.Services
 
             return result > 0;
         }
+
+        public async Task<IQueryable<VehicleServiceModel>> GetAllVehicles()
+        {
+            return _context.Vehicles.Select(v => new VehicleServiceModel()
+            {
+                Id = v.Id,
+                Make = v.Make,
+                Model = v.Model,
+                VSN = v.VSN,
+                Picture = v.Picture
+            });
+        }
+
 
         public async Task<IQueryable<VehicleTypeServiceModel>> GetAllVehicleTypes()
         {
