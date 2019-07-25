@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj": {}
+    "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj": {}
   },
   "projects": {
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj": {
+    "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj",
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj",
         "projectName": "MDMS.Web.ViewModels",
-        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj",
         "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\obj\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

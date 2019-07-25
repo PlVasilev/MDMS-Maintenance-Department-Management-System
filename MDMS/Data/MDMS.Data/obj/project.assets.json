@@ -4600,11 +4600,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj",
+      "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj",
       "projectName": "MDMS.Data",
-      "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj",
+      "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj",
       "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\obj\\",
+      "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -4629,8 +4629,8 @@
       "frameworks": {
         "netcoreapp2.2": {
           "projectReferences": {
-            "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj": {
-              "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj"
+            "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj": {
+              "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj"
             }
           }
         }

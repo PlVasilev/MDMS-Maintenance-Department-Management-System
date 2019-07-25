@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj": {}
+    "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj": {
+    "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj",
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj",
         "projectName": "MDMS.Data.Models",
-        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj",
         "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\obj\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -70,14 +70,14 @@
         }
       }
     },
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj": {
+    "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj",
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj",
         "projectName": "MDMS.Data",
-        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj",
         "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\obj\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -102,8 +102,8 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj": {
-                "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj"
+              "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj": {
+                "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data.Models\\MDMS.Data.Models.csproj"
               }
             }
           }
@@ -150,14 +150,14 @@
         }
       }
     },
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj": {
+    "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj",
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj",
         "projectName": "MDMS.Services.Models",
-        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj",
         "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\obj\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -208,14 +208,14 @@
         }
       }
     },
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj": {
+    "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj",
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj",
         "projectName": "MDMS.Services",
-        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj",
         "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\obj\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -240,11 +240,11 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj": {
-                "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj"
+              "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj": {
+                "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj"
               },
-              "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj": {
-                "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj"
+              "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj": {
+                "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj"
               }
             }
           }
@@ -277,14 +277,14 @@
         }
       }
     },
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj": {
+    "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj",
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj",
         "projectName": "MDMS.Web.BindingModels",
-        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj",
         "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\obj\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -339,14 +339,14 @@
         }
       }
     },
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj": {
+    "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj",
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj",
         "projectName": "MDMS.Web.ViewModels",
-        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj",
         "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\obj\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -397,14 +397,14 @@
         }
       }
     },
-    "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj": {
+    "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj",
+        "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj",
         "projectName": "MDMS.Web",
-        "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj",
+        "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\MDMS.Web.csproj",
         "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\obj\\",
+        "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -429,20 +429,20 @@
         "frameworks": {
           "netcoreapp2.2": {
             "projectReferences": {
-              "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj": {
-                "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj"
+              "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj": {
+                "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Data\\MDMS.Data\\MDMS.Data.csproj"
               },
-              "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj": {
-                "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj"
+              "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj": {
+                "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj"
               },
-              "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj": {
-                "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj"
+              "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj": {
+                "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services\\MDMS.Services.csproj"
               },
-              "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj": {
-                "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj"
+              "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj": {
+                "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.BindingModels\\MDMS.Web.BindingModels.csproj"
               },
-              "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj": {
-                "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj"
+              "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj": {
+                "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Web\\MDMS.Web.ViewModels\\MDMS.Web.ViewModels.csproj"
               }
             }
           }

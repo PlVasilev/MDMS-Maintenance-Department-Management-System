@@ -12,3 +12,17 @@ C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\
 C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\obj\Debug\netcoreapp2.2\MDMS.Data.pdb
 C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\bin\Debug\netcoreapp2.2\MDMS.Data.runtimeconfig.json
 C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\bin\Debug\netcoreapp2.2\MDMS.Data.runtimeconfig.dev.json
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\bin\Debug\netcoreapp2.2\MDMS.Data.deps.json
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\bin\Debug\netcoreapp2.2\MDMS.Data.runtimeconfig.json
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\bin\Debug\netcoreapp2.2\MDMS.Data.runtimeconfig.dev.json
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\bin\Debug\netcoreapp2.2\MDMS.Data.dll
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\bin\Debug\netcoreapp2.2\MDMS.Data.pdb
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\bin\Debug\netcoreapp2.2\MDMS.Data.Models.dll
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\bin\Debug\netcoreapp2.2\MDMS.Data.Models.pdb
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\obj\Debug\netcoreapp2.2\MDMS.Data.csprojAssemblyReference.cache
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\obj\Debug\netcoreapp2.2\MDMS.Data.csproj.CoreCompileInputs.cache
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\obj\Debug\netcoreapp2.2\MDMS.Data.AssemblyInfoInputs.cache
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\obj\Debug\netcoreapp2.2\MDMS.Data.AssemblyInfo.cs
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\obj\Debug\netcoreapp2.2\MDMS.Data.csproj.CopyComplete
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\obj\Debug\netcoreapp2.2\MDMS.Data.dll
+C:\Users\plamen\Desktop\ASPWeb\MDMS-Maintenance-Department-Management-System\MDMS\Data\MDMS.Data\obj\Debug\netcoreapp2.2\MDMS.Data.pdb

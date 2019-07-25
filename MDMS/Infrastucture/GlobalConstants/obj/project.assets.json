@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Infrastucture\\GlobalConstants\\GlobalConstants.csproj",
+      "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Infrastucture\\GlobalConstants\\GlobalConstants.csproj",
       "projectName": "GlobalConstants",
-      "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Infrastucture\\GlobalConstants\\GlobalConstants.csproj",
+      "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Infrastucture\\GlobalConstants\\GlobalConstants.csproj",
       "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Infrastucture\\GlobalConstants\\obj\\",
+      "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Infrastucture\\GlobalConstants\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

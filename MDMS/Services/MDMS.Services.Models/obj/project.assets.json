@@ -692,11 +692,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj",
+      "projectUniqueName": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj",
       "projectName": "MDMS.Services.Models",
-      "projectPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj",
+      "projectPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\MDMS.Services.Models.csproj",
       "packagesPath": "C:\\Users\\plamen\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\plamen\\Desktop\\MSDN\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\obj\\",
+      "outputPath": "C:\\Users\\plamen\\Desktop\\ASPWeb\\MDMS-Maintenance-Department-Management-System\\MDMS\\Services\\MDMS.Services.Models\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
