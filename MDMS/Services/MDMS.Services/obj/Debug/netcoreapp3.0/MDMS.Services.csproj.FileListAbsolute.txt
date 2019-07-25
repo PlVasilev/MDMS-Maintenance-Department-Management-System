@@ -1,9 +1,0 @@
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Services\MDMS.Services\bin\Debug\netcoreapp3.0\MDMS.Services.deps.json
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Services\MDMS.Services\bin\Debug\netcoreapp3.0\MDMS.Services.dll
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Services\MDMS.Services\bin\Debug\netcoreapp3.0\MDMS.Services.pdb
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Services\MDMS.Services\obj\Debug\netcoreapp3.0\MDMS.Services.csprojAssemblyReference.cache
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Services\MDMS.Services\obj\Debug\netcoreapp3.0\MDMS.Services.csproj.CoreCompileInputs.cache
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Services\MDMS.Services\obj\Debug\netcoreapp3.0\MDMS.Services.AssemblyInfoInputs.cache
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Services\MDMS.Services\obj\Debug\netcoreapp3.0\MDMS.Services.AssemblyInfo.cs
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Services\MDMS.Services\obj\Debug\netcoreapp3.0\MDMS.Services.dll
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Services\MDMS.Services\obj\Debug\netcoreapp3.0\MDMS.Services.pdb

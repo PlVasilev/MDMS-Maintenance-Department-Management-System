@@ -1,9 +1,0 @@
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.BindingModels\bin\Debug\netcoreapp3.0\MDMS.Web.BindingModels.deps.json
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.BindingModels\bin\Debug\netcoreapp3.0\MDMS.Web.BindingModels.dll
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.BindingModels\obj\Debug\netcoreapp3.0\MDMS.Web.BindingModels.csprojAssemblyReference.cache
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.BindingModels\obj\Debug\netcoreapp3.0\MDMS.Web.BindingModels.csproj.CoreCompileInputs.cache
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.BindingModels\obj\Debug\netcoreapp3.0\MDMS.Web.BindingModels.AssemblyInfoInputs.cache
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.BindingModels\obj\Debug\netcoreapp3.0\MDMS.Web.BindingModels.AssemblyInfo.cs
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.BindingModels\bin\Debug\netcoreapp3.0\MDMS.Web.BindingModels.pdb
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.BindingModels\obj\Debug\netcoreapp3.0\MDMS.Web.BindingModels.dll
-C:\Users\plamen\Desktop\MSDN\MDMS-Maintenance-Department-Management-System\MDMS\Web\MDMS.Web.BindingModels\obj\Debug\netcoreapp3.0\MDMS.Web.BindingModels.pdb
