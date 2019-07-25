@@ -2,7 +2,7 @@
 
 namespace GlobalConstants
 {
-    public class Class1
+    public class ModelConstants
     {
     }
 }
