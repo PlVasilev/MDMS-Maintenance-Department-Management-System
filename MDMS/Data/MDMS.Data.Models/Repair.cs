@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
+using Mdms.Data.Models;
 using Remotion.Linq.Parsing.Structure.IntermediateModel;
 
 namespace MDMS.Data.Models
 {
-   public class Repair
+   public abstract class Repair : Base
     {
-        public string Id { get; set; }
-
-        [Required]
-        [MaxLength(250)]
-        public string Name { get; set; } // Vehicle.Make + " " + Vehicle.Model + " " + RepairedSystem.Name;
+        // Vehicle.Make + " " + Vehicle.Model + " " + RepairedSystem.Name + datetimeStart; NAME
 
         [Required]
         [MaxLength(1000)]
@@ -28,21 +25,15 @@ namespace MDMS.Data.Models
         public RepairedSystem RepairedSystem { get; set; }
 
         [Required]
-        [Range(0,int.MaxValue)]
-        public int Mileage { get; set; }
-
-        public ICollection<MdmsUserRepair> MdmsUserRepairs { get; set; } = new HashSet<MdmsUserRepair>();
-
-        [Required]
         [DataType(DataType.DateTime)]
         public DateTime StartedOn { get; set; }
 
         public DateTime? FinishedOn { get; set; } = null;
 
-        public ICollection<RepairPart> RepairParts { get; set; } = new HashSet<RepairPart>();
+        [Required]
+        public MdmsUser MdmsUser { get; set; }
 
-        public decimal RepairCost => RepairParts.Sum(x => x.Part.Price * x.Quantity) +
-                                     MdmsUserRepairs.Sum(x =>
-                                         x.MdmsUser.AdditionalOnHourPayment * (decimal) x.HoursWorked);
+        [Range(typeof(decimal), "0.01", "9999999999", ErrorMessage = "Must be positive number")]
+        public decimal RepairCost { get; set; } // Internal RepairParts.Sum(x => x.Part.Price * x.Quantity) +(MdmsUserRepair.MdmsUser.AdditionalOnHourPayment * (decimal)MdmsUserRepair.HoursWorked);
     }
 }

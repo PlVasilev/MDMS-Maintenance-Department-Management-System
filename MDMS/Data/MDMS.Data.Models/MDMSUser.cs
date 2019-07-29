@@ -31,7 +31,7 @@ namespace Mdms.Data.Models
 
         public ICollection<MonthlySalary> Salaries { get; set; } = new HashSet<MonthlySalary>();
 
-        public ICollection<MdmsUserRepair> MdmsUserRepairs { get; set; } = new HashSet<MdmsUserRepair>();
-
+        public ICollection<InternalRepair> InternalRepairs { get; set; } = new HashSet<InternalRepair>();
+        public ICollection<ExternalRepair> ExternalRepairs { get; set; } = new HashSet<ExternalRepair>();
     }
 }

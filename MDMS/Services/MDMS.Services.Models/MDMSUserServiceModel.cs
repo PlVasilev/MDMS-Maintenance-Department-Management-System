@@ -28,6 +28,7 @@ namespace MDMS.Services.Models
 
         public ICollection<MonthlySalaryServiceModel> Salaries { get; set; } = new HashSet<MonthlySalaryServiceModel>();
 
-        public ICollection<MdmsUserRepairServiceModel> MdmsUserRepairs { get; set; } = new HashSet<MdmsUserRepairServiceModel>();
+        public ICollection<RepairServiceModel>Repairs { get; set; } = new HashSet<RepairServiceModel>();
     }
 }
+ 

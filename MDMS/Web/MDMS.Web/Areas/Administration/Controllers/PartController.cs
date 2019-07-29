@@ -11,7 +11,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpPost(Name = "Create")]
         public async Task<IActionResult> Create()
         {
-            return null;
+            return await Task.Run(() => this.View());
         }
     }
 }

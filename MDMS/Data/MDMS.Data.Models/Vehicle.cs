@@ -6,10 +6,8 @@ using System.Text;
 
 namespace MDMS.Data.Models
 {
-    public class Vehicle : IValidatableObject
+    public class Vehicle : Base, IValidatableObject
     {
-        public string Id { get; set; }
-
         [Required]
         [MaxLength(50)]
         public string Make { get; set; }
@@ -43,7 +41,8 @@ namespace MDMS.Data.Models
         [Required]
         public string Picture { get; set; }
 
-        public ICollection<Repair> Repairs { get; set; } = new HashSet<Repair>();
+        public ICollection<InternalRepair> InternalRepairs { get; set; } = new HashSet<InternalRepair>();
+        public ICollection<ExternalRepair> ExternalRepairs { get; set; } = new HashSet<ExternalRepair>();
 
         public VehicleType VehicleType { get; set; }
 

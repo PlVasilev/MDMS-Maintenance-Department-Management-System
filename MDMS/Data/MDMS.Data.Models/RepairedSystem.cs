@@ -5,14 +5,9 @@ using System.Text;
 
 namespace MDMS.Data.Models
 {
-    public class RepairedSystem
+    public class RepairedSystem : Base
     {
-        public string Id { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
-
-        public ICollection<Repair> Repairs { get; set; }  = new HashSet<Repair>();
+        public ICollection<InternalRepair> InternalRepairs { get; set; }  = new HashSet<InternalRepair>();
+        public ICollection<ExternalRepair> ExternalRepairs { get; set; }  = new HashSet<ExternalRepair>();
     }
 }

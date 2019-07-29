@@ -10,6 +10,10 @@ namespace MDMS.Web.BindingModels
    public class VehicleCreateBindingModel : IValidatableObject
     {
         [Required]
+        [RegularExpression("^[A-Z0-9]+$", ErrorMessage = "Registration Number Must contain English capital letters and digits Only !")]
+        public string Name { get; set; }
+
+        [Required]
         [MaxLength(50, ErrorMessage = "Make must be less or equal to 50 symbols")]
         public string Make { get; set; }
 
@@ -18,7 +22,7 @@ namespace MDMS.Web.BindingModels
         public string Model { get; set; }
 
         [Required]
-        [RegularExpression("[A-Za-z0-9]{17}", ErrorMessage = "VSN Must be 17 symbols English letters and digits Only !")]
+        [RegularExpression("^[A-Za-z0-9]{17}$", ErrorMessage = "VSN Must be 17 symbols English letters and digits Only !")]
         public string VSN { get; set; }
 
         [Required]

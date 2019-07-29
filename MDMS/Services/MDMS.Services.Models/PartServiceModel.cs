@@ -4,13 +4,8 @@ using System.Text;
 
 namespace MDMS.Services.Models
 {
-   public class PartServiceModel
+   public class PartServiceModel :BaseServiceModel
     {
-        public string Id { get; set; }
-
-
-        public string Name { get; set; }
-
 
         public decimal Price { get; set; }
 

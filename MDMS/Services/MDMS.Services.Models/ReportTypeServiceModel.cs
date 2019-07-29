@@ -4,12 +4,8 @@ using System.Text;
 
 namespace MDMS.Services.Models
 {
-    public class ReportTypeServiceModel
+    public class ReportTypeServiceModel : BaseServiceModel
     {
-        public string Id { get; set; }
-
-        public string Name { get; set; }
-
         public ICollection<ReportServiceModel> Reports { get; set; } = new HashSet<ReportServiceModel>();
     }
 }

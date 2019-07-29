@@ -8,14 +8,8 @@ using Mdms.Data.Models;
 
 namespace MDMS.Data.Models
 {
-    public class MonthlySalary
+    public class MonthlySalary: Base
     {
-        public string Id { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string SalarySlipTitle { get; set; }// = Year + "_" + Month + "_" + Mechanic.FirstName + "_" + Mechanic.LastName;
-
         [Range(1, 12)]
         public int Month { get; set; }
 
@@ -25,14 +19,13 @@ namespace MDMS.Data.Models
         public MdmsUser Mechanic { get; set; }
 
         public decimal TotalSalary => Mechanic.BaseSalary +
-                                      ((decimal)Mechanic.MdmsUserRepairs
-                                           .Where(x => x.Repair.FinishedOn != null &&
-                                                       x.Repair.FinishedOn.Value.Month == Month &&
-                                                       x.Repair.FinishedOn.Value.Year == Year)
+                                      ((decimal)Mechanic.InternalRepairs
+                                           .Where(x => x.FinishedOn != null &&
+                                                       x.FinishedOn.Value.Month == Month &&
+                                                       x.FinishedOn.Value.Year == Year)
                                            .Sum(x => x.HoursWorked) * (decimal)Mechanic.AdditionalOnHourPayment) * 1.18m;
 
         [Range(0, 1000)]
         public double HoursWorked { get; set; }
-
     }
 }

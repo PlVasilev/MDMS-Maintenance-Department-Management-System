@@ -5,14 +5,8 @@ using System.Text;
 
 namespace MDMS.Data.Models
 {
-   public class Part
+   public class Part : Base
     {
-        public string Id { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string Name { get; set; }
-
         [Required]
         [Range(typeof(decimal), "0.00", "1000000")]
         public decimal Price { get; set; }
@@ -21,10 +15,10 @@ namespace MDMS.Data.Models
         public string PartsProviderId { get; set; }
         public PartsProvider AcquiredFrom { get; set; }
 
-        public ICollection<RepairPart> RepairParts { get; set; } = new HashSet<RepairPart>();
+        public ICollection<InternalRepairPart> InternalRepairParts { get; set; } = new HashSet<InternalRepairPart>();
 
         [Required]
-        [Range(0, 100000)]
+        [Range(0, int.MaxValue)]
         public int Stock { get; set; }
     }
 }

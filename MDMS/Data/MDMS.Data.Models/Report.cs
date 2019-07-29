@@ -7,13 +7,9 @@ using Mdms.Data.Models;
 
 namespace MDMS.Data.Models
 {
-   public class Report
+   public class Report : Base , IValidatableObject
     {
-        public string Id { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string Name { get; set; }
+        //Name : Type + start Month Year + End Month Year
 
         [Required]
         [DataType(DataType.DateTime)]
@@ -27,20 +23,17 @@ namespace MDMS.Data.Models
         public string ReportTypeId { get; set; }
         public ReportType ReportType { get; set; }
 
-        public ICollection<Repair> Repairs { get; set; } = new HashSet<Repair>();
+        public ICollection<InternalRepair> InternalRepairsInReport { get; set; } = new HashSet<InternalRepair>(); // => InternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        public ICollection<ExternalRepair> ExternalRepairsInReport { get; set; } = new HashSet<ExternalRepair>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        public ICollection<MdmsUser> Users { get; set; } = new HashSet<MdmsUser>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        public ICollection<Vehicle> Vehicles { get; set; } = new HashSet<Vehicle>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
 
-        public ICollection<MdmsUser> Users { get; set; } = new HashSet<MdmsUser>();
+        public decimal InternalRepairsConst => InternalRepairsInReport.Sum(z => z.InternalRepairParts.Sum(c => c.Part.Price * c.Quantity));
+        public decimal ExternalRepairsConst => ExternalRepairsInReport.Sum(z => z.LaborCost + z.PartsCost);
 
-        public ICollection<Vehicle> Vehicles { get; set; } = new HashSet<Vehicle>();
-
-        private ICollection<Repair> RepairsInReport => Repairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
-
-        public decimal RepairsConst => RepairsInReport.Sum(z => z.RepairParts.Sum(c => c.Part.Price * c.Quantity));
-
-        public ICollection<Vehicle> RepairedVehicles => RepairsInReport.Select(x => x.Vehicle).ToHashSet();
 
         public decimal BaseCost => (Users.Sum(x => x.BaseSalary) + Vehicles.Sum(x => x.Depreciation)) *
-                                   (End.Month - Start.Month + 1) + (12 * (End.Year - Start.Year));
+                                   (End.Month - Start.Month - 1) + (12 * (End.Year - Start.Year - 1));
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

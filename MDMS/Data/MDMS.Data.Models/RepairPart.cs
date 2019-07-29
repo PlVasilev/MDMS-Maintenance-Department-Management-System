@@ -5,11 +5,11 @@ using System.Text;
 
 namespace MDMS.Data.Models
 {
-   public class RepairPart
+   public class InternalRepairPart
     {
         [Required]
-        public string RepairId { get; set; }
-        public Repair Repair { get; set; }
+        public string InternalRepairId { get; set; }
+        public InternalRepair InternalRepair { get; set; }
 
         [Required]
         public string PartId { get; set; }

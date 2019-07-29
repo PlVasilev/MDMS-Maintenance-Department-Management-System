@@ -3,14 +3,10 @@ using System.Collections.Generic;
 
 namespace MDMS.Services.Models
 {
-    public class VehicleServiceModel
+    public class VehicleServiceModel : BaseServiceModel
     {
-        public string Id { get; set; }
-
-
         public string Make { get; set; }
 
- 
         public string Model { get; set; }
 
         public string VSN { get; set; }

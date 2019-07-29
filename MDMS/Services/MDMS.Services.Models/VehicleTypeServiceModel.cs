@@ -4,9 +4,8 @@ using System.Text;
 
 namespace MDMS.Services.Models
 {
-   public class VehicleTypeServiceModel
+   public class VehicleTypeServiceModel : BaseServiceModel
     {
-        public string Id { get; set; }
-        public string Name { get; set; }
+        public ICollection<VehicleServiceModel> Vehicles { get; set; } = new HashSet<VehicleServiceModel>();
     }
 }

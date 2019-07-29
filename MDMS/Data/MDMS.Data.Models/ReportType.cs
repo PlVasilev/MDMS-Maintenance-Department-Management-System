@@ -5,14 +5,8 @@ using System.Text;
 
 namespace MDMS.Data.Models
 {
-    public class ReportType
+    public class ReportType : Base
     {
-        public string Id { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
-
         public ICollection<Report> Reports { get; set; }  = new HashSet<Report>();
     }
 }

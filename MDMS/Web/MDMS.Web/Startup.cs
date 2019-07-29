@@ -91,12 +91,20 @@ namespace MDMS.Web
             //}
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
-           
-            app.UseDeveloperExceptionPage();
-            app.UseDatabaseErrorPage();
-            // app.UseExceptionHandler("/Home/Error");
-            app.UseHsts();
 
+            if (env.IsDevelopment())
+            {
+
+                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage(new DeveloperExceptionPageOptions() { SourceCodeLineCount = 100 });
+            }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
+            }
+
+            app.UseHsts();
             app.UseDatabaseSeeding();
             app.UseHttpsRedirection();
             app.UseStaticFiles();

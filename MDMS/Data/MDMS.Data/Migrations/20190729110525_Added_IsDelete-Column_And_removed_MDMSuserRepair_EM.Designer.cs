@@ -4,136 +4,22 @@ using MDMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MDMS.Data.Migrations
 {
     [DbContext(typeof(MdmsDbContext))]
-    partial class MdmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190729110525_Added_IsDelete-Column_And_removed_MDMSuserRepair_EM")]
+    partial class Added_IsDeleteColumn_And_removed_MDMSuserRepair_EM
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("MDMS.Data.Models.ExternalRepair", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1000);
-
-                    b.Property<string>("ExternalRepairProviderId")
-                        .IsRequired();
-
-                    b.Property<DateTime?>("FinishedOn");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<decimal>("LaborCost");
-
-                    b.Property<string>("MdmsUserId")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<decimal>("PartsCost");
-
-                    b.Property<decimal>("RepairCost");
-
-                    b.Property<string>("RepairedSystemId")
-                        .IsRequired();
-
-                    b.Property<DateTime>("StartedOn");
-
-                    b.Property<string>("VehicleId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExternalRepairProviderId");
-
-                    b.HasIndex("MdmsUserId");
-
-                    b.HasIndex("RepairedSystemId");
-
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("ExternalRepairs");
-                });
-
-            modelBuilder.Entity("MDMS.Data.Models.ExternalRepairProvider", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ExternalRepairProviders");
-                });
-
-            modelBuilder.Entity("MDMS.Data.Models.InternalRepair", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1000);
-
-                    b.Property<DateTime?>("FinishedOn");
-
-                    b.Property<double>("HoursWorked");
-
-                    b.Property<bool>("IsDeleted");
-
-                    b.Property<string>("MdmsUserId")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100);
-
-                    b.Property<decimal>("RepairCost");
-
-                    b.Property<string>("RepairedSystemId")
-                        .IsRequired();
-
-                    b.Property<string>("ReportId");
-
-                    b.Property<DateTime>("StartedOn");
-
-                    b.Property<string>("VehicleId")
-                        .IsRequired();
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MdmsUserId");
-
-                    b.HasIndex("Name")
-                        .IsUnique();
-
-                    b.HasIndex("RepairedSystemId");
-
-                    b.HasIndex("ReportId");
-
-                    b.HasIndex("VehicleId");
-
-                    b.ToTable("InternalRepairs");
-                });
 
             modelBuilder.Entity("MDMS.Data.Models.MonthlySalary", b =>
                 {
@@ -150,7 +36,7 @@ namespace MDMS.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100);
+                        .HasMaxLength(50);
 
                     b.Property<int>("Year");
 
@@ -173,7 +59,7 @@ namespace MDMS.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100);
+                        .HasMaxLength(50);
 
                     b.Property<string>("PartsProviderId")
                         .IsRequired();
@@ -201,7 +87,7 @@ namespace MDMS.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -209,6 +95,57 @@ namespace MDMS.Data.Migrations
                         .IsUnique();
 
                     b.ToTable("PartsProviders");
+                });
+
+            modelBuilder.Entity("MDMS.Data.Models.Repair", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000);
+
+                    b.Property<DateTime?>("FinishedOn");
+
+                    b.Property<double>("HoursWorked");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("MdmsUserId");
+
+                    b.Property<int>("Mileage");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
+
+                    b.Property<decimal>("RepairCost");
+
+                    b.Property<string>("RepairedSystemId")
+                        .IsRequired();
+
+                    b.Property<string>("ReportId");
+
+                    b.Property<DateTime>("StartedOn");
+
+                    b.Property<string>("VehicleId")
+                        .IsRequired();
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MdmsUserId");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.HasIndex("RepairedSystemId");
+
+                    b.HasIndex("ReportId");
+
+                    b.HasIndex("VehicleId");
+
+                    b.ToTable("Repairs");
                 });
 
             modelBuilder.Entity("MDMS.Data.Models.RepairPart", b =>
@@ -235,7 +172,7 @@ namespace MDMS.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -251,8 +188,6 @@ namespace MDMS.Data.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("End");
-
-                    b.Property<bool>("IsDeleted");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -282,7 +217,7 @@ namespace MDMS.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -317,12 +252,16 @@ namespace MDMS.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100);
+                        .HasMaxLength(50);
 
                     b.Property<string>("Picture")
                         .IsRequired();
 
                     b.Property<decimal>("Price");
+
+                    b.Property<string>("ReportId");
+
+                    b.Property<string>("ReportId1");
 
                     b.Property<string>("VSN")
                         .IsRequired()
@@ -334,6 +273,10 @@ namespace MDMS.Data.Migrations
                     b.Property<string>("VehicleTypeId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ReportId");
+
+                    b.HasIndex("ReportId1");
 
                     b.HasIndex("VSN")
                         .IsUnique();
@@ -354,7 +297,7 @@ namespace MDMS.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -373,7 +316,7 @@ namespace MDMS.Data.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
@@ -428,6 +371,8 @@ namespace MDMS.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<string>("ReportId");
+
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -448,6 +393,8 @@ namespace MDMS.Data.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("ReportId");
 
                     b.ToTable("AspNetUsers");
                 });
@@ -562,51 +509,6 @@ namespace MDMS.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("MDMS.Data.Models.ExternalRepair", b =>
-                {
-                    b.HasOne("MDMS.Data.Models.ExternalRepairProvider", "ExternalRepairProvider")
-                        .WithMany()
-                        .HasForeignKey("ExternalRepairProviderId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Mdms.Data.Models.MdmsUser", "MdmsUser")
-                        .WithMany()
-                        .HasForeignKey("MdmsUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MDMS.Data.Models.RepairedSystem", "RepairedSystem")
-                        .WithMany()
-                        .HasForeignKey("RepairedSystemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MDMS.Data.Models.Vehicle", "Vehicle")
-                        .WithMany()
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("MDMS.Data.Models.InternalRepair", b =>
-                {
-                    b.HasOne("Mdms.Data.Models.MdmsUser", "MdmsUser")
-                        .WithMany("InternalRepairs")
-                        .HasForeignKey("MdmsUserId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MDMS.Data.Models.RepairedSystem", "RepairedSystem")
-                        .WithMany("InternalRepairs")
-                        .HasForeignKey("RepairedSystemId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MDMS.Data.Models.Report")
-                        .WithMany("InternalRepairsInReport")
-                        .HasForeignKey("ReportId");
-
-                    b.HasOne("MDMS.Data.Models.Vehicle", "Vehicle")
-                        .WithMany("InternalRepairs")
-                        .HasForeignKey("VehicleId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("MDMS.Data.Models.MonthlySalary", b =>
                 {
                     b.HasOne("Mdms.Data.Models.MdmsUser", "Mechanic")
@@ -622,6 +524,27 @@ namespace MDMS.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("MDMS.Data.Models.Repair", b =>
+                {
+                    b.HasOne("Mdms.Data.Models.MdmsUser", "MdmsUser")
+                        .WithMany("Repairs")
+                        .HasForeignKey("MdmsUserId");
+
+                    b.HasOne("MDMS.Data.Models.RepairedSystem", "RepairedSystem")
+                        .WithMany("Repairs")
+                        .HasForeignKey("RepairedSystemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MDMS.Data.Models.Report")
+                        .WithMany("Repairs")
+                        .HasForeignKey("ReportId");
+
+                    b.HasOne("MDMS.Data.Models.Vehicle", "Vehicle")
+                        .WithMany("Repairs")
+                        .HasForeignKey("VehicleId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("MDMS.Data.Models.RepairPart", b =>
                 {
                     b.HasOne("MDMS.Data.Models.Part", "Part")
@@ -629,7 +552,7 @@ namespace MDMS.Data.Migrations
                         .HasForeignKey("PartId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("MDMS.Data.Models.InternalRepair", "InternalRepair")
+                    b.HasOne("MDMS.Data.Models.Repair", "Repair")
                         .WithMany("RepairParts")
                         .HasForeignKey("RepairId")
                         .OnDelete(DeleteBehavior.Restrict);
@@ -645,6 +568,14 @@ namespace MDMS.Data.Migrations
 
             modelBuilder.Entity("MDMS.Data.Models.Vehicle", b =>
                 {
+                    b.HasOne("MDMS.Data.Models.Report")
+                        .WithMany("RepairedVehicles")
+                        .HasForeignKey("ReportId");
+
+                    b.HasOne("MDMS.Data.Models.Report")
+                        .WithMany("Vehicles")
+                        .HasForeignKey("ReportId1");
+
                     b.HasOne("MDMS.Data.Models.VehicleProvider", "VehicleProvider")
                         .WithMany("VehiclesBought")
                         .HasForeignKey("VehicleProviderId")
@@ -653,6 +584,13 @@ namespace MDMS.Data.Migrations
                     b.HasOne("MDMS.Data.Models.VehicleType", "VehicleType")
                         .WithMany("Vehicles")
                         .HasForeignKey("VehicleTypeId");
+                });
+
+            modelBuilder.Entity("Mdms.Data.Models.MdmsUser", b =>
+                {
+                    b.HasOne("MDMS.Data.Models.Report")
+                        .WithMany("Users")
+                        .HasForeignKey("ReportId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

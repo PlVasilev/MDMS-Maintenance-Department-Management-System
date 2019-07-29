@@ -84,7 +84,7 @@ namespace MDMS.Services
             return result > 0;
         }
 
-        public async Task<IQueryable<VehicleServiceModel>> GetAllVehicles()
+        public IQueryable<VehicleServiceModel> GetAllVehicles()
         {
             return _context.Vehicles.Select(v => new VehicleServiceModel()
             {
@@ -94,10 +94,10 @@ namespace MDMS.Services
                 VSN = v.VSN,
                 Picture = v.Picture
             });
-        }
+        } 
 
 
-        public async Task<IQueryable<VehicleTypeServiceModel>> GetAllVehicleTypes()
+        public IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes()
         {
             return _context.VehicleTypes.Select(vt => new VehicleTypeServiceModel
             {
@@ -106,7 +106,7 @@ namespace MDMS.Services
             });
         }
 
-        public async Task<IQueryable<VehicleProviderServiceModel>> GetAllVehicleProviders()
+        public IQueryable<VehicleProviderServiceModel> GetAllVehicleProviders()
         {
             return _context.VehicleProviders.Select(vt => new VehicleProviderServiceModel
             {

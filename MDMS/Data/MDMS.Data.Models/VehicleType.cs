@@ -6,15 +6,8 @@ using System.Text;
 
 namespace MDMS.Data.Models
 {
-   public class VehicleType
+   public class VehicleType : Base
     {
-        public string Id { get; set; }
-
-        [Required]
-        [MaxLength(50)]
-        public string Name { get; set; }
-
         public ICollection<Vehicle> Vehicles { get; set; } = new HashSet<Vehicle>();
-
     }
 }

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using MDMS.Web.ViewModels;
 using MDMS.Web.ViewModels.Vehicle.All;
+using Microsoft.EntityFrameworkCore;
 
 namespace MDMS.Web.Areas.Administration.Controllers
 {
@@ -27,7 +28,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [Route("/Administration/Vehicle/Provider/Create")]
         public async Task<IActionResult> CreateProvider()
         {
-            return this.View("Provider/Create");
+            return await Task.Run(() => this.View("Provider/Create"));
         }
 
         [HttpPost]
@@ -48,7 +49,8 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [Route("/Administration/Vehicle/Type/Create")]
         public async Task<IActionResult> CreateType()
         {
-            return this.View("Type/Create");
+            return await Task.Run(() => this.View("Type/Create"));
+
         }
 
         [HttpPost]
@@ -68,7 +70,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpGet(Name = "All")]
         public async Task<IActionResult> All()
         {
-            var allVehicles = await _vehicleService.GetAllVehicles();
+            var allVehicles = await _vehicleService.GetAllVehicles().ToListAsync();
             List<VehicleAllViewModel> allViewModels = allVehicles.Select(v => new VehicleAllViewModel()
             {
                 Id = v.Id,
@@ -124,7 +126,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
                 catch (Exception ex)
                 {
                    await VehicleCreateViewData();
-                   this.ViewData["error"] = "Unexpected error: try again, if problem persists: Please contact administrator.";
+                   this.ViewData["error"] = $"Unexpected error: try again, if problem persists: Please contact administrator.";
                    return View(vehicleCreateBindingModel);
                 }
             }
@@ -136,13 +138,13 @@ namespace MDMS.Web.Areas.Administration.Controllers
         {
             this.ViewData["error"] = null;
 
-            var allVehicleTypes = await _vehicleService.GetAllVehicleTypes();
+            var allVehicleTypes = await _vehicleService.GetAllVehicleTypes().ToListAsync();
             this.ViewData["types"] = allVehicleTypes.Select(pt => new VehicleCreateVehicleTypeViewModel
             {
                 Name = pt.Name
             }).ToList();
 
-            var allVehicleProviders = await _vehicleService.GetAllVehicleProviders();
+            var allVehicleProviders = await _vehicleService.GetAllVehicleProviders().ToListAsync();
 
             this.ViewData["providers"] = allVehicleProviders.Select(pt => new VehicleCreateVehicleProviderViewModel()
             {

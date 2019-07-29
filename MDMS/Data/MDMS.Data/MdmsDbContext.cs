@@ -9,18 +9,20 @@ namespace MDMS.Data
 {
     public class MdmsDbContext : IdentityDbContext<MdmsUser,IdentityRole,string>
     {
-        public DbSet<MdmsUserRepair> MdmsUsersRepairs { get; set; }
         public DbSet<MonthlySalary> MonthlySalaries { get; set; }
         public DbSet<Part> Parts { get; set; }
         public DbSet<PartsProvider> PartsProviders { get; set; }
-        public DbSet<Repair> Repairs { get; set; }
+        public DbSet<InternalRepair> InternalRepairs { get; set; }
+        public DbSet<ExternalRepair> ExternalRepairs { get; set; }
         public DbSet<RepairedSystem> RepairedSystems { get; set; }
-        public DbSet<RepairPart> RepairsParts { get; set; }
+        public DbSet<InternalRepairPart> InternalsRepairParts { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<ReportType> ReportTypes { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<VehicleProvider> VehicleProviders { get; set; }
         public DbSet<VehicleType> VehicleTypes { get; set; }
+        public DbSet<ExternalRepairProvider> ExternalRepairProviders { get; set; }
+       
 
 
         public MdmsDbContext(DbContextOptions options) : base(options)
@@ -46,7 +48,7 @@ namespace MDMS.Data
                 .IsUnique();
 
             builder.Entity<MonthlySalary>()
-                .HasIndex(ms => ms.SalarySlipTitle)
+                .HasIndex(ms => ms.Name)
                 .IsUnique();
 
             builder.Entity<Part>()
@@ -57,7 +59,7 @@ namespace MDMS.Data
                 .HasIndex(pp => pp.Name)
                 .IsUnique();
 
-            builder.Entity<Repair>()
+            builder.Entity<InternalRepair>()
                 .HasIndex(r => r.Name)
                 .IsUnique();
 
@@ -73,33 +75,18 @@ namespace MDMS.Data
                 .HasIndex(rt => rt.Name)
                 .IsUnique();
 
-            builder.Entity<MdmsUserRepair>()
-                .HasKey(k => new { k.MdmsUserId, k.RepairId });
+            builder.Entity<InternalRepairPart>()
+                .HasKey(k => new { k.InternalRepairId, k.PartId });
 
-            builder.Entity<MdmsUserRepair>()
-                .HasOne(ur => ur.MdmsUser)
-                .WithMany(u => u.MdmsUserRepairs)
-                .HasForeignKey(ur => ur.MdmsUserId)
+            builder.Entity<InternalRepairPart>()
+                .HasOne(rp => rp.InternalRepair)
+                .WithMany(r => r.InternalRepairParts)
+                .HasForeignKey(rp => rp.InternalRepairId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<MdmsUserRepair>()
-                .HasOne(ur => ur.Repair)
-                .WithMany(r => r.MdmsUserRepairs)
-                .HasForeignKey(ur => ur.RepairId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<RepairPart>()
-                .HasKey(k => new { k.RepairId, k.PartId });
-
-            builder.Entity<RepairPart>()
-                .HasOne(rp => rp.Repair)
-                .WithMany(r => r.RepairParts)
-                .HasForeignKey(rp => rp.RepairId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<RepairPart>()
+            builder.Entity<InternalRepairPart>()
                 .HasOne(rp => rp.Part)
-                .WithMany(p => p.RepairParts)
+                .WithMany(p => p.InternalRepairParts)
                 .HasForeignKey(rp => rp.PartId)
                 .OnDelete(DeleteBehavior.Restrict);
 

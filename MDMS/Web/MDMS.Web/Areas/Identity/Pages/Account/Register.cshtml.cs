@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Data;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Mdms.Data.Models;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 
 namespace MDMS.Web.Areas.Identity.Pages.Account
 {
@@ -22,7 +15,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
         private readonly SignInManager<MdmsUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<MdmsUser> _userManager;
-        private readonly IEmailSender _emailSender;
+       // private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<MdmsUser> userManager,
@@ -62,9 +55,10 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             public string Email { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null) 
+        public async Task OnGetAsync(string returnUrl = null)
         {
-           ReturnUrl = returnUrl;
+             await Task.Run(() => ReturnUrl = returnUrl);
+           
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -73,13 +67,14 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var isAdmin = _userManager.Users.Count() == 1;
-                var user = new MdmsUser { UserName = Input.Username, Email = Input.Email };
+                var user = new MdmsUser { UserName = Input.Username, Email = Input.Email, IsAuthorized = true};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     if (isAdmin)
                     {
                         await _userManager.AddToRoleAsync(user, "Admin");
+                        await _userManager.AddToRoleAsync(user, "User");
                     }
                     else
                     {
@@ -104,8 +99,6 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
-
-            // If we got this far, something failed, redisplay form
             return Page();
         }
     }

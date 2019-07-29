@@ -23,9 +23,4 @@
     <ProjectReference Include="..\MDMS.Web.ViewModels\MDMS.Web.ViewModels.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Folder Include="Views\Vehicle\" />
-  </ItemGroup>
-
 </Project>

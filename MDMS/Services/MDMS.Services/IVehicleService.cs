@@ -12,9 +12,8 @@ namespace MDMS.Services
        Task<bool> CreateVehicleType(VehicleTypeServiceModel vehicleTypeServiceModel);
        Task<bool> CreateVehicleProvider(VehicleProviderServiceModel vehicleProviderServiceModel);
 
-
-       Task<IQueryable<VehicleServiceModel>> GetAllVehicles();
-        Task<IQueryable<VehicleTypeServiceModel>> GetAllVehicleTypes();
-       Task<IQueryable<VehicleProviderServiceModel>> GetAllVehicleProviders();
+       IQueryable<VehicleServiceModel> GetAllVehicles();
+       IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes();
+       IQueryable<VehicleProviderServiceModel> GetAllVehicleProviders();
     }
 }

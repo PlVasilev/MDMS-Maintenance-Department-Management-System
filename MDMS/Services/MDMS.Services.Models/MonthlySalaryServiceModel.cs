@@ -2,11 +2,9 @@
 
 namespace MDMS.Services.Models
 {
-   public class MonthlySalaryServiceModel
+   public class MonthlySalaryServiceModel : BaseServiceModel
     {
-        public string Id { get; set; }
-
-        public string SalarySlipTitle => Year + " " + Month + " " + Mechanic.FirstName + " " + Mechanic.LastName;
+         //=> Year + " " + Month + " " + Mechanic.FirstName + " " + Mechanic.LastName;
 
         public int Month { get; set; }
 
@@ -15,10 +13,10 @@ namespace MDMS.Services.Models
         public MDMSUserServiceModel Mechanic { get; set; }
 
         public decimal TotalSalary => Mechanic.BaseSalary +
-                                      ((decimal)Mechanic.MdmsUserRepairs
-                                           .Where(x => x.Repair.FinishedOn != null &&
-                                                       x.Repair.FinishedOn.Value.Month == Month &&
-                                                       x.Repair.FinishedOn.Value.Year == Year)
+                                      ((decimal)Mechanic.Repairs
+                                           .Where(x => x.FinishedOn != null &&
+                                                       x.FinishedOn.Value.Month == Month &&
+                                                       x.FinishedOn.Value.Year == Year)
                                            .Sum(x => x.HoursWorked) * (decimal)Mechanic.AdditionalOnHourPayment) * 1.18m;
         public double HoursWorked { get; set; }
     }

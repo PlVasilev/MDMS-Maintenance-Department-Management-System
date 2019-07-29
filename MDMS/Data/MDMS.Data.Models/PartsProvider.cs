@@ -5,14 +5,8 @@ using System.Text;
 
 namespace MDMS.Data.Models
 {
-   public class PartsProvider
+   public class PartsProvider : Base
     {
-        public string Id { get; set; }
-
-        [Required]
-        [MaxLength(100)]
-        public string Name { get; set; }
-
         public ICollection<Part> PartsBought { get; set; } = new HashSet<Part>();
     }
 }

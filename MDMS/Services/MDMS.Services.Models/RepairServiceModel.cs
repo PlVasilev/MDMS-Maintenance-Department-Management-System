@@ -5,12 +5,8 @@ using System.Text;
 
 namespace MDMS.Services.Models
 {
-   public class RepairServiceModel
+   public class RepairServiceModel : BaseServiceModel
     {
-        public string Id { get; set; }
-
-        public string Name => Vehicle.Make + " " + Vehicle.Model + " " + RepairedSystem.Name;
-
         public string Description { get; set; }
 
         public string VehicleId { get; set; }
@@ -19,10 +15,9 @@ namespace MDMS.Services.Models
         public string RepairedSystemId { get; set; }
         public RepairServiceModel RepairedSystem { get; set; }
 
-        public int Mileage { get; set; }
+        public MDMSUserServiceModel MdmsUser { get; set; }
 
-        public ICollection<MdmsUserRepairServiceModel> MdmsUserRepairs { get; set; } = new HashSet<MdmsUserRepairServiceModel>();
-
+        public double HoursWorked { get; set; }
 
         public DateTime StartedOn { get; set; }
 
@@ -30,8 +25,6 @@ namespace MDMS.Services.Models
 
         public ICollection<RepairPartServiceModel> RepairParts { get; set; } = new HashSet<RepairPartServiceModel>();
 
-        public decimal RepairCost => RepairParts.Sum(x => x.Part.Price * x.Quantity) +
-                                     MdmsUserRepairs.Sum(x =>
-                                         x.MdmsUser.AdditionalOnHourPayment * (decimal)x.HoursWorked);
+        public decimal RepairCost { get; set; }
     }
 }
