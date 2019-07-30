@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MDMS.Services.Models
 {
-   public class PartServiceModel :BaseServiceModel
+   public class PartServiceModel : BaseServiceModel
     {
 
         public decimal Price { get; set; }
@@ -12,7 +12,7 @@ namespace MDMS.Services.Models
         public string AcquiredFromId { get; set; }
         public PartsProviderServiceModel AcquiredFrom { get; set; }
 
-        public ICollection<RepairPartServiceModel> RepairParts { get; set; } = new HashSet<RepairPartServiceModel>();
+        public ICollection<InternalRepairServiceModel> RepairParts { get; set; } = new HashSet<InternalRepairServiceModel>();
 
         public int Stock { get; set; }
     }

@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Home\Index\" />
-    <Folder Include="Vehicle\Create\" />
+    <Compile Remove="Home\**" />
+    <EmbeddedResource Remove="Home\**" />
+    <None Remove="Home\**" />
   </ItemGroup>
 
 </Project>

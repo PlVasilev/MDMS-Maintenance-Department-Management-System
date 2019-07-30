@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MDMS.Web.BindingModels
+namespace MDMS.Web.BindingModels.Vehicle
 {
     public class VehicleProviderBindingModel
     {

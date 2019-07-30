@@ -1,6 +1,4 @@
-﻿@using MDMS.Web.ViewModels
-@model MDMS.Web.BindingModels.VehicleCreateBindingModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿@model MDMS.Web.BindingModels.Vehicle.VehicleCreateBindingModel
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -120,10 +118,7 @@
         </div>
         <select class="form-control text-primary" id="vehicleType" asp-for="VehicleType">
             <option selected disabled>--- Select Product Type ---</option>
-            @foreach (var type in (IEnumerable<VehicleCreateVehicleTypeViewModel>)this.ViewData["types"])
-            {
-                <option value="@type.Name">@type.Name</option>
-            }
+            <vc:vehicle-type></vc:vehicle-type>
         </select>
         <span asp-validation-for="VehicleType" class="text-danger"></span>
     </div>
@@ -134,10 +129,7 @@
         </div>
         <select class="form-control text-primary" id="vehicleProvider" asp-for="VehicleProvider">
             <option selected disabled>--- Select Product Type ---</option>
-            @foreach (var type in (IEnumerable<VehicleCreateVehicleProviderViewModel>)this.ViewData["providers"])
-            {
-                <option value="@type.Name">@type.Name</option>
-            }
+            <vc:vehicle-provider></vc:vehicle-provider>
         </select>
         <span asp-validation-for="VehicleProvider" class="text-danger"></span>
     </div>

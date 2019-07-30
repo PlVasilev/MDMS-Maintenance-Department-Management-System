@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace MDMS.Web.BindingModels
+namespace MDMS.Web.ViewModels.ViewComponents
 {
-    public class VehicleTypeCreateBindingModel
+    public class VehicleProviderViewComponentViewModel
     {
         public string Name { get; set; }
     }

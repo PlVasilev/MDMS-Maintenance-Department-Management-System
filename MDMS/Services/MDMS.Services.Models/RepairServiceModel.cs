@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MDMS.Services.Models
 {
-   public class RepairServiceModel : BaseServiceModel
+   public abstract class RepairServiceModel : BaseServiceModel
     {
         public string Description { get; set; }
 
@@ -17,13 +17,9 @@ namespace MDMS.Services.Models
 
         public MDMSUserServiceModel MdmsUser { get; set; }
 
-        public double HoursWorked { get; set; }
-
         public DateTime StartedOn { get; set; }
 
         public DateTime? FinishedOn { get; set; } = null;
-
-        public ICollection<RepairPartServiceModel> RepairParts { get; set; } = new HashSet<RepairPartServiceModel>();
 
         public decimal RepairCost { get; set; }
     }

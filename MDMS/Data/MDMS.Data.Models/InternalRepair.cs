@@ -13,7 +13,5 @@ namespace MDMS.Data.Models
 
         public ICollection<InternalRepairPart> InternalRepairParts { get; set; } = new HashSet<InternalRepairPart>();
 
-        
-
     }
 }

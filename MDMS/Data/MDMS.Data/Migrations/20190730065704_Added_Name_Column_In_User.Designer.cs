@@ -4,14 +4,16 @@ using MDMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MDMS.Data.Migrations
 {
     [DbContext(typeof(MdmsDbContext))]
-    partial class MdmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190730065704_Added_Name_Column_In_User")]
+    partial class Added_Name_Column_In_User
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -411,7 +413,6 @@ namespace MDMS.Data.Migrations
                     b.Property<bool>("EmailConfirmed");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasMaxLength(30);
 
                     b.Property<bool>("IsAuthorized");
@@ -419,7 +420,6 @@ namespace MDMS.Data.Migrations
                     b.Property<bool>("IsDeleted");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasMaxLength(30);
 
                     b.Property<bool>("LockoutEnabled");

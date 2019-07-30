@@ -6,6 +6,6 @@ namespace MDMS.Data.Models
 {
     public class ExternalRepairProvider : Base
     {
-        ICollection<ExternalRepairProvider> ExternalRepairProviders { get; set; } = new List<ExternalRepairProvider>();
+        ICollection<ExternalRepair> ExternalRepairs { get; set; } = new List<ExternalRepair>();
     }
 }

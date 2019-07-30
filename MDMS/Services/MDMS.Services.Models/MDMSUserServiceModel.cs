@@ -14,6 +14,8 @@ namespace MDMS.Services.Models
 
         public string PhoneNumber { get; set; }
 
+        public string Name { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -28,7 +30,7 @@ namespace MDMS.Services.Models
 
         public ICollection<MonthlySalaryServiceModel> Salaries { get; set; } = new HashSet<MonthlySalaryServiceModel>();
 
-        public ICollection<RepairServiceModel>Repairs { get; set; } = new HashSet<RepairServiceModel>();
+        public ICollection<InternalRepairServiceModel> InternalRepairs { get; set; } = new HashSet<InternalRepairServiceModel>();
     }
 }
  

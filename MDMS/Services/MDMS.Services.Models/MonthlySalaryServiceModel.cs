@@ -13,7 +13,7 @@ namespace MDMS.Services.Models
         public MDMSUserServiceModel Mechanic { get; set; }
 
         public decimal TotalSalary => Mechanic.BaseSalary +
-                                      ((decimal)Mechanic.Repairs
+                                      ((decimal)Mechanic.InternalRepairs
                                            .Where(x => x.FinishedOn != null &&
                                                        x.FinishedOn.Value.Month == Month &&
                                                        x.FinishedOn.Value.Year == Year)

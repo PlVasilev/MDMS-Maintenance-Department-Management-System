@@ -4,7 +4,6 @@
     ViewData["Title"] = "Register";
 }
 
-<h1 class="text-center">@Model</h1>
 <h1 class="bg-primary text-white font-weight-bold text-center p-3 w-25 mx-auto rounded">Register</h1>
 <form method="post" asp-action="/Identity/Account/Register" class="form border-primary-4 rounded p-3 w-25 mx-auto mt-3">
     <div class="form-group mx-auto">
@@ -17,6 +16,39 @@
                placeholder="Username..."
                asp-for="Input.Username">
         <span asp-validation-for="Input.Username" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto">
+        <div class="d-flex justify-content-center">
+            <label asp-for="Input.Email" class="text-primary h5">Email</label>
+        </div>
+        <input type="email"
+               class="form-control text-primary text-center"
+               id="email"
+               placeholder="Email..."
+               asp-for="Input.Email">
+        <span asp-validation-for="Input.Email" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto">
+        <div class="d-flex justify-content-center">
+            <label asp-for="Input.FirstName" class="text-primary h5">FirstName</label>
+        </div>
+        <input type="text"
+               class="form-control text-primary text-center"
+               id="firstname"
+               placeholder="FirstName..."
+               asp-for="Input.FirstName">
+        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto">
+        <div class="d-flex justify-content-center">
+            <label asp-for="Input.LastName" class="text-primary h5">LastName</label>
+        </div>
+        <input type="text"
+               class="form-control text-primary text-center"
+               id="lastname"
+               placeholder="LastName..."
+               asp-for="Input.LastName">
+        <span asp-validation-for="Input.LastName" class="text-danger"></span>
     </div>
     <div class="form-group mx-auto">
         <div class="d-flex justify-content-center">
@@ -39,17 +71,6 @@
                placeholder="Confirm Password..."
                asp-for="Input.ConfirmPassword">
         <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-    </div>
-    <div class="form-group mx-auto">
-        <div class="d-flex justify-content-center">
-            <label asp-for="Input.Email" class="text-primary h5">Email</label>
-        </div>
-        <input type="email"
-               class="form-control text-primary text-center"
-               id="email"
-               placeholder="Email..."
-               asp-for="Input.Email">
-        <span asp-validation-for="Input.Email" class="text-danger"></span>
     </div>
     <hr class="hr-2 bg-primary mt-4">
     <div class="d-flex justify-content-center mt-3">

@@ -4,11 +4,11 @@ using System.Text;
 
 namespace MDMS.Services.Models
 {
-   public class RepairPartServiceModel
+   public class InternalRepairPartServiceModel
     {
 
-        public string RepairId { get; set; }
-        public RepairServiceModel Repair { get; set; }
+        public string InternalRepairId { get; set; }
+        public InternalRepairServiceModel InternalRepair { get; set; }
 
         public string PartId { get; set; }
         public PartServiceModel Part { get; set; }

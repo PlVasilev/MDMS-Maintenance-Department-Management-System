@@ -11,9 +11,15 @@ namespace Mdms.Data.Models
         { 
         }
 
+        [Required]
+        [MaxLength(100)]
+        public string Name { get; set; }
+
+        [Required]
         [MaxLength(30)]
         public string FirstName { get; set; }
 
+        [Required]
         [MaxLength(30)]
         public string LastName { get; set; }
 
@@ -25,7 +31,7 @@ namespace Mdms.Data.Models
         [Range(typeof(decimal), "0.00", "1000")]
         public decimal AdditionalOnHourPayment { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         public bool IsAuthorized { get; set; } = false;
 

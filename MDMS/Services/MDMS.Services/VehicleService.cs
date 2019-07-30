@@ -26,24 +26,25 @@ namespace MDMS.Services
             }
 
             Vehicle vehicle = new Vehicle()
-           {
-               Make = vehicleServiceModel.Make,
-               Model = vehicleServiceModel.Model,
-               VSN = vehicleServiceModel.VSN,
-               AcquiredOn = vehicleServiceModel.AcquiredOn,
-               Depreciation = vehicleServiceModel.Depreciation,
-               ManufacturedOn = vehicleServiceModel.ManufacturedOn,
-               VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name),
-               VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name),
-               Price = vehicleServiceModel.Price,
-               Picture = vehicleServiceModel.Picture
-           };
+            {
+                Name = vehicleServiceModel.Name,
+                Make = vehicleServiceModel.Make,
+                Model = vehicleServiceModel.Model,
+                VSN = vehicleServiceModel.VSN,
+                AcquiredOn = vehicleServiceModel.AcquiredOn,
+                Depreciation = vehicleServiceModel.Depreciation,
+                ManufacturedOn = vehicleServiceModel.ManufacturedOn,
+                VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name),
+                VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name),
+                Price = vehicleServiceModel.Price,
+                Picture = vehicleServiceModel.Picture
+            };
 
-        
-           _context.Vehicles.Add(vehicle);
-           var result = await _context.SaveChangesAsync();
 
-           return result > 0;
+            _context.Vehicles.Add(vehicle);
+            var result = await _context.SaveChangesAsync();
+
+            return result > 0;
         }
 
 
@@ -94,7 +95,7 @@ namespace MDMS.Services
                 VSN = v.VSN,
                 Picture = v.Picture
             });
-        } 
+        }
 
 
         public IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes()

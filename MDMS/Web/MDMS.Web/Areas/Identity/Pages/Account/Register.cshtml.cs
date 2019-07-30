@@ -53,6 +53,14 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
+
+            [Required]
+            [Display(Name = "FirstName")]
+            public string FirstName { get; set; }
+
+            [Required]
+            [Display(Name = "LastName")]
+            public string LastName { get; set; }
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -67,7 +75,13 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var isAdmin = _userManager.Users.Count() == 1;
-                var user = new MdmsUser { UserName = Input.Username, Email = Input.Email, IsAuthorized = true};
+                var user = new MdmsUser { UserName = Input.Username,
+                    Email = Input.Email,
+                    IsAuthorized = true,
+                    FirstName = Input.FirstName,
+                    LastName = Input.LastName,
+                    Name = Input.FirstName+"-"+Input.LastName
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

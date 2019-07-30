@@ -5,14 +5,10 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 
-namespace MDMS.Web.BindingModels
+namespace MDMS.Web.BindingModels.Vehicle
 {
    public class VehicleCreateBindingModel : IValidatableObject
     {
-        [Required]
-        [RegularExpression("^[A-Z0-9]+$", ErrorMessage = "Registration Number Must contain English capital letters and digits Only !")]
-        public string Name { get; set; }
-
         [Required]
         [MaxLength(50, ErrorMessage = "Make must be less or equal to 50 symbols")]
         public string Make { get; set; }

@@ -15,14 +15,17 @@ namespace MDMS.Services.Models
         public string ReportTypeId { get; set; }
         public ReportTypeServiceModel ReportType { get; set; }
 
-        private ICollection<RepairServiceModel> RepairsInReport { get; set; } // => Repairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        public ICollection<InternalRepairServiceModel> InternalRepairsInReport { get; set; } = new HashSet<InternalRepairServiceModel>(); // => InternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        public ICollection<ExternalRepairServiceModel> ExternalRepairsInReport { get; set; } = new HashSet<ExternalRepairServiceModel>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        public ICollection<MDMSUserServiceModel> Users { get; set; } = new HashSet<MDMSUserServiceModel>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        public ICollection<VehicleServiceModel> Vehicles { get; set; } = new HashSet<VehicleServiceModel>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
 
-        public decimal RepairsConst => RepairsInReport.Sum(z => z.RepairParts.Sum(c => c.Part.Price * c.Quantity));
+        public decimal InternalRepairsConst => InternalRepairsInReport.Sum(z => z.InternalRepairParts.Sum(c => c.Part.Price * c.Quantity));
+        public decimal ExternalRepairsConst => ExternalRepairsInReport.Sum(z => z.LaborCost + z.PartsCost);
 
-        public ICollection<VehicleServiceModel> RepairedVehicles => RepairsInReport.Select(x => x.Vehicle).ToHashSet();
 
-        public decimal BaseCost => (RepairsInReport.Sum(x => x.MdmsUser.BaseSalary) + RepairsInReport.Sum(x => x.Vehicle.Depreciation)) *
-                                   (End.Month - Start.Month + 1) + (12 * (End.Year - Start.Year));
+        public decimal BaseCost => (Users.Sum(x => x.BaseSalary) + Vehicles.Sum(x => x.Depreciation)) *
+                                   (End.Month - Start.Month - 1) + (12 * (End.Year - Start.Year - 1));
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

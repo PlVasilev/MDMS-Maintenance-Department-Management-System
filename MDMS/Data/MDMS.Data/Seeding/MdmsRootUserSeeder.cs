@@ -34,8 +34,8 @@ namespace MDMS.Data.Seeding
                     LastName = "Root",
                     BaseSalary = 0,
                     AdditionalOnHourPayment = 0,
-                    SecurityStamp = Guid.NewGuid().ToString()
-
+                    SecurityStamp = Guid.NewGuid().ToString(),
+                    Name = "Root-Root"
                 };
 
                 var rootRole = _context.Roles.FirstOrDefault(x => x.Name == "Root");
