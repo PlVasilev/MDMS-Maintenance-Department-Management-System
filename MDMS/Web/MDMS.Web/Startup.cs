@@ -1,11 +1,16 @@
 ﻿using System.Globalization;
+using System.Reflection;
 using System.Threading.Tasks;
 using CloudinaryDotNet;
 using MDMS.Data;
 using Mdms.Data.Models;
 using MDMS.Data.Seeding;
 using MDMS.Services;
+using MDMS.Services.Mapping;
+using MDMS.Services.Models;
+using MDMS.Web.BindingModels.Vehicle;
 using MDMS.Web.Extensions;
+using MDMS.Web.ViewModels.Vehicle.All;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
@@ -76,19 +81,11 @@ namespace MDMS.Web
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //using (var serviceScope = app.ApplicationServices.CreateScope())
-            //{
-            //    using (var context = serviceScope.ServiceProvider.GetRequiredService<MdmsDbContext>())
-            //    {
-            //        context.Database.EnsureCreated();
-            //
-            //        if (!context.Roles.Any())
-            //        {
-            //            context.Add(new IdentityRole() {Name = "Admin"});
-            //            context.Add(new IdentityRole() {Name = "User"});
-            //        }
-            //    }
-            //}
+            AutoMapperConfig.RegisterMappings(
+                typeof(VehicleCreateBindingModel).GetTypeInfo().Assembly,
+                typeof(VehicleAllViewModel).GetTypeInfo().Assembly,
+                typeof(VehicleServiceModel).GetTypeInfo().Assembly);
+
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 

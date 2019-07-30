@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using MDMS.Data.Models;
+using MDMS.Services.Mapping;
 
 namespace MDMS.Services.Models
 {
-    public class VehicleServiceModel : BaseServiceModel
+    public class VehicleServiceModel : BaseServiceModel, IMapFrom<Vehicle>, IMapTo<Vehicle>
     {
         public string Make { get; set; }
 

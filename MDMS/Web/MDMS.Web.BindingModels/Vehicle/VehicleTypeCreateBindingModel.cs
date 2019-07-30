@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using MDMS.Services.Mapping;
+using MDMS.Services.Models;
 
 namespace MDMS.Web.BindingModels.Vehicle
 {
-    public class VehicleTypeCreateBindingModel
+    public class VehicleTypeCreateBindingModel : IMapTo<VehicleTypeServiceModel>
     {
         public string Name { get; set; }
     }

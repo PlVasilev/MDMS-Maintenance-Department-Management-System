@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MDMS.Web.ViewModels
+namespace MDMS.Web.ViewModels.Vehicle.Create
 {
     public class VehicleCreateVehicleTypeViewModel
     {

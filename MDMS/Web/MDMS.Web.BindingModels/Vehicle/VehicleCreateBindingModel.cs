@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Runtime.CompilerServices;
-using System.Text;
+using AutoMapper;
+using MDMS.Services.Mapping;
+using MDMS.Services.Models;
 using Microsoft.AspNetCore.Http;
+using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
 namespace MDMS.Web.BindingModels.Vehicle
 {
-   public class VehicleCreateBindingModel : IValidatableObject
-    {
+   public class VehicleCreateBindingModel : IValidatableObject, IMapTo<VehicleServiceModel>, IHaveCustomMappings
+   {
         [Required]
         [MaxLength(50, ErrorMessage = "Make must be less or equal to 50 symbols")]
         public string Make { get; set; }
@@ -53,5 +55,16 @@ namespace MDMS.Web.BindingModels.Vehicle
                 yield return new ValidationResult("The Vehicle Acquired must be after Manufactured!");
             }
         }
-    }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<VehicleCreateBindingModel, VehicleServiceModel>()
+                .ForMember(dest => dest.VehicleType,
+                    opts => opts.MapFrom(org => new VehicleTypeServiceModel() {Name = org.VehicleType}))
+                .ForMember(dest => dest.VehicleProvider,
+                    opts => opts.MapFrom(org => new VehicleProviderServiceModel() {Name = org.VehicleProvider}))
+                .ForMember(dest => dest.Name,
+                opts => opts.MapFrom(org => org.VehicleProvider + "-" + org.VehicleType + "-" + org.VSN));
+        }
+   }
 }

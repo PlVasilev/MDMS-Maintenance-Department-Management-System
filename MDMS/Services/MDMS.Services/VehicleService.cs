@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Data;
 using MDMS.Data.Models;
+using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,21 +24,9 @@ namespace MDMS.Services
                 return false;
             }
 
-            Vehicle vehicle = new Vehicle()
-            {
-                Name = vehicleServiceModel.Name,
-                Make = vehicleServiceModel.Make,
-                Model = vehicleServiceModel.Model,
-                VSN = vehicleServiceModel.VSN,
-                AcquiredOn = vehicleServiceModel.AcquiredOn,
-                Depreciation = vehicleServiceModel.Depreciation,
-                ManufacturedOn = vehicleServiceModel.ManufacturedOn,
-                VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name),
-                VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name),
-                Price = vehicleServiceModel.Price,
-                Picture = vehicleServiceModel.Picture
-            };
-
+            Vehicle vehicle = AutoMapper.Mapper.Map<Vehicle>(vehicleServiceModel);
+            vehicle.VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name);
+            vehicle.VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name);
 
             _context.Vehicles.Add(vehicle);
             var result = await _context.SaveChangesAsync();
@@ -47,73 +34,37 @@ namespace MDMS.Services
             return result > 0;
         }
 
-
-
-        private async Task<VehicleType> GetVehicleTypeByName(string vehicleTypeName)
-        {
-            return await _context.VehicleTypes.SingleOrDefaultAsync(x => x.Name == vehicleTypeName);
-        }
-
-        private async Task<VehicleProvider> GetVehicleProviderByName(string vehicleProviderName)
-        {
-            return await _context.VehicleProviders.SingleOrDefaultAsync(x => x.Name == vehicleProviderName);
-        }
+        private async Task<VehicleType> GetVehicleTypeByName(string vehicleTypeName) => 
+            await _context.VehicleTypes.SingleOrDefaultAsync(x => x.Name == vehicleTypeName);
+        
+        private async Task<VehicleProvider> GetVehicleProviderByName(string vehicleProviderName) => 
+            await _context.VehicleProviders.SingleOrDefaultAsync(x => x.Name == vehicleProviderName);
+        
 
         public async Task<bool> CreateVehicleType(VehicleTypeServiceModel vehicleTypeServiceModel)
         {
-            VehicleType type = new VehicleType()
-            {
-                Name = vehicleTypeServiceModel.Name
-            };
-
+            VehicleType type = AutoMapper.Mapper.Map<VehicleType>(vehicleTypeServiceModel);
             _context.VehicleTypes.Add(type);
             var result = await _context.SaveChangesAsync();
-
             return result > 0;
         }
 
         public async Task<bool> CreateVehicleProvider(VehicleProviderServiceModel vehicleProviderServiceModel)
         {
-            VehicleProvider provider = new VehicleProvider()
-            {
-                Name = vehicleProviderServiceModel.Name
-            };
-
+            VehicleProvider provider = AutoMapper.Mapper.Map<VehicleProvider>(vehicleProviderServiceModel);
             _context.VehicleProviders.Add(provider);
             var result = await _context.SaveChangesAsync();
-
             return result > 0;
         }
 
-        public IQueryable<VehicleServiceModel> GetAllVehicles()
-        {
-            return _context.Vehicles.Select(v => new VehicleServiceModel()
-            {
-                Id = v.Id,
-                Make = v.Make,
-                Model = v.Model,
-                VSN = v.VSN,
-                Picture = v.Picture
-            });
-        }
+        public IQueryable<VehicleServiceModel> GetAllVehicles() => 
+            _context.Vehicles.To<VehicleServiceModel>();
 
+        public IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes() =>
+            _context.VehicleTypes.To<VehicleTypeServiceModel>();
 
-        public IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes()
-        {
-            return _context.VehicleTypes.Select(vt => new VehicleTypeServiceModel
-            {
-                Id = vt.Id,
-                Name = vt.Name
-            });
-        }
+        public IQueryable<VehicleProviderServiceModel> GetAllVehicleProviders() =>
+            _context.VehicleProviders.To<VehicleProviderServiceModel>();
 
-        public IQueryable<VehicleProviderServiceModel> GetAllVehicleProviders()
-        {
-            return _context.VehicleProviders.Select(vt => new VehicleProviderServiceModel
-            {
-                Id = vt.Id,
-                Name = vt.Name
-            });
-        }
     }
 }
