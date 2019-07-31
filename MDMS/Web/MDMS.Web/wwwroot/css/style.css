@@ -2,6 +2,10 @@
     background-color: #94000a !important;
 }
 
+.text-bordered {
+    color: #94000a;
+    text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+}
 
 .bg-full-white {
     background-color: #FFFFFF;
@@ -59,4 +63,29 @@ hr.hr-2 {
 .row {
     width: 100%;
     margin: auto;
+}
+
+body {
+    background: url("/background/DepBackground.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+
+.hero-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #94000a;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    border: 0;
+    width: 98.5%;
 }

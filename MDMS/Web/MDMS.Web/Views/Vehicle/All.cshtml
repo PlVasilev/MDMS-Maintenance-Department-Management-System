@@ -10,7 +10,7 @@
         <input type="text" class="form-control text-primary" id="products-search-bar" name="search" placeholder="Search..." />
     </div>
     <div id="sort-holder" class="form-group w-40 d-flex justify-content-between">
-        <label for="sort" class="text-primary font-weight-bold w-30 h4 mt-1 text-right">Order By: </label>
+        <label for="sort" class="text-primary font-weight-bold w-30 h4 mt-1 text-bordered text-right">Order By: </label>
         <select id="sort" class="form-control text-primary pl-2 ml-3 w-70">
             <option value="none" selected>None</option>
             <option value="none">Price (lowest to highest)</option>
@@ -29,12 +29,12 @@
             {
                 if (j < Model.Count)
                 {
-                    <div class="product col-md-2">
+                    <div class="product  col-md-2">
                         <div class="image-holder d-flex justify-content-center">
                             <img class="img-thumbnail product-image" src="@Model[j].Picture" alt="...">
                         </div>
-                        <h5 class="text-primary text-center mt-3">@Model[j].Make @Model[j].Model</h5>
-                        <h5 class="text-primary text-center mt-3">VSN @Model[j].VSN</h5>
+                        <h5 class="text-primary bg-white rounded border-dark text-center mt-3">@Model[j].Make @Model[j].Model</h5>
+                        <h5 class="text-primary bg-white rounded border-dark text-center mt-3">VSN @Model[j].VSN</h5>
                     </div>
                 }
                 else
