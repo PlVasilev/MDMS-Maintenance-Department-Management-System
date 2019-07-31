@@ -72,6 +72,7 @@ namespace MDMS.Web
                 options.User.RequireUniqueEmail = true;
             });
 
+            services.AddTransient<IUserService, UserService>();
             services.AddTransient<IVehicleService, VehicleService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
 

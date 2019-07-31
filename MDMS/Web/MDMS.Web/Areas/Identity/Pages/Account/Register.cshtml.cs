@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Mdms.Data.Models;
+using MDMS.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,6 +14,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<MdmsUser> _signInManager;
+        private readonly IUserService _userService;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<MdmsUser> _userManager;
        // private readonly IEmailSender _emailSender;
@@ -20,13 +22,15 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
         public RegisterModel(
             UserManager<MdmsUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            SignInManager<MdmsUser> signInManager)
+            SignInManager<MdmsUser> signInManager, 
+            IUserService userService)
            // IEmailSender emailSender)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
-           // _emailSender = emailSender;
+            _userService = userService;
+            // _emailSender = emailSender;
         }
 
         [BindProperty]
@@ -82,6 +86,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                     LastName = Input.LastName,
                     Name = Input.FirstName+"-"+Input.LastName
                 };
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
@@ -92,7 +97,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _userManager.AddToRoleAsync(user, "User");
+                        await _userManager.AddToRoleAsync(user, "Guest");
                     }
                     
                     // EMAIL sender

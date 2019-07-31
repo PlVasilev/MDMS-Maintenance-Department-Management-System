@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Services;
+using MDMS.Services.Models;
 using MDMS.Web.ViewModels.Vehicle.All;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,16 +22,13 @@ namespace MDMS.Web.Controllers
         [HttpGet(Name = "All")]
         public async Task<IActionResult> All()
         {
-            List<VehicleAllViewModel> allViewModels = await _vehicleService.GetAllVehicles().Select(v => new VehicleAllViewModel()
+            List<VehicleAllViewModel> allViewModels = new List<VehicleAllViewModel>();
+            List<VehicleServiceModel> allVehicleServiceModels = await _vehicleService.GetAllVehicles().ToListAsync();
+            foreach (var model in allVehicleServiceModels)
             {
-                Id = v.Id,
-                Model = v.Model,
-                Make = v.Make,
-                VSN = v.VSN,
-                Picture = v.Picture
-
-            }).ToListAsync();
-
+                VehicleAllViewModel allViewModel = AutoMapper.Mapper.Map<VehicleAllViewModel>(model);
+                allViewModels.Add(allViewModel);
+            }
             return this.View(allViewModels);
         }
     }

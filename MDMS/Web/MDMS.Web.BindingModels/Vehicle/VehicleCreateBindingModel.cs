@@ -48,6 +48,15 @@ namespace MDMS.Web.BindingModels.Vehicle
         [Required]
         public IFormFile Picture { get; set; }
 
+        [Required]
+        [Range(typeof(decimal), "0.01", "9999999999", ErrorMessage = "Must be positive number")]
+        public decimal Mileage { get; set; }
+
+        [RegularExpression("^[A-Za-z0-9]{3,9}$", ErrorMessage = "Registration Number must be between 3 and 9 characters included.")]
+        public string RegistrationNumber { get; set; }
+
+        public bool IsInRepair { get; set; } = false;
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (ManufacturedOn >= AcquiredOn)
@@ -64,7 +73,9 @@ namespace MDMS.Web.BindingModels.Vehicle
                 .ForMember(dest => dest.VehicleProvider,
                     opts => opts.MapFrom(org => new VehicleProviderServiceModel() {Name = org.VehicleProvider}))
                 .ForMember(dest => dest.Name,
-                opts => opts.MapFrom(org => org.VehicleProvider + "-" + org.VehicleType + "-" + org.VSN));
+                opts => opts.MapFrom(org => org.VehicleProvider + "-" + org.VehicleType + "-" + org.VSN))
+                .ForMember(dest => dest.RegistrationNumber,
+                opts => opts.MapFrom(org => org.RegistrationNumber.ToUpper()));
         }
    }
 }

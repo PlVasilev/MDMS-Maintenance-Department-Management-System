@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Mdms.Data.Models;
+using MDMS.Data.Models;
+using MDMS.Services.Mapping;
 
 namespace MDMS.Services.Models
 {
-    public class MDMSUserServiceModel
+    public class MDMSUserServiceModel : IMapFrom<MdmsUser>, IMapTo<MdmsUser>
     {
         public string Id { get; set; }
 
@@ -31,6 +34,7 @@ namespace MDMS.Services.Models
         public ICollection<MonthlySalaryServiceModel> Salaries { get; set; } = new HashSet<MonthlySalaryServiceModel>();
 
         public ICollection<InternalRepairServiceModel> InternalRepairs { get; set; } = new HashSet<InternalRepairServiceModel>();
+        public ICollection<ExternalRepairServiceModel> ExternalRepairs { get; set; } = new HashSet<ExternalRepairServiceModel>();
     }
 }
  

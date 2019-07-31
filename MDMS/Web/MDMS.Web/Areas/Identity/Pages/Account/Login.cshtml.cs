@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Mdms.Data.Models;
+using MDMS.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -18,11 +16,13 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<MdmsUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly IUserService _userService;
 
-        public LoginModel(SignInManager<MdmsUser> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<MdmsUser> signInManager, ILogger<LoginModel> logger, IUserService userService)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _userService = userService;
         }
 
         [BindProperty]
@@ -66,22 +66,31 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(string returnUrl = null)
+        public async Task<IActionResult> OnPostAsync()
         {
-            returnUrl = ("~/Home/Index");
+           string returnUrl = ("~/Home/Index");
 
             if (ModelState.IsValid)
             {
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, false, lockoutOnFailure: true);
-                if (result.Succeeded)
+
+                
+               
+                if (!result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    ModelState.AddModelError(string.Empty, "Invalid Username or Password.");
+                    return Page();
+                }
+                var userViewModel = await _userService.GetCurrentUserByUsername(Input.Username);
+                if (userViewModel.IsDeleted)
+                {
+                    ModelState.AddModelError(string.Empty, "The user has been Deleted.");
+                    return Page();
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return Page();
+                    _logger.LogInformation("User logged in.");
+                    return LocalRedirect(returnUrl);
                 }
             }
             return Page();

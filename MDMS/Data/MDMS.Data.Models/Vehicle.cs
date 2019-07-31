@@ -24,6 +24,14 @@ namespace MDMS.Data.Models
         public string VehicleProviderId { get; set; }
         public VehicleProvider VehicleProvider { get; set; }
 
+        [Range(1, 999999999, ErrorMessage = "Mileage must be a positive number.")]
+        public int Mileage { get; set; }
+
+        [RegularExpression("[A-Z0-9]{3,8}")]
+        public string RegistrationNumber { get; set; }
+
+        public bool IsInRepair { get; set; } = false;
+
         [Required]
         public DateTime AcquiredOn { get; set; }
 

@@ -4,14 +4,16 @@ using MDMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MDMS.Data.Migrations
 {
     [DbContext(typeof(MdmsDbContext))]
-    partial class MdmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190731141429_Added_Vehicle_Mileage_IsInRepair_ReqNumber_Columns")]
+    partial class Added_Vehicle_Mileage_IsInRepair_ReqNumber_Columns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

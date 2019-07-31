@@ -32,5 +32,11 @@ namespace MDMS.Services.Models
         public VehicleTypeServiceModel VehicleType { get; set; }
 
         public bool IsActive { get; set; } = false;
+
+        public int Mileage { get; set; }
+
+        public string RegistrationNumber { get; set; }
+
+        public bool IsInRepair { get; set; } = false;
     }
 }

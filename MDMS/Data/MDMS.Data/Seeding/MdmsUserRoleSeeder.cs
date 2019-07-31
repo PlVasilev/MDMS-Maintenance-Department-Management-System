@@ -17,9 +17,9 @@ namespace MDMS.Data.Seeding
         {
             if (await _context.Roles.CountAsync() <= 1)
             {
-               // _context.Roles.Add(new IdentityRole() { Name = "Root", NormalizedName = "ROOT" });
                 _context.Roles.Add(new IdentityRole() { Name = "Admin", NormalizedName = "ADMIN" });
                 _context.Roles.Add(new IdentityRole() { Name = "User", NormalizedName = "USER" });
+                _context.Roles.Add(new IdentityRole() { Name = "Guest", NormalizedName = "GUEST" });
                 await _context.SaveChangesAsync();
             }
         }
