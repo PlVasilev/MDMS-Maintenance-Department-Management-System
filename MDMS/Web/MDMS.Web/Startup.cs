@@ -73,6 +73,7 @@ namespace MDMS.Web
             });
 
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IPartService, PartService>();
             services.AddTransient<IVehicleService, VehicleService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
 

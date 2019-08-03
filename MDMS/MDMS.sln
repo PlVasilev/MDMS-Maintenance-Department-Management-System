@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDMS.Web.BindingModels", "W
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDMS.Services.Models", "Services\MDMS.Services.Models\MDMS.Services.Models.csproj", "{C0247271-D317-4EEE-81A6-17C77F0A8573}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MDMS.Services.Mapping", "Services\MDMS.Services.Mapping\MDMS.Services.Mapping.csproj", "{0F3E52EF-6417-4672-9305-E59CD1816578}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDMS.Services.Mapping", "Services\MDMS.Services.Mapping\MDMS.Services.Mapping.csproj", "{0F3E52EF-6417-4672-9305-E59CD1816578}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,12 +1,13 @@
-﻿@model MDMS.Web.BindingModels.Vehicle.VehicleProviderBindingModel
+﻿@model MDMS.Web.BindingModels.Part.PartProviderBindingModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Create Vehicle Provider</h1>
-<form method="post" action="/Administration/Vehicle/Provider/Create" class="form border-primary-4 rounded p-3 w-30 mx-auto mt-3 bg-white">
-    <div asp-validation-summary="ModelOnly"></div>
+<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Create Part Provider</h1>
+<form method="post" action="/Administration/Part/Provider/Create" class="form border-primary-4 rounded p-3 w-30 mx-auto mt-3 bg-white">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     @if (this.ViewData["error"] != null)
     {
         <ul>
@@ -23,7 +24,7 @@
     </div>
     <hr class="hr-2 bg-primary mt-4">
     <div class="d-flex justify-content-center mt-3">
-        <button class="btn btn-primary font-weight-bold">Create Vehicle Provider</button>
+        <button class="btn btn-primary font-weight-bold">Create Part Provider</button>
     </div>
 </form>
 

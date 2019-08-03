@@ -43,6 +43,11 @@ namespace MDMS.Services
 
         public async Task<bool> CreateVehicleType(VehicleTypeServiceModel vehicleTypeServiceModel)
         {
+            if (_context.VehicleTypes.Any(v => v.Name == vehicleTypeServiceModel.Name))
+            {
+                return false;
+            }
+
             VehicleType type = AutoMapper.Mapper.Map<VehicleType>(vehicleTypeServiceModel);
             _context.VehicleTypes.Add(type);
             var result = await _context.SaveChangesAsync();
@@ -51,6 +56,11 @@ namespace MDMS.Services
 
         public async Task<bool> CreateVehicleProvider(VehicleProviderServiceModel vehicleProviderServiceModel)
         {
+            if (_context.VehicleProviders.Any(v => v.Name == vehicleProviderServiceModel.Name))
+            {
+                return false;
+            }
+
             VehicleProvider provider = AutoMapper.Mapper.Map<VehicleProvider>(vehicleProviderServiceModel);
             _context.VehicleProviders.Add(provider);
             var result = await _context.SaveChangesAsync();

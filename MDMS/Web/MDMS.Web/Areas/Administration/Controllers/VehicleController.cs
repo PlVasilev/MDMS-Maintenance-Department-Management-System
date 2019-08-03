@@ -21,38 +21,52 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpGet]
         [Route("/Administration/Vehicle/Provider/Create")]
         public async Task<IActionResult> CreateProvider() => await Task.Run(() => this.View("Provider/Create"));
-        
+
 
         [HttpPost]
         [Route("/Administration/Vehicle/Provider/Create")]
         public async Task<IActionResult> CreateProvider(VehicleProviderBindingModel vehicleProviderBindingModel)
         {
-            VehicleProviderServiceModel vehicleProviderServiceModel = AutoMapper.Mapper.Map<VehicleProviderServiceModel>(vehicleProviderBindingModel);
-            
-            await _vehicleService.CreateVehicleProvider(vehicleProviderServiceModel);
+            if (ModelState.IsValid)
+            {
+                VehicleProviderServiceModel vehicleProviderServiceModel = AutoMapper.Mapper.Map<VehicleProviderServiceModel>(vehicleProviderBindingModel);
 
-            return this.Redirect("/");
+                var result = await _vehicleService.CreateVehicleProvider(vehicleProviderServiceModel);
+
+                if (result) return this.Redirect("/");
+                
+                this.ViewData["error"] = "Vehicle Provider whit that name already Exists, change Vehicle provider name.";
+                return this.View("Provider/Create", vehicleProviderBindingModel);
+            }
+            return this.View("Provider/Create", vehicleProviderBindingModel);
         }
 
         [HttpGet]
         [Route("/Administration/Vehicle/Type/Create")]
         public async Task<IActionResult> CreateType() => await Task.Run(() => this.View("Type/Create"));
-        
+
         [HttpPost]
         [Route("/Administration/Vehicle/Type/Create")]
         public async Task<IActionResult> CreateType(VehicleTypeCreateBindingModel vehicleTypeCreateBindingModel)
         {
-            VehicleTypeServiceModel vehicleTypeServiceModel = AutoMapper.Mapper.Map<VehicleTypeServiceModel>(vehicleTypeCreateBindingModel);
-            
-            await _vehicleService.CreateVehicleType(vehicleTypeServiceModel);
+            if (ModelState.IsValid)
+            {
+                VehicleTypeServiceModel vehicleTypeServiceModel = AutoMapper.Mapper.Map<VehicleTypeServiceModel>(vehicleTypeCreateBindingModel);
 
-            return this.Redirect("/");
+                var result = await _vehicleService.CreateVehicleType(vehicleTypeServiceModel);
+
+                if (result) return this.Redirect("/");
+
+                this.ViewData["error"] = "Vehicle Type whit that name already Exists, change Vehicle provider name.";
+                return this.View("Type/Create", vehicleTypeCreateBindingModel);
+            }
+            return this.View("Type/Create", vehicleTypeCreateBindingModel);
         }
 
         [HttpGet(Name = "Create")]
-        public async Task<IActionResult> Create() => await Task.Run(() => this.View());
-            
-        
+        public async Task<IActionResult> Create() => await Task.Run(this.View);
+
+
         [HttpPost(Name = "Create")]
         public async Task<IActionResult> Create(VehicleCreateBindingModel vehicleCreateBindingModel)
         {

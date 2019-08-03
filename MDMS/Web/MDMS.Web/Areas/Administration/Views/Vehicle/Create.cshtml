@@ -6,11 +6,11 @@
 
 <h1 class="bg-primary text-white font-weight-bold text-center p-2 w-60 mx-auto rounded">Create Vehicle</h1>
 <form method="post" class="form border-primary-4 rounded p-3 w-60 mx-auto mt-2 bg-white" enctype="multipart/form-data">
-    <div asp-validation-summary="ModelOnly"></div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     @if (this.ViewData["error"] != null)
     {
         <ul>
-            <li>@this.ViewData["error"]</li>
+            <li  class="text-danger">@this.ViewData["error"]</li>
         </ul>
     }
     <div id="make-and-model-holder" class="d-flex justify-content-between">
@@ -159,7 +159,7 @@
     </div>
     <hr class="hr-2 bg-primary mt-4">
     <div class="d-flex justify-content-center mt-3">
-        <button class="btn btn-primary font-weight-bold">Create Product</button>
+        <button class="btn btn-primary font-weight-bold">Create Vehicle</button>
     </div>
 </form>
 

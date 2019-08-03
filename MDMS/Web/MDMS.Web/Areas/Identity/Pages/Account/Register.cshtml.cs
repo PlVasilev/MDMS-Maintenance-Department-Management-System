@@ -7,6 +7,7 @@ using MDMS.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace MDMS.Web.Areas.Identity.Pages.Account
 {
@@ -79,6 +80,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var isAdmin = _userManager.Users.Count() == 1;
+                var isAUser = _userManager.Users.Count() == 2;
                 var user = new MdmsUser { UserName = Input.Username,
                     Email = Input.Email,
                     IsAuthorized = true,
@@ -94,6 +96,12 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, "Admin");
                         await _userManager.AddToRoleAsync(user, "User");
+                        await _userManager.AddToRoleAsync(user, "Guest");
+                    }
+                    else if (isAUser)
+                    {
+                        await _userManager.AddToRoleAsync(user, "User");
+                        await _userManager.AddToRoleAsync(user, "Guest");
                     }
                     else
                     {

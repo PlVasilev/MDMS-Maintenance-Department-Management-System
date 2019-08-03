@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
+﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using Mdms.Data.Models;
-using MDMS.Services;
-using MDMS.Services.Models;
 using Microsoft.AspNetCore.Mvc;
 using MDMS.Web.Models;
-using MDMS.Web.ViewModels.User;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace MDMS.Web.Controllers
 {
@@ -20,7 +10,7 @@ namespace MDMS.Web.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View();
+            return await Task.Run(this.View);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

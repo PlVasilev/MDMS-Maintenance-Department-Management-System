@@ -8,7 +8,7 @@ namespace MDMS.Data.Models
    public class Part : Base
     {
         [Required]
-        [Range(typeof(decimal), "0.00", "1000000")]
+        [Range(typeof(decimal), "0.00", "999999999")]
         public decimal Price { get; set; }
 
         [Required]
