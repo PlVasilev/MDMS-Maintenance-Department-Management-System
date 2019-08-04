@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MDMS.Data.Models;
+using MDMS.Services.Mapping;
 
 namespace MDMS.Services.Models
 {
-   public class ExternalRepairServiceModel : RepairServiceModel
+   public class ExternalRepairServiceModel : RepairServiceModel, IMapFrom<ExternalRepair>, IMapTo<ExternalRepair>
     {
         public ExternalRepairProviderServiceModel ExternalRepairProvider { get; set; }
 

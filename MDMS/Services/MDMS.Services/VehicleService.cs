@@ -76,5 +76,11 @@ namespace MDMS.Services
         public IQueryable<VehicleProviderServiceModel> GetAllVehicleProviders() =>
             _context.VehicleProviders.To<VehicleProviderServiceModel>();
 
+        public async Task<VehicleServiceModel> GetVehicleByName(string name)
+        {
+           var vehicle = await _context.Vehicles.SingleOrDefaultAsync(x => x.Name == name);
+           VehicleServiceModel vehicleServiceModel = AutoMapper.Mapper.Map<VehicleServiceModel>(vehicle);
+           return vehicleServiceModel;
+        }
     }
 }

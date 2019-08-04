@@ -27,7 +27,8 @@ namespace MDMS.Services.Models
 
         public string Picture { get; set; }
 
-        public ICollection<RepairServiceModel> Repairs { get; set; } = new HashSet<RepairServiceModel>();
+        public ICollection<InternalRepairServiceModel> InternalRepairs { get; set; } = new HashSet<InternalRepairServiceModel>();
+        public ICollection<ExternalRepairServiceModel> ExternalRepairs { get; set; } = new HashSet<ExternalRepairServiceModel>();
 
         public VehicleTypeServiceModel VehicleType { get; set; }
 

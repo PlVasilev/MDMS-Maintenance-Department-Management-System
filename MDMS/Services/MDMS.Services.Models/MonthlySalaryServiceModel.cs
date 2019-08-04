@@ -1,9 +1,12 @@
 ﻿using System.Linq;
+using MDMS.Data.Models;
+using MDMS.Services.Mapping;
 
 namespace MDMS.Services.Models
 {
-   public class MonthlySalaryServiceModel : BaseServiceModel
-    {
+   public class MonthlySalaryServiceModel : BaseServiceModel, IMapFrom<MonthlySalary>, IMapTo<MonthlySalary>
+   {
+    
          //=> Year + " " + Month + " " + Mechanic.FirstName + " " + Mechanic.LastName;
 
         public int Month { get; set; }

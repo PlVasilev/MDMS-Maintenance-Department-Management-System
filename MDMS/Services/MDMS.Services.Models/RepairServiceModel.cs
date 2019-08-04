@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MDMS.Data.Models;
+using MDMS.Services.Mapping;
 
 namespace MDMS.Services.Models
 {
-   public abstract class RepairServiceModel : BaseServiceModel
+   public abstract class RepairServiceModel : BaseServiceModel, IMapFrom<Repair>, IMapTo<Repair>
     {
         public string Description { get; set; }
 
@@ -13,7 +15,7 @@ namespace MDMS.Services.Models
         public VehicleServiceModel Vehicle { get; set; }
 
         public string RepairedSystemId { get; set; }
-        public RepairServiceModel RepairedSystem { get; set; }
+        public RepairedSystemServiceModel RepairedSystem { get; set; }
 
         public MDMSUserServiceModel MdmsUser { get; set; }
 

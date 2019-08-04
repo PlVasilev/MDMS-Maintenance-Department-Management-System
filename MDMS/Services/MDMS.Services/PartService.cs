@@ -49,8 +49,8 @@ namespace MDMS.Services
             return result > 0;
         }
 
-        public IQueryable<PartsProviderServiceModel> GetAllPartProviders() => _context.PartsProviders.To<PartsProviderServiceModel>();
-   
+        public IQueryable<PartsProviderServiceModel> GetAllPartProviders() => _context.PartsProviders.OrderBy(x => x.Name).To<PartsProviderServiceModel>();
+        public IQueryable<PartServiceModel> GetAllParts() => _context.Parts.OrderBy(x => x.Name).To<PartServiceModel>();
 
     }
 }

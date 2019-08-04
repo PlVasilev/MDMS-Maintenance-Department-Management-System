@@ -11,5 +11,7 @@ namespace MDMS.Services
         Task<bool> CreatePartProvider(PartsProviderServiceModel partsProviderServiceModel);
 
         IQueryable<PartsProviderServiceModel> GetAllPartProviders();
+
+        IQueryable<PartServiceModel> GetAllParts();
     }
 }
