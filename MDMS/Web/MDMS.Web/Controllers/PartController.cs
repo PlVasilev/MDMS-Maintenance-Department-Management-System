@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Services;
+using MDMS.Services.Mapping;
 using MDMS.Web.ViewModels.Part;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,16 +20,7 @@ namespace MDMS.Web.Controllers
         }
 
         [HttpGet(Name = "All")]
-        public async Task<IActionResult> All()
-        {
-            var partAllViewModels = new List<PartAllViewModel>();
-            var partAllServiceModels = await _partService.GetAllParts().ToListAsync();
-            foreach (var part in partAllServiceModels)
-            {
-                var partAllViewModel = AutoMapper.Mapper.Map<PartAllViewModel>(part);
-                partAllViewModels.Add(partAllViewModel);
-            }
-            return View(partAllViewModels);
-        }
+        public async Task<IActionResult> All() => await Task.Run(() => this.View(_partService.GetAllParts().To<PartAllViewModel>().ToList()));
+
     }
 }

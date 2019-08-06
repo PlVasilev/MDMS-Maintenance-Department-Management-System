@@ -15,6 +15,6 @@ namespace MDMS.Services
        IQueryable<VehicleServiceModel> GetAllVehicles();
        IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes();
        IQueryable<VehicleProviderServiceModel> GetAllVehicleProviders();
-       Task<VehicleServiceModel> GetVehicleByName(string name);
+       VehicleServiceModel GetVehicleByName(string name);
     }
 }

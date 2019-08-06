@@ -9,7 +9,7 @@ using MDMS.Web.ViewModels.Repair;
 
 namespace MDMS.Web.ViewModels.Vehicle.Details
 {
-    public class VehicleDetailsViewModel : IMapFrom<VehicleServiceModel>, IHaveCustomMappings
+    public class VehicleDetailsViewModel : IMapFrom<VehicleServiceModel>
     {
         public string Id { get; set; }
 
@@ -23,7 +23,7 @@ namespace MDMS.Web.ViewModels.Vehicle.Details
 
         public string VehicleProviderId { get; set; }
 
-        public string VehicleProvider { get; set; }
+        public string VehicleProviderName { get; set; }
 
         public DateTime AcquiredOn { get; set; }
 
@@ -38,7 +38,7 @@ namespace MDMS.Web.ViewModels.Vehicle.Details
         //public ICollection<InternalRepairViewModel> InternalRepairs { get; set; } = new HashSet<InternalRepairViewModel>();
         //public ICollection<ExternalRepairViewModel> ExternalRepairs { get; set; } = new HashSet<ExternalRepairViewModel>();
 
-        public string VehicleType { get; set; }
+        public string VehicleTypeName { get; set; }
 
         public bool IsActive { get; set; } = false;
 
@@ -47,13 +47,5 @@ namespace MDMS.Web.ViewModels.Vehicle.Details
         public string RegistrationNumber { get; set; }
 
         public bool IsInRepair { get; set; } = false;
-
-        public void CreateMappings(IProfileExpression configuration)
-        {
-            configuration.CreateMap<VehicleServiceModel, VehicleDetailsViewModel>()
-                .ForMember(dest => dest.VehicleProvider, opts => opts.MapFrom(x => x.VehicleProvider.Name))
-                .ForMember(dest => dest.VehicleType, opts => opts.MapFrom(x => x.VehicleType.Name));
-
-        }
-    }
+    }   
 }

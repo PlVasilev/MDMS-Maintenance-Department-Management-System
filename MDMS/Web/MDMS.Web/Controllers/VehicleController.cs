@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Services;
+using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using MDMS.Web.ViewModels.Vehicle.All;
 using MDMS.Web.ViewModels.Vehicle.Details;
@@ -21,24 +22,13 @@ namespace MDMS.Web.Controllers
         }
 
         [HttpGet(Name = "All")]
-        public async Task<IActionResult> All()
-        {
-            List<VehicleAllViewModel> allViewModels = new List<VehicleAllViewModel>();
-            List<VehicleServiceModel> allVehicleServiceModels = await _vehicleService.GetAllVehicles().ToListAsync();
-            foreach (var model in allVehicleServiceModels)
-            {
-                VehicleAllViewModel allViewModel = AutoMapper.Mapper.Map<VehicleAllViewModel>(model);
-                allViewModels.Add(allViewModel);
-            }
-            return this.View(allViewModels);
-        }
+        public async Task<IActionResult> All() =>
+            await Task.Run(() => this.View(_vehicleService.GetAllVehicles().To<VehicleAllViewModel>().ToList()));
+        
 
         [HttpGet(Name = "Details")]
-        public async Task<IActionResult> Details(string name)
-        {
-            var vehicleDetails = AutoMapper.Mapper.Map<VehicleDetailsViewModel>(await _vehicleService.GetVehicleByName(name));
-
-            return this.View(vehicleDetails);
-        }
+        public async Task<IActionResult> Details(string name) => 
+            await Task.Run(() => this.View(_vehicleService.GetVehicleByName(name).To<VehicleDetailsViewModel>()));
+        
     }
 }

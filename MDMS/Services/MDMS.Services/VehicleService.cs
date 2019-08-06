@@ -67,20 +67,16 @@ namespace MDMS.Services
             return result > 0;
         }
 
-        public IQueryable<VehicleServiceModel> GetAllVehicles() => 
-            _context.Vehicles.To<VehicleServiceModel>();
+        public IQueryable<VehicleServiceModel> GetAllVehicles() => _context.Vehicles.To<VehicleServiceModel>();
 
-        public IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes() =>
-            _context.VehicleTypes.To<VehicleTypeServiceModel>();
+        public IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes() => _context.VehicleTypes.To<VehicleTypeServiceModel>();
 
-        public IQueryable<VehicleProviderServiceModel> GetAllVehicleProviders() =>
-            _context.VehicleProviders.To<VehicleProviderServiceModel>();
+        public IQueryable<VehicleProviderServiceModel> GetAllVehicleProviders() => _context.VehicleProviders.To<VehicleProviderServiceModel>();
 
-        public async Task<VehicleServiceModel> GetVehicleByName(string name)
-        {
-           var vehicle = await _context.Vehicles.SingleOrDefaultAsync(x => x.Name == name);
-           VehicleServiceModel vehicleServiceModel = AutoMapper.Mapper.Map<VehicleServiceModel>(vehicle);
-           return vehicleServiceModel;
-        }
+        public VehicleServiceModel GetVehicleByName(string name) => _context.Vehicles
+            .Include(x=> x.VehicleProvider)
+            .Include(x => x.VehicleType)
+            .To<VehicleServiceModel>().SingleOrDefault(x => x.Name == name);
+        
     }
 }

@@ -1,0 +1,33 @@
+﻿@model MDMS.Web.BindingModels.Repair.ExternalRepairProviderBindingModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Create Repair Provider</h1>
+<form method="post" action="/Administration/Repair/Provider/Create" class="form border-primary-4 rounded p-3 w-30 mx-auto mt-3 bg-white">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (this.ViewData["error"] != null)
+    {
+        <ul>
+            <li class="text-danger">@this.ViewData["error"]</li>
+        </ul>
+    }
+    <div class="form-group mx-auto">
+        <div class="d-flex justify-content-center">
+            <label asp-for="Name" class="text-primary h5">Name</label>
+        </div>
+        <input type="text" class="form-control text-primary text-center" id="name" placeholder="Name..."
+               asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary font-weight-bold">Create Repair Provider</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
