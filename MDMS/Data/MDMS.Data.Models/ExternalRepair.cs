@@ -10,10 +10,10 @@ namespace MDMS.Data.Models
         [Required]
         public ExternalRepairProvider ExternalRepairProvider { get; set; }
 
-        [Range(typeof(decimal), "0.01", "9999999999", ErrorMessage = "Must be positive number")]
+        [Range(typeof(decimal), "0.00", "9999999999", ErrorMessage = "Must be positive number")]
         public decimal LaborCost { get; set; }
 
-        [Range(typeof(decimal), "0.01", "9999999999", ErrorMessage = "Must be positive number")]
+        [Range(typeof(decimal), "0.00", "9999999999", ErrorMessage = "Must be positive number")]
         public decimal PartsCost { get; set; }
     }
 }

@@ -11,32 +11,59 @@
                  alt="..." class="img-thumbnail w-100" />
             <hr class="hr-2 bg-primary mt-4" />
             <div id="navigation-holder" class="mt-4 d-flex justify-content-around">
-                <button class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#orderModal">Order</button>
-                @if (this.User.IsInRole("Admin"))
+                @if (@Model.IsInRepair)
                 {
-                    <a href="/Administration/Product/Edit/@Model.Id" class="btn btn-primary text-white font-weight-bold">Edit</a>
-                    <a href="/Administration/Product/Delete/@Model.Id" class="btn btn-primary text-white font-weight-bold">Delete</a>
+                    <h3 class="text-center font-weight-bold  text-bordered">Vehicle is in Repair</h3>
+                }
+                else
+                {
+
+                    @if (this.User.IsInRole("Admin"))
+                    {
+                        <a href="/Repair/CreateExternal/@Model.Name" class="btn btn-primary text-white font-weight-bold">Initialize Repair</a>
+                        <a href="/Administration/Vehicle/Edit/@Model.Name" class="btn btn-primary text-white font-weight-bold">Edit</a>
+                        <a href="/Administration/Vehicle/Delete/@Model.Name" class="btn btn-primary text-white font-weight-bold">Delete</a>
+                    }
+                    else
+                    {
+                        <a href="/Repair/CreateInternal/@Model.Name" class="btn btn-primary text-white font-weight-bold">Initialize Repair</a>
+                    }
                 }
             </div>
             <hr class="hr-2 bg-primary mt-4" />
         </div>
     </div>
     <div id="product-data-holder" class="w-45 rounded border-primary-4 bg-white">
-        <hr class="hr-2 bg-primary" />
-        <h3 class="text-center">Name: @Model.Name</h3>
-        <h3 class="text-center">Price: $@Model.Price.ToString("F2")</h3>
-        <hr class="hr-2 bg-primary mt-4" />
-        <h3 class="text-center">Type: @Model.VehicleTypeName</h3>
-        <h3 class="text-center">Manufactured On: @Model.ManufacturedOn.ToString("dd/MM/yyyy")</h3>
-        <hr class="hr-2 bg-primary mt-4" />
-        <h3 class="text-center">Description</h3>
         <hr class="hr-2 bg-primary mt-4 w-50" />
-        <p class="text-center">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-        </p>
+        @if (@Model.RegistrationNumber != null)
+        {
+            <h3 class="text-center">Registration number: @Model.RegistrationNumber</h3>
+        }
+        <h3 class="text-center">VSN: @Model.VSN</h3>
+        <h3 class="text-center">Mileage: @Model.Mileage</h3>
+        <hr class="hr-2 bg-primary mt-4 w-50" />
+        <h3 class="text-center">Type: @Model.VehicleTypeName</h3>
+        <h3 class="text-center">Make: @Model.Make</h3>
+        <h3 class="text-center">Model: @Model.Model</h3>
+        <hr class="hr-2 bg-primary mt-4" />
+        <h3 class="text-center">Price: $@Model.Price.ToString("F2")</h3>
+        <h3 class="text-center">Depreciation: $@Model.Depreciation.ToString("F2")</h3>
+        <hr class="hr-2 bg-primary mt-4 w-50" />
+        <h3 class="text-center">Manufactured On: @Model.ManufacturedOn.ToString("dd/MM/yyyy")</h3>
+        <h3 class="text-center">Acquired On: @Model.AcquiredOn.ToString("dd/MM/yyyy")</h3>
+        <h3 class="text-center">Acquired By: @Model.VehicleProviderName</h3>
+        <hr class="hr-2 bg-primary mt-4" />
+        <h3 class="text-center">Repairs</h3>
+        <div id="repair-navigation-holder" class="mt-4 d-flex justify-content-around">
+            <a href="/Vehicle/ExternalRepairs/@Model.Name" class="btn btn-primary text-white font-weight-bold">External Repairs</a>
+            <a href="/Vehicle/InternalRepairs/@Model.Name" class="btn btn-primary text-white font-weight-bold">Internal Repairs</a>
+        </div>
+        <hr class="hr-2 bg-primary mt-4 w-50" />
     </div>
 </div>
 
+
+<button class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#orderModal">Order</button>
 <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -50,10 +77,7 @@
                 <form id="order-form" action="/Product/Order" method="post">
                     <div class="form-group">
                         <label for="quantity" class="col-form-label font-weight-bold">Quantity</label>
-                        <input type="number"
-                               class="form-control"
-                               id="quantity"
-                               name="quantity">
+                        <input type="number"class="form-control"id="quantity"name="quantity">
                         <input type="hidden" value="@Model.Id" name="productId" />
                     </div>
                 </form>

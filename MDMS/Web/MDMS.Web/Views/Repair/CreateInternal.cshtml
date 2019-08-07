@@ -1,0 +1,57 @@
+﻿@model MDMS.Web.BindingModels.Repair.InternalRepairCreateBindingModel
+@{
+    ViewData["Title"] = "CreateInternal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-45 mx-auto rounded">Initialize Internal Repair</h1>
+<h2 class="bg-primary text-white text-center p-3 w-45 mx-auto rounded">@Model.Make @Model.Model @Model.VSN</h2>
+<form method="post" action="/Repair/CreateInternal" class="form border-primary-4 rounded p-3 w-45 mx-auto mt-3 bg-white">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (this.ViewData["error"] != null)
+    {
+        <ul>
+            <li class="text-danger">@this.ViewData["error"]</li>
+        </ul>
+    }
+    <div class="form-group mx-auto">
+        <div class="d-flex justify-content-center">
+            <label asp-for="Description" class="text-primary h5">Description</label>
+        </div>
+        <textarea type="text" class="form-control" id="description" rows="5" placeholder="Description..."
+                  asp-for="Description"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto">
+        <div class="d-flex justify-content-center">
+            <label asp-for="RepairedSystem" class="text-primary h5">Repaired System</label>
+        </div>
+        <select class="form-control text-primary text-center" id="partsProvider" asp-for="RepairedSystem">
+            <option selected disabled>--- Select Part Provider ---</option>
+            <vc:repaired-system></vc:repaired-system>
+        </select>
+        <span asp-validation-for="RepairedSystem" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto">
+        <div class="d-flex justify-content-center">
+            <label asp-for="Mileage" class="text-primary h5">Mileage</label>
+        </div>
+        <input type="number"
+               step="1"
+               class="form-control text-primary text-center"
+               id="mileage"
+               placeholder="Mileage..."
+               asp-for="Mileage">
+        <span asp-validation-for="Mileage" class="text-danger"></span>
+    </div>
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary font-weight-bold">Initialize Internal Repair</button>
+    </div>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

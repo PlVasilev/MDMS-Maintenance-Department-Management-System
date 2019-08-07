@@ -20,6 +20,9 @@ namespace MDMS.Data.Models
         public string VehicleId { get; set; }
         public Vehicle Vehicle { get; set; }
 
+        [Range(0, int.MaxValue, ErrorMessage = "Must be positive Number")]
+        public int Mileage { get; set; }
+
         [Required]
         public string RepairedSystemId { get; set; }
         public RepairedSystem RepairedSystem { get; set; }
@@ -31,9 +34,10 @@ namespace MDMS.Data.Models
         public DateTime? FinishedOn { get; set; } = null;
 
         [Required]
+        public string MdmsUserId { get; set; }
         public MdmsUser MdmsUser { get; set; }
 
-        [Range(typeof(decimal), "0.01", "9999999999", ErrorMessage = "Must be positive number")]
+        [Range(typeof(decimal), "0.00", "9999999999", ErrorMessage = "Must be positive number")]
         public decimal RepairCost { get; set; } // Internal RepairParts.Sum(x => x.Part.Price * x.Quantity) +(MdmsUserRepair.MdmsUser.AdditionalOnHourPayment * (decimal)MdmsUserRepair.HoursWorked);
     }
 }

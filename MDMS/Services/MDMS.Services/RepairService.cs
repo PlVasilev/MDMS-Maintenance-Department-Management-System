@@ -27,5 +27,7 @@ namespace MDMS.Services
             var result = await _context.SaveChangesAsync();
             return result > 0;
         }
+
+        public IQueryable<RepairedSystemServiceModel> GetAllRepairedSystems() => _context.RepairedSystems.To<RepairedSystemServiceModel>();
     }
 }
