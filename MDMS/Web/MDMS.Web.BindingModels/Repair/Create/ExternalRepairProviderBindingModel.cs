@@ -4,7 +4,7 @@ using System.Text;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 
-namespace MDMS.Web.BindingModels.Repair
+namespace MDMS.Web.BindingModels.Repair.Create
 {
     public class ExternalRepairProviderBindingModel : IMapTo<ExternalRepairProviderServiceModel>
     {

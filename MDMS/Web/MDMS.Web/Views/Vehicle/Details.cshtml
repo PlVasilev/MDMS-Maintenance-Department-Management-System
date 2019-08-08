@@ -20,7 +20,7 @@
 
                     @if (this.User.IsInRole("Admin"))
                     {
-                        <a href="/Repair/CreateExternal/@Model.Name" class="btn btn-primary text-white font-weight-bold">Initialize Repair</a>
+                        <a href="/Administration/Repair/CreateExternal/@Model.Name" class="btn btn-primary text-white font-weight-bold">Initialize Repair</a>
                         <a href="/Administration/Vehicle/Edit/@Model.Name" class="btn btn-primary text-white font-weight-bold">Edit</a>
                         <a href="/Administration/Vehicle/Delete/@Model.Name" class="btn btn-primary text-white font-weight-bold">Delete</a>
                     }

@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using AutoMapper;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 
-namespace MDMS.Web.BindingModels.Repair
+namespace MDMS.Web.BindingModels.Repair.Create
 {
-   public class InternalRepairCreateBindingModel : IMapFrom<VehicleServiceModel>, IMapTo<InternalRepairServiceModel>
+   public class InternalRepairCreateBindingModel : IMapFrom<VehicleServiceModel>, IMapTo<InternalRepairServiceModel>,IHaveCustomMappings
     {
         [Required]
         [MaxLength(1000)]
         public string Description { get; set; }
 
         [Required]
-        public string RepairedSystem { get; set; }
+        public string RepairedSystemName { get; set; }
 
         [Required]
         public string VSN { get; set; }
@@ -31,5 +32,10 @@ namespace MDMS.Web.BindingModels.Repair
         [Required]
         public string Model { get; set; }
 
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<VehicleServiceModel, InternalRepairCreateBindingModel>()
+                .ForMember(dest => dest.VehicleId, opts => opts.MapFrom(x => x.Id));
+        }
     }
 }

@@ -11,6 +11,11 @@ namespace MDMS.Services
     {
         Task<bool> CreateExternalRepairProvider(ExternalRepairProviderServiceModel externalRepairProviderServiceModel);
 
+        Task<bool> CreateInternal(InternalRepairServiceModel internalRepairServiceModel);
+
+        Task<bool> CreateExternal(ExternalRepairServiceModel externalRepairServiceModel);
+
         IQueryable<RepairedSystemServiceModel> GetAllRepairedSystems();
+        IQueryable<ExternalRepairProviderServiceModel> GetAllExternalRepairProviders();
     }
 }

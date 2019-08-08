@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mdms.Data.Models;
 using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using MDMS.Web.BindingModels.Repair;
+using MDMS.Web.BindingModels.Repair.Create;
 using MDMS.Web.ViewModels.Repair;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MDMS.Web.Controllers
@@ -15,11 +18,13 @@ namespace MDMS.Web.Controllers
     {
         private readonly IVehicleService _vehicleService;
         private readonly IRepairService _repairService;
+        private readonly UserManager<MdmsUser> _userManager;
 
-        public RepairController(IVehicleService vehicleService, IRepairService repairService)
+        public RepairController(IVehicleService vehicleService, IRepairService repairService, UserManager<MdmsUser> userManager)
         {
             _vehicleService = vehicleService;
             _repairService = repairService;
+            _userManager = userManager;
         }
 
         [HttpGet(Name = "CreateInternal")]
@@ -32,12 +37,17 @@ namespace MDMS.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                InternalRepairServiceModel internalRepairServiceModel = AutoMapper.Mapper.Map<InternalRepairServiceModel>(internalRepairCreateBindingModel);
-               // var result = await _repairService.CreateInternal(internalRepairServiceModel);
+                var internalRepairServiceModel = internalRepairCreateBindingModel.To<InternalRepairServiceModel>();
+                internalRepairServiceModel.MdmsUserId = _userManager.GetUserId(User);
+                internalRepairServiceModel.RepairedSystem = new RepairedSystemServiceModel {Name = internalRepairCreateBindingModel.RepairedSystemName};
+                internalRepairServiceModel.Name = "Internal_" + internalRepairCreateBindingModel.Make + "_" +
+                                                  internalRepairCreateBindingModel.Model + "_" +
+                                                  internalRepairCreateBindingModel.VSN;
+                var result = await _repairService.CreateInternal(internalRepairServiceModel);
 
-               // if (result) return this.Redirect("/");
+                if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "Part with that name already exist.";
+                this.ViewData["error"] = "Repair with that name already exists.";
                 return this.View(internalRepairCreateBindingModel);
             }
             return this.View(internalRepairCreateBindingModel);
