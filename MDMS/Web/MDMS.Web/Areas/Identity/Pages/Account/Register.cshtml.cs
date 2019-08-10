@@ -80,7 +80,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var isAdmin = _userManager.Users.Count() == 1;
-                var isAUser = _userManager.Users.Count() == 2;
+                var isUser = _userManager.Users.Count() == 2;
                 var user = new MdmsUser { UserName = Input.Username,
                     Email = Input.Email,
                     IsAuthorized = true,
@@ -97,8 +97,9 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                         await _userManager.AddToRoleAsync(user, "Admin");
                         await _userManager.AddToRoleAsync(user, "User");
                         await _userManager.AddToRoleAsync(user, "Guest");
+                        
                     }
-                    else if (isAUser)
+                    else if (isUser)
                     {
                         await _userManager.AddToRoleAsync(user, "User");
                         await _userManager.AddToRoleAsync(user, "Guest");
@@ -106,6 +107,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                     else
                     {
                         await _userManager.AddToRoleAsync(user, "Guest");
+                        user.IsAuthorized = false;
                     }
                     
                     // EMAIL sender

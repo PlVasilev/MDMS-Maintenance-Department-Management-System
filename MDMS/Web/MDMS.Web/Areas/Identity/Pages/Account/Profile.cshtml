@@ -1,4 +1,123 @@
 ﻿@page
+@using Microsoft.CodeAnalysis.CSharp.Syntax
 @model MDMS.Web.Areas.Identity.Pages.Account.ProfileModel
 @{
+    ViewData["Title"] = "Profile";
 }
+<div class="d-flex justify-content-around row">
+
+    <div id="user-data-holder" class="w-45 rounded border-primary-4 bg-white">
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h3 class="text-center">Name: @Model.FirstName @Model.LastName</h3>
+        <h3 class="text-center">Base Salary: $@Model.BaseSalary</h3>
+        <h3 class="text-center">Additional On Hour Payment: $@Model.AdditionalOnHourPayment</h3>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        @if (@Model.IsAuthorized)
+        {
+            <h3 class="text-center">Authorized</h3>
+        }
+        else
+        {
+            <h3 class="text-center text-danger">Not Authorized</h3>
+        }
+        <hr class="hr-2 bg-primary mt-2" />
+        <h3 class="text-center">Salaries</h3>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <div id="salaries" class="mt-3">
+            @if (@Model.Salaries.Count == 0)
+            {
+                <h3 class="text-center">There are No Salaries yet.</h3>
+            }
+            else
+            {
+                <table class="table table-sm table-hover bg-white">
+                    <thead>
+                        <tr class="row">
+                            <th scope="col" class="col-md-1 text-primary text-center">#</th>
+                            <th scope="col" class="col-md-1 text-primary text-center">Month</th>
+                            <th scope="col" class="col-md-2 text-primary text-center">Year</th>
+                            <th scope="col" class="col-md-2 text-primary text-center">Hours Worked</th>
+                            <th scope="col" class="col-md-2 text-primary text-center">Add Per Hour</th>
+                            <th scope="col" class="col-md-2 text-primary text-center">Base Salary</th>
+                            <th scope="col" class="col-md-2 text-primary text-center">Total Salary</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < @Model.Salaries.Count; i++)
+                        {
+                            <tr class="row">
+                                <td class="col-md-1 text-primary text-center">@(i + 1)</td>
+                                <td class="col-md-1 text-primary text-center">@Model.Salaries[i].Month</td>
+                                <td class="col-md-2 text-primary text-center">@Model.Salaries[i].Year</td>
+                                <td class="col-md-2 text-primary text-center">@Model.Salaries[i].HoursWorked</td>
+                                <td class="col-md-2 text-primary text-center">@Model.Salaries[i].AdditionalOnHourPayment</td>
+                                <td class="col-md-2 text-primary text-center">@Model.Salaries[i].BaseSalary</td>
+                                <td class="col-md-2 text-primary text-center">@Model.Salaries[i].TotalSalary</td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+
+    <div id="userRepairs-data-holder" class="w-45 rounded border-primary-4 bg-white">
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h3 class="text-center">Repairs</h3>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <div id="repairs" class="mt-3">
+            @if (@Model.InternalRepairs.Count == 0 && @Model.ExternalRepairs.Count == 0)
+            {
+                <h3 class="text-center">There are No Repairs yet.</h3>
+            }
+            else
+            {
+                <table class="table table-sm table-hover bg-white">
+                    <thead>
+                        <tr class="row">
+                            <th scope="col" class="col-md-1 text-primary text-center">#</th>
+                            <th scope="col" class="col-md-5 text-primary text-center">Name</th>
+                            <th scope="col" class="col-md-3 text-primary text-center">Started</th>
+                            <th scope="col" class="col-md-3 text-primary text-center">Details</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            @for (int i = 0; i < @Model.ExternalRepairs.Count; i++)
+                            {
+
+                                <tr class="row">
+                                    <td class="col-md-1 text-primary text-center">@(i + 1)</td>
+                                    <td class="col-md-5 text-primary text-center">@Model.ExternalRepairs[i].Name</td>
+                                    <td class="col-md-3 text-primary text-center">@Model.ExternalRepairs[i].StartedOn.ToString("dd/MM/yy")</td>
+                                    <td class="col-lg-3">
+                                        <a href="/Repair/Details?name=@Model.ExternalRepairs[i].Name">Details</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            @for (int i = 0; i < @Model.InternalRepairs.Count; i++)
+                            {
+
+                                <tr class="row">
+                                    <td class="col-md-1 text-primary text-center">@(i + 1)</td>
+                                    <td class="col-md-5 text-primary text-center">@Model.InternalRepairs[i].Name</td>
+                                    <td class="col-md-3 text-primary text-center">@Model.InternalRepairs[i].StartedOn.ToString("dd/MM/yy")</td>
+                                    <td class="col-lg-3">
+                                        <a href="/Repair/Details?name=@Model.InternalRepairs[i].Name">Details</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>

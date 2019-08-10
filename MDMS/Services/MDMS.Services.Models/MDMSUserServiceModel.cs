@@ -20,6 +20,8 @@ namespace MDMS.Services.Models
 
         public decimal AdditionalOnHourPayment { get; set; }
 
+        public bool IsRepairing { get; set; }
+
         public bool IsDeleted { get; set; }
 
         public bool IsAuthorized { get; set; } = false;

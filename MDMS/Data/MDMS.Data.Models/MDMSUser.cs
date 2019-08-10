@@ -11,6 +11,8 @@ namespace Mdms.Data.Models
         { 
         }
 
+        public bool IsRepairing { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }

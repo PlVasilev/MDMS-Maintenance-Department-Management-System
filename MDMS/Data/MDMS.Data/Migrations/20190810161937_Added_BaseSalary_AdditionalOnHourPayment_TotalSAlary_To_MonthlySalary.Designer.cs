@@ -4,14 +4,16 @@ using MDMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MDMS.Data.Migrations
 {
     [DbContext(typeof(MdmsDbContext))]
-    partial class MdmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190810161937_Added_BaseSalary_AdditionalOnHourPayment_TotalSAlary_To_MonthlySalary")]
+    partial class Added_BaseSalary_AdditionalOnHourPayment_TotalSAlary_To_MonthlySalary
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

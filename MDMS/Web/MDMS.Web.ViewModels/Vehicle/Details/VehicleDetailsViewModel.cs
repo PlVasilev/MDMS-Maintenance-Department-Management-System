@@ -38,6 +38,8 @@ namespace MDMS.Web.ViewModels.Vehicle.Details
         //public ICollection<InternalRepairViewModel> InternalRepairs { get; set; } = new HashSet<InternalRepairViewModel>();
         //public ICollection<ExternalRepairViewModel> ExternalRepairs { get; set; } = new HashSet<ExternalRepairViewModel>();
 
+        public bool MDMSUserServiceModelIsRepairing { get; set; }
+
         public string VehicleTypeName { get; set; }
 
         public bool IsActive { get; set; } = false;

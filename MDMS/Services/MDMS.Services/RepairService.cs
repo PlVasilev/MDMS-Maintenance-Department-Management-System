@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MDMS.Data;
-using Mdms.Data.Models;
 using MDMS.Data.Models;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace MDMS.Services
@@ -16,14 +12,10 @@ namespace MDMS.Services
     public class RepairService : IRepairService
     {
         private readonly MdmsDbContext _context;
-        private readonly UserManager<MdmsUser> _userManager;
-        private readonly IVehicleService _vehicleService;
 
-        public RepairService(MdmsDbContext context, UserManager<MdmsUser> userManager, IVehicleService vehicleService)
+        public RepairService(MdmsDbContext context)
         {
             _context = context;
-            _userManager = userManager;
-            _vehicleService = vehicleService;
         }
 
         public async Task<bool> CreateExternalRepairProvider(ExternalRepairProviderServiceModel externalRepairProviderServiceModel)
@@ -69,6 +61,7 @@ namespace MDMS.Services
 
             var externalRepair = externalRepairServiceModel.To<ExternalRepair>();
             externalRepair.RepairedSystem = await GetRepairedSystemIdByName(externalRepairServiceModel.RepairedSystem.Name);
+            externalRepair.ExternalRepairProvider = await GetExternalRepairProviderByName(externalRepairServiceModel.ExternalRepairProvider.Name);
             _context.ExternalRepairs.Add(externalRepair);
 
             var vehicle = _context.Vehicles.Find(externalRepairServiceModel.VehicleId);
@@ -88,5 +81,9 @@ namespace MDMS.Services
 
         private async Task<RepairedSystem> GetRepairedSystemIdByName(string repairedSystemName) =>
             await _context.RepairedSystems.SingleOrDefaultAsync(x => x.Name == repairedSystemName);
+
+        private async Task<ExternalRepairProvider> GetExternalRepairProviderByName(string name) => 
+            await _context.ExternalRepairProviders.SingleOrDefaultAsync(x => x.Name == name);
+
     }
 }

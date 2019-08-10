@@ -17,6 +17,8 @@ namespace MDMS.Web.BindingModels.Repair.Create
         [Required]
         public string RepairedSystemName { get; set; }
 
+        public bool MDMSUserServiceModelIsRepairing { get; set; }
+
         [Required]
         public string VSN { get; set; }
 

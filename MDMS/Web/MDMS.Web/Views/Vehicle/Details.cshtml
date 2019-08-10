@@ -26,6 +26,10 @@
                     }
                     else
                     {
+                        if (@Model.MDMSUserServiceModelIsRepairing)
+                        {
+                            <h3 class="text-center font-weight-bold  text-bordered">You have active repair.</h3>
+                        }
                         <a href="/Repair/CreateInternal/@Model.Name" class="btn btn-primary text-white font-weight-bold">Initialize Repair</a>
                     }
                 }

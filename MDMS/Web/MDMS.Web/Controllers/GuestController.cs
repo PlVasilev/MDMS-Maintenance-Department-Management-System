@@ -7,11 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MDMS.Web.Controllers
 {
+    [Authorize(Roles = "Guest")]
     public class GuestController : Controller
     {
-        [Authorize(Roles = "Guest")]
-        public abstract class UserController : Controller
-        {
-        }
     }
 }

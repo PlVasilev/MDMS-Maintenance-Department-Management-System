@@ -61,6 +61,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
                 var externalRepairServiceModel = externalRepairCreateBindingModel.To<ExternalRepairServiceModel>();
                 externalRepairServiceModel.MdmsUserId = _userManager.GetUserId(User);
                 externalRepairServiceModel.RepairedSystem = new RepairedSystemServiceModel { Name = externalRepairCreateBindingModel.RepairedSystemName };
+                externalRepairServiceModel.ExternalRepairProvider = new ExternalRepairProviderServiceModel { Name = externalRepairCreateBindingModel.ExternalRepairProviderName };
                 externalRepairServiceModel.Name = "External_" + externalRepairCreateBindingModel.Make + "_" +
                                                   externalRepairCreateBindingModel.Model + "_" +
                                                   externalRepairCreateBindingModel.VSN;

@@ -1,0 +1,107 @@
+﻿@model List<MDMS.Web.ViewModels.User.MDMSUserAllViewModel>
+@{
+    ViewData["Title"] = "All";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between">
+    <div id="products-search-bar-holder" class="form-group d-flex justify-content-between w-50">
+        <input type="text" class="form-control text-primary" id="products-search-bar" name="search" placeholder="Search..." />
+    </div>
+    <div id="sort-holder" class="form-group w-40 d-flex justify-content-between">
+        <label for="sort" class="text-primary font-weight-bold w-30 h4 mt-1 text-bordered text-right">Order By: </label>
+        <select id="sort" class="form-control text-primary pl-2 ml-3 w-70">
+            <option value="none" selected>None</option>
+            <option value="none">Price (lowest to highest)</option>
+            <option value="none">Price (highest to lowest)</option>
+            <option value="none">Date of Manufacturing (oldest to newest)</option>
+            <option value="none">Date of Manufacturing (newest to oldest)</option>
+        </select>
+    </div>
+</div>
+<div id="products" class="mt-3">
+    ">
+    <table class="table table-primary table-hover bg-white">
+        <thead>
+            <tr class="row">
+                <th scope="col" class="col-lg-1 text-primary">#</th>
+                <th scope="col" class="col-lg-2 text-primary">Name</th>
+                <th scope="col" class="col-lg-2 text-primary">Email</th>
+                <th scope="col" class="col-lg-1 text-primary">Is Working</th>
+                <th scope="col" class="col-lg-1 text-primary">Base Salary</th>
+                <th scope="col" class="col-lg-1 text-primary">On Hour Pay</th>
+                <th scope="col" class="col-lg-1 text-primary">AddS alary</th>
+                <th scope="col" class="col-lg-1 text-primary">Edit</th>
+                <th scope="col" class="col-lg-1 text-primary">Act/DeA</th>
+                <th scope="col" class="col-lg-1 text-primary">Del/Res</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < @Model.Count; i++)
+            {
+            <tr class="row">
+                <td class="col-lg-1 text-primary">@(i + 1)</td>
+                <td class="col-lg-2 text-primary">@Model[i].FirstName @Model[i].LastName</td>
+                <td class="col-lg-2 text-primary">@Model[i].Email </td>
+                @if (@Model[i].IsRepairing)
+                {
+                    <td class="col-lg-1 text-primary">Yes</td>
+                }
+                else
+                {
+                    <td class="col-lg-1 text-primary">No</td>
+                }
+                <td class="col-lg-1 text-primary">@Model[i].BaseSalary </td>
+                <td class="col-lg-1 text-primary">@Model[i].AdditionalOnHourPayment </td>
+                <td class="col-lg-1">
+                    <a href="/User/AddSalary?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Add Salary</a>
+                </td>
+                <td class="col-lg-1">
+                    <a href="/User/Edit?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Edit</a>
+                </td>
+                @if (@Model[i].IsAuthorized)
+                {
+                    <td class="col-lg-1">
+                        <a href="/User/DeActivate?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Deactivate</a>
+                    </td>
+                }
+                else
+                {
+                    <td class="col-lg-1">
+                        <a href="/User/Activate?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Activate</a>
+                    </td>
+                }
+                @if (@Model[i].IsDeleted)
+                {
+                    <td class="col-lg-1">
+                        <a href="/User/Restore?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Restore</a>
+                    </td>
+                }
+                else
+                {
+                    <td class="col-lg-1">
+                        <a href="/User/Delete?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Delete</a>
+                    </td>
+                }
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $('#products-search-bar').on("change paste keyup", function () {
+        $('.product').show();
+
+        let searchValue = $('#products-search-bar').val();
+
+        for (let elem of $('.product')) {
+            let productName = $($(elem).children()[1]).text();
+
+            if (!productName.toLowerCase().includes(searchValue.toLowerCase())) {
+                $(elem).hide();
+            }
+        }
+    });
+</script>
+

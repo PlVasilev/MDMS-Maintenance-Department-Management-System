@@ -4,14 +4,16 @@ using MDMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MDMS.Data.Migrations
 {
     [DbContext(typeof(MdmsDbContext))]
-    partial class MdmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190810083541_Added_IsRepearing_to_MDMSUser")]
+    partial class Added_IsRepearing_to_MDMSUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,10 +165,6 @@ namespace MDMS.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<decimal>("AdditionalOnHourPayment");
-
-                    b.Property<decimal>("BaseSalary");
-
                     b.Property<double>("HoursWorked");
 
                     b.Property<bool>("IsDeleted");
@@ -178,8 +176,6 @@ namespace MDMS.Data.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100);
-
-                    b.Property<decimal>("TotalSalary");
 
                     b.Property<int>("Year");
 
