@@ -2,9 +2,9 @@
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 
-namespace MDMS.Web.BindingModels.Vehicle
+namespace MDMS.Web.BindingModels.Vehicle.Create
 {
-    public class VehicleProviderBindingModel : IMapTo<VehicleProviderServiceModel>
+    public class VehicleTypeCreateBindingModel : IMapTo<VehicleTypeServiceModel>
     {
         [Required]
         [StringLength(50)]

@@ -7,7 +7,7 @@ using MDMS.Services.Models;
 using Microsoft.AspNetCore.Http;
 using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
-namespace MDMS.Web.BindingModels.Vehicle
+namespace MDMS.Web.BindingModels.Vehicle.Create
 {
    public class VehicleCreateBindingModel : IValidatableObject, IMapTo<VehicleServiceModel>, IHaveCustomMappings
    {

@@ -1,0 +1,50 @@
+﻿@model MDMS.Web.BindingModels.User.Payment.MdmsUserEditPaymentBindingModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Edit @Model.Username Payment</h1>
+<form method="post" action="/Administration/User/Payment/Edit?id=@Model.Id" class="form border-primary-4 rounded p-3 w-30 mx-auto mt-3 bg-white">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (this.ViewData["error"] != null)
+    {
+        <ul>
+            <li class="text-danger">@this.ViewData["error"]</li>
+        </ul>
+    }
+    <div class="form-group mx-auto">
+        <div class="d-flex justify-content-center">
+            <label asp-for="BaseSalary" class="text-primary h5">BaseSalary</label>
+        </div>
+        <input type="number"
+               step="0.01"
+               class="form-control text-primary text-center"
+               id="baseSalary"
+               placeholder="BaseSalary..."
+               asp-for="BaseSalary">
+        <span asp-validation-for="BaseSalary" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto">
+        <div class="d-flex justify-content-center">
+            <label asp-for="AdditionalOnHourPayment" class="text-primary h5">AdditionalOnHourPayment</label>
+        </div>
+        <input type="number"
+               step="0.01"
+               class="form-control text-primary text-center"
+               id="additionalOnHourPayment"
+               placeholder="AdditionalOnHourPayment..."
+               asp-for="AdditionalOnHourPayment">
+        <span asp-validation-for="AdditionalOnHourPayment" class="text-danger"></span>
+    </div>
+    <hr class="hr-2 bg-primary mt-4">
+    <input type="hidden" value="@Model.Username" name="Username" />
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary font-weight-bold">Confirm Changes</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

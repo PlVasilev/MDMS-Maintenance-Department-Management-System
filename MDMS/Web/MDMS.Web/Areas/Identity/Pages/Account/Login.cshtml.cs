@@ -74,8 +74,6 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             {
                 var result = await _signInManager.PasswordSignInAsync(Input.Username, Input.Password, false, lockoutOnFailure: true);
 
-                
-               
                 if (!result.Succeeded)
                 {
                     ModelState.AddModelError(string.Empty, "Invalid Username or Password.");

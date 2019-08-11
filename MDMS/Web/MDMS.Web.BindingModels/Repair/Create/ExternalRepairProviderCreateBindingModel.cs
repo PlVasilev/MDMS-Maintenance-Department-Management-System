@@ -6,7 +6,7 @@ using MDMS.Services.Models;
 
 namespace MDMS.Web.BindingModels.Repair.Create
 {
-    public class ExternalRepairProviderBindingModel : IMapTo<ExternalRepairProviderServiceModel>
+    public class ExternalRepairProviderCreateBindingModel : IMapTo<ExternalRepairProviderServiceModel>
     {
         public string Name { get; set; }
     }

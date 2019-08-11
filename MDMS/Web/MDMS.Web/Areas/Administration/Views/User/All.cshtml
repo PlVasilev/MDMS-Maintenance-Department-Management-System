@@ -20,7 +20,6 @@
     </div>
 </div>
 <div id="products" class="mt-3">
-    ">
     <table class="table table-primary table-hover bg-white">
         <thead>
             <tr class="row">
@@ -30,8 +29,8 @@
                 <th scope="col" class="col-lg-1 text-primary">Is Working</th>
                 <th scope="col" class="col-lg-1 text-primary">Base Salary</th>
                 <th scope="col" class="col-lg-1 text-primary">On Hour Pay</th>
-                <th scope="col" class="col-lg-1 text-primary">AddS alary</th>
-                <th scope="col" class="col-lg-1 text-primary">Edit</th>
+                <th scope="col" class="col-lg-1 text-primary">Add Salary</th>
+                <th scope="col" class="col-lg-1 text-primary">Edit Payment</th>
                 <th scope="col" class="col-lg-1 text-primary">Act/DeA</th>
                 <th scope="col" class="col-lg-1 text-primary">Del/Res</th>
             </tr>
@@ -39,51 +38,62 @@
         <tbody>
             @for (int i = 0; i < @Model.Count; i++)
             {
-            <tr class="row">
-                <td class="col-lg-1 text-primary">@(i + 1)</td>
-                <td class="col-lg-2 text-primary">@Model[i].FirstName @Model[i].LastName</td>
-                <td class="col-lg-2 text-primary">@Model[i].Email </td>
-                @if (@Model[i].IsRepairing)
-                {
-                    <td class="col-lg-1 text-primary">Yes</td>
-                }
-                else
-                {
-                    <td class="col-lg-1 text-primary">No</td>
-                }
-                <td class="col-lg-1 text-primary">@Model[i].BaseSalary </td>
-                <td class="col-lg-1 text-primary">@Model[i].AdditionalOnHourPayment </td>
-                <td class="col-lg-1">
-                    <a href="/User/AddSalary?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Add Salary</a>
-                </td>
-                <td class="col-lg-1">
-                    <a href="/User/Edit?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Edit</a>
-                </td>
-                @if (@Model[i].IsAuthorized)
-                {
-                    <td class="col-lg-1">
-                        <a href="/User/DeActivate?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Deactivate</a>
-                    </td>
-                }
-                else
-                {
-                    <td class="col-lg-1">
-                        <a href="/User/Activate?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Activate</a>
-                    </td>
-                }
-                @if (@Model[i].IsDeleted)
-                {
-                    <td class="col-lg-1">
-                        <a href="/User/Restore?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Restore</a>
-                    </td>
-                }
-                else
-                {
-                    <td class="col-lg-1">
-                        <a href="/User/Delete?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Delete</a>
-                    </td>
-                }
-            </tr>
+                <tr class="row user-row">
+                    <td class="col-lg-1 text-primary">@(i + 1)</td>
+                    <td class="col-lg-2 text-primary">@Model[i].FirstName @Model[i].LastName</td>
+                    <td class="col-lg-2 text-primary">@Model[i].Email </td>
+                    @if (@Model[i].IsRepairing)
+                    {
+                        <td class="col-lg-1 text-primary">Yes</td>
+                    }
+                    else
+                    {
+                        <td class="col-lg-1 text-primary">No</td>
+                    }
+                    <td class="col-lg-1 text-primary">@Model[i].BaseSalary </td>
+                    <td class="col-lg-1 text-primary">@Model[i].AdditionalOnHourPayment </td>
+                    @if (@Model[i].FirstName == "Root")
+                    {
+                        <td class="col-lg-1 text-primary font-weight-bold">Can not Add</td>
+                        <td class="col-lg-1 text-primary font-weight-bold">Can not Edit</td>
+                        <td class="col-lg-1 text-primary font-weight-bold">Authorized</td>
+                        <td class="col-lg-1 text-primary font-weight-bold">Not Deleted</td>
+                    }
+                    else
+                    {
+                        <td class="col-lg-1">
+                            <a href="/Administration/User/Payment/AddSalary?name=@Model[i].Username" class="btn btn-primary text-white font-weight-bold">Add Salary</a>
+                        </td>
+                        <td class="col-lg-1">
+                            <a href="/Administration/User/Payment/Edit?name=@Model[i].Username" class="btn btn-primary text-white font-weight-bold">Edit Payment</a>
+                        </td>
+
+                        @if (@Model[i].IsAuthorized)
+                        {
+                            <td class="col-lg-1">
+                                <a href="/Administration/User/DeActivate?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Deactivate</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="col-lg-1">
+                                <a href="/Administration/User/Activate?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Activate</a>
+                            </td>
+                        }
+                        @if (@Model[i].IsDeleted)
+                        {
+                            <td class="col-lg-1">
+                                <a href="/Administration/User/Restore?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Restore</a>
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="col-lg-1">
+                                <a href="/Administration/User/Delete?id=@Model[i].Id" class="btn btn-primary text-white font-weight-bold">Delete</a>
+                            </td>
+                        }
+                    }
+                </tr>
             }
         </tbody>
     </table>
@@ -91,11 +101,11 @@
 
 <script>
     $('#products-search-bar').on("change paste keyup", function () {
-        $('.product').show();
+        $('.user-row').show();
 
         let searchValue = $('#products-search-bar').val();
 
-        for (let elem of $('.product')) {
+        for (let elem of $('.user-row')) {
             let productName = $($(elem).children()[1]).text();
 
             if (!productName.toLowerCase().includes(searchValue.toLowerCase())) {

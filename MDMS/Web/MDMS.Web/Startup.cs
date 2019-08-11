@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.Reflection;
-using System.Threading.Tasks;
 using CloudinaryDotNet;
 using MDMS.Data;
 using Mdms.Data.Models;
@@ -8,7 +7,7 @@ using MDMS.Data.Seeding;
 using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
-using MDMS.Web.BindingModels.Vehicle;
+using MDMS.Web.BindingModels.Vehicle.Create;
 using MDMS.Web.Extensions;
 using MDMS.Web.ViewModels.Vehicle.All;
 using Microsoft.AspNetCore.Builder;
@@ -16,7 +15,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

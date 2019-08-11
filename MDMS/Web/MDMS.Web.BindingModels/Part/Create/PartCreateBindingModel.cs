@@ -6,7 +6,7 @@ using MDMS.Services.Models;
 using MDMS.Web.BindingModels.Vehicle;
 using Microsoft.AspNetCore.Http;
 
-namespace MDMS.Web.BindingModels.Part
+namespace MDMS.Web.BindingModels.Part.Create
 {
     public class PartCreateBindingModel : IMapTo<PartServiceModel>, IHaveCustomMappings
     {

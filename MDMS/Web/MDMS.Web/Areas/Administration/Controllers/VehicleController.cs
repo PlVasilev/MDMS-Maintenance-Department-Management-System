@@ -1,8 +1,7 @@
 ﻿using System.Threading.Tasks;
 using MDMS.Services;
 using MDMS.Services.Models;
-using MDMS.Web.BindingModels;
-using MDMS.Web.BindingModels.Vehicle;
+using MDMS.Web.BindingModels.Vehicle.Create;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MDMS.Web.Areas.Administration.Controllers
@@ -25,7 +24,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
         [HttpPost]
         [Route("/Administration/Vehicle/Provider/Create")]
-        public async Task<IActionResult> CreateProvider(VehicleProviderBindingModel vehicleProviderBindingModel)
+        public async Task<IActionResult> CreateProvider(VehicleProviderCreateBindingModel vehicleProviderBindingModel)
         {
             if (ModelState.IsValid)
             {

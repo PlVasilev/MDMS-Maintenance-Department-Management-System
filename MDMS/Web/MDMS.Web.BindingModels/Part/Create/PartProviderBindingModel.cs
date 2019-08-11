@@ -2,7 +2,8 @@
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 
-namespace MDMS.Web.BindingModels.Part
+namespace MDMS.Web.BindingModels.Part.Create
+
 {
     public class PartProviderBindingModel : IMapTo<PartsProviderServiceModel>
     {

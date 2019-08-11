@@ -1,0 +1,30 @@
+﻿@model MDMS.Web.BindingModels.User.Payment.MdmsUserAddMonthlySalaryBindingModel
+@{
+    ViewData["Title"] = "AddSalary";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Add Salary to @Model.MdmsUserUserName</h1>
+<form method="post" action="/Administration/User/Payment/AddSalary" class="form border-primary-4 rounded p-3 w-30 mx-auto mt-3 bg-white">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (this.ViewData["error"] != null)
+    {
+        <ul>
+            <li class="text-danger">@this.ViewData["error"]</li>
+        </ul>
+    }
+
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary font-weight-bold">Create Part Provider</button>
+    </div>
+</form>
+
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

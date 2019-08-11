@@ -32,7 +32,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
         [HttpPost]
         [Route("/Administration/Repair/Provider/Create")]
-        public async Task<IActionResult> CreateProvider(ExternalRepairProviderBindingModel externalRepairProviderBindingModel)
+        public async Task<IActionResult> CreateProvider(ExternalRepairProviderCreateBindingModel externalRepairProviderBindingModel)
         {
             if (ModelState.IsValid)
             {
