@@ -5,7 +5,7 @@
 }
 
 
-<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Add Salary to @Model.MdmsUserUserName</h1>
+<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Add Salary to @Model.Name</h1>
 <form method="post" action="/Administration/User/Payment/AddSalary" class="form border-primary-4 rounded p-3 w-30 mx-auto mt-3 bg-white">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     @if (this.ViewData["error"] != null)
@@ -14,10 +14,37 @@
             <li class="text-danger">@this.ViewData["error"]</li>
         </ul>
     }
-
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="Month" class="text-primary h5">Month</label>
+        </div>
+        <input type="number"
+               step="1"
+               class="form-control text-primary text-center"
+               id="month"
+               placeholder="Month..."
+               asp-for="Month">
+        <span asp-validation-for="Month" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="Year" class="text-primary h5">Year</label>
+        </div>
+        <input type="number"
+               step="1"
+               class="form-control text-primary text-center"
+               id="year"
+               placeholder="Year..."
+               asp-for="Year">
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
     <hr class="hr-2 bg-primary mt-4">
+    <input type="hidden" value="@Model.BaseSalary" name="BaseSalary" />
+    <input type="hidden" value="@Model.AdditionalOnHourPayment" name="AdditionalOnHourPayment" />
+    <input type="hidden" value="@Model.MechanicId" name="MechanicId" />
+    <input type="hidden" value="@Model.Name" name="Name" />
     <div class="d-flex justify-content-center mt-3">
-        <button class="btn btn-primary font-weight-bold">Create Part Provider</button>
+        <button class="btn btn-primary font-weight-bold">Add Salary</button>
     </div>
 </form>
 

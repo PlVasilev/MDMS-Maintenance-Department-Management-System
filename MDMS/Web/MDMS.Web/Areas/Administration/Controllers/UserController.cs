@@ -84,11 +84,11 @@ namespace MDMS.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _userService.EditPayment(mdmsUserEditPaymentBindingModel.To<MDMSUserServiceModel>());
+                var result = await _userService.AddSalary(mdmsUserEditPaymentBindingModel.To<MonthlySalaryServiceModel>());
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "There was a problem with Request.";
+                this.ViewData["error"] = "Salary for that month already Exists!";
                 return this.View("Payment/AddSalary", mdmsUserEditPaymentBindingModel);
             }
             return this.View("Payment/AddSalary", mdmsUserEditPaymentBindingModel);

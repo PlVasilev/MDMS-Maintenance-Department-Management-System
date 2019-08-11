@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Services.Models;
 
@@ -16,6 +13,7 @@ namespace MDMS.Services
         Task<bool> RestoreUser(string id);
         Task<bool> ActivateUser(string id);
         Task<bool> DeActivateUser(string id);
+        Task<bool> AddSalary(MonthlySalaryServiceModel monthlySalaryServiceModel);
         Task<bool> EditPayment(MDMSUserServiceModel userServiceModel);
         IQueryable<MDMSUserServiceModel> GetAllUsers();
 

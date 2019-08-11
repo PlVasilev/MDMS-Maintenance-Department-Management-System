@@ -9,18 +9,16 @@ using MDMS.Services.Models;
 namespace MDMS.Web.BindingModels.User.Payment
 {
     public class MdmsUserAddMonthlySalaryBindingModel : IMapFrom<MDMSUserServiceModel>, IMapTo<MonthlySalaryServiceModel>,IHaveCustomMappings
-    { 
-        [Range(1, 12)]
-        public int Month { get; set; }
+    {
+        [Range(1, 12)] public int Month { get; set; } = DateTime.UtcNow.Month;
 
-        [Range(1900, 2200)]
-        public int Year { get; set; }
+        [Range(1900, 2200)] public int Year { get; set; } = DateTime.UtcNow.Year;
 
         [Required]
-        public string MdmsUserMechanicId { get; set; }
+        public string MechanicId { get; set; }
 
         [Required]
-        public string MdmsUserUserName { get; set; }
+        public string Name{ get; set; }
 
         [Required]
         [Range(typeof(decimal), "0.00", "999999999")]
@@ -36,8 +34,8 @@ namespace MDMS.Web.BindingModels.User.Payment
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<MDMSUserServiceModel, MdmsUserAddMonthlySalaryBindingModel>()
-                .ForMember(dest => dest.MdmsUserMechanicId, opts => opts.MapFrom(x => x.Id))
-                .ForMember(dest => dest.MdmsUserUserName, opts => opts.MapFrom(x => x.UserName));
+                .ForMember(dest => dest.MechanicId, opts => opts.MapFrom(x => x.Id))
+                .ForMember(dest => dest.Name, opts => opts.MapFrom(x => x.UserName));
         }
     }
 }
