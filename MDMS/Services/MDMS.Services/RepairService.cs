@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Data;
 using MDMS.Data.Models;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
+using MDMS.Web.ViewModels.Repair.Home;
 using Microsoft.EntityFrameworkCore;
 
 namespace MDMS.Services
@@ -34,7 +37,7 @@ namespace MDMS.Services
                                               internalRepairServiceModel.StartedOn.ToString("yyyy/MM/dd_HH:mm");
 
             if (_context.InternalRepairs.Any(x => x.Name == internalRepairServiceModel.Name)) return false;
-            
+
 
             var internalRepair = internalRepairServiceModel.To<InternalRepair>();
             internalRepair.RepairedSystem = await GetRepairedSystemIdByName(internalRepairServiceModel.RepairedSystem.Name);
@@ -76,13 +79,20 @@ namespace MDMS.Services
 
         public IQueryable<RepairedSystemServiceModel> GetAllRepairedSystems() => _context.RepairedSystems.To<RepairedSystemServiceModel>();
 
+        public async Task<IEnumerable<ExternalRepairServiceModel>> GetAllExternalActiveRepairs() =>
+            await Task.Run((() => _context.ExternalRepairs.To<ExternalRepairServiceModel>().Where(x => x.FinishedOn == null).ToList()));
+
+        public async Task<IEnumerable<InternalRepairServiceModel>> GetAllInternalActiveRepairs() =>
+                await Task.Run((() => _context.InternalRepairs.To<InternalRepairServiceModel>().Where(x => x.FinishedOn == null).ToList()));
+
+
         public IQueryable<ExternalRepairProviderServiceModel> GetAllExternalRepairProviders() => _context.ExternalRepairProviders.To<ExternalRepairProviderServiceModel>();
-    
+
 
         private async Task<RepairedSystem> GetRepairedSystemIdByName(string repairedSystemName) =>
             await _context.RepairedSystems.SingleOrDefaultAsync(x => x.Name == repairedSystemName);
 
-        private async Task<ExternalRepairProvider> GetExternalRepairProviderByName(string name) => 
+        private async Task<ExternalRepairProvider> GetExternalRepairProviderByName(string name) =>
             await _context.ExternalRepairProviders.SingleOrDefaultAsync(x => x.Name == name);
 
     }

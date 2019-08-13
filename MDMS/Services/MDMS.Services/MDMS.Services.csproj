@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\MDMS.Data\MDMS.Data.csproj" />
+    <ProjectReference Include="..\..\Web\MDMS.Web.ViewModels\MDMS.Web.ViewModels.csproj" />
     <ProjectReference Include="..\MDMS.Services.Models\MDMS.Services.Models.csproj" />
   </ItemGroup>
 
