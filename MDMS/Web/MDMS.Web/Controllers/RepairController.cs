@@ -7,6 +7,7 @@ using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using MDMS.Web.BindingModels.Repair;
+using MDMS.Web.BindingModels.Repair.Active;
 using MDMS.Web.BindingModels.Repair.Create;
 using MDMS.Web.ViewModels.Repair;
 using Microsoft.AspNetCore.Identity;
@@ -47,10 +48,29 @@ namespace MDMS.Web.Controllers
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "Repair with that name already exists.";
+                this.ViewData["error"] = "User has already started a repair or Repair with that name already exists.";
                 return this.View(internalRepairCreateBindingModel);
             }
             return this.View(internalRepairCreateBindingModel);
+        }
+
+        [HttpGet(Name = "InternalActive")]
+        public async Task<IActionResult> InternalActive() => this.View(
+            AutoMapper.Mapper.Map<InternalRepairActiveBindingModel>(await _repairService.GetActiveRepair(_userManager.GetUserId(User))));
+        
+        
+        [HttpPost(Name = "InternalActive")]
+        public async Task<IActionResult> InternalActive(InternalRepairActiveBindingModel internalRepairActiveBindingModel)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                return this.Redirect("/");
+
+                this.ViewData["error"] = "User has already started a repair or Repair with that name already exists.";
+                return this.View(internalRepairActiveBindingModel);
+            }
+            return this.View(internalRepairActiveBindingModel);
         }
     }
 }

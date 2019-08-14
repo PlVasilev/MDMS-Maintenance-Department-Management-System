@@ -30,8 +30,12 @@
                         {
                             <h3 class="text-center font-weight-bold  text-bordered">You have active repair.</h3>
                         }
-                        <a href="/Repair/CreateInternal/@Model.Name" class="btn btn-primary text-white font-weight-bold">Initialize Repair</a>
+                        else
+                        {
+                            <a href="/Repair/CreateInternal/@Model.Name" class="btn btn-primary text-white font-weight-bold">Initialize Repair</a>
+                        }
                     }
+
                 }
             </div>
             <hr class="hr-2 bg-primary mt-4" />
@@ -81,7 +85,7 @@
                 <form id="order-form" action="/Product/Order" method="post">
                     <div class="form-group">
                         <label for="quantity" class="col-form-label font-weight-bold">Quantity</label>
-                        <input type="number"class="form-control"id="quantity"name="quantity">
+                        <input type="number" class="form-control" id="quantity" name="quantity">
                         <input type="hidden" value="@Model.Id" name="productId" />
                     </div>
                 </form>

@@ -32,13 +32,14 @@ namespace MDMS.Services
 
         public async Task<bool> CreateInternal(InternalRepairServiceModel internalRepairServiceModel)
         {
+            var currentUser = _context.Users.Find(internalRepairServiceModel.MdmsUserId);
             internalRepairServiceModel.StartedOn = DateTime.UtcNow;
             internalRepairServiceModel.Name = internalRepairServiceModel.Name + "_" +
                                               internalRepairServiceModel.StartedOn.ToString("yyyy/MM/dd_HH:mm");
 
             if (_context.InternalRepairs.Any(x => x.Name == internalRepairServiceModel.Name)) return false;
-
-
+            if (currentUser.IsRepairing) return false;
+            
             var internalRepair = internalRepairServiceModel.To<InternalRepair>();
             internalRepair.RepairedSystem = await GetRepairedSystemIdByName(internalRepairServiceModel.RepairedSystem.Name);
             _context.InternalRepairs.Add(internalRepair);
@@ -48,6 +49,8 @@ namespace MDMS.Services
             vehicle.IsInRepair = true;
             vehicle.InternalRepairs.Add(internalRepair);
             _context.Update(vehicle);
+            currentUser.IsRepairing = true;
+            _context.Update(currentUser);
             var result = await _context.SaveChangesAsync();
 
             return result > 0;
@@ -60,7 +63,6 @@ namespace MDMS.Services
                                               externalRepairServiceModel.StartedOn.ToString("yyyy/MM/dd_HH:mm");
 
             if (_context.InternalRepairs.Any(x => x.Name == externalRepairServiceModel.Name)) return false;
-
 
             var externalRepair = externalRepairServiceModel.To<ExternalRepair>();
             externalRepair.RepairedSystem = await GetRepairedSystemIdByName(externalRepairServiceModel.RepairedSystem.Name);
@@ -76,6 +78,16 @@ namespace MDMS.Services
 
             return result > 0;
         }
+
+        public async Task<InternalRepairServiceModel> GetActiveRepair(string id) => 
+            await Task.Run((() =>
+                    AutoMapper.Mapper.Map<InternalRepairServiceModel>(_context.InternalRepairs
+                        .Include(x => x.MdmsUser)
+                        .Include(x => x.InternalRepairParts)
+                        .Include(x => x.Vehicle)
+                        .Include(x => x.RepairedSystem)
+                        .SingleOrDefaultAsync(x => x.FinishedOn == null && x.MdmsUserId == id).Result)));
+
 
         public IQueryable<RepairedSystemServiceModel> GetAllRepairedSystems() => _context.RepairedSystems.To<RepairedSystemServiceModel>();
 

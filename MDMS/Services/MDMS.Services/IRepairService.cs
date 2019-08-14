@@ -15,6 +15,8 @@ namespace MDMS.Services
 
         Task<bool> CreateExternal(ExternalRepairServiceModel externalRepairServiceModel);
 
+        Task<InternalRepairServiceModel> GetActiveRepair(string id);
+
         IQueryable<RepairedSystemServiceModel> GetAllRepairedSystems();
         Task<IEnumerable<ExternalRepairServiceModel>>  GetAllExternalActiveRepairs();
         Task<IEnumerable<InternalRepairServiceModel>>  GetAllInternalActiveRepairs();

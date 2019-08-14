@@ -20,6 +20,10 @@ hr.hr-2 {
     height: 2px;
 }
 
+.border-primary-2 {
+    border: 2px solid #94000a;
+}
+
 .border-primary-4 {
     border: 4px solid #94000a;
 }
