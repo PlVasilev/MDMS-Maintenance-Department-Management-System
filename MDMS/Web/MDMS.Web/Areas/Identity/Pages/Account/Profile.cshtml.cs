@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MDMS.Data;
+using MDMS.Data.Migrations;
 using Mdms.Data.Models;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
 
 namespace MDMS.Web.Areas.Identity.Pages.Account
 {
@@ -16,10 +19,12 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
     public class ProfileModel : PageModel, IMapFrom<MdmsUser>
     {
         private readonly UserManager<MdmsUser> _userManager;
+        private readonly MdmsDbContext _context;
 
-        public ProfileModel(UserManager<MdmsUser> userManager)
+        public ProfileModel(UserManager<MdmsUser> userManager, MdmsDbContext context)
         {
             _userManager = userManager;
+            _context = context;
         }
 
         public string FirstName { get; set; }
@@ -45,7 +50,8 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                 return LocalRedirect("/");
             }
 
-            var user = await Task.Run((() => _userManager.GetUserAsync(User).Result.To<MDMSUserServiceModel>()));
+            MDMSUserServiceModel user = _context.Users.Include(x => x.Salaries).SingleOrDefault(x => x.Id == _userManager.GetUserId(User)).To<MDMSUserServiceModel>();
+            var user1 = await Task.Run((() => _userManager.GetUserAsync(User).Result.To<MDMSUserServiceModel>()));
 
             FirstName = user.FirstName;
             LastName = user.LastName;

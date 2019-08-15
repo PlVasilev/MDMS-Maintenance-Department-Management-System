@@ -6,8 +6,7 @@
 
 <div class="d-flex justify-content-around row">
     <div id="internalActiveRepair-data-holder" class="w-45 rounded border-primary-4 bg-white">
-        <form method="post" action="/Repair/CreateInternal" class="form rounded p-3  mx-auto bg-white">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @if (this.ViewData["error"] != null)
             {
                 <ul>
@@ -41,7 +40,6 @@
                 <a href="/Administration/Vehicle/Edit/@Model.Name" class="btn btn-primary text-white font-weight-bold">Finalize Repair</a>
                 <a href="/Administration/Vehicle/Delete/@Model.Name" class="btn btn-primary text-white font-weight-bold">Add Parts</a>
             </div>
-        </form>
     </div>
 
 

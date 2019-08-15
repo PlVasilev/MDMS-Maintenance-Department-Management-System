@@ -7,6 +7,7 @@ using MDMS.Data.Seeding;
 using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
+using MDMS.Web.Areas.Identity.Pages.Account;
 using MDMS.Web.BindingModels.Vehicle.Create;
 using MDMS.Web.Extensions;
 using MDMS.Web.ViewModels.Vehicle.All;
@@ -85,6 +86,7 @@ namespace MDMS.Web
             AutoMapperConfig.RegisterMappings(
                 typeof(VehicleCreateBindingModel).GetTypeInfo().Assembly,
                 typeof(VehicleAllViewModel).GetTypeInfo().Assembly,
+                typeof(MonthlySalaryViewModel).GetTypeInfo().Assembly,
                 typeof(VehicleServiceModel).GetTypeInfo().Assembly);
 
             CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;

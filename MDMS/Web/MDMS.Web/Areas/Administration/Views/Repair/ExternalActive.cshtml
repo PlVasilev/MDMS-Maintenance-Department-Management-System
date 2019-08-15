@@ -1,0 +1,49 @@
+﻿@model List<MDMS.Web.BindingModels.Repair.Active.ExternalRepairActiveBindingModel>
+@{
+    ViewData["Title"] = "ExternalActive";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-around row">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+
+
+        <div id="internalActiveRepair-data-holder" class="w-45 rounded border-primary-4 bg-white">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (this.ViewData["error"] != null)
+            {
+                <ul>
+                    <li class="text-danger">@this.ViewData["error"]</li>
+                </ul>
+            }
+            <h3 class="text-center">Internal Repair</h3>
+            <hr class="hr-2 bg-primary mt-2 w-50" />
+            <h4 class="text-center">Vehicle: @Model[i].VehicleMake @Model[i].VehicleModel</h4>
+            <h4 class="text-center">VSN: @Model[i].VehicleVSN</h4>
+            <h4 class="text-center">Mileage: @Model[i].Mileage</h4>
+            <hr class="hr-2 bg-primary mt-2 w-50" />
+            <h4 class="text-center">Mechanic: @Model[i].MdmsUserUsername Started on: @Model[i].StartedOn.ToString("d")</h4>
+            <h4 class="text-center">Repairing: @Model[i].RepairedSystemName</h4>
+            <hr class="hr-2 bg-primary mt-2 w-50" />
+            <div class="form-group mx-auto">
+                <div class="d-flex justify-content-center">
+                    <label asp-for="@Model[i].Description" class="h4">Description</label>
+                </div>
+                <textarea type="text" class="form-control border-primary-2" id="description" rows="5" placeholder="@Model[i].Description"
+                          asp-for="@Model[i].Description"></textarea>
+                <span asp-validation-for="@Model[i].Description" class="text-danger"></span>
+            </div>
+            <div class="d-flex justify-content-center mt-1">
+                <button class="btn btn-primary font-weight-bold">Edit Description</button>
+            </div>
+            <hr class="hr-2 bg-primary mt-3 w-50" />
+            <h3 class="text-center">Repaired by: @Model[i].ExternalRepairProviderName</h3>
+            <hr class="hr-2 bg-primary mt-3 w-50" />
+            <div id="navigation-holder" class="mt-4 d-flex justify-content-around">
+                <a href="/Administration/Vehicle/Edit/@Model[i].Name" class="btn btn-primary text-white font-weight-bold">Finalize Repair</a>
+            </div>
+        </div>
+    }
+</div>
+

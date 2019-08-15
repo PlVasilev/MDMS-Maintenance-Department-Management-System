@@ -88,6 +88,8 @@ namespace MDMS.Services
                         .Include(x => x.RepairedSystem)
                         .SingleOrDefaultAsync(x => x.FinishedOn == null && x.MdmsUserId == id).Result)));
 
+        public IQueryable<ExternalRepairServiceModel> GetActiveRepairs(string id) => _context.ExternalRepairs.To<ExternalRepairServiceModel>();
+      
 
         public IQueryable<RepairedSystemServiceModel> GetAllRepairedSystems() => _context.RepairedSystems.To<RepairedSystemServiceModel>();
 

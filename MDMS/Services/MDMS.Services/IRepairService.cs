@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MDMS.Services.Models;
+using MDMS.Web.ViewModels.Repair.Home;
 
 namespace MDMS.Services
 {
@@ -16,6 +17,7 @@ namespace MDMS.Services
         Task<bool> CreateExternal(ExternalRepairServiceModel externalRepairServiceModel);
 
         Task<InternalRepairServiceModel> GetActiveRepair(string id);
+        IQueryable<ExternalRepairServiceModel> GetActiveRepairs(string id);
 
         IQueryable<RepairedSystemServiceModel> GetAllRepairedSystems();
         Task<IEnumerable<ExternalRepairServiceModel>>  GetAllExternalActiveRepairs();
