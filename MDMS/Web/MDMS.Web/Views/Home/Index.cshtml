@@ -13,70 +13,93 @@
 }
 else if (this.User.Identity.IsAuthenticated && (this.User.IsInRole("User") || this.User.IsInRole("Admin")))
 {
-<div class="d-flex justify-content-between">
-    <h3 class="font-weight-bold text-bordered">Current vehicles on Internal repairs are:</h3>
-    <h3 class="font-weight-bold text-bordered-black">Hello @User.Identity.Name !</h3>
-</div>
-    
-    <div id="products" class="mt-1">
-        @for (int i = 0; i < Model.ExternalRepairActiveHomeViewModels.Count; i += 5)
-        {
-            <div class="row d-flex justify-content-around my-2">
-                @for (int j = i; j < i + 5; j++)
-                {
-                    if (j < Model.ExternalRepairActiveHomeViewModels.Count)
+    if (Model.ExternalRepairActiveHomeViewModels.Count == 0)
+    {
+        <div class="d-flex justify-content-between">
+            <h3 class="font-weight-bold text-bordered">No vehicles on External Repairs</h3>
+            <h3 class="font-weight-bold text-bordered">Hello @User.Identity.Name !</h3>
+        </div>
+    }
+    else
+    {
+        <div class="d-flex justify-content-between">
+            <h3 class="font-weight-bold text-bordered">Current vehicles on External repairs are:</h3>
+            <h3 class="font-weight-bold text-bordered-black">Hello @User.Identity.Name !</h3>
+        </div>
+        <div id="products" class="mt-1">
+            @for (int i = 0; i < Model.ExternalRepairActiveHomeViewModels.Count; i += 5)
+            {
+                <div class="row d-flex justify-content-around my-2">
+                    @for (int j = i; j < i + 5; j++)
                     {
-                        <div class="col-md-2">
-                            <div class="image-holder d-flex justify-content-center">
-                                <a href="/Vehicle/Details/@Model.ExternalRepairActiveHomeViewModels[j].Name">
-                                    <img class="img-thumbnail product-image" src="@Model.ExternalRepairActiveHomeViewModels[j].VehiclePicture" alt="...">
-                                </a>
+                        if (j < Model.ExternalRepairActiveHomeViewModels.Count)
+                        {
+                            <div class="col-md-2">
+                                <div class="image-holder d-flex justify-content-center">
+                                    <a href="/Vehicle/Details/@Model.ExternalRepairActiveHomeViewModels[j].Name">
+                                        <img class="img-thumbnail product-image" src="@Model.ExternalRepairActiveHomeViewModels[j].VehiclePicture" alt="...">
+                                    </a>
+                                </div>
+                                <h5 class="text-primary bg-white rounded border-dark text-center mt-1">
+                                    @Model.ExternalRepairActiveHomeViewModels[j].VehicleMake @Model.ExternalRepairActiveHomeViewModels[j].VehicleModel
+                                </h5>
+                                <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Mechanic: @Model.ExternalRepairActiveHomeViewModels[j].MdmsUserUsername</h5>
+                                <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Repairing: @Model.ExternalRepairActiveHomeViewModels[j].RepairedSystemName</h5>
+                                <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Started on: @Model.ExternalRepairActiveHomeViewModels[j].StartedOn.ToString("d")</h5>
                             </div>
-                            <h5 class="text-primary bg-white rounded border-dark text-center mt-1">
-                                @Model.ExternalRepairActiveHomeViewModels[j].VehicleMake @Model.ExternalRepairActiveHomeViewModels[j].VehicleModel
-                            </h5>
-                            <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Mechanic: @Model.ExternalRepairActiveHomeViewModels[j].MdmsUserUsername</h5>
-                            <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Repairing: @Model.ExternalRepairActiveHomeViewModels[j].RepairedSystemName</h5>
-                            <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Started on: @Model.ExternalRepairActiveHomeViewModels[j].StartedOn.ToString("d")</h5>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-md-2 empty">
-                        </div>
-                    }
-                }
-            </div>
-            <hr class="hr-2 bg-primary">
-            <div class="d-flex justify-content-between">
-                <h3 class="font-weight-bold text-bordered">Current vehicles on External repairs are:</h3>
-            </div>
-            <div class="row d-flex justify-content-around my-2">
-                @for (int j = i; j < i + 5; j++)
-                {
-                    if (j < Model.InternalRepairActiveHomeViewModels.Count)
-                    {
-                        <div class="col-md-2">
-                            <div class="image-holder d-flex justify-content-center">
-                                <a href="/Vehicle/Details/@Model.InternalRepairActiveHomeViewModels[j].Name">
-                                    <img class="img-thumbnail product-image" src="@Model.InternalRepairActiveHomeViewModels[j].VehiclePicture" alt="...">
-                                </a>
+                        }
+                        else
+                        {
+                            <div class="col-md-2 empty">
                             </div>
-                            <h5 class="text-primary bg-white rounded border-dark text-center mt-1">@Model.InternalRepairActiveHomeViewModels[j].VehicleMake @Model.InternalRepairActiveHomeViewModels[j].VehicleModel</h5>
-                            <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Mechanic: @Model.InternalRepairActiveHomeViewModels[j].MdmsUserUsername</h5>
-                            <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Repairing: @Model.InternalRepairActiveHomeViewModels[j].RepairedSystemName</h5>
-                            <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Started on: @Model.InternalRepairActiveHomeViewModels[j].StartedOn.ToString("d")</h5>
-                        </div>
+                        }
                     }
-                    else
+                </div>
+            }
+        </div>
+    }
+    <hr class="hr-2 bg-primary">
+    if (Model.InternalRepairActiveHomeViewModels.Count == 0)
+    {
+        <div class="d-flex justify-content-between">
+            <h3 class="font-weight-bold text-bordered">No vehicles on Internal Repairs</h3>
+        </div>
+    }
+    else
+    {
+        <div id="products" class="mt-1">
+            @for (int i = 0; i < Model.InternalRepairActiveHomeViewModels.Count; i += 5)
+            {
+                <div class="d-flex justify-content-between">
+                    <h3 class="font-weight-bold text-bordered">Current vehicles on Internal repairs are:</h3>
+                </div>
+                <div class="row d-flex justify-content-around my-2">
+                    @for (int j = i; j < i + 5; j++)
                     {
-                        <div class="col-md-2 empty">
-                        </div>
+                        if (j < Model.InternalRepairActiveHomeViewModels.Count)
+                        {
+                            <div class="col-md-2">
+                                <div class="image-holder d-flex justify-content-center">
+                                    <a href="/Vehicle/Details/@Model.InternalRepairActiveHomeViewModels[j].Name">
+                                        <img class="img-thumbnail product-image" src="@Model.InternalRepairActiveHomeViewModels[j].VehiclePicture" alt="...">
+                                    </a>
+                                </div>
+                                <h5 class="text-primary bg-white rounded border-dark text-center mt-1">@Model.InternalRepairActiveHomeViewModels[j].VehicleMake @Model.InternalRepairActiveHomeViewModels[j].VehicleModel</h5>
+                                <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Mechanic: @Model.InternalRepairActiveHomeViewModels[j].MdmsUserUsername</h5>
+                                <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Repairing: @Model.InternalRepairActiveHomeViewModels[j].RepairedSystemName</h5>
+                                <h5 class="text-primary bg-white rounded border-dark text-center mt-0">Started on: @Model.InternalRepairActiveHomeViewModels[j].StartedOn.ToString("d")</h5>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2 empty">
+                            </div>
+                        }
                     }
-                }
-            </div>
-        }
-    </div>
+                </div>
+            }
+        </div>
+    }
 }
 else
 {

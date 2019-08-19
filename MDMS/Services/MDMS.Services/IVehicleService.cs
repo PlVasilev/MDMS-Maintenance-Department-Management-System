@@ -9,6 +9,8 @@ namespace MDMS.Services
     public interface IVehicleService
     {
        Task<bool> Create(VehicleServiceModel vehicleServiceModel);
+       Task<bool> DeleteVehicle(string id);
+       Task<bool> Edit(VehicleServiceModel vehicleServiceModel);
        Task<bool> CreateVehicleType(VehicleTypeServiceModel vehicleTypeServiceModel);
        Task<bool> CreateVehicleProvider(VehicleProviderServiceModel vehicleProviderServiceModel);
 

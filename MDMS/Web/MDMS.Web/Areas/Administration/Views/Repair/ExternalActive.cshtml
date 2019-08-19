@@ -1,4 +1,4 @@
-﻿@model List<MDMS.Web.BindingModels.Repair.Active.ExternalRepairActiveBindingModel>
+﻿@model List<MDMS.Web.ViewModels.Repair.Finish.ExternalRepairActiveViewModel>
 @{
     ViewData["Title"] = "ExternalActive";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -7,9 +7,7 @@
 <div class="d-flex justify-content-around row">
     @for (int i = 0; i < Model.Count; i++)
     {
-
-
-        <div id="internalActiveRepair-data-holder" class="w-45 rounded border-primary-4 bg-white">
+        <form method="post" class="form border-primary-4 rounded p-3 w-45 mx-auto mt-2 bg-white" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @if (this.ViewData["error"] != null)
             {
@@ -17,7 +15,7 @@
                     <li class="text-danger">@this.ViewData["error"]</li>
                 </ul>
             }
-            <h3 class="text-center">Internal Repair</h3>
+            <h3 class="text-center">External Repair</h3>
             <hr class="hr-2 bg-primary mt-2 w-50" />
             <h4 class="text-center">Vehicle: @Model[i].VehicleMake @Model[i].VehicleModel</h4>
             <h4 class="text-center">VSN: @Model[i].VehicleVSN</h4>
@@ -30,20 +28,54 @@
                 <div class="d-flex justify-content-center">
                     <label asp-for="@Model[i].Description" class="h4">Description</label>
                 </div>
-                <textarea type="text" class="form-control border-primary-2" id="description" rows="5" placeholder="@Model[i].Description"
+                <textarea type="text" class="form-control border-primary-2" id="description" name="Description" rows="5" placeholder="@Model[i].Description"
                           asp-for="@Model[i].Description"></textarea>
                 <span asp-validation-for="@Model[i].Description" class="text-danger"></span>
             </div>
             <div class="d-flex justify-content-center mt-1">
-                <button class="btn btn-primary font-weight-bold">Edit Description</button>
+                <button class="btn btn-primary font-weight-bold" onclick="externalEdit()">Edit Description</button>
             </div>
             <hr class="hr-2 bg-primary mt-3 w-50" />
             <h3 class="text-center">Repaired by: @Model[i].ExternalRepairProviderName</h3>
             <hr class="hr-2 bg-primary mt-3 w-50" />
-            <div id="navigation-holder" class="mt-4 d-flex justify-content-around">
-                <a href="/Administration/Vehicle/Edit/@Model[i].Name" class="btn btn-primary text-white font-weight-bold">Finalize Repair</a>
+            <div id="laborCost-and-priceCost-holder" class="d-flex justify-content-between hide">
+                <div class="form-group mx-auto w-45">
+                    <div class="d-flex justify-content-center">
+                        <label asp-for="@Model[i].LaborCost" class="text-primary h4">Labor Cost</label>
+                    </div>
+                    <input type="number"
+                           step="0.01"
+                           class="form-control text-primary text-center"
+                           id="laborCost"
+                           name="LaborCost"
+                           placeholder="LaborCost..."
+                           asp-for="@Model[i].LaborCost">
+                    <span asp-validation-for="@Model[i].LaborCost" class="text-danger"></span>
+                </div>
+                <div class="form-group mx-auto w-45">
+                    <div class="d-flex justify-content-center">
+                        <label asp-for="@Model[i].PartsCost" class="text-primary h4">Parts Cost</label>
+                    </div>
+                    <input type="number"
+                           step="0.01"
+                           class="form-control text-primary text-center"
+                           id="partsCost"
+                           name="PartsCost"
+                           placeholder="Parts Cost..."
+                           asp-for="@Model[i].PartsCost">
+                    <span asp-validation-for="@Model[i].PartsCost" class="text-danger"></span>
+                </div>
             </div>
-        </div>
+            <hr class="hr-2 bg-primary mt-2 w-50" />
+            <div id="navigation-holder" class="mt-4 d-flex justify-content-around">
+                <button class="btn btn-primary font-weight-bold">Finalize Repair</button>
+            </div>
+            <input type="hidden" value="@Model[i].Id" name="Id" id="id" />
+        </form>
     }
 </div>
 
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -22,7 +22,7 @@
                     {
                         <a href="/Administration/Repair/CreateExternal/@Model.Name" class="btn btn-primary text-white font-weight-bold">Initialize Repair</a>
                         <a href="/Administration/Vehicle/Edit/@Model.Name" class="btn btn-primary text-white font-weight-bold">Edit</a>
-                        <a href="/Administration/Vehicle/Delete/@Model.Name" class="btn btn-primary text-white font-weight-bold">Delete</a>
+                        <button class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#vehicleModal">Delete</button>
                     }
                     else
                     {
@@ -71,35 +71,25 @@
 </div>
 
 
-<button class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#orderModal">Order</button>
-<div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="vehicleModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="orderModalLabel">Order - @Model.Name</h5>
+                <h5 class="modal-title" id="orderModalLabel">Vehicle - @Model.Name</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="order-form" action="/Product/Order" method="post">
-                    <div class="form-group">
-                        <label for="quantity" class="col-form-label font-weight-bold">Quantity</label>
-                        <input type="number" class="form-control" id="quantity" name="quantity">
-                        <input type="hidden" value="@Model.Id" name="productId" />
-                    </div>
-                </form>
+                <h5 class="text-danger text-center">Vehicle will be DELETED PERMANENTLY</h5>
+                <h5 class="text-danger text-center">Do you with to proceed ?</h5>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="complete-order-button">Complete</button>
+                <a href="/Administration/Vehicle/Delete?id=@Model.Id" class="btn btn-primary font-weight-bold" id="deleteVehicle">DELETE Vehicle</a>
             </div>
         </div>
     </div>
 </div>
 
-<script>
-    $('#complete-order-button').click(function () {
-        $('#order-form').submit();
-    });
-</script>

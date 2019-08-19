@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 
-namespace MDMS.Web.BindingModels.Repair.Active
+namespace MDMS.Web.ViewModels.Repair.Finish
 {
-   public class ExternalRepairActiveBindingModel : IMapFrom<ExternalRepairServiceModel>
+   public class ExternalRepairActiveViewModel : IMapFrom<ExternalRepairServiceModel>
     {
         public string Id { get; set; }
+
         public string Name { get; set; }
 
+        [Required]
+        [MaxLength(1000)]
         public string Description { get; set; }
 
         public string VehicleMake { get; set; }
@@ -32,5 +36,11 @@ namespace MDMS.Web.BindingModels.Repair.Active
         public DateTime? FinishedOn { get; set; } = null;
 
         public string ExternalRepairProviderName { get; set; }
+
+        [Range(typeof(decimal), "0.00", "9999999999", ErrorMessage = "Must be positive number")]
+        public decimal LaborCost { get; set; }
+
+        [Range(typeof(decimal), "0.00", "9999999999", ErrorMessage = "Must be positive number")]
+        public decimal PartsCost { get; set; }
     }
 }

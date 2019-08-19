@@ -11,10 +11,10 @@ namespace MDMS.Services
     public interface IRepairService
     {
         Task<bool> CreateExternalRepairProvider(ExternalRepairProviderServiceModel externalRepairProviderServiceModel);
-
         Task<bool> CreateInternal(InternalRepairServiceModel internalRepairServiceModel);
-
         Task<bool> CreateExternal(ExternalRepairServiceModel externalRepairServiceModel);
+        Task<bool> EditExternalRepairDescription(string id,string description);
+        Task<bool> FinalizeExternal(ExternalRepairServiceModel externalRepairServiceModel);
 
         Task<InternalRepairServiceModel> GetActiveRepair(string id);
         IQueryable<ExternalRepairServiceModel> GetActiveRepairs(string id);

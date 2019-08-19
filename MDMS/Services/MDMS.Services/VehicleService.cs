@@ -19,16 +19,34 @@ namespace MDMS.Services
 
         public async Task<bool> Create(VehicleServiceModel vehicleServiceModel)
         {
-            if (_context.Vehicles.Any(v => v.VSN == vehicleServiceModel.VSN))
-            {
-                return false;
-            }
+            if (_context.Vehicles.Any(v => v.VSN == vehicleServiceModel.VSN)) return false;
+            
 
             Vehicle vehicle = AutoMapper.Mapper.Map<Vehicle>(vehicleServiceModel);
             vehicle.VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name);
             vehicle.VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name);
 
             _context.Vehicles.Add(vehicle);
+            var result = await _context.SaveChangesAsync();
+
+            return result > 0;
+        }
+
+        public async Task<bool> DeleteVehicle(string id)
+        {
+           var vehicle = _context.Vehicles.Find(id);
+           _context.Vehicles.Remove(vehicle);
+           var result = await _context.SaveChangesAsync();
+           return result > 0;
+        }
+
+        public async Task<bool> Edit(VehicleServiceModel vehicleServiceModel)
+        {
+            Vehicle vehicle = AutoMapper.Mapper.Map<Vehicle>(vehicleServiceModel);
+            vehicle.VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name);
+            vehicle.VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name);
+
+            _context.Vehicles.Update(vehicle);
             var result = await _context.SaveChangesAsync();
 
             return result > 0;
@@ -67,7 +85,7 @@ namespace MDMS.Services
             return result > 0;
         }
 
-        public IQueryable<VehicleServiceModel> GetAllVehicles() => _context.Vehicles.To<VehicleServiceModel>();
+        public IQueryable<VehicleServiceModel> GetAllVehicles() => _context.Vehicles.Where(x => x.IsDeleted == false).To<VehicleServiceModel>();
 
         public IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes() => _context.VehicleTypes.To<VehicleTypeServiceModel>();
 

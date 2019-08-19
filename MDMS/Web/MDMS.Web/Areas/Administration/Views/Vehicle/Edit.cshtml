@@ -1,0 +1,164 @@
+﻿@model MDMS.Web.ViewModels.Vehicle.Edit.VehicleEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="bg-primary text-white font-weight-bold text-center p-2 w-60 mx-auto rounded">Edit Vehicle - @Model.VSN</h1>
+<form method="post" action="/Administration/Vehicle/Edit" class="form border-primary-4 rounded p-3 w-60 mx-auto mt-2 bg-white" enctype="multipart/form-data">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (this.ViewData["error"] != null)
+    {
+        <ul>
+            <li class="text-danger">@this.ViewData["error"]</li>
+        </ul>
+    }
+    <div id="make-and-model-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Make" class="text-primary h5">Make</label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   id="make"
+                   placeholder="Make..."
+                   asp-for="Make">
+            <span asp-validation-for="Make" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Model" class="text-primary h5">Model</label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   id="model"
+                   placeholder="Model..."
+                   asp-for="Model">
+            <span asp-validation-for="Model" class="text-danger"></span>
+        </div>
+    </div>
+    <div id="ManufacturedOn-and-AcquiredOn-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="ManufacturedOn" class="text-primary h5">Manufactured On</label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   id="manufacturedOn"
+                   placeholder="Manufactured On..."
+                   asp-for="ManufacturedOn">
+            <span asp-validation-for="ManufacturedOn" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="AcquiredOn" class="text-primary h5">Acquired On</label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   id="acquiredOn"
+                   placeholder="Manufactured On..."
+                   asp-for="AcquiredOn">
+            <span asp-validation-for="AcquiredOn" class="text-danger"></span>
+        </div>
+    </div>
+    <div id="date-and-Depreciation-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Price" class="text-primary h5">Price</label>
+            </div>
+            <input type="number"
+                   step="0.01"
+                   class="form-control text-primary text-center"
+                   id="price"
+                   placeholder="Price..."
+                   asp-for="Price">
+            <span asp-validation-for="Price" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Depreciation" class="text-primary h5">Depreciation</label>
+            </div>
+            <input type="number"
+                   step="0.01"
+                   class="form-control text-primary text-center"
+                   id="depreciation"
+                   placeholder="Depreciation..."
+                   asp-for="Depreciation">
+            <span asp-validation-for="Depreciation" class="text-danger"></span>
+        </div>
+    </div>
+    <div id="mileage-and-regNumber-holder" class="d-flex justify-content-between">
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Mileage" class="text-primary h5">Mileage</label>
+            </div>
+            <input type="number"
+                   step="0.01"
+                   class="form-control text-primary text-center"
+                   id="mileage"
+                   placeholder="Mileage..."
+                   asp-for="Mileage">
+            <span asp-validation-for="Mileage" class="text-danger"></span>
+        </div>
+        <div class="form-group mx-auto w-45">
+            <div class="d-flex justify-content-center">
+                <label asp-for="RegistrationNumber" class="text-primary h5">RegistrationNumber</label>
+            </div>
+            <input type="text"
+                   class="form-control text-primary text-center"
+                   id="registrationNumber"
+                   placeholder="RegistrationNumber..."
+                   asp-for="RegistrationNumber">
+            <span asp-validation-for="RegistrationNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="VehicleType" class="text-primary h5">Vehicle Type</label>
+        </div>
+        <select class="form-control text-primary" id="vehicleType" asp-for="VehicleType">
+            <option selected>@Model.VehicleType</option>
+            <vc:vehicle-type></vc:vehicle-type>
+        </select>
+        <span asp-validation-for="VehicleType" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="VehicleProvider" class="text-primary h5">Vehicle Provider</label>
+        </div>
+        <select class="form-control text-primary" id="vehicleProvider" asp-for="VehicleProvider">
+            <option selected>@Model.VehicleProvider</option>
+            <vc:vehicle-provider></vc:vehicle-provider>
+        </select>
+        <span asp-validation-for="VehicleProvider" class="text-danger"></span>
+    </div>
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary font-weight-bold">Edit Vehicle</button>
+    </div>
+    <input type="hidden" value="@Model.Id" name="Id" id="id" />
+    <input type="hidden" value="@Model.Name" name="Name" id="name" />
+    <input type="hidden" value="@Model.VSN" name="VSN" id="vsn" />
+    <input type="hidden" value="@Model.Picture" name="Picture" id="picture" />
+</form>
+
+
+<script>
+    window.onload = () => {
+        $('#manufacturedOn').datetimepicker({
+            format: 'm.d.Y H:i',
+            lang: 'en'
+        });
+        $('#acquiredOn').datetimepicker({
+            format: 'm.d.Y H:i',
+            lang: 'en'
+        });
+    };
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
