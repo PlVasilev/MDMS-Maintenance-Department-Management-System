@@ -29,7 +29,7 @@ namespace MDMS.Data.Seeding
                 var user = new MdmsUser
                 {
                     UserName = "root",
-                    Email = "root@eventures.com",
+                    Email = "root@mdms.com",
                     FirstName = "Root",
                     LastName = "Root",
                     BaseSalary = 0,

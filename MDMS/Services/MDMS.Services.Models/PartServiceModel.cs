@@ -11,6 +11,8 @@ namespace MDMS.Services.Models
 
         public decimal Price { get; set; }
 
+        public int UsedCount { get; set; }
+
         public string PartsProviderId { get; set; }
         public PartsProviderServiceModel AcquiredFrom { get; set; }
 

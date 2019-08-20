@@ -102,3 +102,7 @@ footer {
 .tableCenter { margin: 0 auto;
     width:300px 
 }
+
+.text-larger2 {
+   font-size: 150%
+}

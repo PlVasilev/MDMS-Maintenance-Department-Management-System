@@ -15,4 +15,8 @@
     <ProjectReference Include="..\..\Services\MDMS.Services.Models\MDMS.Services.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Finish\" />
+  </ItemGroup>
+
 </Project>

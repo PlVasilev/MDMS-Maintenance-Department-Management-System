@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MDMS.Data.Models;
+using MDMS.Services.Mapping;
 
 namespace MDMS.Services.Models
 {
-    public abstract class BaseServiceModel
+    public abstract class BaseServiceModel: IMapFrom<Base>, IMapTo<Base>
     {
         public string Id { get; set; }
 

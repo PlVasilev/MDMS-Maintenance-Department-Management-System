@@ -59,18 +59,6 @@ namespace MDMS.Web.Controllers
             AutoMapper.Mapper.Map<InternalRepairActiveBindingModel>(await _repairService.GetActiveRepair(_userManager.GetUserId(User))));
         
         
-        [HttpPost(Name = "InternalActive")]
-        public async Task<IActionResult> InternalActive(InternalRepairActiveBindingModel internalRepairActiveBindingModel)
-        {
-            if (ModelState.IsValid)
-            {
-                
-                return this.Redirect("/");
 
-                this.ViewData["error"] = "User has already started a repair or Repair with that name already exists.";
-                return this.View(internalRepairActiveBindingModel);
-            }
-            return this.View(internalRepairActiveBindingModel);
-        }
     }
 }

@@ -84,7 +84,16 @@ namespace MDMS.Services
         {
             var repair = await _context.ExternalRepairs.FindAsync(id);
             repair.Description = description;
-            _context.Update(repair);
+            _context.ExternalRepairs.Update(repair);
+            var result = await _context.SaveChangesAsync();
+            return result > 0;
+        }
+
+        public async Task<bool> EditInternalRepairDescription(string id, string description)
+        {
+            var repair = await _context.InternalRepairs.FindAsync(id);
+            repair.Description = description;
+            _context.InternalRepairs.Update(repair);
             var result = await _context.SaveChangesAsync();
             return result > 0;
         }
@@ -106,6 +115,11 @@ namespace MDMS.Services
             return result > 0;
         }
 
+        public async Task<ExternalRepairServiceModel> GetExternalActiveRepair(string name)
+            => await Task.Run((() => _context.ExternalRepairs.Include(x => x.Vehicle)
+                .SingleOrDefaultAsync(x => x.Name == name).Result.To<ExternalRepairServiceModel>()));
+      
+
         public async Task<InternalRepairServiceModel> GetActiveRepair(string id) =>
             await Task.Run((() =>
                     AutoMapper.Mapper.Map<InternalRepairServiceModel>(_context.InternalRepairs
@@ -114,6 +128,8 @@ namespace MDMS.Services
                         .Include(x => x.Vehicle)
                         .Include(x => x.RepairedSystem)
                         .SingleOrDefaultAsync(x => x.FinishedOn == null && x.MdmsUserId == id).Result)));
+
+        
 
         public IQueryable<ExternalRepairServiceModel> GetActiveRepairs(string id) => _context.ExternalRepairs.Where(x => x.FinishedOn == null).To<ExternalRepairServiceModel>();
 

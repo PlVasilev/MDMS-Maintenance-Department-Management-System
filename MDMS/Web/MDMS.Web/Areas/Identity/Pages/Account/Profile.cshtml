@@ -78,9 +78,10 @@
                     <thead>
                         <tr class="row">
                             <th scope="col" class="col-md-1 text-primary text-center">#</th>
-                            <th scope="col" class="col-md-5 text-primary text-center">Name</th>
-                            <th scope="col" class="col-md-3 text-primary text-center">Started</th>
-                            <th scope="col" class="col-md-3 text-primary text-center">Details</th>
+                            <th scope="col" class="col-md-8 text-primary text-center">Name</th>
+                            <th scope="col" class="col-md-1 text-primary text-center">Started</th>
+                            <th scope="col" class="col-md-1 text-primary text-center">Finished</th>
+                            <th scope="col" class="col-md-1 text-primary text-center">Details</th>
 
                         </tr>
                     </thead>
@@ -92,9 +93,17 @@
 
                                 <tr class="row">
                                     <td class="col-md-1 text-primary text-center">@(i + 1)</td>
-                                    <td class="col-md-5 text-primary text-center">@Model.ExternalRepairs[i].Name</td>
-                                    <td class="col-md-3 text-primary text-center">@Model.ExternalRepairs[i].StartedOn.ToString("dd/MM/yy")</td>
-                                    <td class="col-lg-3">
+                                    <td class="col-md-8 text-primary text-center">@Model.ExternalRepairs[i].Name</td>
+                                    <td class="col-md-1 text-primary text-center">@Model.ExternalRepairs[i].StartedOn.ToString("dd/MM/yy")</td>
+                                    @if (@Model.ExternalRepairs[i].FinishedOn == null)
+                                    {
+                                        <td class="col-md-1 text-primary text-center">Active</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-md-1 text-primary text-center">@Model.ExternalRepairs[i].FinishedOn?.ToString("dd/MM/yy")</td>
+                                    }
+                                    <td class="col-lg-1" style="text-align: center">
                                         <a href="/Repair/Details?name=@Model.ExternalRepairs[i].Name">Details</a>
                                     </td>
                                 </tr>
@@ -107,9 +116,18 @@
 
                                 <tr class="row">
                                     <td class="col-md-1 text-primary text-center">@(i + 1)</td>
-                                    <td class="col-md-5 text-primary text-center">@Model.InternalRepairs[i].Name</td>
-                                    <td class="col-md-3 text-primary text-center">@Model.InternalRepairs[i].StartedOn.ToString("dd/MM/yy")</td>
-                                    <td class="col-lg-3">
+                                    <td class="col-md-8 text-primary text-center">@Model.InternalRepairs[i].Name</td>
+                                    <td class="col-md-1 text-primary text-center">@Model.InternalRepairs[i].StartedOn.ToString("dd/MM/yy")</td>
+                                    @if (@Model.InternalRepairs[i].FinishedOn == null)
+                                    {
+                                <td class="col-md-1 text-primary text-center">Active</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="col-md-1 text-primary text-center">@Model.InternalRepairs[i].FinishedOn?.ToString("dd/MM/yy")</td>
+                                    }
+
+                                    <td class="col-lg-1">
                                         <a href="/Repair/Details?name=@Model.InternalRepairs[i].Name">Details</a>
                                     </td>
                                 </tr>

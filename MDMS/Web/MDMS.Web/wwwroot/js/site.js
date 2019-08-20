@@ -29,13 +29,33 @@ function externalEdit() {
             id: id
         }),
         success: function success(data) {
-            console.log(description);
-            console.log(id);
-            console.log(description);
-            console.log(id);
         },
         error: function error(error) {
             console.log(error);
         }
     })
 }
+
+function internalEdit() {
+    let description = $("#descriptionExternal").val();
+    let saveDescription = escapeHtml(description);
+    let id = $("#id").val();
+
+    $.post({
+        url: 'https://localhost:44351/api/api/EditInternalDetails',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        data: JSON.stringify({
+            description: saveDescription,
+            id: id
+        }),
+        success: function success(data) {
+        },
+        error: function error(error) {
+            console.log(error);
+        }
+    })
+}
+
+

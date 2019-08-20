@@ -1,0 +1,61 @@
+﻿@model MDMS.Web.BindingModels.Repair.Finish.ExternalRepairFinishBindingModel
+@{
+    ViewData["Title"] = "ExternalActiveFinish";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Finish Repair @Model.VehicleName</h1>
+<form method="post" action="/Administration/Repair/ExternalActiveFinish" class="form border-primary-4 rounded p-3 w-30 mx-auto mt-3 bg-white">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (this.ViewData["error"] != null)
+    {
+        <ul>
+            <li class="text-danger">@this.ViewData["error"]</li>
+        </ul>
+    }
+    <div class="form-group mx-auto">
+        <div class="d-flex justify-content-center">
+            <label asp-for="@Model.Description" class="h4">Description</label>
+        </div>
+        <textarea type="text" class="form-control border-primary-2" id="description" name="Description" rows="5" placeholder="@Model.Description"
+                  asp-for="@Model.Description"></textarea>
+        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="@Model.LaborCost" class="text-primary h4">Labor Cost</label>
+        </div>
+        <input type="number"
+               step="0.01"
+               class="form-control text-primary text-center"
+               id="LaborCost"
+               name="LaborCost"
+               placeholder="LaborCost..."
+               asp-for="@Model.LaborCost">
+        <span asp-validation-for="@Model.LaborCost" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="@Model.PartsCost" class="text-primary h4">Parts Cost</label>
+        </div>
+        <input type="number"
+               step="0.01"
+               class="form-control text-primary text-center"
+               id="PartsCost"
+               name="PartsCost"
+               placeholder="Parts Cost..."
+               asp-for="@Model.PartsCost">
+        <span asp-validation-for="@Model.PartsCost" class="text-danger"></span>
+    </div>
+
+    <hr class="hr-2 bg-primary mt-4">
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary font-weight-bold">Finish Repair</button>
+    </div>
+    <input type="hidden" value="@Model.Id" name="Id" id="id" />
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

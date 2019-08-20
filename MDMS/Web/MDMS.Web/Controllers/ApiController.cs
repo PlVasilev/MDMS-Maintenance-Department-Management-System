@@ -30,5 +30,15 @@ namespace MDMS.Web.Controllers
                 externalRepairActiveEditDescriptionBindingModel.Description);
              return Ok();
         }
+
+        [Authorize(Roles = "User")]
+        [HttpPost(Name = "EditInternalDetails")]
+        [Route("EditInternalDetails")]
+        public async Task<IActionResult> EditInternalDetails(InternalRepairActiveEditDescriptionBindingModel internalRepairActiveEditDescriptionBindingModel)
+        {
+            await _repairService.EditInternalRepairDescription(internalRepairActiveEditDescriptionBindingModel.Id,
+                internalRepairActiveEditDescriptionBindingModel.Description);
+            return Ok();
+        }
     }
 }

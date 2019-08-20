@@ -7,39 +7,40 @@
 <div class="d-flex justify-content-around row">
     <div id="internalActiveRepair-data-holder" class="w-45 rounded border-primary-4 bg-white">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            @if (this.ViewData["error"] != null)
-            {
-                <ul>
-                    <li class="text-danger">@this.ViewData["error"]</li>
-                </ul>
-            }
-            <h3 class="text-center">Internal Repair</h3>
-            <hr class="hr-2 bg-primary mt-2 w-50" />
-            <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
-            <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
-            <h4 class="text-center">Mileage: @Model.Mileage</h4>
-            <hr class="hr-2 bg-primary mt-2 w-50" />
-            <h4 class="text-center">Mechanic: @Model.MdmsUserUsername Started on: @Model.StartedOn.ToString("d")</h4>
-            <h4 class="text-center">Repairing: @Model.RepairedSystemName</h4>
-            <hr class="hr-2 bg-primary mt-2 w-50" />
-            <div class="form-group mx-auto">
-                <div class="d-flex justify-content-center">
-                    <label asp-for="Description" class="h4">Description</label>
-                </div>
-                <textarea type="text" class="form-control border-primary-2" id="description" rows="5" placeholder="@Model.Description"
-                          asp-for="Description"></textarea>
-                <span asp-validation-for="Description" class="text-danger"></span>
+        @if (this.ViewData["error"] != null)
+        {
+            <ul>
+                <li class="text-danger">@this.ViewData["error"]</li>
+            </ul>
+        }
+        <h3 class="text-center">Internal Repair</h3>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
+        <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
+        <h4 class="text-center">Mileage: @Model.Mileage</h4>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h4 class="text-center">Mechanic: @Model.MdmsUserUsername Started on: @Model.StartedOn.ToString("d")</h4>
+        <h4 class="text-center">Repairing: @Model.RepairedSystemName</h4>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <div class="form-group mx-auto">
+            <div class="d-flex justify-content-center">
+                <label asp-for="Description" class="h4">Description</label>
             </div>
-            <div class="d-flex justify-content-center mt-1">
-                <button class="btn btn-primary font-weight-bold">Edit Description</button>
-            </div>
-            <hr class="hr-2 bg-primary mt-3 w-50" />
-            <h3 class="text-center">Parts Cost: $@Model.RepairCost</h3>
-            <hr class="hr-2 bg-primary mt-3 w-50" />
-            <div id="navigation-holder" class="mt-4 d-flex justify-content-around">
-                <a href="/Administration/Vehicle/Edit/@Model.Name" class="btn btn-primary text-white font-weight-bold">Finalize Repair</a>
-                <a href="/Administration/Vehicle/Delete/@Model.Name" class="btn btn-primary text-white font-weight-bold">Add Parts</a>
-            </div>
+            <textarea type="text" class="form-control border-primary-2 m-auto" id="descriptionExternal" name="Description" rows="5" placeholder="@Model.Description"
+                      asp-for="Description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="d-flex justify-content-center mt-1">
+            <button class="btn btn-primary font-weight-bold" onclick="internalEdit()">Edit Description</button>
+        </div>
+        <hr class="hr-2 bg-primary mt-3 w-50" />
+        <h3 class="text-center">Parts Cost: $@Model.RepairCost</h3>
+        <hr class="hr-2 bg-primary mt-3 w-50" />
+        <div id="navigation-holder" class="mt-4 d-flex justify-content-around">
+            <a href="/Administration/Vehicle/Edit/@Model.Name" class="btn btn-primary text-white font-weight-bold mb-3">Finalize Repair</a>
+            <a href="/Part/AddParts?name=@Model.Name" class="btn btn-primary text-white font-weight-bold mb-3">Add Parts</a>
+        </div>
+        <input type="hidden" value="@Model.Id" name="id"  id="id"/>
     </div>
 
 
@@ -55,29 +56,29 @@
             {
                 <table class="table table-sm table-hover bg-white">
                     <thead>
-                        <tr class="row">
-                            <th scope="col" class="col-md-1 text-primary text-center">#</th>
-                            <th scope="col" class="col-md-3 text-primary text-center">Name</th>
-                            <th scope="col" class="col-md-3 text-primary text-center">Provider</th>
-                            <th scope="col" class="col-md-2 text-primary text-center">Price</th>
-                            <th scope="col" class="col-md-1 text-primary text-center">Quantity</th>
-                            <th scope="col" class="col-md-2 text-primary text-center">Sum</th>
+                    <tr class="row">
+                        <th scope="col" class="col-md-1 text-primary text-center">#</th>
+                        <th scope="col" class="col-md-3 text-primary text-center">Name</th>
+                        <th scope="col" class="col-md-3 text-primary text-center">Provider</th>
+                        <th scope="col" class="col-md-2 text-primary text-center">Price</th>
+                        <th scope="col" class="col-md-1 text-primary text-center">Quantity</th>
+                        <th scope="col" class="col-md-2 text-primary text-center">Sum</th>
 
-                        </tr>
+                    </tr>
                     </thead>
                     <tbody>
 
-                        @for (int i = 0; i < @Model.InternalRepairParts.Count; i++)
-                        {
-                            <tr class="row">
-                                <td class="col-md-1 text-primary text-center">@(i + 1)</td>
-                                <td class="col-md-3 text-primary text-center">@Model.InternalRepairParts[i].PartName</td>
-                                <td class="col-md-3 text-primary text-center">@Model.InternalRepairParts[i].PartAcquiredFromName</td>
-                                <td class="col-md-2 text-primary text-center">$@Model.InternalRepairParts[i].PartPrice</td>
-                                <td class="col-md-1 text-primary text-center">@Model.InternalRepairParts[i].Quantity</td>
-                                <td class="col-md-2 text-primary text-center">$(@Model.InternalRepairParts[i].Quantity * @Model.InternalRepairParts[i].PartPrice)</td>
-                            </tr>
-                        }
+                    @for (int i = 0; i < @Model.InternalRepairParts.Count; i++)
+                    {
+                        <tr class="row">
+                            <td class="col-md-1 text-primary text-center">@(i + 1)</td>
+                            <td class="col-md-3 text-primary text-center">@Model.InternalRepairParts[i].PartName</td>
+                            <td class="col-md-3 text-primary text-center">@Model.InternalRepairParts[i].PartAcquiredFromName</td>
+                            <td class="col-md-2 text-primary text-center">$@Model.InternalRepairParts[i].PartPrice</td>
+                            <td class="col-md-1 text-primary text-center">@Model.InternalRepairParts[i].Quantity</td>
+                            <td class="col-md-2 text-primary text-center">$(@Model.InternalRepairParts[i].Quantity * @Model.InternalRepairParts[i].PartPrice)</td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
             }

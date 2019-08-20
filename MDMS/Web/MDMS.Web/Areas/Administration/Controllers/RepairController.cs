@@ -78,16 +78,28 @@ namespace MDMS.Web.Areas.Administration.Controllers
         public async Task<IActionResult> ExternalActive() => await Task.Run((() => this.View(
             AutoMapper.Mapper.Map<List<ExternalRepairActiveViewModel>>(_repairService.GetActiveRepairs(_userManager.GetUserId(User))))));
 
-
-        [HttpPost(Name = "ExternalActive")]
-        public async Task<IActionResult> ExternalActive(ExternalRepairFinishBindingModel externalRepairFinishBindingModel)
+        [HttpGet(Name = "ExternalActiveFinish")]
+        public async Task<IActionResult> ExternalActiveFinish(string name)
         {
-            if (!ModelState.IsValid) return this.RedirectToAction("ExternalActive");
+          var repair = await _repairService.GetExternalActiveRepair(name);
+          var viewrepair = AutoMapper.Mapper.Map<ExternalRepairFinishBindingModel>(repair);
+          return this.View(viewrepair);
+        }
+
+        [HttpPost(Name = "ExternalActiveFinish")]
+        public async Task<IActionResult> ExternalActiveFinish(ExternalRepairFinishBindingModel externalRepairFinishBindingModel)
+        {
+           
+            if (!ModelState.IsValid)
+            {
+                this.ViewData["error"] = "There was an error with your Request.";
+                return this.View(externalRepairFinishBindingModel);
+            }
 
             var result = await _repairService.FinalizeExternal(externalRepairFinishBindingModel.To<ExternalRepairServiceModel>());
             if (result) return this.Redirect("/");
             
-            return this.RedirectToAction("ExternalActive");
+            return this.View(externalRepairFinishBindingModel);
         }
     }
 }

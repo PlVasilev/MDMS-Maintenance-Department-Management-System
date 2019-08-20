@@ -1,0 +1,77 @@
+﻿@model List<MDMS.Web.BindingModels.Repair.Add.InternalRepairRepairPartBindingModel>
+@{
+    ViewData["Title"] = "AddParts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between">
+    <div id="parts-search-bar-holder" class="form-group d-flex justify-content-between w-50">
+        <input type="text" class="form-control text-primary" id="parts-search-bar" name="search" placeholder="Search..." />
+    </div>
+    <div id="sort-holder" class="form-group w-40 d-flex justify-content-between">
+        <label for="sort" class="text-primary font-weight-bold w-30 h4 mt-1 text-bordered text-right">Order By: </label>
+        <select id="sort" class="form-control text-primary pl-2 ml-3 w-70">
+            <option value="none" selected>None</option>
+            <option value="none">Price (lowest to highest)</option>
+            <option value="none">Price (highest to lowest)</option>
+            <option value="none">Date of Manufacturing (oldest to newest)</option>
+            <option value="none">Date of Manufacturing (newest to oldest)</option>
+        </select>
+    </div>
+</div>
+<form method="post" class="form border-primary-4 rounded p-3 mx-auto w-85 mt-2 bg-white" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div id="products" class="mt-3">
+        <table class="table table-sm table-hover bg-white">
+            <thead>
+                <tr class="row">
+                    <th scope="col" class="col-lg-1 text-primary text-center text-larger2">#</th>
+                    <th scope="col" class="col-lg-2 text-primary text-center text-larger2">Name</th>
+                    <th scope="col" class="col-lg-3 text-primary text-center text-larger2">Acquired From</th>
+                    <th scope="col" class="col-lg-1 text-primary text-center text-larger2">Used</th>
+                    <th scope="col" class="col-lg-2 text-primary text-center text-larger2">Stock</th>
+                    <th scope="col" class="col-lg-2 text-primary text-center text-larger2">Price</th>
+                    <th scope="col" class="col-lg-1 text-primary text-center text-larger2">Add</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < @Model.Count; i++)
+                {
+                    <tr class="part row">
+                        <td class="col-lg-1 text-primary text-center text-larger2">@(i + 1)</td>
+                        <td class="col-lg-2 text-primary text-center text-larger2">@Model[i].Name</td>
+                        <td class="col-lg-3 text-primary text-center text-larger2">@Model[i].AcquiredFromName</td>
+                        <td class="col-lg-1 text-primary text-center text-larger2">@Model[i].UsedCount</td>
+                        <td class="col-lg-2 text-primary text-center text-larger2">@Model[i].Stock</td>
+                        <td class="col-lg-2 text-primary text-center text-larger2">@Model[i].Price<input type="hidden" value="@Model[i].Name" name="Id" id="id" /></td>
+                        <td class="col-lg-1"><input type="text" class="form-control text-primary text-center" id="addPartName" placeholder="0" asp-for="@Model[i].Quantity"></td>
+
+                    </tr>
+
+                }
+            </tbody>
+        </table>
+    </div>
+    <hr class="hr-2 bg-primary">
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary font-weight-bold">Add Selected Parts</button>
+    </div>
+</form>
+
+<script>
+    $('#parts-search-bar').on("change paste keyup", function () {
+        $('.part').show();
+
+        let searchValue = $('#parts-search-bar').val();
+
+        for (let elem of $('.part')) {
+            let productName = $($(elem).children()[1]).text();
+
+            if (!productName.toLowerCase().includes(searchValue.toLowerCase())) {
+                $(elem).hide();
+            }
+        }
+    });
+</script>
+
+

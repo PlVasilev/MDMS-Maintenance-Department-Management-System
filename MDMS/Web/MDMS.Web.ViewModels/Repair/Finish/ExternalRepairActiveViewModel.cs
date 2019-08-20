@@ -19,8 +19,6 @@ namespace MDMS.Web.ViewModels.Repair.Finish
 
         public string VehicleMake { get; set; }
 
-        public string VehiclePicture { get; set; }
-
         public string VehicleModel { get; set; }
 
         public string VehicleVSN { get; set; }
@@ -33,14 +31,6 @@ namespace MDMS.Web.ViewModels.Repair.Finish
 
         public DateTime StartedOn { get; set; }
 
-        public DateTime? FinishedOn { get; set; } = null;
-
         public string ExternalRepairProviderName { get; set; }
-
-        [Range(typeof(decimal), "0.00", "9999999999", ErrorMessage = "Must be positive number")]
-        public decimal LaborCost { get; set; }
-
-        [Range(typeof(decimal), "0.00", "9999999999", ErrorMessage = "Must be positive number")]
-        public decimal PartsCost { get; set; }
     }
 }

@@ -50,7 +50,11 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                 return LocalRedirect("/");
             }
 
-            MDMSUserServiceModel user = _context.Users.Include(x => x.Salaries).SingleOrDefault(x => x.Id == _userManager.GetUserId(User)).To<MDMSUserServiceModel>();
+            MDMSUserServiceModel user = _context.Users
+                .Include(x => x.Salaries)
+                .Include(x => x.ExternalRepairs)
+                .Include(x => x.InternalRepairs)
+                .SingleOrDefault(x => x.Id == _userManager.GetUserId(User)).To<MDMSUserServiceModel>();
             var user1 = await Task.Run((() => _userManager.GetUserAsync(User).Result.To<MDMSUserServiceModel>()));
 
             FirstName = user.FirstName;
@@ -76,12 +80,14 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
     {
         public string Name { get; set; }
         public DateTime StartedOn { get; set; }
+        public DateTime? FinishedOn { get; set; }
     }
 
     public class InternalRepairViewModel : IMapFrom<InternalRepairServiceModel>
     {
         public string Name { get; set; }
         public DateTime StartedOn { get; set; }
+        public DateTime? FinishedOn { get; set; }
     }
 
     public class MonthlySalaryViewModel : IMapFrom<MonthlySalaryServiceModel>

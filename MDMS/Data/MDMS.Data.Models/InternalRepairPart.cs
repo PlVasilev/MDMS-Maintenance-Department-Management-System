@@ -15,7 +15,7 @@ namespace MDMS.Data.Models
         public string PartId { get; set; }
         public Part Part { get; set; }
 
-        [Range(1, 10000)]
+        [Range(0, int.MaxValue)]
         public int Quantity { get; set; }
     }
 }
