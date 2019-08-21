@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
@@ -9,8 +10,13 @@ namespace MDMS.Web.BindingModels.Repair.Active
    public class InternalRepairActiveBindingModel : IMapFrom<InternalRepairServiceModel>
     {
         public string Id { get; set; }
+
         public string Name { get; set; }
 
+        [Range(0,int.MaxValue, ErrorMessage = "Hours worked must be a positive number")]
+        public double HoursWorked { get; set; }
+
+        [StringLength(1000, ErrorMessage = "Description can Not be empty!")]
         public string Description { get; set; }
 
         public string VehicleMake { get; set; }

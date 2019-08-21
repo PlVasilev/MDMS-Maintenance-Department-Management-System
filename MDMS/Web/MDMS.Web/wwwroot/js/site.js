@@ -18,6 +18,7 @@ function externalEdit() {
     let description = $("#description").val();
     let saveDescription = escapeHtml(description);
     let id = $("#id").val();
+    let saveId = escapeHtml(id);
 
     $.post({
         url: 'https://localhost:44351/api/api/EditExternalDetails',
@@ -26,7 +27,7 @@ function externalEdit() {
         },
         data: JSON.stringify({
             description: saveDescription,
-            id: id
+            id: saveId
         }),
         success: function success(data) {
         },
@@ -40,6 +41,7 @@ function internalEdit() {
     let description = $("#descriptionExternal").val();
     let saveDescription = escapeHtml(description);
     let id = $("#id").val();
+    let saveId = escapeHtml(id);
 
     $.post({
         url: 'https://localhost:44351/api/api/EditInternalDetails',
@@ -48,7 +50,7 @@ function internalEdit() {
         },
         data: JSON.stringify({
             description: saveDescription,
-            id: id
+            id: saveId
         }),
         success: function success(data) {
         },
@@ -58,4 +60,20 @@ function internalEdit() {
     })
 }
 
+function ShowExternalRepairs() {
+    $('#vehicleInfoHolder').hide();
+    $('#vehicleExternalRepairs').show();
+    $('#vehicleInternalRepairs').hide();
+}
 
+function ShowInternalRepairs() {
+    $('#vehicleInfoHolder').hide();
+    $('#vehicleExternalRepairs').hide();
+    $('#vehicleInternalRepairs').show();
+}
+
+function ShowVehicleInfoHolder() {
+    $('#vehicleInfoHolder').show();
+    $('#vehicleExternalRepairs').hide();
+    $('#vehicleInternalRepairs').hide();
+}

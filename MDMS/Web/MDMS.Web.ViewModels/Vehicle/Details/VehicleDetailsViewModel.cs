@@ -35,8 +35,8 @@ namespace MDMS.Web.ViewModels.Vehicle.Details
 
         public string Picture { get; set; }
 
-        //public ICollection<InternalRepairViewModel> InternalRepairs { get; set; } = new HashSet<InternalRepairViewModel>();
-        //public ICollection<ExternalRepairViewModel> ExternalRepairs { get; set; } = new HashSet<ExternalRepairViewModel>();
+        public List<VehicleDetailInternalRepairViewModel> InternalRepairs { get; set; } = new List<VehicleDetailInternalRepairViewModel>();
+        public List<VehicleDetailExternalRepairViewModel> ExternalRepairs { get; set; } = new List<VehicleDetailExternalRepairViewModel>();
 
         public bool MDMSUserServiceModelIsRepairing { get; set; }
 

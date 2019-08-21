@@ -41,7 +41,7 @@
             <hr class="hr-2 bg-primary mt-4" />
         </div>
     </div>
-    <div id="product-data-holder" class="w-45 rounded border-primary-4 bg-white">
+    <div id="vehicleInfoHolder" class="w-45 rounded border-primary-4 bg-white">
         <hr class="hr-2 bg-primary mt-4 w-50" />
         @if (@Model.RegistrationNumber != null)
         {
@@ -63,14 +63,93 @@
         <hr class="hr-2 bg-primary mt-4" />
         <h3 class="text-center">Repairs</h3>
         <div id="repair-navigation-holder" class="mt-4 d-flex justify-content-around">
-            <a href="/Vehicle/ExternalRepairs/@Model.Name" class="btn btn-primary text-white font-weight-bold">External Repairs</a>
-            <a href="/Vehicle/InternalRepairs/@Model.Name" class="btn btn-primary text-white font-weight-bold">Internal Repairs</a>
+            <button class="btn btn-primary font-weight-bold" onclick="ShowExternalRepairs()">External Repairs</button>
+            <button class="btn btn-primary font-weight-bold" onclick="ShowInternalRepairs()">Internal Repairs</button>
+        </div>
+        <hr class="hr-2 bg-primary mt-4 w-50" />
+    </div>
+    <div id="vehicleInternalRepairs" class="w-45 rounded border-primary-4 bg-white">
+        <h3 class="text-center mt-3">Internal Repairs</h3>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        @if (@Model.InternalRepairs.Count <= 0)
+        {
+            <h3 class="text-center">Vehicle Has No Internal repairs yet.</h3>
+        }
+        else
+        {
+            <table class="table table-sm table-hover bg-white">
+                <thead>
+                    <tr class="row">
+                        <th scope="col" class="col-md-1 text-primary text-center">#</th>
+                        <th scope="col" class="col-md-9 text-primary text-center">Name</th>
+                        <th scope="col" class="col-md-2 text-primary text-center">Details</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (int i = 0; i < @Model.InternalRepairs.Count; i++)
+                    {
+                        <tr class="row">
+                            <td class="col-md-1 text-primary text-center">@(i + 1)</td>
+                            <td class="col-md-9 text-primary text-center">@Model.InternalRepairs[i].Name</td>
+                            <td class="col-md-2 text-primary text-center"><a href="/Repair/InternalDetails?name=@Model.InternalRepairs[i].Name">Details</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    <hr class="hr-2 bg-primary mt-2" />
+        <div id="repair-navigation-holder" class="mt-4 d-flex justify-content-around">
+            <button class="btn btn-primary font-weight-bold" onclick="ShowVehicleInfoHolder()">Vehicle Info</button>
+            <button class="btn btn-primary font-weight-bold" onclick="ShowExternalRepairs()">External Repairs</button>
+        </div>
+        <hr class="hr-2 bg-primary mt-4 w-50" />
+    </div>
+    <div id="vehicleExternalRepairs" class="w-45 rounded border-primary-4 bg-white">
+        <h3 class="text-center mt-3">External Repairs</h3>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        @if (@Model.InternalRepairs.Count <= 0)
+        {
+            <h3 class="text-center">Vehicle Has No External repairs yet.</h3>
+        }
+        else
+        {
+            <table class="table table-sm table-hover bg-white">
+                <thead>
+                <tr class="row">
+                    <th scope="col" class="col-md-1 text-primary text-center">#</th>
+                    <th scope="col" class="col-md-9 text-primary text-center">Name</th>
+                    <th scope="col" class="col-md-2 text-primary text-center">Details</th>
+
+                </tr>
+                </thead>
+                <tbody>
+
+                @for (int i = 0; i < @Model.ExternalRepairs.Count; i++)
+                {
+                    <tr class="row">
+                        <td class="col-md-1 text-primary text-center">@(i + 1)</td>
+                        <td class="col-md-9 text-primary text-center">@Model.ExternalRepairs[i].Name</td>
+                        <td class="col-md-2 text-primary text-center"><a href="/Repair/ExternalDetails?name=@Model.ExternalRepairs[i].Name">Details</a></td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        }
+        <hr class="hr-2 bg-primary mt-2" />
+        <div id="repair-navigation-holder" class="mt-4 d-flex justify-content-around">
+            <button class="btn btn-primary font-weight-bold" onclick="ShowVehicleInfoHolder()">Vehicle Info</button>
+            <button class="btn btn-primary font-weight-bold" onclick="ShowInternalRepairs()">Internal Repairs</button>
         </div>
         <hr class="hr-2 bg-primary mt-4 w-50" />
     </div>
 </div>
 
-
+<script>
+    $('#vehicleInternalRepairs').hide();
+    $('#vehicleExternalRepairs').hide();
+</script>
 
 <div class="modal fade" id="vehicleModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">

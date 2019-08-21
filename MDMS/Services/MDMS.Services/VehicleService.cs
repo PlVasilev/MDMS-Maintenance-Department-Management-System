@@ -93,6 +93,8 @@ namespace MDMS.Services
 
         public VehicleServiceModel GetVehicleByName(string name) => _context.Vehicles
             .Include(x=> x.VehicleProvider)
+            .Include(x => x.InternalRepairs)
+            .Include(x => x.ExternalRepairs)
             .Include(x => x.VehicleType)
             .To<VehicleServiceModel>().SingleOrDefault(x => x.Name == name);
         

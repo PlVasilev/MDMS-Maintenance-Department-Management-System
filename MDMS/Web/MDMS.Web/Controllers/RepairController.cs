@@ -9,6 +9,7 @@ using MDMS.Services.Models;
 using MDMS.Web.BindingModels.Repair;
 using MDMS.Web.BindingModels.Repair.Active;
 using MDMS.Web.BindingModels.Repair.Create;
+using MDMS.Web.BindingModels.Repair.Finish;
 using MDMS.Web.ViewModels.Repair;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -58,10 +59,14 @@ namespace MDMS.Web.Controllers
         public async Task<IActionResult> InternalActive() => this.View(
             AutoMapper.Mapper.Map<InternalRepairActiveBindingModel>(await _repairService.GetActiveRepair(_userManager.GetUserId(User))));
 
-        [HttpGet(Name = "InternalActiveFinish")]
-        public async Task<IActionResult> InternalActiveFinish(string id)
+        [HttpPost(Name = "InternalActiveFinish")]
+        public async Task<IActionResult> InternalActiveFinish(InternalRepairActiveBindingModel internalRepairActiveBindingModel)
         {
-            await _repairService.FinalizeInternal(id);
+            if (!ModelState.IsValid)
+            {
+               return RedirectToAction("InternalActive");
+            }
+            await _repairService.FinalizeInternal(internalRepairActiveBindingModel.Id,internalRepairActiveBindingModel.HoursWorked);
             return Redirect("/");
         }
 

@@ -69,6 +69,10 @@ hr.hr-2 {
     width: 85%;
 }
 
+.w-90 {
+    width: 90%;
+}
+
 .row {
     width: 100%;
     margin: auto;
