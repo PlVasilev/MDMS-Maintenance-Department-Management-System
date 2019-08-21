@@ -37,7 +37,7 @@
         <h3 class="text-center">Parts Cost: $@Model.RepairCost</h3>
         <hr class="hr-2 bg-primary mt-3 w-50" />
         <div id="navigation-holder" class="mt-4 d-flex justify-content-around">
-            <a href="/Administration/Vehicle/Edit/@Model.Name" class="btn btn-primary text-white font-weight-bold mb-3">Finalize Repair</a>
+            <a href="/Repair/InternalActiveFinish?id=@Model.Id" class="btn btn-primary text-white font-weight-bold mb-3">Finalize Repair</a>
             <a href="/Part/AddParts?name=@Model.Name" class="btn btn-primary text-white font-weight-bold mb-3">Add Parts</a>
         </div>
         <input type="hidden" value="@Model.Id" name="id"  id="id"/>
@@ -74,9 +74,9 @@
                             <td class="col-md-1 text-primary text-center">@(i + 1)</td>
                             <td class="col-md-3 text-primary text-center">@Model.InternalRepairParts[i].PartName</td>
                             <td class="col-md-3 text-primary text-center">@Model.InternalRepairParts[i].PartAcquiredFromName</td>
-                            <td class="col-md-2 text-primary text-center">$@Model.InternalRepairParts[i].PartPrice</td>
+                            <td class="col-md-2 text-primary text-center">$ @Model.InternalRepairParts[i].PartPrice</td>
                             <td class="col-md-1 text-primary text-center">@Model.InternalRepairParts[i].Quantity</td>
-                            <td class="col-md-2 text-primary text-center">$(@Model.InternalRepairParts[i].Quantity * @Model.InternalRepairParts[i].PartPrice)</td>
+                            <td class="col-md-2 text-primary text-center">$ @(Model.InternalRepairParts[i].Quantity * Model.InternalRepairParts[i].PartPrice)</td>
                         </tr>
                     }
                     </tbody>

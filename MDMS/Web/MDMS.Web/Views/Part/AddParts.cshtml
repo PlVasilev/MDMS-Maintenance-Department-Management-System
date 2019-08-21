@@ -20,35 +20,52 @@
     </div>
 </div>
 <form method="post" class="form border-primary-4 rounded p-3 mx-auto w-85 mt-2 bg-white" enctype="multipart/form-data">
+    @if (this.ViewData["error"] != null)
+    {
+        <ul>
+            <li class="text-danger">@this.ViewData["error"]</li>
+        </ul>
+    }
     <div asp-validation-summary="All" class="text-danger"></div>
     <div id="products" class="mt-3">
         <table class="table table-sm table-hover bg-white">
             <thead>
-                <tr class="row">
-                    <th scope="col" class="col-lg-1 text-primary text-center text-larger2">#</th>
-                    <th scope="col" class="col-lg-2 text-primary text-center text-larger2">Name</th>
-                    <th scope="col" class="col-lg-3 text-primary text-center text-larger2">Acquired From</th>
-                    <th scope="col" class="col-lg-1 text-primary text-center text-larger2">Used</th>
-                    <th scope="col" class="col-lg-2 text-primary text-center text-larger2">Stock</th>
-                    <th scope="col" class="col-lg-2 text-primary text-center text-larger2">Price</th>
-                    <th scope="col" class="col-lg-1 text-primary text-center text-larger2">Add</th>
-                </tr>
+            <tr class="row">
+                <th scope="col" class="col-lg-1 text-primary text-center text-larger2">#</th>
+                <th scope="col" class="col-lg-2 text-primary text-center text-larger2">Name</th>
+                <th scope="col" class="col-lg-3 text-primary text-center text-larger2">Acquired From</th>
+                <th scope="col" class="col-lg-1 text-primary text-center text-larger2">Used</th>
+                <th scope="col" class="col-lg-2 text-primary text-center text-larger2">Stock</th>
+                <th scope="col" class="col-lg-2 text-primary text-center text-larger2">Price</th>
+                <th scope="col" class="col-lg-1 text-primary text-center text-larger2">Add</th>
+            </tr>
             </thead>
             <tbody>
-                @for (int i = 0; i < @Model.Count; i++)
-                {
-                    <tr class="part row">
-                        <td class="col-lg-1 text-primary text-center text-larger2">@(i + 1)</td>
-                        <td class="col-lg-2 text-primary text-center text-larger2">@Model[i].Name</td>
-                        <td class="col-lg-3 text-primary text-center text-larger2">@Model[i].AcquiredFromName</td>
-                        <td class="col-lg-1 text-primary text-center text-larger2">@Model[i].UsedCount</td>
-                        <td class="col-lg-2 text-primary text-center text-larger2">@Model[i].Stock</td>
-                        <td class="col-lg-2 text-primary text-center text-larger2">@Model[i].Price<input type="hidden" value="@Model[i].Name" name="Id" id="id" /></td>
-                        <td class="col-lg-1"><input type="text" class="form-control text-primary text-center" id="addPartName" placeholder="0" asp-for="@Model[i].Quantity"></td>
-
-                    </tr>
-
-                }
+            @for (int i = 0; i < @Model.Count; i++)
+            {
+                <tr class="part row">
+                    <td class="col-lg-1 text-primary text-center text-larger2">@(i + 1)</td>
+                    <td class="col-lg-2 text-primary text-center text-larger2">
+                        <input type="hidden" class="form-control text-primary text-center" id="name" asp-for="@Model[i].Name"/>@Model[i].Name
+                    </td>
+                    <td class="col-lg-3 text-primary text-center text-larger2">
+                        <input type="hidden" class="form-control text-primary text-center" id="acquiredFromName" asp-for="@Model[i].AcquiredFromName"/>@Model[i].AcquiredFromName
+                    </td>
+                    <td class="col-lg-1 text-primary text-center text-larger2">
+                        <input type="hidden" class="form-control text-primary text-center" id="usedCount" asp-for="@Model[i].UsedCount"/>@Model[i].UsedCount
+                    </td>
+                    <td class="col-lg-2 text-primary text-center text-larger2">
+                        <input type="hidden" class="form-control text-primary text-center" id="stock" asp-for="@Model[i].Stock"/>@Model[i].Stock
+                    </td>
+                    <td class="col-lg-2 text-primary text-center text-larger2">
+                        <input type="hidden" class="form-control text-primary text-center" id="price" asp-for="@Model[i].Price"/>@Model[i].Price
+                    </td>
+                    <td class="col-lg-1">
+                        <input type="number" class="form-control text-primary text-center" id="addPartName" placeholder="0" asp-for="@Model[i].Quantity"/>
+                        <input type="hidden" class="form-control text-primary text-center" id="repairName" asp-for="@Model[i].RepairName"/>
+                    </td>
+                </tr>
+            }
             </tbody>
         </table>
     </div>
@@ -57,6 +74,11 @@
         <button class="btn btn-primary font-weight-bold">Add Selected Parts</button>
     </div>
 </form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
 
 <script>
     $('#parts-search-bar').on("change paste keyup", function () {
@@ -73,5 +95,4 @@
         }
     });
 </script>
-
 

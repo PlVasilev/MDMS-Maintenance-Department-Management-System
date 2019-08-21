@@ -28,7 +28,6 @@ namespace MDMS.Web.BindingModels.Repair.Add
 
         public string InternalRepairId { get; set; }
 
-        [Required]
         public string PartId { get; set; }
 
         [Range(0, int.MaxValue, ErrorMessage = "Must be positive Number")]

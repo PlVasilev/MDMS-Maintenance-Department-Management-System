@@ -23,11 +23,15 @@
         <thead>
             <tr class="row">
                 <th scope="col" class="col-lg-1 text-primary">#</th>
-                <th scope="col" class="col-lg-2 text-primary">Name</th>
-                <th scope="col" class="col-lg-3 text-primary">Acquired From</th>
-                <th scope="col" class="col-lg-2 text-primary">Stock</th>
-                <th scope="col" class="col-lg-2 text-primary">Price</th>
-                <th scope="col" class="col-lg-2 text-primary">Details</th>
+                <th scope="col" class="col-lg-3 text-primary">Name</th>
+                <th scope="col" class="col-lg-1 text-primary">Price</th>
+                <th scope="col" class="col-lg-2 text-primary">Acquired From</th>
+                <th scope="col" class="col-lg-1 text-primary">Used</th>
+                <th scope="col" class="col-lg-1 text-primary">Used Sum</th>
+                <th scope="col" class="col-lg-1 text-primary">Stock</th>
+                <th scope="col" class="col-lg-1 text-primary">Stock Sum</th>
+
+                <th scope="col" class="col-lg-1 text-primary">Details</th>
             </tr>
         </thead>
         <tbody>
@@ -36,40 +40,17 @@
 
                 <tr class="product row">
                     <td class="col-lg-1 text-primary">@(i + 1)</td>
-                    <td class="col-lg-2 text-primary">@Model[i].Name</td>
-                    <td class="col-lg-3 text-primary">@Model[i].AcquiredFrom</td>
-                    <td class="col-lg-2 text-primary">@Model[i].Stock</td>
-                    <td class="col-lg-2 text-primary">@Model[i].Price</td>
-                    <td class="col-lg-2">
+                    <td class="col-lg-3 text-primary">@Model[i].Name</td>
+                    <td class="col-lg-1 text-primary">@Model[i].Price</td>
+                    <td class="col-lg-2 text-primary">@Model[i].AcquiredFrom</td>
+                    <td class="col-lg-1 text-primary">@Model[i].UsedCount</td>
+                    <td class="col-lg-1 text-primary">@(Model[i].UsedCount * Model[i].Price)</td>
+                    <td class="col-lg-1 text-primary">@Model[i].Stock</td>
+                    <td class="col-lg-1 text-primary">@(Model[i].Stock * Model[i].Price)</td>
+                    <td class="col-lg-1">
                         <a href="/Part/Details?id=@Model[i].Id">Details</a>
                     </td>
                 </tr>
-                <button class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#orderModal">Order</button>
-                <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="orderModalLabel">Order - @Model[i].Name</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <form id="order-form" action="/Product/Order" method="post">
-                                    <div class="form-group">
-                                        <label for="quantity" class="col-form-label font-weight-bold">Quantity</label>
-                                        <input type="number" class="form-control" id="quantity" name="quantity">
-                                        <input type="hidden" value="@Model[i].Id" name="productId" />
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary" id="complete-order-button">Complete</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             }
         </tbody>
     </table>

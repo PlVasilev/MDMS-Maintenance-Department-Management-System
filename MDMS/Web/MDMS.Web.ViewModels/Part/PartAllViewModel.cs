@@ -19,6 +19,8 @@ namespace MDMS.Web.ViewModels.Part
 
         public int Stock { get; set; }
 
+        public int UsedCount { get; set; }
+
         public void CreateMappings(IProfileExpression configuration)
         {
             configuration.CreateMap<PartServiceModel, PartAllViewModel>()

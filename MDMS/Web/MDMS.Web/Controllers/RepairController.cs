@@ -57,8 +57,13 @@ namespace MDMS.Web.Controllers
         [HttpGet(Name = "InternalActive")]
         public async Task<IActionResult> InternalActive() => this.View(
             AutoMapper.Mapper.Map<InternalRepairActiveBindingModel>(await _repairService.GetActiveRepair(_userManager.GetUserId(User))));
-        
-        
+
+        [HttpGet(Name = "InternalActiveFinish")]
+        public async Task<IActionResult> InternalActiveFinish(string id)
+        {
+            await _repairService.FinalizeInternal(id);
+            return Redirect("/");
+        }
 
     }
 }

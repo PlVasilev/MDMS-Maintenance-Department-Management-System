@@ -15,10 +15,12 @@ namespace MDMS.Web.Controllers
     public class PartController : UserController
     {
         private readonly IPartService _partService;
+        private readonly IRepairService _repairService;
 
-        public PartController(IPartService partService)
+        public PartController(IPartService partService, IRepairService repairService)
         {
             _partService = partService;
+            _repairService = repairService;
         }
 
         [HttpGet(Name = "All")]
@@ -37,11 +39,33 @@ namespace MDMS.Web.Controllers
         }
 
         [HttpPost(Name = "AddParts")]
-        public IActionResult AddParts(List<InternalRepairRepairPartBindingModel> internalRepairAddPartsBindingModel)
+        public async Task<IActionResult> AddParts(List<InternalRepairRepairPartBindingModel> internalRepairAddPartsBindingModel)
         {
-         
-            return Redirect("/");
-        }
+            if (!ModelState.IsValid) return this.View(internalRepairAddPartsBindingModel);
+            if (!internalRepairAddPartsBindingModel.Any(x => x.Quantity > 0))
+            {
+                this.ViewData["error"] = "You must add at least One part!";
+                return this.View(internalRepairAddPartsBindingModel);
+            }
 
+            var internalRepairId = _repairService.GetInternalRepairIdByName(internalRepairAddPartsBindingModel[0].RepairName).Result;
+            var allPartsIds = _partService.GetAllParts().ToList();
+
+            List<InternalRepairPartServiceModel> internalRepairPartServiceModels = new List<InternalRepairPartServiceModel>();
+
+            foreach (var part in internalRepairAddPartsBindingModel.Where(x => x.Quantity > 0))
+            {
+                internalRepairPartServiceModels.Add(new InternalRepairPartServiceModel
+                {
+                    PartId = allPartsIds.SingleOrDefault(x => x.Name == part.Name)?.Id,
+                    InternalRepairId = internalRepairId,
+                    Quantity = part.Quantity
+                });
+            }
+
+            await _repairService.AddPartsToInternalRepair(internalRepairPartServiceModels);
+
+            return Redirect("/Repair/InternalActive");
+        }
     }
 }
