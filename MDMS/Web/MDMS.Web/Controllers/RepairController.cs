@@ -11,8 +11,11 @@ using MDMS.Web.BindingModels.Repair.Active;
 using MDMS.Web.BindingModels.Repair.Create;
 using MDMS.Web.BindingModels.Repair.Finish;
 using MDMS.Web.ViewModels.Repair;
+using MDMS.Web.ViewModels.Repair.All;
+using MDMS.Web.ViewModels.Repair.Details;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MDMS.Web.Controllers
 {
@@ -30,7 +33,7 @@ namespace MDMS.Web.Controllers
         }
 
         [HttpGet(Name = "CreateInternal")]
-        public async Task<IActionResult> CreateInternal(string name) => await Task.Run(() => 
+        public async Task<IActionResult> CreateInternal(string name) => await Task.Run(() =>
             this.View(_vehicleService.GetVehicleByName(name).To<InternalRepairCreateBindingModel>()));
 
 
@@ -41,7 +44,7 @@ namespace MDMS.Web.Controllers
             {
                 var internalRepairServiceModel = internalRepairCreateBindingModel.To<InternalRepairServiceModel>();
                 internalRepairServiceModel.MdmsUserId = _userManager.GetUserId(User);
-                internalRepairServiceModel.RepairedSystem = new RepairedSystemServiceModel {Name = internalRepairCreateBindingModel.RepairedSystemName};
+                internalRepairServiceModel.RepairedSystem = new RepairedSystemServiceModel { Name = internalRepairCreateBindingModel.RepairedSystemName };
                 internalRepairServiceModel.Name = "Internal_" + internalRepairCreateBindingModel.Make + "_" +
                                                   internalRepairCreateBindingModel.Model + "_" +
                                                   internalRepairCreateBindingModel.VSN;
@@ -64,11 +67,22 @@ namespace MDMS.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-               return RedirectToAction("InternalActive");
+                return RedirectToAction("InternalActive");
             }
-            await _repairService.FinalizeInternal(internalRepairActiveBindingModel.Id,internalRepairActiveBindingModel.HoursWorked);
+            await _repairService.FinalizeInternal(internalRepairActiveBindingModel.Id, internalRepairActiveBindingModel.HoursWorked);
             return Redirect("/");
         }
 
+
+        [HttpGet(Name = "All")]
+        public async Task<IActionResult> All() => View(new RepairsAllViewModel
+        {
+            ExternalRepairAllViewModels = await _repairService.GetAllExternalRepairs().To<ExternalRepairAllViewModel>().ToListAsync(),
+            InternalRepairAllViewModels = await _repairService.GetAllInternalRepairs().To<InternalRepairAllViewModel>().ToListAsync()
+        });
+
+        [HttpGet(Name = "InternalDetails")]
+        public async Task<IActionResult> InternalDetails(string name) =>await Task.Run((() =>
+            View( _repairService.GetInternalRepairByName(name).Result.To<InternalRepairDetailsViewModel>())));
     }
 }

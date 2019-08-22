@@ -35,7 +35,8 @@ namespace MDMS.Services
         public async Task<bool> DeleteVehicle(string id)
         {
            var vehicle = _context.Vehicles.Find(id);
-           _context.Vehicles.Remove(vehicle);
+           vehicle.IsDeleted = true;
+           _context.Vehicles.Update(vehicle);
            var result = await _context.SaveChangesAsync();
            return result > 0;
         }
@@ -43,6 +44,10 @@ namespace MDMS.Services
         public async Task<bool> Edit(VehicleServiceModel vehicleServiceModel)
         {
             Vehicle vehicle = AutoMapper.Mapper.Map<Vehicle>(vehicleServiceModel);
+            if (vehicle.IsDeleted)
+            {
+                return false;
+            }
             vehicle.VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name);
             vehicle.VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name);
 
@@ -96,7 +101,7 @@ namespace MDMS.Services
             .Include(x => x.InternalRepairs)
             .Include(x => x.ExternalRepairs)
             .Include(x => x.VehicleType)
-            .To<VehicleServiceModel>().SingleOrDefault(x => x.Name == name);
+            .To<VehicleServiceModel>().SingleOrDefault(x => x.Name == name && x.IsDeleted == false);
         
     }
 }

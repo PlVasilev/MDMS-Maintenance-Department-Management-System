@@ -19,7 +19,7 @@ namespace MDMS.Services
         Task<bool> FinalizeInternal(string id, double hours);
         Task<bool> AddPartsToInternalRepair(List<InternalRepairPartServiceModel> internalRepairPartServiceModels);
         Task<string> GetInternalRepairIdByName(string name);
-
+        Task<InternalRepairServiceModel> GetInternalRepairByName(string name);
 
         Task<ExternalRepairServiceModel> GetExternalActiveRepair(string name);
         Task<InternalRepairServiceModel> GetActiveRepair(string id);
@@ -29,5 +29,7 @@ namespace MDMS.Services
         Task<IEnumerable<ExternalRepairServiceModel>>  GetAllExternalActiveRepairs();
         Task<IEnumerable<InternalRepairServiceModel>>  GetAllInternalActiveRepairs();
         IQueryable<ExternalRepairProviderServiceModel> GetAllExternalRepairProviders();
+        IQueryable<ExternalRepairServiceModel> GetAllExternalRepairs();
+        IQueryable<InternalRepairServiceModel> GetAllInternalRepairs();
     }
 }

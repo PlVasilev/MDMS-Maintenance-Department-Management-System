@@ -29,26 +29,41 @@
                         <li class="nav-item active">
                             <div class="dropdown show">
                                 <a class="nav-link font-weight-bold active dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Create</a>
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Vehicle</a>
                                 <div class="dropdown-menu"
                                      aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="/Administration/Vehicle/Provider/Create">Vehicle Provider</a>
-                                    <a class="dropdown-item" href="/Administration/Vehicle/Type/Create">Vehicle Type</a>
-                                    <a class="dropdown-item" href="/Administration/Vehicle/Create">Vehicle</a>
-                                    <a class="dropdown-item" href="/Administration/Part/Provider/Create">Part Provider</a>
-                                    <a class="dropdown-item" href="/Administration/Part/Create">Part</a>
-                                    <a class="dropdown-item" href="/Administration/Repair/Provider/Create">Repair Provider</a>
+                                    <a class="dropdown-item" href="/Administration/Vehicle/Provider/Create">Create Provider</a>
+                                    <a class="dropdown-item" href="/Administration/Vehicle/Type/Create">Create Type</a>
+                                    <a class="dropdown-item" href="/Administration/Vehicle/Create">Create</a>
+                                    <a class="dropdown-item" href="/Vehicle/All">All</a>
                                 </div>
                             </div>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link font-weight-bold" href="/Vehicle/All">Vehicles</a>
+                            <div class="dropdown show">
+                                <a class="nav-link font-weight-bold active dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Part</a>
+                                <div class="dropdown-menu"
+                                     aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/Administration/Part/Provider/Create">Create Provider</a>
+                                    <a class="dropdown-item" href="/Administration/Part/Create">Create</a>
+                                    <a class="dropdown-item" href="/Part/All">All</a>
+                                </div>
+                            </div>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link font-weight-bold" href="/Part/All">Parts</a>
+                            <div class="dropdown show">
+                                <a class="nav-link font-weight-bold active dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Repair</a>
+                                <div class="dropdown-menu"
+                                     aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/Administration/Repair/Provider/Create">Create Provider</a>
+                                    <a class="dropdown-item" href="/Repair/All">All</a>
+                                </div>
+                            </div>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link font-weight-bold" href="/Administration/Repair/ExternalActive">Active Repair</a>
+                            <a class="nav-link font-weight-bold" href="/Administration/Repair/ExternalActive">Your Active Repairs</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
@@ -83,7 +98,10 @@
                             <a class="nav-link font-weight-bold" href="/Part/All">Parts</a>
                         </li>
                         <li class="nav-item active">
-                            <a class="nav-link font-weight-bold" href="/Repair/InternalActive">Active Repair</a>
+                            <a class="nav-link font-weight-bold" href="/Repair/All">Repairs</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link font-weight-bold" href="/Repair/InternalActive">Your Active Repair</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav">
