@@ -6,12 +6,6 @@
 
 <div class="d-flex justify-content-around row">
     <div id="internalActiveRepair-data-holder" class="w-45 rounded border-primary-4 bg-white">
-        @if (this.ViewData["error"] != null)
-        {
-            <ul>
-                <li class="text-danger">@this.ViewData["error"]</li>
-            </ul>
-        }
         <h4 class="text-center">Internal Repair</h4>
         <hr class="hr-2 bg-primary mt-2 w-50" />
         <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>

@@ -20,6 +20,7 @@ namespace MDMS.Services
         Task<bool> AddPartsToInternalRepair(List<InternalRepairPartServiceModel> internalRepairPartServiceModels);
         Task<string> GetInternalRepairIdByName(string name);
         Task<InternalRepairServiceModel> GetInternalRepairByName(string name);
+        Task<ExternalRepairServiceModel> GetExternalRepairByName(string name);
 
         Task<ExternalRepairServiceModel> GetExternalActiveRepair(string name);
         Task<InternalRepairServiceModel> GetActiveRepair(string id);

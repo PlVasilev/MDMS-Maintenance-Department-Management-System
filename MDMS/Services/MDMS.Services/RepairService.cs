@@ -107,6 +107,7 @@ namespace MDMS.Services
             externalRepair.LaborCost = externalRepairServiceModel.LaborCost;
             externalRepair.PartsCost = externalRepairServiceModel.PartsCost;
             externalRepair.Description = externalRepairServiceModel.Description;
+            externalRepair.RepairCost = externalRepair.LaborCost + externalRepair.PartsCost;
             externalRepair.FinishedOn = DateTime.UtcNow;
 
             _context.Update(externalRepair);
@@ -172,29 +173,34 @@ namespace MDMS.Services
         public async Task<string> GetInternalRepairIdByName(string name) => await Task.Run((() =>
             _context.InternalRepairs.SingleOrDefaultAsync(x => x.Name == name).Result.Id));
 
-        public async Task<InternalRepairServiceModel> GetInternalRepairByName(string name) => await Task.Run((() =>
-            _context.InternalRepairs
+        public async Task<InternalRepairServiceModel> GetInternalRepairByName(string name) 
+            => await Task.Run((() => _context.InternalRepairs
                 .Include(x => x.MdmsUser)
                 .Include(x => x.InternalRepairParts).ThenInclude(x => x.Part).ThenInclude(x => x.AcquiredFrom)
                 .Include(x => x.Vehicle)
                 .Include(x => x.RepairedSystem)
                 .SingleOrDefault(x => x.Name == name).To<InternalRepairServiceModel>()));
-        
-        public async Task<ExternalRepairServiceModel> GetExternalActiveRepair(string name)
-            => await Task.Run((() => _context.ExternalRepairs.Include(x => x.Vehicle)
+
+        public async Task<ExternalRepairServiceModel> GetExternalRepairByName(string name) => 
+            await Task.Run((() => _context.ExternalRepairs
+                    .Include(x => x.MdmsUser)
+                    .Include(x => x.ExternalRepairProvider)
+                    .Include(x => x.Vehicle)
+                    .Include(x => x.RepairedSystem)
+                    .SingleOrDefault(x => x.Name == name).To<ExternalRepairServiceModel>()));
+
+        public async Task<ExternalRepairServiceModel> GetExternalActiveRepair(string name) => 
+            await Task.Run((() => _context.ExternalRepairs.Include(x => x.Vehicle)
                 .SingleOrDefaultAsync(x => x.Name == name).Result.To<ExternalRepairServiceModel>()));
 
-        public async Task<InternalRepairServiceModel> GetActiveRepair(string id)
-        {
-            var repair = await Task.Run(() => AutoMapper.Mapper.Map<InternalRepairServiceModel>(_context.InternalRepairs
+        public async Task<InternalRepairServiceModel> GetActiveRepair(string id) =>
+        await Task.Run(() => AutoMapper.Mapper.Map<InternalRepairServiceModel>(_context.InternalRepairs
                 .Include(x => x.MdmsUser)
                 .Include(x => x.InternalRepairParts).ThenInclude(x => x.Part).ThenInclude(x => x.AcquiredFrom)
                 .Include(x => x.Vehicle)
                 .Include(x => x.RepairedSystem)
-                .SingleOrDefaultAsync(x => x.FinishedOn == null && x.MdmsUserId == id).Result));
-            return repair ?? new InternalRepairServiceModel();
-        }
-        
+                .SingleOrDefaultAsync(x => x.FinishedOn == null && x.MdmsUserId == id).Result)) ?? new InternalRepairServiceModel();
+
         public IQueryable<ExternalRepairServiceModel> GetActiveRepairs(string id) =>
             _context.ExternalRepairs.Where(x => x.FinishedOn == null).To<ExternalRepairServiceModel>();
 

@@ -36,7 +36,7 @@ else if (this.User.Identity.IsAuthenticated && (this.User.IsInRole("User") || th
                         {
                             <div class="col-md-2">
                                 <div class="image-holder d-flex justify-content-center">
-                                    <a href="/Vehicle/Details/@Model.ExternalRepairActiveHomeViewModels[j].Name">
+                                    <a href="/Repair/ExternalDetails?name=@Model.ExternalRepairActiveHomeViewModels[j].Name">
                                         <img class="img-thumbnail product-image" src="@Model.ExternalRepairActiveHomeViewModels[j].VehiclePicture" alt="...">
                                     </a>
                                 </div>
@@ -80,7 +80,7 @@ else if (this.User.Identity.IsAuthenticated && (this.User.IsInRole("User") || th
                         {
                             <div class="col-md-2">
                                 <div class="image-holder d-flex justify-content-center">
-                                    <a href="/Vehicle/Details/@Model.InternalRepairActiveHomeViewModels[j].Name">
+                                    <a href="/Repair/InternalDetails?name=@Model.InternalRepairActiveHomeViewModels[j].Name">
                                         <img class="img-thumbnail product-image" src="@Model.InternalRepairActiveHomeViewModels[j].VehiclePicture" alt="...">
                                     </a>
                                 </div>

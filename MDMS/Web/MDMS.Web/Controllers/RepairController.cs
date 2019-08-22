@@ -84,5 +84,11 @@ namespace MDMS.Web.Controllers
         [HttpGet(Name = "InternalDetails")]
         public async Task<IActionResult> InternalDetails(string name) =>await Task.Run((() =>
             View( _repairService.GetInternalRepairByName(name).Result.To<InternalRepairDetailsViewModel>())));
+
+        [HttpGet(Name = "ExternalDetails")]
+        public async Task<IActionResult> ExternalDetails(string name) => await Task.Run((() =>
+            View(_repairService.GetExternalRepairByName(name).Result.To<ExternalRepairDetailsViewModel>())));
+
+        
     }
 }

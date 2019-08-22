@@ -1,8 +1,39 @@
-﻿
+﻿@model MDMS.Web.ViewModels.Repair.Details.ExternalRepairDetailsViewModel
 @{
     ViewData["Title"] = "ExternalDetails";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>ExternalDetails</h1>
+<div class="d-flex justify-content-around row">
+    <div id="internalActiveRepair-data-holder" class="w-45 rounded border-primary-4 bg-white">
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h4 class="text-center">Internal Repair</h4>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
+        <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
+        <h4 class="text-center">Mileage: @Model.Mileage</h4>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h4 class="text-center">Mechanic: @Model.MdmsUserUsername</h4>
+        <h4 class="text-center">Started on: @Model.StartedOn.ToString("d")</h4>
+        @if (@Model.FinishedOn == null)
+        {
+            <h4 class="text-center">Finished on: Repair is Not finished yet.</h4>
+        }
+        else
+        {
+            <h4 class="text-center">Finished on: @Model.FinishedOn?.ToString("d")</h4>
 
+        }
+        <h4 class="text-center">Repaired System: @Model.RepairedSystemName</h4>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h4 class="text-center">Description:</h4>
+        <p class="w-75 text-center text-dark text-larger2 m-auto">@Model.Description</p>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h4 class="text-center">Repair Provider: @Model.ExternalRepairProviderName </h4>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h4 class="text-center">Labor Cost: $ @Model.LaborCost </h4>
+        <h4 class="text-center">Parts Cost: $ @Model.PartsCost</h4>
+        <h4 class="text-center">Repair Cost: $ @Model.RepairCost</h4>
+        <hr class="hr-2 bg-primary mt-0 w-50" />
+    </div>
+</div>
