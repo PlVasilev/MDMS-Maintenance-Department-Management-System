@@ -16,7 +16,7 @@ namespace MDMS.Services.Models
         public string PartsProviderId { get; set; }
         public PartsProviderServiceModel AcquiredFrom { get; set; }
 
-        public ICollection<InternalRepairServiceModel> RepairParts { get; set; } = new HashSet<InternalRepairServiceModel>();
+        public ICollection<InternalRepairPartServiceModel> InternalRepairParts { get; set; } = new HashSet<InternalRepairPartServiceModel>();
 
         public int Stock { get; set; }
     }

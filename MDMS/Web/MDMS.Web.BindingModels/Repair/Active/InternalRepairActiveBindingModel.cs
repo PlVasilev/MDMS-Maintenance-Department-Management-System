@@ -21,7 +21,7 @@ namespace MDMS.Web.BindingModels.Repair.Active
 
         public string VehicleMake { get; set; }
 
-        public string VehiclePicture { get; set; }
+        public string VehicleName { get; set; }
 
         public string VehicleModel { get; set; }
 

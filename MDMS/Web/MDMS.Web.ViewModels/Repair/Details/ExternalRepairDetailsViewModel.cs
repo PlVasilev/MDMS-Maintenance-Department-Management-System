@@ -13,6 +13,8 @@ namespace MDMS.Web.ViewModels.Repair.Details
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public string VehicleName { get; set; }
+
         public string VehicleMake { get; set; }
 
         public string VehicleModel { get; set; }

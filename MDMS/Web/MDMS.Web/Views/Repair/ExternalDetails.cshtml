@@ -9,9 +9,11 @@
         <hr class="hr-2 bg-primary mt-2 w-50" />
         <h4 class="text-center">Internal Repair</h4>
         <hr class="hr-2 bg-primary mt-2 w-50" />
-        <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
-        <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
-        <h4 class="text-center">Mileage: @Model.Mileage</h4>
+        <a href="/Vehicle/Details/@Model.VehicleName">
+            <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
+            <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
+            <h4 class="text-center">Mileage: @Model.Mileage</h4>
+        </a>
         <hr class="hr-2 bg-primary mt-2 w-50" />
         <h4 class="text-center">Mechanic: @Model.MdmsUserUsername</h4>
         <h4 class="text-center">Started on: @Model.StartedOn.ToString("d")</h4>

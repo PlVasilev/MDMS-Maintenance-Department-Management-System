@@ -34,7 +34,7 @@ namespace MDMS.Services
             return result > 0;
         }
 
-        private async Task<PartsProvider> GetPartProviderByName(string acquiredFromName) => 
+        private async Task<PartsProvider> GetPartProviderByName(string acquiredFromName) =>
             await _context.PartsProviders.SingleOrDefaultAsync(x => x.Name == acquiredFromName);
 
         public async Task<bool> CreatePartProvider(PartsProviderServiceModel partsProviderServiceModel)
@@ -54,5 +54,10 @@ namespace MDMS.Services
         public IQueryable<PartsProviderServiceModel> GetAllPartProviders() => _context.PartsProviders.OrderBy(x => x.Name).To<PartsProviderServiceModel>();
         public IQueryable<PartServiceModel> GetAllParts() => _context.Parts.OrderBy(x => x.Name).To<PartServiceModel>();
 
+        public async Task<PartServiceModel> GetPartByName(string name) => await Task.Run(() 
+            => _context.Parts
+            .Include(x => x.InternalRepairParts).ThenInclude(x => x.InternalRepair)
+            .Include(x => x.AcquiredFrom)
+            .SingleOrDefaultAsync(x => x.Name == name).Result.To<PartServiceModel>());
     }
 }

@@ -13,5 +13,7 @@ namespace MDMS.Services
         IQueryable<PartsProviderServiceModel> GetAllPartProviders();
 
         IQueryable<PartServiceModel> GetAllParts();
+
+        Task<PartServiceModel> GetPartByName(string name); 
     }
 }

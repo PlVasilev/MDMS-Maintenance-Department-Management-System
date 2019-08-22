@@ -7,6 +7,8 @@ using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using MDMS.Web.BindingModels.Repair.Add;
 using MDMS.Web.ViewModels.Part;
+using MDMS.Web.ViewModels.Part.All;
+using MDMS.Web.ViewModels.Part.Details;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,9 +29,9 @@ namespace MDMS.Web.Controllers
         public async Task<IActionResult> All() => await Task.Run(() => this.View(_partService.GetAllParts().To<PartAllViewModel>().ToList()));
 
         [HttpGet(Name = "AddParts")]
-        public IActionResult AddParts(string name)
+        public async Task<IActionResult> AddParts(string name)
         {
-            var listOfParts = _partService.GetAllParts().To<InternalRepairRepairPartBindingModel>().ToList();
+            var listOfParts = await _partService.GetAllParts().To<InternalRepairRepairPartBindingModel>().ToListAsync();
             foreach (var part in listOfParts)
             {
                 part.RepairName = name;
@@ -38,6 +40,11 @@ namespace MDMS.Web.Controllers
             return View(listOfParts);
         }
 
+        [HttpGet(Name = "Details")]
+        public async Task<IActionResult> Details(string name) => await Task.Run((() =>
+            View(_partService.GetPartByName(name).Result.To<PartDetailsViewModel>())));
+    
+        
         [HttpPost(Name = "AddParts")]
         public async Task<IActionResult> AddParts(List<InternalRepairRepairPartBindingModel> internalRepairAddPartsBindingModel)
         {

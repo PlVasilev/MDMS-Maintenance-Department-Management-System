@@ -8,9 +8,11 @@
     <div id="internalActiveRepair-data-holder" class="w-45 rounded border-primary-4 bg-white">
         <h4 class="text-center">Internal Repair</h4>
         <hr class="hr-2 bg-primary mt-2 w-50" />
-        <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
-        <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
-        <h4 class="text-center">Mileage: @Model.Mileage</h4>
+        <a href="/Vehicle/Details/@Model.VehicleName">
+            <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
+            <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
+            <h4 class="text-center">Mileage: @Model.Mileage</h4>
+        </a>
         <hr class="hr-2 bg-primary mt-2 w-50" />
         <h4 class="text-center">Mechanic: @Model.MdmsUserUsername</h4>
         <h4 class="text-center">Started on: @Model.StartedOn.ToString("d")</h4>
@@ -26,7 +28,7 @@
         <h4 class="text-center">Repaired System: @Model.RepairedSystemName</h4>
         <hr class="hr-2 bg-primary mt-2 w-50" />
         <h4 class="text-center">Description:</h4>
-        <p class="w-75 text-center text-dark text-larger2 m-auto">@Model.Description</p>
+        <p class="w-85 text-center text-dark text-larger2 m-auto">@Model.Description</p>
         <hr class="hr-2 bg-primary mt-2 w-50" />
         <h4 class="text-center">Labor: @Model.HoursWorked h</h4>
         <h4 class="text-center">Repair Cost: $ @Model.RepairCost</h4>
@@ -46,13 +48,12 @@
                 <table class="table table-sm table-hover bg-white">
                     <thead>
                         <tr class="row">
-                            <th scope="col" class="col-md-1 text-primary text-center">#</th>
                             <th scope="col" class="col-md-3 text-primary text-center">Name</th>
                             <th scope="col" class="col-md-3 text-primary text-center">Provider</th>
                             <th scope="col" class="col-md-2 text-primary text-center">Price</th>
                             <th scope="col" class="col-md-1 text-primary text-center">Quantity</th>
                             <th scope="col" class="col-md-2 text-primary text-center">Sum</th>
-
+                            <th scope="col" class="col-md-1 text-primary text-center">Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,12 +61,14 @@
                         @for (int i = 0; i < @Model.InternalRepairParts.Count; i++)
                         {
                             <tr class="row">
-                                <td class="col-md-1 text-primary text-center">@(i + 1)</td>
                                 <td class="col-md-3 text-primary text-center">@Model.InternalRepairParts[i].PartName</td>
                                 <td class="col-md-3 text-primary text-center">@Model.InternalRepairParts[i].PartAcquiredFromName</td>
                                 <td class="col-md-2 text-primary text-center">$ @Model.InternalRepairParts[i].PartPrice</td>
                                 <td class="col-md-1 text-primary text-center">@Model.InternalRepairParts[i].Quantity</td>
                                 <td class="col-md-2 text-primary text-center">$ @(Model.InternalRepairParts[i].Quantity * Model.InternalRepairParts[i].PartPrice)</td>
+                                <td class="col-md-1 text-primary text-center">
+                                    <a href="/Part/Details?name=@Model.InternalRepairParts[i].PartName">Details</a>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -73,5 +76,4 @@
             }
         </div>
     </div>
-
 </div>

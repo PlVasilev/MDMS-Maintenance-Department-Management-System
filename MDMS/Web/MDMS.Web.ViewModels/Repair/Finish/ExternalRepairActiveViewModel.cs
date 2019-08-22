@@ -18,6 +18,7 @@ namespace MDMS.Web.ViewModels.Repair.Finish
         public string Description { get; set; }
 
         public string VehicleMake { get; set; }
+        public string VehicleName { get; set; }
 
         public string VehicleModel { get; set; }
 

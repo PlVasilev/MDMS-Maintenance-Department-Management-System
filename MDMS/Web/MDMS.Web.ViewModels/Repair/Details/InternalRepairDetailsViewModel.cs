@@ -14,6 +14,7 @@ namespace MDMS.Web.ViewModels.Repair.Details
 
         public double HoursWorked { get; set; }
 
+        public string VehicleName { get; set; }
         public string Description { get; set; }
 
         public string VehicleMake { get; set; }

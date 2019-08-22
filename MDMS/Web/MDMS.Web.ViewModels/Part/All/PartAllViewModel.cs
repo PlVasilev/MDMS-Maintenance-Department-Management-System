@@ -5,7 +5,7 @@ using AutoMapper;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 
-namespace MDMS.Web.ViewModels.Part
+namespace MDMS.Web.ViewModels.Part.All
 {
    public class PartAllViewModel : IMapFrom<PartServiceModel>, IHaveCustomMappings
     {
