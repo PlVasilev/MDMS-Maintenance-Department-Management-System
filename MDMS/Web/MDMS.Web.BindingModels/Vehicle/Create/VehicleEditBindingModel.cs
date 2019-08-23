@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using AutoMapper;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
-using Microsoft.AspNetCore.Http;
 using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
 namespace MDMS.Web.BindingModels.Vehicle.Create

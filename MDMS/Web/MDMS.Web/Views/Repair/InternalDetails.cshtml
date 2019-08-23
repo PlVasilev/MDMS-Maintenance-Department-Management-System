@@ -8,11 +8,20 @@
     <div id="internalActiveRepair-data-holder" class="w-45 rounded border-primary-4 bg-white">
         <h4 class="text-center">Internal Repair</h4>
         <hr class="hr-2 bg-primary mt-2 w-50" />
-        <a href="/Vehicle/Details/@Model.VehicleName">
+        @if (@Model.VehicleIsDeleted)
+        {
             <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
             <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
             <h4 class="text-center">Mileage: @Model.Mileage</h4>
-        </a>
+        }
+        else
+        {
+            <a href="/Vehicle/Details/@Model.VehicleName">
+                <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
+                <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
+                <h4 class="text-center">Mileage: @Model.Mileage</h4>
+            </a>
+        }
         <hr class="hr-2 bg-primary mt-2 w-50" />
         <h4 class="text-center">Mechanic: @Model.MdmsUserUsername</h4>
         <h4 class="text-center">Started on: @Model.StartedOn.ToString("d")</h4>
@@ -66,9 +75,17 @@
                                 <td class="col-md-2 text-primary text-center">$ @Model.InternalRepairParts[i].PartPrice</td>
                                 <td class="col-md-1 text-primary text-center">@Model.InternalRepairParts[i].Quantity</td>
                                 <td class="col-md-2 text-primary text-center">$ @(Model.InternalRepairParts[i].Quantity * Model.InternalRepairParts[i].PartPrice)</td>
-                                <td class="col-md-1 text-primary text-center">
-                                    <a href="/Part/Details?name=@Model.InternalRepairParts[i].PartName">Details</a>
-                                </td>
+                                @if (@Model.InternalRepairParts[i].PartIsDeleted == true)
+                                {
+                                    <td class="col-md-1 text-primary text-center">Removed</td>
+                                }
+                                else
+                                {
+                                    <td class="col-md-1 text-primary text-center">
+                                        <a href="/Part/Details?name=@Model.InternalRepairParts[i].PartName">Details</a>
+                                    </td>
+                                }
+                              
                             </tr>
                         }
                     </tbody>

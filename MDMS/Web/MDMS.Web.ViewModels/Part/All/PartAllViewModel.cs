@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using AutoMapper;
 using MDMS.Services.Mapping;
@@ -20,6 +21,8 @@ namespace MDMS.Web.ViewModels.Part.All
         public int Stock { get; set; }
 
         public int UsedCount { get; set; }
+
+
 
         public void CreateMappings(IProfileExpression configuration)
         {

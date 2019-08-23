@@ -98,7 +98,8 @@ namespace MDMS.Web.Areas.Administration.Controllers
         }
 
         [HttpGet(Name = "Edit")]
-        public async Task<IActionResult> Edit(string name) => await Task.Run((() => this.View(_vehicleService.GetVehicleByName(name).To<VehicleEditViewModel>())));
+        public async Task<IActionResult> Edit(string name) => await Task.Run((() => 
+            this.View(_vehicleService.GetVehicleByName(name).To<VehicleEditViewModel>())));
 
 
         [HttpPost(Name = "Edit")]

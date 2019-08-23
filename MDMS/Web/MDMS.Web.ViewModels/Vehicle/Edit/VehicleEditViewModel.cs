@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 using AutoMapper;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
-using Microsoft.AspNetCore.Http;
-using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
 
 namespace MDMS.Web.ViewModels.Vehicle.Edit
 {

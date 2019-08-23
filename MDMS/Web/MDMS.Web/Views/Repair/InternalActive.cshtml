@@ -22,9 +22,11 @@
             }
             <h3 class="text-center">Internal Repair</h3>
             <hr class="hr-2 bg-primary mt-2 w-50" />
-            <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
-            <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
-            <h4 class="text-center">Mileage: @Model.Mileage</h4>
+            <a href="/Vehicle/Details/@Model.VehicleName">
+                <h4 class="text-center">Vehicle: @Model.VehicleMake @Model.VehicleModel</h4>
+                <h4 class="text-center">VSN: @Model.VehicleVSN</h4>
+                <h4 class="text-center">Mileage: @Model.Mileage</h4>
+            </a>
             <hr class="hr-2 bg-primary mt-2 w-50" />
             <h4 class="text-center">Mechanic: @Model.MdmsUserUsername Started on: @Model.StartedOn.ToString("d")</h4>
             <h4 class="text-center">Repairing: @Model.RepairedSystemName</h4>
@@ -33,7 +35,7 @@
                 <div class="d-flex justify-content-center">
                     <label asp-for="Description" class="h4">Description</label>
                 </div>
-                <textarea type="text" class="form-control w-75 border-primary-2 m-auto" id="descriptionExternal" name="Description" rows="5" 
+                <textarea type="text" class="form-control w-75 border-primary-2 m-auto" id="descriptionExternal" name="Description" rows="5"
                           placeholder="You Must have a least one symbol in Description"
                           asp-for="Description"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>

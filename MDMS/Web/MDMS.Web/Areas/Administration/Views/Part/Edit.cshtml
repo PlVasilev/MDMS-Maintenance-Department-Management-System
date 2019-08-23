@@ -1,12 +1,11 @@
-﻿@model MDMS.Web.BindingModels.Part.Create.PartCreateBindingModel
-
+﻿@model MDMS.Web.ViewModels.Part.Edit.PartEditViewModel
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Create Part</h1>
-<form method="post" action="/Administration/Part/Create" class="form border-primary-4 rounded p-3 w-30 mx-auto mt-3 bg-white">
+<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Edit Part</h1>
+<form method="post" action="/Administration/Part/Edit" class="form border-primary-4 rounded p-3 w-30 mx-auto mt-3 bg-white">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     @if (this.ViewData["error"] != null)
     {
@@ -18,7 +17,7 @@
         <div class="d-flex justify-content-center">
             <label asp-for="Name" class="text-primary h5">Name</label>
         </div>
-        <input type="text" class="form-control text-primary text-center" id="name" placeholder="Name..."
+        <input type="text" class="form-control text-primary text-center" id="name" placeholder="@Model.Name"
                asp-for="Name">
         <span asp-validation-for="Name" class="text-danger"></span>
     </div>
@@ -30,40 +29,32 @@
                step="0.01"
                class="form-control text-primary text-center"
                id="price"
-               placeholder="Price..."
+               placeholder="@Model.Price"
                asp-for="Price">
         <span asp-validation-for="Price" class="text-danger"></span>
-    </div>
-    <div class="form-group mx-auto">
-        <div class="d-flex justify-content-center">
-            <label asp-for="Stock" class="text-primary h5">Stock</label>
-        </div>
-        <input type="number"
-               step="1"
-               class="form-control text-primary text-center"
-               id="stock"
-               placeholder="Stock..."
-               asp-for="Stock">
-        <span asp-validation-for="Stock" class="text-danger"></span>
     </div>
     <div class="form-group mx-auto">
         <div class="d-flex justify-content-center">
             <label asp-for="AcquiredFrom" class="text-primary h5">Part Provider</label>
         </div>
         <select class="form-control text-primary text-center" id="partsProvider" asp-for="AcquiredFrom">
-            <option selected disabled>--- Select Part Provider ---</option>
+            <option selected>@Model.AcquiredFrom</option>
             <vc:part-provider></vc:part-provider>
         </select>
         <span asp-validation-for="AcquiredFrom" class="text-danger"></span>
     </div>
+    <input type="hidden" value="@Model.Id" name="Id" id="id" />
+    <input type="hidden" value="@Model.Stock" name="Stock" id="stock" />
+    <input type="hidden" value="@Model.UsedCount" name="UsedCount" id="usedCount" />
     <hr class="hr-2 bg-primary mt-4">
     <div class="d-flex justify-content-center mt-3">
-        <button class="btn btn-primary font-weight-bold">Create Part</button>
+        <button class="btn btn-primary font-weight-bold">Edit Part</button>
     </div>
-   
+
 </form>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
+
 

@@ -44,10 +44,9 @@ namespace MDMS.Services
         public async Task<bool> Edit(VehicleServiceModel vehicleServiceModel)
         {
             Vehicle vehicle = AutoMapper.Mapper.Map<Vehicle>(vehicleServiceModel);
-            if (vehicle.IsDeleted)
-            {
-                return false;
-            }
+
+            if (vehicle.IsDeleted) return false;
+            
             vehicle.VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name);
             vehicle.VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name);
 

@@ -10,27 +10,33 @@
 
 <div class="d-flex justify-content-around row">
     <div id="internalActiveRepair-data-holder" class="w-30 rounded border-primary-4 bg-white">
+        @if (this.ViewData["error"] != null)
+        {
+            <ul>
+                <li class="text-danger">@this.ViewData["error"]</li>
+            </ul>
+        }
         <h3 class="text-center">Part</h3>
-        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <hr class="hr-2 bg-primary mt-2 w-50"/>
         <h4 class="text-center">Name: @Model.Name</h4>
         <h4 class="text-center">Acquired from: @Model.AcquiredFromName</h4>
-        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <hr class="hr-2 bg-primary mt-2 w-50"/>
         <h4 class="text-center">Price: $ @Model.Price </h4>
-        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <hr class="hr-2 bg-primary mt-2 w-50"/>
         <h4 class="text-center">Stock: @Model.Stock </h4>
         <h4 class="text-center">Stock Value: $ @(Model.Stock * Model.Price)</h4>
-        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <hr class="hr-2 bg-primary mt-2 w-50"/>
         <h4 class="text-center">Used in Repairs: @Model.UsedCount </h4>
         <h4 class="text-center">Used in Repairs Value: $ @(Model.UsedCount * Model.Price)</h4>
-        <hr class="hr-2 bg-primary mt-0 w-50" />
+        <hr class="hr-2 bg-primary mt-0 w-50"/>
         @if (User.IsInRole("Admin"))
         {
             <div id="navigation-holder" class="mt-4 d-flex justify-content-around">
-                <a href="/Administration/Vehicle/Edit/@Model.Name" class="btn btn-primary text-white font-weight-bold">Edit</a>
+                <a href="/Administration/Part/Edit/@Model.Name" class="btn btn-primary text-white font-weight-bold">Edit</a>
                 <button class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#orderModal">Add Stock</button>
-                <a href="/Administration/Vehicle/Edit/@Model.Name" class="btn btn-primary text-white font-weight-bold">Delete</a>
+                <button class="btn btn-primary text-white font-weight-bold" data-toggle="modal" data-target="#vehicleModal">Delete</button>
             </div>
-            <hr class="hr-2 bg-primary mt-3 w-50" />
+            <hr class="hr-2 bg-primary mt-3 w-50"/>
         }
     </div>
 
@@ -92,33 +98,64 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="orderModalLabel">Order - @Model.Name</h5>
+                <h5 class="modal-title" id="partsAddModalLabel">Add Parts - @Model.Name</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form id="order-form" action="/Product/Order" method="post">
+                <form id="addParts-form" action="/Administration/Part/AddStock" method="post">
                     <div class="form-group">
-                        <label for="quantity" class="col-form-label font-weight-bold">Quantity</label>
+                        <div class="d-flex justify-content-center">
+                            <label asp-for="Quantity" class="h4">Add Stock of @Model.Name</label>
+                        </div>
                         <input type="number"
                                class="form-control"
                                id="quantity"
-                               name="quantity">
+                               name="Quantity"
+                               asp-for="Quantity">
                         <input type="hidden" value="@Model.Name" name="Name" />
+                    </div>
+                    <div class="d-flex justify-content-center mt-1">
+                        <span asp-validation-for="Quantity" class="text-danger"></span>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="complete-order-button">Complete</button>
+                <button type="button" class="btn btn-primary" id="add-parts-button">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="vehicleModal" tabindex="-1" role="dialog" aria-labelledby="orderModalLabel1" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="partDeleteModalLabel">Part - @Model.Name</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="text-danger text-center">Part will be DELETED PERMANENTLY</h5>
+                <h5 class="text-danger text-center">Do you with to proceed ?</h5>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <a href="/Administration/Part/Delete?name=@Model.Name" class="btn btn-primary font-weight-bold" id="deletePart">DELETE Part</a>
             </div>
         </div>
     </div>
 </div>
 
 <script>
-    $('#complete-order-button').click(function () {
-        $('#order-form').submit();
+    $('#add-parts-button').click(function () {
+        $('#addParts-form').submit();
     });
 </script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

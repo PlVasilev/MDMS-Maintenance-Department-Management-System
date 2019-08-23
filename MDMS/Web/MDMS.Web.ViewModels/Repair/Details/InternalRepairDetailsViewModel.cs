@@ -22,6 +22,7 @@ namespace MDMS.Web.ViewModels.Repair.Details
         public string VehicleModel { get; set; }
 
         public string VehicleVSN { get; set; }
+        public bool VehicleIsDeleted { get; set; }
 
         public string RepairedSystemName { get; set; }
 

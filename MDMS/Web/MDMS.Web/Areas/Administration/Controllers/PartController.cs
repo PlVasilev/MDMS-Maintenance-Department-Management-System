@@ -1,7 +1,12 @@
 ﻿using System.Threading.Tasks;
 using MDMS.Services;
+using MDMS.Services.Mapping;
 using MDMS.Services.Models;
+using MDMS.Web.BindingModels.Part.Add;
 using MDMS.Web.BindingModels.Part.Create;
+using MDMS.Web.BindingModels.Part.Edit;
+using MDMS.Web.BindingModels.Vehicle.Create;
+using MDMS.Web.ViewModels.Part.Edit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MDMS.Web.Areas.Administration.Controllers
@@ -60,5 +65,50 @@ namespace MDMS.Web.Areas.Administration.Controllers
             return this.View(partCreateBindingModel);
         }
 
+        [HttpPost(Name = "AddStock")]
+        public async Task<IActionResult> AddStock(PartAddStockBindingModel partAddStockBinding)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _partService.AddStock(partAddStockBinding.Name,partAddStockBinding.Quantity);
+
+                if (result == false) 
+                {
+                    this.ViewData["error"] = "There was a problem with adding stock.";
+                    return this.Redirect($"/Part/Details?name={partAddStockBinding.Name}");
+                }
+                return this.Redirect($"/Part/Details?name={partAddStockBinding.Name}");
+            }
+            this.ViewData["error"] = "There was a problem with your input.";
+            return this.Redirect($"/Part/Details?name={partAddStockBinding.Name}");
+        }
+
+        public async Task<IActionResult> Delete(string name)
+        {
+            await _partService.DeletePart(name);
+            return RedirectToAction("All");
+        }
+
+        [HttpGet(Name = "Edit")]
+        public async Task<IActionResult> Edit(string name) => await Task.Run((() =>
+            this.View(_partService.GetPartByName(name).Result.To<PartEditViewModel>())));
+
+
+        [HttpPost(Name = "Edit")]
+        public async Task<IActionResult> Edit(PartEditBindingModel partEditBindingModel)
+        {
+            if (ModelState.IsValid)
+            {
+               var result = await _partService.EditPart(partEditBindingModel.To<PartServiceModel>());
+              
+               if (result) return this.Redirect("/");
+
+               this.ViewData["error"] = "There was a problem with editing the part.";
+                return this.RedirectToAction("Edit", partEditBindingModel);
+            }
+
+            this.ViewData["error"] = "There was a problem with your input.";
+            return this.RedirectToAction("Edit", partEditBindingModel);
+        }
     }
 }

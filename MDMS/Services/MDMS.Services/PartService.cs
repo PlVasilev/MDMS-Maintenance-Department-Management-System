@@ -34,6 +34,15 @@ namespace MDMS.Services
             return result > 0;
         }
 
+        public async Task<bool> AddStock(string name, int addedStock)
+        {
+            var part = await _context.Parts.SingleOrDefaultAsync(x => x.Name == name);
+            part.Stock += addedStock;
+            _context.Update(part);
+            var result = await _context.SaveChangesAsync();
+            return result > 0;
+        }
+
         private async Task<PartsProvider> GetPartProviderByName(string acquiredFromName) =>
             await _context.PartsProviders.SingleOrDefaultAsync(x => x.Name == acquiredFromName);
 
@@ -50,14 +59,32 @@ namespace MDMS.Services
             return result > 0;
         }
 
+        public async Task<bool> EditPart(PartServiceModel partServiceModel)
+        {
+            var part = partServiceModel.To<Part>();
+            part.AcquiredFrom = await GetPartProviderByName(partServiceModel.AcquiredFrom.Name);
+            _context.Parts.Update(part);
+            var result = await _context.SaveChangesAsync();
+            return result > 0;
+        }
+
+        public async Task<bool> DeletePart(string name)
+        {
+            var part = await _context.Parts.SingleOrDefaultAsync(x => x.Name == name);
+            part.IsDeleted = true;
+            _context.Parts.Update(part);
+            var result = await _context.SaveChangesAsync();
+            return result > 0;
+        }
+
 
         public IQueryable<PartsProviderServiceModel> GetAllPartProviders() => _context.PartsProviders.OrderBy(x => x.Name).To<PartsProviderServiceModel>();
-        public IQueryable<PartServiceModel> GetAllParts() => _context.Parts.OrderBy(x => x.Name).To<PartServiceModel>();
+        public IQueryable<PartServiceModel> GetAllParts() => _context.Parts.Where(x => x.IsDeleted == false).OrderBy(x => x.Name).To<PartServiceModel>();
 
         public async Task<PartServiceModel> GetPartByName(string name) => await Task.Run(() 
             => _context.Parts
             .Include(x => x.InternalRepairParts).ThenInclude(x => x.InternalRepair)
             .Include(x => x.AcquiredFrom)
-            .SingleOrDefaultAsync(x => x.Name == name).Result.To<PartServiceModel>());
+            .SingleOrDefaultAsync(x => x.Name == name && x.IsDeleted == false).Result.To<PartServiceModel>());
     }
 }
