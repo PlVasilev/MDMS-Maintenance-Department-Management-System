@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MDMS.Data.Seeding
 {
-   public class ReportTypeSeeder
+   public class ReportTypeSeeder : ISeeder
     {
         private readonly MdmsDbContext _context;
 

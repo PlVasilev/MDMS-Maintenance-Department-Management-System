@@ -23,10 +23,8 @@ namespace MDMS.Services
         public async Task<bool> Create(PartServiceModel partServiceModel)
         {
             if (_context.Parts.Any(v => v.Name == partServiceModel.Name))
-            {
                 return false;
-            }
-
+            
             Part part = AutoMapper.Mapper.Map<Part>(partServiceModel);
             part.AcquiredFrom = await GetPartProviderByName(partServiceModel.AcquiredFrom.Name);
             _context.Parts.Add(part);
@@ -49,9 +47,8 @@ namespace MDMS.Services
         public async Task<bool> CreatePartProvider(PartsProviderServiceModel partsProviderServiceModel)
         {
             if (_context.PartsProviders.Any(v => v.Name == partsProviderServiceModel.Name))
-            {
                 return false;
-            }
+            
 
             PartsProvider provider = AutoMapper.Mapper.Map<PartsProvider>(partsProviderServiceModel);
             _context.PartsProviders.Add(provider);

@@ -35,7 +35,7 @@
                 <div class="d-flex justify-content-center">
                     <label asp-for="@Model[i].Description" class="h4">Description</label>
                 </div>
-                <textarea type="text" class="form-control border-primary-2 m-auto" id="description" name="Description" rows="5" placeholder="@Model[i].Description"
+                <textarea type="text" class="form-control w-75 border-primary-2 m-auto" id="description" name="Description" rows="5" placeholder="@Model[i].Description"
                           asp-for="@Model[i].Description"></textarea>
                 <span asp-validation-for="@Model[i].Description" class="text-danger"></span>
             </div>

@@ -1,5 +1,4 @@
 ﻿@page
-@using Microsoft.CodeAnalysis.CSharp.Syntax
 @model MDMS.Web.Areas.Identity.Pages.Account.ProfileModel
 @{
     ViewData["Title"] = "Profile";
@@ -104,7 +103,7 @@
                                         <td class="col-md-1 text-primary text-center">@Model.ExternalRepairs[i].FinishedOn?.ToString("dd/MM/yy")</td>
                                     }
                                     <td class="col-lg-1" style="text-align: center">
-                                        <a href="/Repair/Details?name=@Model.ExternalRepairs[i].Name">Details</a>
+                                        <a href="/Repair/ExternalDetails?name=@Model.ExternalRepairs[i].Name">Details</a>
                                     </td>
                                 </tr>
                             }
@@ -128,7 +127,7 @@
                                     }
 
                                     <td class="col-lg-1">
-                                        <a href="/Repair/Details?name=@Model.InternalRepairs[i].Name">Details</a>
+                                        <a href="/Repair/InternalDetails?name=@Model.InternalRepairs[i].Name">Details</a>
                                     </td>
                                 </tr>
                             }

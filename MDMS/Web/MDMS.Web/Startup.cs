@@ -76,6 +76,7 @@ namespace MDMS.Web
             services.AddTransient<IRepairService, RepairService>();
             services.AddTransient<IVehicleService, VehicleService>();
             services.AddTransient<ICloudinaryService, CloudinaryService>();
+            services.AddTransient<IReportService, ReportService>();
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

@@ -1,0 +1,76 @@
+﻿@model MDMS.Web.BindingModels.Report.Create.ReportCreateBindingModel
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="bg-primary text-white font-weight-bold text-center p-3 w-30 mx-auto rounded">Create Custom Report</h1>
+<form method="post" action="/Administration/Report/Create" class="form border-primary-4 rounded p-3 w-30 mx-auto mt-3 bg-white">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @if (this.ViewData["error"] != null)
+    {
+        <ul>
+            <li class="text-danger">@this.ViewData["error"]</li>
+        </ul>
+    }
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="StartMonth" class="text-primary h5">Start Month</label>
+        </div>
+        <input type="number"
+               step="1"
+               class="form-control text-primary text-center"
+               id="StartMonth"
+               placeholder="@Model.StartMonth"
+               asp-for="StartMonth">
+        <span asp-validation-for="StartMonth" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="StartYear" class="text-primary h5">Start Year</label>
+        </div>
+        <input type="number"
+               step="1"
+               class="form-control text-primary text-center"
+               id="StartYear"
+               placeholder="@Model.StartYear"
+               asp-for="StartYear">
+        <span asp-validation-for="StartYear" class="text-danger"></span>
+    </div>
+    <hr class="hr-2 bg-primary mt-2 w-30" />
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="EndMonth" class="text-primary h5">End Month</label>
+        </div>
+        <input type="number"
+               step="1"
+               class="form-control text-primary text-center"
+               id="EndMonth"
+               placeholder="@Model.EndMonth"
+               asp-for="EndMonth">
+        <span asp-validation-for="EndMonth" class="text-danger"></span>
+    </div>
+    <div class="form-group mx-auto w-45">
+        <div class="d-flex justify-content-center">
+            <label asp-for="EndYear" class="text-primary h5">End Year</label>
+        </div>
+        <input type="number"
+               step="1"
+               class="form-control text-primary text-center"
+               id="EndYear"
+               placeholder="@Model.EndYear"
+               asp-for="EndYear">
+        <span asp-validation-for="EndYear" class="text-danger"></span>
+    </div>
+    <hr class="hr-2 bg-primary mt-2 w-30" />
+    <div class="d-flex justify-content-center mt-3">
+        <button class="btn btn-primary font-weight-bold">Create Report</button>
+    </div>
+</form>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+

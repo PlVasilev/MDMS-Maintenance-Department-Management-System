@@ -68,14 +68,27 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
             public string LastName { get; set; }
         }
 
-        public async Task OnGetAsync(string returnUrl = null)
+        public async Task<IActionResult> OnGetAsync(string returnUrl = null)
         {
-             await Task.Run(() => ReturnUrl = returnUrl);
-           
+            if (User.Identity.IsAuthenticated)
+            {
+                return LocalRedirect("/");
+            }
+
+            returnUrl = returnUrl ?? Url.Content("~/");
+
+            await Task.Run(() => ReturnUrl = returnUrl);
+
+            ReturnUrl = returnUrl;
+
+            return Page();
+
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+      
+
             returnUrl = "~/Identity/Account/Login";
             if (ModelState.IsValid)
             {
@@ -97,6 +110,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                         await _userManager.AddToRoleAsync(user, "User");
                         await _userManager.AddToRoleAsync(user, "Guest");
                         user.IsAuthorized = true;
+                        await _userManager.UpdateAsync(user);
                     }
                     else
                     {

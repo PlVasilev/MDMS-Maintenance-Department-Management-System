@@ -12,32 +12,47 @@ namespace MDMS.Data.Models
         //Name : Type + start Month Year + End Month Year
 
         [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime Start { get; set; }
+        [Range(1,12)]
+        public int StartMonth { get; set; }
 
         [Required]
-        [DataType(DataType.DateTime)]
-        public DateTime End { get; set; }
+        [Range(1900, 2200)]
+        public int StartYear { get; set; }
+
+        [Required]
+        [Range(1, 12)]
+        public int EndMonth { get; set; }
+
+        [Required]
+        [Range(1900, 2200)]
+        public int EndYear { get; set; }
 
         [Required]
         public string ReportTypeId { get; set; }
         public ReportType ReportType { get; set; }
 
-        public ICollection<InternalRepair> InternalRepairsInReport { get; set; } = new HashSet<InternalRepair>(); // => InternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
-        public ICollection<ExternalRepair> ExternalRepairsInReport { get; set; } = new HashSet<ExternalRepair>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
-        public ICollection<MdmsUser> Users { get; set; } = new HashSet<MdmsUser>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
-        public ICollection<Vehicle> Vehicles { get; set; } = new HashSet<Vehicle>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        public ICollection<MonthlySalary> MonthlySalariesInReport { get; set; } = new HashSet<MonthlySalary>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        public ICollection<Vehicle> VehiclesInReport { get; set; } = new HashSet<Vehicle>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
 
-        public decimal InternalRepairsConst => InternalRepairsInReport.Sum(z => z.InternalRepairParts.Sum(c => c.Part.Price * c.Quantity));
-        public decimal ExternalRepairsConst => ExternalRepairsInReport.Sum(z => z.LaborCost + z.PartsCost);
+        [Range(0,int.MaxValue, ErrorMessage = "Must be positive Number")]
+        public decimal ExternalRepairCosts { get; set; }
 
+        [Range(0, int.MaxValue, ErrorMessage = "Must be positive Number")]
+        public decimal InternalRepairCosts { get; set; }
 
-        public decimal BaseCost => (Users.Sum(x => x.BaseSalary) + Vehicles.Sum(x => x.Depreciation)) *
-                                   (End.Month - Start.Month - 1) + (12 * (End.Year - Start.Year - 1));
+        [Range(0, int.MaxValue, ErrorMessage = "Must be positive Number")]
+        public decimal MechanicsBaseCosts { get; set; }
+
+        [Range(0, int.MaxValue, ErrorMessage = "Must be positive Number")]
+        public decimal VehicleBaseCost { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (this.End >= this.Start)
+            if (EndYear < StartYear)
+            {
+                yield return new ValidationResult("The End of the Report must be after The Start");
+            }
+            else if (EndYear == StartYear && EndMonth < StartMonth)
             {
                 yield return new ValidationResult("The End of the Report must be after The Start");
             }

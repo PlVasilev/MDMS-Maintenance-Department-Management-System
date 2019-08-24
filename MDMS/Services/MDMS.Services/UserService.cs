@@ -23,11 +23,11 @@ namespace MDMS.Services
             _userManager = userManager;
             _context = context;
         }
-        public async Task<MDMSUserServiceModel> GetCurrentUserByUsername(string username) =>
-            await Task.Run((() => _userManager.Users.SingleOrDefault(u => username == u.UserName).To<MDMSUserServiceModel>()));
+        public async Task<MDMSUserServiceModel> GetCurrentUserByUsername(string username) => await Task.Run((() => 
+            _userManager.Users.SingleOrDefault(u => username == u.UserName).To<MDMSUserServiceModel>()));
 
-        public async Task<MDMSUserServiceModel> GetCurrentUserByEmail(string email) =>
-            await Task.Run((() => _userManager.Users.SingleOrDefault(u => email == u.Email).To<MDMSUserServiceModel>()));
+        public async Task<MDMSUserServiceModel> GetCurrentUserByEmail(string email) => await Task.Run((() =>
+            _userManager.Users.SingleOrDefault(u => email == u.Email).To<MDMSUserServiceModel>()));
 
 
         public async Task<bool> DeleteUser(string id)

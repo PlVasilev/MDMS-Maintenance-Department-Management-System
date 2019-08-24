@@ -4,14 +4,16 @@ using MDMS.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MDMS.Data.Migrations
 {
     [DbContext(typeof(MdmsDbContext))]
-    partial class MdmsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190824080740_Removed_ReportStart_ReportEnd_FromReport")]
+    partial class Removed_ReportStart_ReportEnd_FromReport
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -53,6 +55,8 @@ namespace MDMS.Data.Migrations
                     b.Property<string>("RepairedSystemId")
                         .IsRequired();
 
+                    b.Property<string>("ReportId");
+
                     b.Property<DateTime>("StartedOn");
 
                     b.Property<string>("VehicleId")
@@ -65,6 +69,8 @@ namespace MDMS.Data.Migrations
                     b.HasIndex("MdmsUserId");
 
                     b.HasIndex("RepairedSystemId");
+
+                    b.HasIndex("ReportId");
 
                     b.HasIndex("VehicleId");
 
@@ -116,6 +122,8 @@ namespace MDMS.Data.Migrations
                     b.Property<string>("RepairedSystemId")
                         .IsRequired();
 
+                    b.Property<string>("ReportId");
+
                     b.Property<DateTime>("StartedOn");
 
                     b.Property<string>("VehicleId")
@@ -129,6 +137,8 @@ namespace MDMS.Data.Migrations
                         .IsUnique();
 
                     b.HasIndex("RepairedSystemId");
+
+                    b.HasIndex("ReportId");
 
                     b.HasIndex("VehicleId");
 
@@ -266,13 +276,7 @@ namespace MDMS.Data.Migrations
 
                     b.Property<int>("EndYear");
 
-                    b.Property<decimal>("ExternalRepairCosts");
-
-                    b.Property<decimal>("InternalRepairCosts");
-
                     b.Property<bool>("IsDeleted");
-
-                    b.Property<decimal>("MechanicsBaseCosts");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -284,8 +288,6 @@ namespace MDMS.Data.Migrations
                     b.Property<int>("StartMonth");
 
                     b.Property<int>("StartYear");
-
-                    b.Property<decimal>("VehicleBaseCost");
 
                     b.HasKey("Id");
 
@@ -354,8 +356,6 @@ namespace MDMS.Data.Migrations
 
                     b.Property<string>("RegistrationNumber");
 
-                    b.Property<string>("ReportId");
-
                     b.Property<string>("VSN")
                         .IsRequired()
                         .HasMaxLength(17);
@@ -366,8 +366,6 @@ namespace MDMS.Data.Migrations
                     b.Property<string>("VehicleTypeId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ReportId");
 
                     b.HasIndex("VSN")
                         .IsUnique();
@@ -621,6 +619,10 @@ namespace MDMS.Data.Migrations
                         .HasForeignKey("RepairedSystemId")
                         .OnDelete(DeleteBehavior.Cascade);
 
+                    b.HasOne("MDMS.Data.Models.Report")
+                        .WithMany("ExternalRepairsInReport")
+                        .HasForeignKey("ReportId");
+
                     b.HasOne("MDMS.Data.Models.Vehicle", "Vehicle")
                         .WithMany("ExternalRepairs")
                         .HasForeignKey("VehicleId")
@@ -638,6 +640,10 @@ namespace MDMS.Data.Migrations
                         .WithMany("InternalRepairs")
                         .HasForeignKey("RepairedSystemId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("MDMS.Data.Models.Report")
+                        .WithMany("InternalRepairsInReport")
+                        .HasForeignKey("ReportId");
 
                     b.HasOne("MDMS.Data.Models.Vehicle", "Vehicle")
                         .WithMany("InternalRepairs")
@@ -687,10 +693,6 @@ namespace MDMS.Data.Migrations
 
             modelBuilder.Entity("MDMS.Data.Models.Vehicle", b =>
                 {
-                    b.HasOne("MDMS.Data.Models.Report")
-                        .WithMany("VehiclesInReport")
-                        .HasForeignKey("ReportId");
-
                     b.HasOne("MDMS.Data.Models.VehicleProvider", "VehicleProvider")
                         .WithMany("VehiclesBought")
                         .HasForeignKey("VehicleProviderId")

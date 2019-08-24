@@ -109,7 +109,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
             {
                 var result = await _vehicleService.Edit(vehicleEditBindingModel.To<VehicleServiceModel>());
 
-                if (result) return this.Redirect("/");
+                if (result) return this.Redirect($"/Vehicle/Details?name={vehicleEditBindingModel.Name}");
 
                 return this.RedirectToAction("Edit", vehicleEditBindingModel);
             }

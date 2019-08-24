@@ -31,7 +31,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
         public string LastName { get; set; }
         public decimal BaseSalary { get; set; }
         public decimal AdditionalOnHourPayment { get; set; }
-        public bool IsAuthorized { get; set; } = false;
+        public bool IsAuthorized { get; set; }
         public List<MonthlySalaryViewModel> Salaries { get; set; } = new List<MonthlySalaryViewModel>();
         public List<InternalRepairViewModel> InternalRepairs { get; set; } = new List<InternalRepairViewModel>();
         public List<ExternalRepairViewModel> ExternalRepairs { get; set; } = new List<ExternalRepairViewModel>();
