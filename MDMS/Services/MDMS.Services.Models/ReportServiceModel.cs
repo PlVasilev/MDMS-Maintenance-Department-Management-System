@@ -22,7 +22,6 @@ namespace MDMS.Services.Models
         public decimal InternalRepairCosts { get; set; }
         public decimal MechanicsBaseCosts { get; set; }
         public decimal VehicleBaseCost { get; set; }
-
         public ICollection<VehicleServiceModel> VehiclesInReport { get; set; } = new HashSet<VehicleServiceModel>();
         public ICollection<MonthlySalaryServiceModel> MonthlySalariesInReport { get; set; } = new HashSet<MonthlySalaryServiceModel>();
         

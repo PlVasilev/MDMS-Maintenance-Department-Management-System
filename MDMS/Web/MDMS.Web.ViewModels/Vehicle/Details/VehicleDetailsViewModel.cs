@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using AutoMapper;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
-using MDMS.Web.ViewModels.Part;
-using MDMS.Web.ViewModels.Repair;
 
 namespace MDMS.Web.ViewModels.Vehicle.Details
 {
@@ -20,8 +16,6 @@ namespace MDMS.Web.ViewModels.Vehicle.Details
         public string Model { get; set; }
 
         public string VSN { get; set; }
-
-        public string VehicleProviderId { get; set; }
 
         public string VehicleProviderName { get; set; }
 
@@ -39,11 +33,7 @@ namespace MDMS.Web.ViewModels.Vehicle.Details
         public List<VehicleDetailExternalRepairViewModel> ExternalRepairs { get; set; } = new List<VehicleDetailExternalRepairViewModel>();
 
         public bool MDMSUserServiceModelIsRepairing { get; set; }
-
         public string VehicleTypeName { get; set; }
-
-        public bool IsActive { get; set; } = false;
-
         public int Mileage { get; set; }
 
         public string RegistrationNumber { get; set; }

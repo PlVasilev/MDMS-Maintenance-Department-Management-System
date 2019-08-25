@@ -75,6 +75,7 @@ namespace MDMS.Data
                 .HasIndex(rt => rt.Name)
                 .IsUnique();
 
+
             builder.Entity<InternalRepairPart>()
                 .HasKey(k => new { k.InternalRepairId, k.PartId });
 

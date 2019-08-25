@@ -1,0 +1,183 @@
+﻿@model MDMS.Web.ViewModels.Report.Details.ReportDetailsViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-around row">
+    <div id="internalActiveRepair-data-holder" class="w-30 rounded border-primary-4 bg-white">
+        <h3 class="text-center">Report</h3>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h3 class="text-center">From: @Model.StartMonth/@Model.StartYear To: @Model.EndMonth/@Model.EndYear</h3>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h4 class="text-center">Base Salaries: $ @Model.MechanicsBaseCosts</h4>
+        <h4 class="text-center">Vehicle Base Cost: $ @Model.VehicleBaseCost</h4>
+        <h4 class="text-center">Internal Repairs Cost: $ @Model.InternalRepairCosts</h4>
+        <h4 class="text-center">External Repairs Cost: $ @Model.ExternalRepairCosts</h4>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        <h3 class="text-center">Total Cost: $ @(Model.ExternalRepairCosts + Model.MechanicsBaseCosts + Model.InternalRepairCosts + @Model.VehicleBaseCost)</h3>
+        <hr class="hr-2 bg-primary mt-2 w-50" />
+        @if (@Model.MonthlySalariesInReport.Count > 0)
+        {
+            <h4 class="text-center">Base Salaries sum: @Model.MechanicsBaseCosts</h4>
+            <table class="table table-sm table-hover bg-white">
+                <thead>
+                    <tr class="row">
+                        <th scope="col" class="col-md-3 text-primary text-center">Slip Name</th>
+                        <th scope="col" class="col-md-2 text-primary text-center">First Name</th>
+                        <th scope="col" class="col-md-2 text-primary text-center">Last Name</th>
+                        <th scope="col" class="col-md-1 text-primary text-center">Hours</th>
+                        <th scope="col" class="col-md-2 text-primary text-center">Pay/h</th>
+                        <th scope="col" class="col-md-2 text-primary text-center">Base Pay</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @for (int i = 0; i < @Model.MonthlySalariesInReport.Count; i++)
+                    {
+                        <tr class="row">
+                            <td class="col-md-3 text-primary text-center">@Model.MonthlySalariesInReport[i].Name</td>
+                            <td class="col-md-2 text-primary text-center">@Model.MonthlySalariesInReport[i].MechanicFirstName</td>
+                            <td class="col-md-2 text-primary text-center">@Model.MonthlySalariesInReport[i].MechanicLastName</td>
+                            <td class="col-md-1 text-primary text-center">@Model.MonthlySalariesInReport[i].HoursWorked</td>
+                            <td class="col-md-2 text-primary text-center">@Model.MonthlySalariesInReport[i].AdditionalOnHourPayment</td>
+                            <td class="col-md-2 text-primary text-center">@Model.MonthlySalariesInReport[i].BaseSalary</td>
+                        </tr>
+                    }
+                    <tr class="row">
+                        <td class="col-md-10 text-primary text-center"></td>
+                        <td class="col-md-2 text-primary text-center font-weight-bold">@Model.MonthlySalariesInReport.Sum(x => x.BaseSalary)</td>
+                    </tr>
+                </tbody>
+            </table>
+            <hr class="hr-2 bg-primary mt-2 w-90" />
+        }
+        else
+        {
+            <h3 class="text-center">There are no Salaries in this period.</h3>
+        }
+    </div>
+
+    <div id="internalActiveRepairParts-data-holder" class="w-65 rounded border-primary-4 bg-white">
+        <h3 class="text-center mt-2">Vehicles</h3>
+        <hr class="hr-2 bg-primary mt-2 w-90" />
+        <div id="repairs" class="mt-3">
+            @if (@Model.VehiclesInReport.Count <= 0)
+            {
+                <h3 class="text-center">There are no Vehicles in this period.</h3>
+            }
+            else
+            {
+                foreach (var vehicle in @Model.VehiclesInReport)
+                {
+                    
+                    <div class="d-flex justify-content-around row">
+                        <div class="image-holder d-flex justify-content-center">
+                            <a href="/Vehicle/Details/@vehicle.Name">
+                                <img class="img-thumbnail product-image" src="@vehicle.Picture" alt="...">
+                            </a>
+                        </div>
+                        <div> 
+                            @if (vehicle.IsDeleted)
+                            {
+                                <h3 class="text-center">@vehicle.Make @vehicle.Model @vehicle.VSN</h3>
+                            }
+                            else
+                            {
+                                <a href="/Vehicle/Details?name=@vehicle.Name">
+                                    <h4 class="text-center">@vehicle.Make @vehicle.Model @vehicle.VSN</h4>
+                                </a>
+                            }
+                            <h4 class="text-center">Type: @vehicle.VehicleTypeName Acquired By: @vehicle.VehicleProviderName</h4>
+                            <h4 class="text-center">Price: $ @vehicle.Price.ToString("F2") Depreciation: $ @vehicle.Depreciation.ToString("F2")</h4>
+                            <h4 class="text-center">Manufactured On: @vehicle.ManufacturedOn.ToString("dd/MM/yyyy") Acquired On: @vehicle.AcquiredOn.ToString("dd/MM/yyyy")</h4>
+                            <h3 class="text-center text-primary">Total Depreciation for this report: @(vehicle.Depreciation * Model.ReportDurationInMonths) </h3>
+                        </div>
+                    </div>
+                    <hr class="hr-2 bg-primary mt-2 w-50" />
+                    if (vehicle.InternalRepairs.Count > 0)
+                    {
+                        <h4 class="text-center">Internal Repairs sum: @vehicle.InternalRepairs.Sum(x => x.RepairCost)</h4>
+                        <table class="table table-sm table-hover bg-white">
+                            <thead>
+                                <tr class="row">
+                                    <th scope="col" class="col-md-6 text-primary text-center">Name</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Mechanic</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Rep System</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Mileage</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Labor Cost</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Parts Cost</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Repair Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var internalRep in vehicle.InternalRepairs)
+                                {
+                                    <tr class="row">
+
+                                        <td class="col-md-6 text-primary text-center"><a href="/Repair/InternalDetails?name=@internalRep.Name">@internalRep.Name</a></td>
+                                        <td class="col-md-1 text-primary text-center">@internalRep.MdmsUserUsername</td>
+                                        <td class="col-md-1 text-primary text-center">@internalRep.RepairedSystemName</td>
+                                        <td class="col-md-1 text-primary text-center">@internalRep.Mileage</td>
+                                        <td class="col-md-1 text-primary text-center">@internalRep.LaborCost</td>
+                                        <td class="col-md-1 text-primary text-center">@internalRep.PartsCost</td>
+                                        <td class="col-md-1 text-primary text-center">@internalRep.RepairCost</td>
+
+                                    </tr>
+                                }
+                                <tr class="row">
+                                    <td class="col-md-9 text-primary text-center"></td>
+                                    <td class="col-md-1 text-primary text-center font-weight-bold">@vehicle.InternalRepairs.Sum(x => x.LaborCost)</td>
+                                    <td class="col-md-1 text-primary text-center font-weight-bold">@vehicle.InternalRepairs.Sum(x => x.PartsCost)</td>
+                                    <td class="col-md-1 text-primary text-center font-weight-bold">@vehicle.InternalRepairs.Sum(x => x.RepairCost)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                    if (vehicle.ExternalRepairs.Count > 0)
+                    {
+                        <h4 class="text-center">External Repairs sum: @vehicle.ExternalRepairs.Sum(x => x.RepairCost)</h4>
+                        <table class="table table-sm table-hover bg-white">
+                            <thead>
+                                <tr class="row">
+                                    <th scope="col" class="col-md-6 text-primary text-center">Name</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Service</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Rep System</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Mileage</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Labor Cost</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Parts Cost</th>
+                                    <th scope="col" class="col-md-1 text-primary text-center">Repair Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var externalRep in vehicle.ExternalRepairs)
+                                {
+                                    <tr class="row">
+                                        <td class="col-md-6 text-primary text-center"><a href="/Repair/ExternalDetails?name=@externalRep.Name">@externalRep.Name     </a></td>
+                                        <td class="col-md-1 text-primary text-center">@externalRep.ExternalRepairProviderName</td>
+                                        <td class="col-md-1 text-primary text-center">@externalRep.RepairedSystemName</td>
+                                        <td class="col-md-1 text-primary text-center">@externalRep.Mileage</td>
+                                        <td class="col-md-1 text-primary text-center">@externalRep.LaborCost</td>
+                                        <td class="col-md-1 text-primary text-center">@externalRep.PartsCost</td>
+                                        <td class="col-md-1 text-primary text-center">@externalRep.RepairCost</td>
+                                    </tr>
+                                }
+                                <tr class="row">
+                                    <td class="col-md-9 text-primary text-center"></td>
+                                    <td class="col-md-1 text-primary text-center font-weight-bold">@vehicle.ExternalRepairs.Sum(x => x.LaborCost)</td>
+                                    <td class="col-md-1 text-primary text-center font-weight-bold">@vehicle.ExternalRepairs.Sum(x => x.PartsCost)</td>
+                                    <td class="col-md-1 text-primary text-center font-weight-bold">@vehicle.ExternalRepairs.Sum(x => x.RepairCost)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <hr class="hr-2 bg-primary mt-2 w-90" />
+                    }
+                }
+            }
+        </div>
+    </div>
+</div>
+
+

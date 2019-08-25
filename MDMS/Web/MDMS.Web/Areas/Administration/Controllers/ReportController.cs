@@ -6,6 +6,7 @@ using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using MDMS.Web.BindingModels.Report.Create;
 using MDMS.Web.ViewModels.Report.All;
+using MDMS.Web.ViewModels.Report.Details;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MDMS.Web.Areas.Administration.Controllers
@@ -45,6 +46,18 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpGet(Name = "All")]
         public async Task<IActionResult> All() => await Task.Run(() => 
             this.View(_reportService.GetAllReports().To<ReportAllViewModel>().ToList()));
+
+        [HttpGet(Name = "Details")]
+        public async Task<IActionResult> Details(string name) => await Task.Run(() =>
+            this.View(_reportService.GetReportDetails(name).Result.To<ReportDetailsViewModel>()));
+
+        [HttpGet(Name = "Delete")]
+        public async Task<IActionResult> Delete(string name)
+        {
+            await _reportService.DeleteReport(name);
+            return RedirectToAction("All");
+        }
+        
 
 
     }
