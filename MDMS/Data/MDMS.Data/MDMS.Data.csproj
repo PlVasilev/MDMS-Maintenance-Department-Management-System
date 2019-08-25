@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190807155937_added_MDMSUserId_column_to_Repair.cs" />
     <Compile Remove="Migrations\20190807155937_added_MDMSUserId_column_to_Repair.Designer.cs" />
+    <Compile Remove="Migrations\20190825204230_Added_DeleteBehaviorRestrict_To_Report.cs" />
+    <Compile Remove="Migrations\20190825204230_Added_DeleteBehaviorRestrict_To_Report.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

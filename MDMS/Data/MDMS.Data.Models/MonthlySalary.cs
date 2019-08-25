@@ -25,13 +25,7 @@ namespace MDMS.Data.Models
         [Required]
         [Range(typeof(decimal), "0.00", "999999999")]
         public decimal TotalSalary { get; set; }
-        //=> Mechanic.BaseSalary +
-        //                              ((decimal)Mechanic.InternalRepairs
-        //                                   .Where(x => x.FinishedOn != null &&
-        //                                               x.FinishedOn.Value.Month == Month &&
-        //                                               x.FinishedOn.Value.Year == Year)
-        //                                   .Sum(x => x.HoursWorked) * (decimal)Mechanic.AdditionalOnHourPayment);
-        
+
         [Range(0, 1000)]
         public double HoursWorked { get; set; }
     }
