@@ -61,5 +61,8 @@ namespace MDMS.Services
             var result = await _context.SaveChangesAsync();
             return result > 0;
         }
+
+        public IQueryable<ReportServiceModel> GetAllReports() => 
+            _context.Reports.Where(x => x.IsDeleted == false).OrderBy(x => x.Name).To<ReportServiceModel>();
     }
 }

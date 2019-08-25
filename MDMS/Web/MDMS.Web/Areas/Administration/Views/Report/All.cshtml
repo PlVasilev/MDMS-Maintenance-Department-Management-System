@@ -1,0 +1,89 @@
+﻿@model List<MDMS.Web.ViewModels.Report.All.ReportAllViewModel>
+@{
+    ViewData["Title"] = "All";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="d-flex justify-content-between">
+    <div id="products-search-bar-holder" class="form-group d-flex justify-content-between w-50">
+        <input type="text" class="form-control text-primary" id="products-search-bar" name="search" placeholder="Search..." />
+    </div>
+    <div id="sort-holder" class="form-group w-40 d-flex justify-content-between">
+        <label for="sort" class="text-primary font-weight-bold w-30 h4 mt-1 text-bordered text-right">Order By: </label>
+        <select id="sort" class="form-control text-primary pl-2 ml-3 w-70">
+            <option value="none" selected>None</option>
+            <option value="none">Price (lowest to highest)</option>
+            <option value="none">Price (highest to lowest)</option>
+            <option value="none">Date of Manufacturing (oldest to newest)</option>
+            <option value="none">Date of Manufacturing (newest to oldest)</option>
+        </select>
+    </div>
+</div>
+<hr class="hr-2 bg-primary">
+<div id="products" class="mt-3">
+    <table class="table table-sm table-hover bg-white">
+        <thead>
+            <tr class="row">
+                <th scope="col" class="col-lg-1 text-primary text-center">#</th>
+                <th scope="col" class="col-lg-2 text-primary text-center">Name</th>
+                <th scope="col" class="col-lg-1 text-primary text-center">Report Type</th>
+                <th scope="col" class="col-lg-1 text-primary text-center">Started From</th>
+                <th scope="col" class="col-lg-1 text-primary text-center">Ended At</th>
+                <th scope="col" class="col-lg-1 text-primary text-right">Sum Salaries</th>
+                <th scope="col" class="col-lg-1 text-primary text-right">Sum Depreciation</th>
+                <th scope="col" class="col-lg-1 text-primary text-right">Cost Internal Rep</th>
+                <th scope="col" class="col-lg-1 text-primary text-right">Cost External Rep</th>
+                <th scope="col" class="col-lg-1 text-primary text-center">Details</th>
+                <th scope="col" class="col-lg-1 text-primary text-center">Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < @Model.Count; i++)
+            {
+
+                <tr class="product row">
+                    <td class="col-lg-1 text-primary text-center">@(i + 1)</td>
+                    <td class="col-lg-2 text-primary text-center">@Model[i].Name</td>
+                    <td class="col-lg-1 text-primary text-center">@Model[i].ReportTypeName</td>
+                    <td class="col-lg-1 text-primary text-center">@Model[i].StartMonth @Model[i].StartYear</td>
+                    <td class="col-lg-1 text-primary text-center">@Model[i].EndMonth @Model[i].EndYear</td>
+                    <td class="col-lg-1 text-primary text-right">@Model[i].MechanicsBaseCosts</td>
+                    <td class="col-lg-1 text-primary text-right">@Model[i].VehicleBaseCost</td>
+                    <td class="col-lg-1 text-primary text-right">@Model[i].InternalRepairCosts</td>
+                    <td class="col-lg-1 text-primary text-right">@Model[i].ExternalRepairCosts</td>
+                    <td class="col-lg-1 text-primary text-center">
+                        <a href="/Report/Details?name=@Model[i].Name">Details</a>
+                    </td>
+                    <td class="col-lg-1 text-primary text-center">
+                        <a href="/Report/Delete?name=@Model[i].Name">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script>
+    $('#products-search-bar').on("change paste keyup", function () {
+        $('.product').show();
+
+        let searchValue = $('#products-search-bar').val();
+
+        for (let elem of $('.product')) {
+            let productName = $($(elem).children()[1]).text();
+
+            if (!productName.toLowerCase().includes(searchValue.toLowerCase())) {
+                $(elem).hide();
+            }
+        }
+    });
+</script>
+
+
+
+<script>
+    $('#complete-order-button').click(function () {
+        $('#order-form').submit();
+    });
+</script>
+
