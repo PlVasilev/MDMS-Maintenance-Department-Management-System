@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using AutoMapper;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;

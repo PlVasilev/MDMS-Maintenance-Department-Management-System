@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using MDMS.Data.Models;
+using MDMS.GlobalConstants;
 
 namespace Mdms.Data.Models
 {
@@ -14,23 +15,23 @@ namespace Mdms.Data.Models
         public bool IsRepairing { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(ModelConstants.NameLength, ErrorMessage =  ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthString)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [MaxLength(ModelConstants.NameLengthSm, ErrorMessage = ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthStringSm)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(30)]
+        [MaxLength(ModelConstants.NameLengthSm, ErrorMessage = ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthStringSm)]
         public string LastName { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.00", "1000000")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal BaseSalary { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.00", "1000")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal AdditionalOnHourPayment { get; set; }
 
         public bool IsDeleted { get; set; } = false;

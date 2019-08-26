@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Infrastucture\GlobalConstants\MDMS.GlobalConstants.csproj" />
     <ProjectReference Include="..\..\Services\MDMS.Services.Mapping\MDMS.Services.Mapping.csproj" />
     <ProjectReference Include="..\..\Services\MDMS.Services.Models\MDMS.Services.Models.csproj" />
   </ItemGroup>

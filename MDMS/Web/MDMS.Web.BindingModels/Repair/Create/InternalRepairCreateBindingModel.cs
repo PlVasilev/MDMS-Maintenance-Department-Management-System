@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using AutoMapper;
+using MDMS.GlobalConstants;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 
@@ -11,7 +9,7 @@ namespace MDMS.Web.BindingModels.Repair.Create
    public class InternalRepairCreateBindingModel : IMapFrom<VehicleServiceModel>, IMapTo<InternalRepairServiceModel>,IHaveCustomMappings
     {
         [Required]
-        [MaxLength(1000)]
+        [MaxLength(ModelConstants.NameLengthLg, ErrorMessage = ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthStringLg)]
         public string Description { get; set; }
 
         [Required]

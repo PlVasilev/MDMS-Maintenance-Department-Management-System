@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using MDMS.GlobalConstants;
 
 namespace MDMS.Web.BindingModels.Repair.Active
 {
@@ -10,7 +8,7 @@ namespace MDMS.Web.BindingModels.Repair.Active
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(1000)]
+        [MaxLength(ModelConstants.NameLengthLg, ErrorMessage = ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthStringLg)]
         public string Description { get; set; }
     }
 }

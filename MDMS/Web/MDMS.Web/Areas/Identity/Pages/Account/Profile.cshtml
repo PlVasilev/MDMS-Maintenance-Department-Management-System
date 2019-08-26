@@ -102,7 +102,7 @@
                                     {
                                         <td class="col-md-1 text-primary text-center">@Model.ExternalRepairs[i].FinishedOn?.ToString("dd/MM/yy")</td>
                                     }
-                                    <td class="col-lg-1" style="text-align: center">
+                                    <td class="col-lg-1 text-primary text-center">
                                         <a href="/Repair/ExternalDetails?name=@Model.ExternalRepairs[i].Name">Details</a>
                                     </td>
                                 </tr>
@@ -126,7 +126,7 @@
                                         <td class="col-md-1 text-primary text-center">@Model.InternalRepairs[i].FinishedOn?.ToString("dd/MM/yy")</td>
                                     }
 
-                                    <td class="col-lg-1">
+                                    <td class="col-lg-1  text-primary text-center">
                                         <a href="/Repair/InternalDetails?name=@Model.InternalRepairs[i].Name">Details</a>
                                     </td>
                                 </tr>

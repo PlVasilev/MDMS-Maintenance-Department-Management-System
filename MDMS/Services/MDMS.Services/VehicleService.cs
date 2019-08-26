@@ -21,7 +21,6 @@ namespace MDMS.Services
         {
             if (_context.Vehicles.Any(v => v.VSN == vehicleServiceModel.VSN)) return false;
             
-
             Vehicle vehicle = AutoMapper.Mapper.Map<Vehicle>(vehicleServiceModel);
             vehicle.VehicleProvider = await GetVehicleProviderByName(vehicleServiceModel.VehicleProvider.Name);
             vehicle.VehicleType = await GetVehicleTypeByName(vehicleServiceModel.VehicleType.Name);

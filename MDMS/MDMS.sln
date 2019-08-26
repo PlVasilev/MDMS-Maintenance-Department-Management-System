@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDMS.Data", "Data\MDMS.Data
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{A3139AC8-E92C-4AC8-B408-A3E32117C369}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GlobalConstants", "Infrastucture\GlobalConstants\GlobalConstants.csproj", "{910F2238-C263-4FD1-9E8A-616DD6C9C386}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDMS.GlobalConstants", "Infrastucture\GlobalConstants\MDMS.GlobalConstants.csproj", "{910F2238-C263-4FD1-9E8A-616DD6C9C386}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MDMS.Services", "Services\MDMS.Services\MDMS.Services.csproj", "{81F943D1-BF65-4F92-B9E9-0FFB5A1931D4}"
 EndProject

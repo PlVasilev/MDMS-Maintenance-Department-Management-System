@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Mdms.Data.Models;
 using MDMS.Services;
 using MDMS.Services.Mapping;
-using MDMS.Services.Models;
 using MDMS.Web.ViewModels.Vehicle.All;
 using MDMS.Web.ViewModels.Vehicle.Details;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace MDMS.Web.Controllers
 {
@@ -36,10 +32,7 @@ namespace MDMS.Web.Controllers
             var user = await _userManager.GetUserAsync(User);
             var vehicleDetails = _vehicleService.GetVehicleByName(name).To<VehicleDetailsViewModel>();
             vehicleDetails.MDMSUserServiceModelIsRepairing = user.IsRepairing;
-
             return this.View(vehicleDetails);
         }
-
-
     }
 }

@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
+using MDMS.GlobalConstants;
 using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using MDMS.Web.BindingModels.Vehicle.Create;
-using MDMS.Web.ViewModels.Vehicle.Details;
 using MDMS.Web.ViewModels.Vehicle.Edit;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,11 +38,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] =
-                    "Vehicle Provider whit that name already Exists, change Vehicle provider name.";
+                this.ViewData["error"] = ControllerConstants.VehicleProviderCreateErrorMessage;
                 return this.View("Provider/Create", vehicleProviderBindingModel);
             }
-
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.View("Provider/Create", vehicleProviderBindingModel);
         }
 
@@ -63,10 +62,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "Vehicle Type whit that name already Exists, change Vehicle provider name.";
+                this.ViewData["error"] = ControllerConstants.VehicleTypeCreateErrorMessage;
                 return this.View("Type/Create", vehicleTypeCreateBindingModel);
             }
-
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.View("Type/Create", vehicleTypeCreateBindingModel);
         }
 
@@ -90,10 +89,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "Vehicle VSN already Exists, change VSN.";
+                this.ViewData["error"] = ControllerConstants.VehicleCreateErrorMessage;
                 return this.View(vehicleCreateBindingModel);
             }
-
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.View(vehicleCreateBindingModel);
         }
 
@@ -109,10 +108,15 @@ namespace MDMS.Web.Areas.Administration.Controllers
             {
                 var result = await _vehicleService.Edit(vehicleEditBindingModel.To<VehicleServiceModel>());
 
-                if (result) return this.Redirect($"/Vehicle/Details?name={vehicleEditBindingModel.Name}");
+                if (result)
+                {
+                    this.ViewData["error"] = ControllerConstants.VehicleEditErrorMessage;
+                    return this.Redirect($"/Vehicle/Details?name={vehicleEditBindingModel.Name}");
+                }
 
                 return this.RedirectToAction("Edit", vehicleEditBindingModel);
             }
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.RedirectToAction("Edit", vehicleEditBindingModel);
         }
 

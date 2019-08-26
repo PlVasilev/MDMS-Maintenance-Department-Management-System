@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MDMS.GlobalConstants;
 using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
@@ -36,7 +37,6 @@ namespace MDMS.Web.Controllers
             {
                 part.RepairName = name;
             }
-
             return View(listOfParts);
         }
 
@@ -48,10 +48,14 @@ namespace MDMS.Web.Controllers
         [HttpPost(Name = "AddParts")]
         public async Task<IActionResult> AddParts(List<InternalRepairRepairPartBindingModel> internalRepairAddPartsBindingModel)
         {
-            if (!ModelState.IsValid) return this.View(internalRepairAddPartsBindingModel);
+            if (!ModelState.IsValid)
+            {
+                this.ViewData["error"] = ControllerConstants.InputErrorMessage;
+                return this.View(internalRepairAddPartsBindingModel);
+            }
             if (!internalRepairAddPartsBindingModel.Any(x => x.Quantity > 0))
             {
-                this.ViewData["error"] = "You must add at least One part!";
+                this.ViewData["error"] = ControllerConstants.PartsAddErrorMessage;
                 return this.View(internalRepairAddPartsBindingModel);
             }
 

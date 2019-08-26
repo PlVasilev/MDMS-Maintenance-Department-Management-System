@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using MDMS.GlobalConstants;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 
@@ -13,11 +14,11 @@ namespace MDMS.Web.BindingModels.User.Payment
         public string Username { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.00", "1000000", ErrorMessage = "Must be positive number.")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal BaseSalary { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.00", "1000000", ErrorMessage = "Must be positive number.")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal AdditionalOnHourPayment { get; set; }
     }
 }

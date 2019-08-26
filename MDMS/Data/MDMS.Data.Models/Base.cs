@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using MDMS.GlobalConstants;
 
 namespace MDMS.Data.Models
 {
@@ -11,7 +9,7 @@ namespace MDMS.Data.Models
         public string Id { get; set; }
 
         [Required]
-        [MaxLength(100)]
+        [MaxLength(ModelConstants.NameLength, ErrorMessage = ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthString)]
         public string Name { get; set; }
 
         public bool IsDeleted { get; set; } = false;

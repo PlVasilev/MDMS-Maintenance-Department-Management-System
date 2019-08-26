@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using Mdms.Data.Models;
+using MDMS.GlobalConstants;
 
 namespace MDMS.Data.Models
 {
     public class InternalRepair : Repair
     {
-        [Range(0, int.MaxValue)]
+        [Range(ModelConstants.DoublePositiveMin, ModelConstants.DoubleMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public double HoursWorked { get; set; }
 
         public ICollection<InternalRepairPart> InternalRepairParts { get; set; } = new HashSet<InternalRepairPart>();

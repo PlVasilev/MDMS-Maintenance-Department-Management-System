@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Data;
 using Mdms.Data.Models;
@@ -99,6 +96,5 @@ namespace MDMS.Services
         }
 
         public IQueryable<MDMSUserServiceModel> GetAllUsers() => _context.Users.To<MDMSUserServiceModel>();
-
     }
 }

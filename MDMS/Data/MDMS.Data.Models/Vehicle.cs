@@ -1,33 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Data;
-using System.Text;
+using MDMS.GlobalConstants;
 
 namespace MDMS.Data.Models
 {
     public class Vehicle : Base, IValidatableObject
     {
         [Required]
-        [MaxLength(50)]
+        [MaxLength(ModelConstants.NameLengthSm, ErrorMessage = ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthStringSm)]
         public string Make { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(ModelConstants.NameLengthSm, ErrorMessage = ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthStringSm)]
         public string Model { get; set; }
 
         [Required]
-        [MaxLength(17)]
+        [RegularExpression(ModelConstants.RegExVsn, ErrorMessage = ModelConstants.RegExVsnMessage)]
         public string VSN { get; set; }
 
         [Required]
         public string VehicleProviderId { get; set; }
         public VehicleProvider VehicleProvider { get; set; }
 
-        [Range(1, 999999999, ErrorMessage = "Mileage must be a positive number.")]
+        [Range(ModelConstants.IntPositiveMin, ModelConstants.IntMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public int Mileage { get; set; }
 
-        [RegularExpression("[A-Z0-9]{3,8}")]
+        [RegularExpression(ModelConstants.RegExVehRegNumber, ErrorMessage = ModelConstants.RegExRegNumberMessage)]
         public string RegistrationNumber { get; set; }
 
         public bool IsInRepair { get; set; } = false;
@@ -36,11 +35,11 @@ namespace MDMS.Data.Models
         public DateTime AcquiredOn { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.00", "999999999")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal Price { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.00", "999999999")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal Depreciation { get; set; }
 
         [Required]
@@ -60,7 +59,7 @@ namespace MDMS.Data.Models
         {
             if (ManufacturedOn >= AcquiredOn)
             {
-                yield return new ValidationResult("The Vehicle Acquired must be after Manufactured!");
+                yield return new ValidationResult(ModelConstants.VehicleAcquiredAfterManufactured);
             }
         }
     }

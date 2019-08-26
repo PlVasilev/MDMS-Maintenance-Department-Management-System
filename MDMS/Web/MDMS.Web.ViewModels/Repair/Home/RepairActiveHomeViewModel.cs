@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using AutoMapper;
-using MDMS.Services.Mapping;
-using MDMS.Services.Models;
-using MDMS.Web.ViewModels.Part;
+﻿using System.Collections.Generic;
 
 namespace MDMS.Web.ViewModels.Repair.Home
 {
@@ -12,7 +6,5 @@ namespace MDMS.Web.ViewModels.Repair.Home
     {
         public List<ExternalRepairActiveHomeViewModel> ExternalRepairActiveHomeViewModels = new List<ExternalRepairActiveHomeViewModel>();
         public List<InternalRepairActiveHomeViewModel> InternalRepairActiveHomeViewModels = new List<InternalRepairActiveHomeViewModel>();
-
-
     }
 }

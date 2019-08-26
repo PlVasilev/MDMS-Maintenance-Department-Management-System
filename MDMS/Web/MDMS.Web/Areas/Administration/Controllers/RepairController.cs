@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mdms.Data.Models;
+using MDMS.GlobalConstants;
 using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
@@ -41,9 +42,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "Repair Provider whit that name already Exists, change Repair provider name.";
+                this.ViewData["error"] = ControllerConstants.RepairProviderCreateErrorMessage;
                 return this.View("Provider/Create", externalRepairProviderBindingModel);
             }
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.View("Provider/Create", externalRepairProviderBindingModel);
         }
 
@@ -68,9 +70,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "Repair with that name already exists.";
+                this.ViewData["error"] = ControllerConstants.RepairCreateErrorMessage;
                 return this.View(externalRepairCreateBindingModel);
             }
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.View(externalRepairCreateBindingModel);
         }
 
@@ -82,8 +85,8 @@ namespace MDMS.Web.Areas.Administration.Controllers
         public async Task<IActionResult> ExternalActiveFinish(string name)
         {
           var repair = await _repairService.GetExternalActiveRepair(name);
-          var viewrepair = AutoMapper.Mapper.Map<ExternalRepairFinishBindingModel>(repair);
-          return this.View(viewrepair);
+          var viewRepair = AutoMapper.Mapper.Map<ExternalRepairFinishBindingModel>(repair);
+          return this.View(viewRepair);
         }
 
         [HttpPost(Name = "ExternalActiveFinish")]
@@ -92,13 +95,14 @@ namespace MDMS.Web.Areas.Administration.Controllers
            
             if (!ModelState.IsValid)
             {
-                this.ViewData["error"] = "There was an error with your Request.";
+                this.ViewData["error"] = ControllerConstants.InputErrorMessage;
                 return this.View(externalRepairFinishBindingModel);
             }
 
             var result = await _repairService.FinalizeExternal(externalRepairFinishBindingModel.To<ExternalRepairServiceModel>());
             if (result) return this.Redirect("/");
-            
+
+            this.ViewData["error"] = ControllerConstants.RepairFinalizeErrorMessage;
             return this.View(externalRepairFinishBindingModel);
         }
     }

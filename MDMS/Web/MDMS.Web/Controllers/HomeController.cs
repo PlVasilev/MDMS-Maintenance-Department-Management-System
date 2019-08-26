@@ -40,7 +40,6 @@ namespace MDMS.Web.Controllers
             repairActiveHomeViewModel.ExternalRepairActiveHomeViewModels = allExternalActiveRepairs;
             repairActiveHomeViewModel.InternalRepairActiveHomeViewModels = allInternalActiveRepairs;
 
-
             return this.View(repairActiveHomeViewModel);
         }
 

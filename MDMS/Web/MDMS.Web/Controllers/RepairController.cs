@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Mdms.Data.Models;
+using MDMS.GlobalConstants;
 using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
-using MDMS.Web.BindingModels.Repair;
 using MDMS.Web.BindingModels.Repair.Active;
 using MDMS.Web.BindingModels.Repair.Create;
-using MDMS.Web.BindingModels.Repair.Finish;
-using MDMS.Web.ViewModels.Repair;
 using MDMS.Web.ViewModels.Repair.All;
 using MDMS.Web.ViewModels.Repair.Details;
 using Microsoft.AspNetCore.Identity;
@@ -52,9 +47,10 @@ namespace MDMS.Web.Controllers
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "User has already started a repair or Repair with that name already exists.";
+                this.ViewData["error"] = ControllerConstants.RepairCreateErrorMessage;
                 return this.View(internalRepairCreateBindingModel);
             }
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.View(internalRepairCreateBindingModel);
         }
 
@@ -67,9 +63,15 @@ namespace MDMS.Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                this.ViewData["error"] = ControllerConstants.InputErrorMessage;
                 return RedirectToAction("InternalActive");
             }
-            await _repairService.FinalizeInternal(internalRepairActiveBindingModel.Id, internalRepairActiveBindingModel.HoursWorked);
+            var result = await _repairService.FinalizeInternal(internalRepairActiveBindingModel.Id, internalRepairActiveBindingModel.HoursWorked);
+            if (!result)
+            {
+                this.ViewData["error"] = ControllerConstants.RepairFinalizeErrorMessage;
+                return RedirectToAction("InternalActive");
+            }
             return Redirect("/");
         }
 

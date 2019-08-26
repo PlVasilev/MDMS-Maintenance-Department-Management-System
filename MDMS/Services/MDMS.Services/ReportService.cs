@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Data;
@@ -34,9 +33,9 @@ namespace MDMS.Services
             report.VehiclesInReport = GetVehiclesInReport(reportServiceModel.StartMonth, reportServiceModel.StartYear,
                 reportServiceModel.EndMonth, reportServiceModel.EndYear);
 
-            report.MonthlySalariesInReport = _context.MonthlySalaries
-                .Where(x => (x.Year >= reportServiceModel.StartYear && x.Year <= reportServiceModel.EndYear) && 
-                            (x.Month >= reportServiceModel.StartMonth && x.Month <= reportServiceModel.EndMonth)).ToList();
+            report.MonthlySalariesInReport = GetSalariesInReport(reportServiceModel.StartMonth,
+                reportServiceModel.StartYear,
+                reportServiceModel.EndMonth, reportServiceModel.EndYear);
 
             report.MechanicsBaseCosts = report.MonthlySalariesInReport.Sum(x => x.BaseSalary);
             report.VehicleBaseCost = report.VehiclesInReport.Sum(x => x.Depreciation);
@@ -94,6 +93,13 @@ namespace MDMS.Services
                 .ToList();
 
            return vehicles;
+        }
+
+        private ICollection<MonthlySalary> GetSalariesInReport(int startMonth, int startYear, int endMonth, int endYear)
+        {
+            return _context.MonthlySalaries
+                .Where(x => (x.Year >= startYear && x.Year <= endYear) &&
+                            (x.Month >= startMonth && x.Month <= endMonth)).ToList();
         }
     }
 }

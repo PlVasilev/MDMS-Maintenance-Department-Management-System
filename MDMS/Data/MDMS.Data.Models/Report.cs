@@ -1,60 +1,56 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using Mdms.Data.Models;
+using MDMS.GlobalConstants;
 
 namespace MDMS.Data.Models
 {
    public class Report : Base , IValidatableObject
     {
-        //Name : Type + start Month Year + End Month Year
-
+        
         [Required]
-        [Range(1,12)]
+        [Range(ModelConstants.MonthMin, ModelConstants.MonthMax, ErrorMessage = ModelConstants.MonthRangeErrorMessage)]
         public int StartMonth { get; set; }
 
         [Required]
-        [Range(1900, 2200)]
+        [Range(ModelConstants.YearMin, ModelConstants.YearMax, ErrorMessage = ModelConstants.YearRangeErrorMessage)]
         public int StartYear { get; set; }
 
         [Required]
-        [Range(1, 12)]
+        [Range(ModelConstants.MonthMin, ModelConstants.MonthMax, ErrorMessage = ModelConstants.MonthRangeErrorMessage)]
         public int EndMonth { get; set; }
 
         [Required]
-        [Range(1900, 2200)]
+        [Range(ModelConstants.YearMin, ModelConstants.YearMax, ErrorMessage = ModelConstants.YearRangeErrorMessage)]
         public int EndYear { get; set; }
 
         [Required]
         public string ReportTypeId { get; set; }
         public ReportType ReportType { get; set; }
 
-        public ICollection<MonthlySalary> MonthlySalariesInReport { get; set; } = new HashSet<MonthlySalary>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
-        public ICollection<Vehicle> VehiclesInReport { get; set; } = new HashSet<Vehicle>(); // => ExternalRepairs.Where(y => y.FinishedOn >= Start && y.FinishedOn <= End).ToHashSet();
+        public ICollection<MonthlySalary> MonthlySalariesInReport { get; set; } = new HashSet<MonthlySalary>(); 
+        public ICollection<Vehicle> VehiclesInReport { get; set; } = new HashSet<Vehicle>(); 
 
-        [Range(0,int.MaxValue, ErrorMessage = "Must be positive Number")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal ExternalRepairCosts { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Must be positive Number")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal InternalRepairCosts { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Must be positive Number")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal MechanicsBaseCosts { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = "Must be positive Number")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal VehicleBaseCost { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (EndYear < StartYear)
             {
-                yield return new ValidationResult("The End of the Report must be after The Start");
+                yield return new ValidationResult(ModelConstants.EndOfReportBeforeStart);
             }
             else if (EndYear == StartYear && EndMonth < StartMonth)
             {
-                yield return new ValidationResult("The End of the Report must be after The Start");
+                yield return new ValidationResult(ModelConstants.EndOfReportBeforeStart);
             }
         }
 

@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Mdms.Data.Models;
+using MDMS.GlobalConstants;
 using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using MDMS.Web.BindingModels.User.Payment;
 using MDMS.Web.ViewModels.User;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MDMS.Web.Areas.Administration.Controllers
@@ -16,12 +13,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
     public class UserController : AdminController
     {
         private readonly IUserService _userService;
-        private readonly UserManager<MdmsUser> _userManager;
 
-        public UserController(IUserService userService, UserManager<MdmsUser> userManager)
+        public UserController(IUserService userService)
         {
             _userService = userService;
-            _userManager = userManager;
         }
 
         public async Task<IActionResult> All() => await Task.Run(() => View(_userService.GetAllUsers().To<MDMSUserAllViewModel>().ToList()));
@@ -66,9 +61,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "There was a problem with Request.";
+                this.ViewData["error"] = ControllerConstants.UserEditPaymentErrorMessage;
                 return this.View("Payment/Edit", mdmsUserEditPaymentBindingModel);
             }
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.View("Payment/Edit", mdmsUserEditPaymentBindingModel);
         }
 
@@ -88,9 +84,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "Salary for that month already Exists!";
+                this.ViewData["error"] = ControllerConstants.UserAddSalaryErrorMessage;
                 return this.View("Payment/AddSalary", mdmsUserEditPaymentBindingModel);
             }
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.View("Payment/AddSalary", mdmsUserEditPaymentBindingModel);
         }
     }

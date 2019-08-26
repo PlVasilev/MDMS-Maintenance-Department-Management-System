@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using MDMS.GlobalConstants;
 
 namespace MDMS.Data.Models
 {
@@ -15,7 +13,7 @@ namespace MDMS.Data.Models
         public string PartId { get; set; }
         public Part Part { get; set; }
 
-        [Range(0, int.MaxValue)]
+        [Range(ModelConstants.IntPositiveMinOne, ModelConstants.IntMax, ErrorMessage = ModelConstants.PositiveNumberFromOneErrorMessage)]
         public int Quantity { get; set; }
     }
 }

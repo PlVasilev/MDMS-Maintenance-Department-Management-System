@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
+using MDMS.GlobalConstants;
 
 namespace MDMS.Web.BindingModels.Part.Add
 {
@@ -9,7 +7,7 @@ namespace MDMS.Web.BindingModels.Part.Add
     {
         public string Name { get; set; }
 
-        [Range(0, int.MaxValue, ErrorMessage = " Must Be positive Number")]
+        [Range(ModelConstants.IntPositiveMin, ModelConstants.IntMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public int Quantity { get; set; }
     }
 }

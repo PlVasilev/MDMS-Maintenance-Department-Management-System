@@ -1,11 +1,11 @@
 ﻿using System.Threading.Tasks;
+using MDMS.GlobalConstants;
 using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using MDMS.Web.BindingModels.Part.Add;
 using MDMS.Web.BindingModels.Part.Create;
 using MDMS.Web.BindingModels.Part.Edit;
-using MDMS.Web.BindingModels.Vehicle.Create;
 using MDMS.Web.ViewModels.Part.Edit;
 using Microsoft.AspNetCore.Mvc;
 
@@ -36,9 +36,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 if(result) return this.Redirect("/");
 
-                this.ViewData["error"] = "Part provider with that name already exist.";
+                this.ViewData["error"] = ControllerConstants.PartProviderErrorMessage;
                 return this.View("Provider/Create", partProviderBindingModel);
             }
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.View("Provider/Create", partProviderBindingModel);
         }
 
@@ -59,9 +60,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 if (result) return this.Redirect("/");
 
-                this.ViewData["error"] = "Part with that name already exist.";
+                this.ViewData["error"] = ControllerConstants.PartErrorMessage;
                 return this.View(partCreateBindingModel);
             }
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.View(partCreateBindingModel);
         }
 
@@ -74,12 +76,12 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 if (result == false) 
                 {
-                    this.ViewData["error"] = "There was a problem with adding stock.";
+                    this.ViewData["error"] = ControllerConstants.PartAddStockErrorMessage;
                     return this.Redirect($"/Part/Details?name={partAddStockBinding.Name}");
                 }
                 return this.Redirect($"/Part/Details?name={partAddStockBinding.Name}");
             }
-            this.ViewData["error"] = "There was a problem with your input.";
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.Redirect($"/Part/Details?name={partAddStockBinding.Name}");
         }
 
@@ -101,13 +103,13 @@ namespace MDMS.Web.Areas.Administration.Controllers
             {
                var result = await _partService.EditPart(partEditBindingModel.To<PartServiceModel>());
               
-               if (result) return this.Redirect("/");
+               if (result) return this.Redirect($"/Part/Details?name={partEditBindingModel.Name}");
 
-               this.ViewData["error"] = "There was a problem with editing the part.";
+               this.ViewData["error"] = ControllerConstants.PartEditErrorMessage;
                 return this.RedirectToAction("Edit", partEditBindingModel);
             }
 
-            this.ViewData["error"] = "There was a problem with your input.";
+            this.ViewData["error"] = ControllerConstants.InputErrorMessage;
             return this.RedirectToAction("Edit", partEditBindingModel);
         }
     }

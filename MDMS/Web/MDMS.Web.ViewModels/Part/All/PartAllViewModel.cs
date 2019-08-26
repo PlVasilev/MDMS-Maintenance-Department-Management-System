@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using AutoMapper;
+﻿using AutoMapper;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 using AutoMapper;
+using MDMS.GlobalConstants;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 
@@ -13,11 +11,11 @@ namespace MDMS.Web.ViewModels.Part.Edit
         public string Id { get; set; }
 
         [Required]
-        [StringLength(50, ErrorMessage = "Must not be empty and less than 50 symbols.")]
+        [MaxLength(ModelConstants.NameLength, ErrorMessage = ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthString)]
         public string Name { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.00", "999999999", ErrorMessage = "Price must be a positive number.")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal Price { get; set; }
 
         public int UsedCount { get; set; }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Data;
 using MDMS.Data.Models;
@@ -49,7 +46,6 @@ namespace MDMS.Services
             if (_context.PartsProviders.Any(v => v.Name == partsProviderServiceModel.Name))
                 return false;
             
-
             PartsProvider provider = AutoMapper.Mapper.Map<PartsProvider>(partsProviderServiceModel);
             _context.PartsProviders.Add(provider);
             var result = await _context.SaveChangesAsync();

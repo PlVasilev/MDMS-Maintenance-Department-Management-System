@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using AutoMapper;
+using MDMS.GlobalConstants;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using ValidationContext = System.ComponentModel.DataAnnotations.ValidationContext;
@@ -18,15 +19,15 @@ namespace MDMS.Web.BindingModels.Vehicle.Create
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(50, ErrorMessage = "Make must be less or equal to 50 symbols")]
+        [MaxLength(ModelConstants.NameLengthSm, ErrorMessage = ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthStringSm)]
         public string Make { get; set; }
 
         [Required]
-        [MaxLength(50, ErrorMessage = "Model must be less or equal to 50 symbols")]
+        [MaxLength(ModelConstants.NameLengthSm, ErrorMessage = ModelConstants.StringLengthNameMessage + ModelConstants.NameLengthStringSm)]
         public string Model { get; set; }
 
         [Required]
-        [RegularExpression("^[A-Za-z0-9]{17}$", ErrorMessage = "VSN Must be 17 symbols English letters and digits Only !")]
+        [RegularExpression(ModelConstants.RegExVsn, ErrorMessage = ModelConstants.RegExVsnMessage)]
         public string VSN { get; set; }
 
         [Required]
@@ -37,11 +38,11 @@ namespace MDMS.Web.BindingModels.Vehicle.Create
         public DateTime AcquiredOn { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.01", "9999999999", ErrorMessage = "Must be positive number")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal Price { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.01", "9999999999", ErrorMessage = "Must be positive number")]
+        [Range(typeof(decimal), ModelConstants.DecimalPositiveMin, ModelConstants.DecimalMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
         public decimal Depreciation { get; set; }
 
         [Required]
@@ -55,10 +56,10 @@ namespace MDMS.Web.BindingModels.Vehicle.Create
         public string Picture { get; set; }
 
         [Required]
-        [Range(typeof(decimal), "0.01", "9999999999", ErrorMessage = "Must be positive number")]
-        public decimal Mileage { get; set; }
+        [Range(ModelConstants.IntPositiveMin, ModelConstants.IntMax, ErrorMessage = ModelConstants.PositiveNumberErrorMessage)]
+        public int Mileage { get; set; }
 
-        [RegularExpression("^[A-Za-z0-9]{3,9}$", ErrorMessage = "Registration Number must be between 3 and 9 characters included.")]
+        [RegularExpression(ModelConstants.RegExVehRegNumber, ErrorMessage = ModelConstants.RegExRegNumberMessage)]
         public string RegistrationNumber { get; set; }
 
         public bool IsInRepair { get; set; } = false;
@@ -67,7 +68,7 @@ namespace MDMS.Web.BindingModels.Vehicle.Create
         {
             if (ManufacturedOn >= AcquiredOn)
             {
-                yield return new ValidationResult("The Vehicle Acquired must be after Manufactured!");
+                yield return new ValidationResult(ModelConstants.VehicleAcquiredAfterManufactured);
             }
         }
 

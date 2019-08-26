@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Data;
+using MDMS.GlobalConstants;
 using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
@@ -32,12 +33,16 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpPost(Name = "Create")]
         public async Task<IActionResult> Create(ReportCreateBindingModel reportCreateBindingModel)
         {
-            if (!ModelState.IsValid) return View(reportCreateBindingModel);
+            if (!ModelState.IsValid)
+            {
+                this.ViewData["error"] = ControllerConstants.InputErrorMessage;
+                return View(reportCreateBindingModel);
+            }
 
             var result = await _reportService.CreateCustomReport(reportCreateBindingModel.To<ReportServiceModel>());
             if (!result)
             {
-                this.ViewData["error"] = "Report for those months already Exists.";
+                this.ViewData["error"] = ControllerConstants.ReportCreateErrorMessage;
                 return View(reportCreateBindingModel);
             }
             return Redirect("/");
