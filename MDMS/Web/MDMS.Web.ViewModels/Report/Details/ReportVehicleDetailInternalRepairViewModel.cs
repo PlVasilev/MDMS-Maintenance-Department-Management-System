@@ -26,7 +26,9 @@ namespace MDMS.Web.ViewModels.Report.Details
                 .ForMember(dest => dest.LaborCost,
                     opt => opt.MapFrom(org => (decimal) org.HoursWorked * org.MdmsUser.AdditionalOnHourPayment))
                 .ForMember(dest => dest.PartsCost,
-                    opt => opt.MapFrom(org => org.InternalRepairParts.Sum(x => x.Quantity * x.Part.Price)));
+                    opt => opt.MapFrom(org => org.InternalRepairParts.Sum(x => x.Quantity * x.Part.Price)))
+                .ForMember(d => d.Name,
+                    o => o.MapFrom(x => x.Name.Replace("_", " ")));
         }
     }
 }

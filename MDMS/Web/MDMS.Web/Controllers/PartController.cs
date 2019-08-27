@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Mdms.Data.Models;
 using MDMS.GlobalConstants;
 using MDMS.Services;
 using MDMS.Services.Mapping;
@@ -10,6 +11,7 @@ using MDMS.Web.BindingModels.Repair.Add;
 using MDMS.Web.ViewModels.Part;
 using MDMS.Web.ViewModels.Part.All;
 using MDMS.Web.ViewModels.Part.Details;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,20 +21,34 @@ namespace MDMS.Web.Controllers
     {
         private readonly IPartService _partService;
         private readonly IRepairService _repairService;
+        private readonly UserManager<MdmsUser> _userManager;
 
-        public PartController(IPartService partService, IRepairService repairService)
+        public PartController(IPartService partService, IRepairService repairService, UserManager<MdmsUser> userManager)
         {
             _partService = partService;
             _repairService = repairService;
+            _userManager = userManager;
         }
 
         [HttpGet(Name = "All")]
-        public async Task<IActionResult> All() => await Task.Run(() => this.View(_partService.GetAllParts().To<PartAllViewModel>().ToList()));
+        public async Task<IActionResult> All([FromQuery]string criteria = null)
+        {
+            if (criteria == null) criteria = "None";
+            
+            var parts = await Task.Run(() => _partService.GetAllParts(criteria).To<PartAllViewModel>().ToList());
+
+            this.ViewData["criteria"] = criteria.Replace("+", " ");
+            return this.View(parts);
+        }
 
         [HttpGet(Name = "AddParts")]
-        public async Task<IActionResult> AddParts(string name)
+        public async Task<IActionResult> AddParts([FromQuery]string criteria = null)
         {
-            var listOfParts = await _partService.GetAllParts().To<InternalRepairRepairPartBindingModel>().ToListAsync();
+            if (criteria == null) criteria = "None";
+
+            var listOfParts = await _partService.GetAllParts(criteria).To<InternalRepairRepairPartBindingModel>().ToListAsync();
+            var  name = _repairService.GetActiveRepair(_userManager.GetUserId(User)).Result.Name;
+            
             foreach (var part in listOfParts)
             {
                 part.RepairName = name;
@@ -43,8 +59,8 @@ namespace MDMS.Web.Controllers
         [HttpGet(Name = "Details")]
         public async Task<IActionResult> Details(string name) => await Task.Run((() =>
             View(_partService.GetPartByName(name).Result.To<PartDetailsViewModel>())));
-    
-        
+
+
         [HttpPost(Name = "AddParts")]
         public async Task<IActionResult> AddParts(List<InternalRepairRepairPartBindingModel> internalRepairAddPartsBindingModel)
         {
@@ -60,7 +76,7 @@ namespace MDMS.Web.Controllers
             }
 
             var internalRepairId = _repairService.GetInternalRepairIdByName(internalRepairAddPartsBindingModel[0].RepairName).Result;
-            var allPartsIds = _partService.GetAllParts().ToList();
+            var allPartsIds = _partService.GetAllParts(null).ToList();
 
             List<InternalRepairPartServiceModel> internalRepairPartServiceModels = new List<InternalRepairPartServiceModel>();
 

@@ -54,12 +54,12 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
         [HttpGet(Name = "Details")]
         public async Task<IActionResult> Details(string name) => await Task.Run(() =>
-            this.View(_reportService.GetReportDetails(name).Result.To<ReportDetailsViewModel>()));
+            this.View(_reportService.GetReportDetails(name.Replace(" ","_")).Result.To<ReportDetailsViewModel>()));
 
         [HttpGet(Name = "Delete")]
         public async Task<IActionResult> Delete(string name)
         {
-            await _reportService.DeleteReport(name);
+            await _reportService.DeleteReport(name.Replace(" ", "_"));
             return RedirectToAction("All");
         }
         

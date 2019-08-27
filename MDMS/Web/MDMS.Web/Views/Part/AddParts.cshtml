@@ -8,15 +8,17 @@
     <div id="parts-search-bar-holder" class="form-group d-flex justify-content-between w-50">
         <input type="text" class="form-control text-primary" id="parts-search-bar" name="search" placeholder="Search..." />
     </div>
-    <div id="sort-holder" class="form-group w-40 d-flex justify-content-between">
+    <div id="sort-holder" class="form-group w-60 d-flex justify-content-center">
         <label for="sort" class="text-primary font-weight-bold w-30 h4 mt-1 text-bordered text-right">Order By: </label>
-        <select id="sort" class="form-control text-primary pl-2 ml-3 w-70">
-            <option value="none" selected>None</option>
-            <option value="none">Price (lowest to highest)</option>
-            <option value="none">Price (highest to lowest)</option>
-            <option value="none">Date of Manufacturing (oldest to newest)</option>
-            <option value="none">Date of Manufacturing (newest to oldest)</option>
-        </select>
+        <form id="order-form" action="/Part/AddParts" method="get">
+            <select id="sort" class="form-control text-primary pl-2 ml-3 w-100" name="criteria">
+                @if (this.ViewData["criteria"] != null)
+                {
+                    <option selected>@this.ViewData["criteria"]</option>
+                }
+                <vc:part-all-sort></vc:part-all-sort>
+            </select>
+        </form>
     </div>
 </div>
 <form method="post" class="form border-primary-4 rounded p-3 mx-auto w-85 mt-2 bg-white" enctype="multipart/form-data">
@@ -93,6 +95,10 @@
                 $(elem).hide();
             }
         }
+    });
+
+      $('#sort').change(function () {
+        $('#order-form').submit();
     });
 </script>
 

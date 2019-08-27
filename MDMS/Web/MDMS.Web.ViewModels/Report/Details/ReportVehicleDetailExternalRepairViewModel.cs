@@ -1,10 +1,11 @@
 ﻿using System;
+using AutoMapper;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 
 namespace MDMS.Web.ViewModels.Report.Details
 {
-   public class ReportVehicleDetailExternalRepairViewModel : IMapFrom<ExternalRepairServiceModel>
+   public class ReportVehicleDetailExternalRepairViewModel : IMapFrom<ExternalRepairServiceModel>, IHaveCustomMappings
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -16,5 +17,12 @@ namespace MDMS.Web.ViewModels.Report.Details
         public decimal LaborCost { get; set; }
         public decimal PartsCost { get; set; }
         public decimal RepairCost { get; set; }
+
+        public void CreateMappings(IProfileExpression configuration)
+        {
+            configuration.CreateMap<ExternalRepairServiceModel, ReportVehicleDetailExternalRepairViewModel>()
+                .ForMember(d => d.Name,
+                    o => o.MapFrom(x => x.Name.Replace("_", " ")));
+        }
     }
 }

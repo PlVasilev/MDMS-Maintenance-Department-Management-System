@@ -16,15 +16,15 @@ else if (this.User.Identity.IsAuthenticated && (this.User.IsInRole("User") || th
     if (Model.ExternalRepairActiveHomeViewModels.Count == 0)
     {
         <div class="d-flex justify-content-between">
-            <h3 class="font-weight-bold text-bordered">No vehicles on External Repairs</h3>
-            <h3 class="font-weight-bold text-bordered">Hello @User.Identity.Name !</h3>
+            <h3 style="font-size: 30px" class="font-weight-bold text-bordered"><ins>No vehicles on External Repairs</ins></h3>
+            <h3 style="font-size: 30px" class="font-weight-bold text-bordered"><ins>Hello @User.Identity.Name !</ins></h3>
         </div>
     }
     else
     {
         <div class="d-flex justify-content-between">
-            <h3 class="font-weight-bold text-bordered">Current vehicles on External repairs are:</h3>
-            <h3 class="font-weight-bold text-bordered-black">Hello @User.Identity.Name !</h3>
+            <h3 style="font-size: 30px" class="font-weight-bold text-bordered"><ins> Current vehicles on External repairs are:</ins></h3>
+            <h3 style="font-size: 30px" class="font-weight-bold text-bordered"><ins>Hello @User.Identity.Name !</ins></h3>
         </div>
         <div id="products" class="mt-1">
             @for (int i = 0; i < Model.ExternalRepairActiveHomeViewModels.Count; i += 5)
@@ -62,7 +62,7 @@ else if (this.User.Identity.IsAuthenticated && (this.User.IsInRole("User") || th
     if (Model.InternalRepairActiveHomeViewModels.Count == 0)
     {
         <div class="d-flex justify-content-between">
-            <h3 class="font-weight-bold text-bordered">No vehicles on Internal Repairs</h3>
+            <h3 style="font-size: 30px" class="font-weight-bold text-bordered"><ins>No vehicles on Internal Repairs</ins> </h3>
         </div>
     }
     else
@@ -71,7 +71,7 @@ else if (this.User.Identity.IsAuthenticated && (this.User.IsInRole("User") || th
             @for (int i = 0; i < Model.InternalRepairActiveHomeViewModels.Count; i += 5)
             {
                 <div class="d-flex justify-content-between">
-                    <h3 class="font-weight-bold text-bordered">Current vehicles on Internal repairs are:</h3>
+                    <h3 style="font-size: 30px" class="font-weight-bold text-bordered"><ins>Current vehicles on Internal repairs are:</ins></h3>
                 </div>
                 <div class="row d-flex justify-content-around my-2">
                     @for (int j = i; j < i + 5; j++)

@@ -13,7 +13,7 @@ namespace MDMS.Services
         Task<bool> DeletePart(string name);
 
         IQueryable<PartsProviderServiceModel> GetAllPartProviders();
-        IQueryable<PartServiceModel> GetAllParts();
+        IQueryable<PartServiceModel> GetAllParts(string criteria);
 
         Task<PartServiceModel> GetPartByName(string name); 
     }

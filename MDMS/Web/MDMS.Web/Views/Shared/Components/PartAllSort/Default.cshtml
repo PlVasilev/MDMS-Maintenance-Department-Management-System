@@ -1,0 +1,8 @@
+﻿@using MDMS.Web.ViewModels.ViewComponents
+@model List<PartAllSortViewComponentViewModel>
+
+
+@foreach (var type in @Model)
+{
+    <option value="@type.Name">@type.Name</option>
+}

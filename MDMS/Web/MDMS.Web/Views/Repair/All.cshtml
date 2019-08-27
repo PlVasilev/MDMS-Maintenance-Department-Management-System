@@ -4,19 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="d-flex justify-content-between">
+<div class="d-flex justify-content-center">
+    <h3 style="font-size: 30px" class="font-weight-bold text-bordered"><ins>You can search by anything in NAME column :</ins></h3>
     <div id="repair-search-bar-holder" class="form-group d-flex justify-content-between w-50">
-        <input type="text" class="form-control text-primary" id="repair-search-bar" name="search" placeholder="Search..." />
-    </div>
-    <div id="sort-holder" class="form-group w-40 d-flex justify-content-between">
-        <label for="sort" class="text-primary font-weight-bold w-30 h4 mt-1 text-bordered text-right">Order By: </label>
-        <select id="sort" class="form-control text-primary pl-2 ml-3 w-70">
-            <option value="none" selected>None</option>
-            <option value="none">Price (lowest to highest)</option>
-            <option value="none">Price (highest to lowest)</option>
-            <option value="none">Date of Manufacturing (oldest to newest)</option>
-            <option value="none">Date of Manufacturing (newest to oldest)</option>
-        </select>
+        <input type="text" class="form-control text-primary" id="repair-search-bar" name="search" placeholder="Search..."/>
     </div>
 </div>
 <hr class="hr-2 bg-primary">
@@ -25,7 +16,7 @@
         <thead>
             <tr class="row">
                 <th scope="col" class="col-lg-1 text-primary text-center">#</th>
-                <th scope="col" class="col-lg-4 text-primary text-center">Name</th>
+                <th scope="col" class="col-lg-4 text-primary text-center"><ins>NAME (Type RepairedSystem (Vehicle: Make Model VSN) Stated)</ins></th>
                 <th scope="col" class="col-lg-1 text-primary text-right">Cost</th>
                 <th scope="col" class="col-lg-1 text-primary text-center">Mechanic</th>
                 <th scope="col" class="col-lg-2 text-primary text-center">Started On</th>

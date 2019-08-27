@@ -61,11 +61,20 @@ namespace MDMS.Services
             var reportDetails = await _context.Reports.SingleOrDefaultAsync(x => x.Name == name);
             reportDetails.VehiclesInReport = GetVehiclesInReport(reportDetails.StartMonth, reportDetails.StartYear,
                 reportDetails.EndMonth, reportDetails.EndYear);
-            reportDetails.MonthlySalariesInReport = _context.MonthlySalaries
-                .Where(x => (x.Year >= reportDetails.StartYear && x.Year <= reportDetails.EndYear) &&
-                            (x.Month >= reportDetails.StartMonth && x.Month <= reportDetails.EndMonth))
-                .Include(x => x.Mechanic)
-                .ToList();
+
+            reportDetails.MonthlySalariesInReport = GetSalariesInReport(reportDetails.StartMonth,
+                reportDetails.StartYear,
+                reportDetails.EndMonth, reportDetails.EndYear);
+
+            reportDetails.MechanicsBaseCosts = reportDetails.MonthlySalariesInReport.Sum(x => x.BaseSalary);
+            reportDetails.VehicleBaseCost = reportDetails.VehiclesInReport.Sum(x => x.Depreciation);
+            reportDetails.ExternalRepairCosts = reportDetails.VehiclesInReport.Sum(x => x.ExternalRepairs.Sum(y => y.LaborCost + y.PartsCost));
+            reportDetails.InternalRepairCosts = reportDetails.VehiclesInReport.Sum(x => x.InternalRepairs.Sum(y => (decimal)y.HoursWorked * y.MdmsUser.AdditionalOnHourPayment) +
+                                                                          x.InternalRepairs.Sum(y => y.InternalRepairParts.Sum(z => z.Quantity * z.Part.Price)));
+
+            _context.Update(reportDetails);
+            await _context.SaveChangesAsync();
+
             var reportDetailsService = reportDetails.To<ReportServiceModel>();
             return reportDetailsService;
         }
