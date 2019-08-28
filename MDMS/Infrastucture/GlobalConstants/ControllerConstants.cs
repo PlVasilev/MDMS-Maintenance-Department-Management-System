@@ -9,6 +9,8 @@
         public const string PartAddStockErrorMessage = "There was a problem with adding stock.";
         public const string PartEditErrorMessage = "There was a problem with editing the part.";
         public const string PartsAddErrorMessage = "You must add at least One part!";
+        public const string PartDetailsErrorMessage = "You can NOT access NON existent Part!";
+        
 
         public const string RepairProviderCreateErrorMessage = "Repair Provider whit that name already Exists.";
         public const string RepairCreateErrorMessage = "Repair with that name already exists.";

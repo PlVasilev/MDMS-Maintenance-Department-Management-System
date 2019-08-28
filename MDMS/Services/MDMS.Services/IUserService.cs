@@ -7,7 +7,6 @@ namespace MDMS.Services
     public interface IUserService
     {
         Task<MDMSUserServiceModel> GetCurrentUserByUsername(string username);
-        Task<MDMSUserServiceModel> GetCurrentUserByEmail(string email);
 
         Task<bool> DeleteUser(string id);
         Task<bool> RestoreUser(string id);

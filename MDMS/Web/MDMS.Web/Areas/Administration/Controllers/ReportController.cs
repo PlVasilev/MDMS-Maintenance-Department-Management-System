@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using MDMS.Data;
 using MDMS.GlobalConstants;
@@ -53,8 +54,19 @@ namespace MDMS.Web.Areas.Administration.Controllers
             this.View(_reportService.GetAllReports().To<ReportAllViewModel>().ToList()));
 
         [HttpGet(Name = "Details")]
-        public async Task<IActionResult> Details(string name) => await Task.Run(() =>
-            this.View(_reportService.GetReportDetails(name.Replace(" ","_")).Result.To<ReportDetailsViewModel>()));
+        public async Task<IActionResult> Details(string name)
+        {
+            try
+            {
+                return await Task.Run(() =>
+                    this.View(_reportService.GetReportDetails(name.Replace(" ", "_")).Result.To<ReportDetailsViewModel>()));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("All");
+        } 
 
         [HttpGet(Name = "Delete")]
         public async Task<IActionResult> Delete(string name)

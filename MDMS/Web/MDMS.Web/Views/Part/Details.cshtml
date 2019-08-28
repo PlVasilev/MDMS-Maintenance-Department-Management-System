@@ -54,11 +54,10 @@
                     <thead>
                         <tr class="row">
                             <th scope="col" class="col-md-1 text-primary text-center">#</th>
-                            <th scope="col" class="col-md-5 text-primary text-center">Name</th>
+                            <th scope="col" class="col-md-6 text-primary text-center">Name</th>
                             <th scope="col" class="col-md-1 text-primary text-right">Count</th>
                             <th scope="col" class="col-md-1 text-primary text-right">Parts Cost</th>
                             <th scope="col" class="col-md-1 text-primary text-right">Rep Cost</th>
-                            <th scope="col" class="col-md-1 text-primary text-center">Started</th>
                             <th scope="col" class="col-md-1 text-primary text-center">Finished</th>
                             <th scope="col" class="col-md-1 text-primary text-center">Details</th>
                         </tr>
@@ -70,11 +69,11 @@
 
                             <tr class="row">
                                 <td class="col-md-1 text-primary text-center">@(i + 1)</td>
-                                <td class="col-md-5 text-primary text-center">@repairs[i].InternalRepairName</td>
+                                <td class="col-md-6 text-primary text-center">@repairs[i].InternalRepairName</td>
                                 <td class="col-md-1 text-primary text-right">@repairs[i].Quantity</td>
                                 <td class="col-md-1 text-primary text-right">$ @repairs[i].InternalRepairParsCost</td>
                                 <td class="col-md-1 text-primary text-right">$ @repairs[i].InternalRepairRepairCost</td>
-                                <td class="col-md-1 text-primary text-center">@repairs[i].InternalRepairStartedOn.ToString("d")</td>
+                                
                                 @if (@repairs[i].InternalRepairFinishedOn == null)
                                 {
                                     <td class="col-md-1 text-primary text-center">Active</td>
@@ -84,7 +83,7 @@
                                     <td class="col-md-1 text-primary text-center">@repairs[i].InternalRepairFinishedOn?.ToString("d")</td>
                                 }
                                 <td class="col-lg-1 text-primary text-center">
-                                    <a href="/Repair/InternalDetails?name=@repairs[i].InternalRepairName">Details</a>
+                                    <a href="/Repair/InternalDetails?name=@repairs[i].InternalRepairName.Replace(" ","_")">Details</a>
                                 </td>
                             </tr>
 

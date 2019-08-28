@@ -18,7 +18,9 @@ namespace MDMS.Web.ViewModels.Part.Details
         {
             configuration.CreateMap<InternalRepairPartServiceModel, PartDetailsInternalRepairPartViewModel>()
                 .ForMember(dest => dest.InternalRepairParsCost,
-                    opts => opts.MapFrom(org => org.Part.Price * org.Quantity));
+                    opts => opts.MapFrom(org => org.Part.Price * org.Quantity))
+                .ForMember(dest => dest.InternalRepairName,
+                    opts => opts.MapFrom(org => org.InternalRepair.Name.Replace("_"," ")));
         }
     }
 }

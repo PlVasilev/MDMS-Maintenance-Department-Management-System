@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Mdms.Data.Models;
 using MDMS.GlobalConstants;
@@ -86,9 +87,18 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpGet(Name = "ExternalActiveFinish")]
         public async Task<IActionResult> ExternalActiveFinish(string name)
         {
-          var repair = await _repairService.GetExternalActiveRepair(name);
-          var viewRepair = AutoMapper.Mapper.Map<ExternalRepairFinishBindingModel>(repair);
-          return this.View(viewRepair);
+            try
+            {
+                var repair = await _repairService.GetExternalActiveRepair(name);
+                var viewRepair = AutoMapper.Mapper.Map<ExternalRepairFinishBindingModel>(repair);
+                return this.View(viewRepair);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("ExternalActive");
+        
         }
 
         [HttpPost(Name = "ExternalActiveFinish")]

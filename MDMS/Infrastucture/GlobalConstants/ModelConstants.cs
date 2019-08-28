@@ -14,6 +14,7 @@
         public const string RegExRegNumberMessage = "Vehicle Registration Number must be Exacly form 3 to 9 symbols english letters or numbers.";
 
         public const string VehicleAcquiredAfterManufactured = "The Vehicle Acquired must be after Manufactured!";
+        public const string VehiclePriceMoreThanDepreciation = "The Vehicle Price Greater than Depreciation!";
         public const string PartAddQuantMoreThanStock = "can not be more than its stock!";
         public const string EndOfReportBeforeStart = "The End of the Report must be after The Start";
 

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Mdms.Data.Models;
 using MDMS.GlobalConstants;
 using MDMS.Services;
@@ -86,13 +87,34 @@ namespace MDMS.Web.Controllers
         });
 
         [HttpGet(Name = "InternalDetails")]
-        public async Task<IActionResult> InternalDetails(string name) =>await Task.Run((() =>
-            View( _repairService.GetInternalRepairByName(name.Replace(" ","_")).Result.To<InternalRepairDetailsViewModel>())));
+        public async Task<IActionResult> InternalDetails(string name)
+        {
+            try
+            {
+                return await Task.Run((() =>
+                    View(_repairService.GetInternalRepairByName(name.Replace(" ", "_")).Result.To<InternalRepairDetailsViewModel>())));
+            }
+            catch (AggregateException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("All");
+        }
+       
 
         [HttpGet(Name = "ExternalDetails")]
-        public async Task<IActionResult> ExternalDetails(string name) => await Task.Run((() =>
-            View(_repairService.GetExternalRepairByName(name.Replace(" ", "_")).Result.To<ExternalRepairDetailsViewModel>())));
-
-        
+        public async Task<IActionResult> ExternalDetails(string name)
+        {
+            try
+            {
+                return await Task.Run((() =>
+                    View(_repairService.GetExternalRepairByName(name.Replace(" ", "_")).Result.To<ExternalRepairDetailsViewModel>())));
+            }
+            catch (AggregateException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("All");
+        }
     }
 }

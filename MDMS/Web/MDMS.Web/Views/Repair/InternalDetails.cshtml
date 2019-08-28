@@ -59,10 +59,10 @@
                         <tr class="row">
                             <th scope="col" class="col-md-3 text-primary text-center">Name</th>
                             <th scope="col" class="col-md-3 text-primary text-center">Provider</th>
-                            <th scope="col" class="col-md-2 text-primary text-center">Price</th>
                             <th scope="col" class="col-md-1 text-primary text-center">Quantity</th>
-                            <th scope="col" class="col-md-2 text-primary text-center">Sum</th>
-                            <th scope="col" class="col-md-1 text-primary text-center">Details</th>
+                            <th scope="col" class="col-md-1 text-primary text-right">Price</th>
+                            <th scope="col" class="col-md-2 text-primary text-right">Sum</th>
+                            <th scope="col" class="col-md-2 text-primary text-center">Details</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,20 +72,20 @@
                             <tr class="row">
                                 <td class="col-md-3 text-primary text-center">@Model.InternalRepairParts[i].PartName</td>
                                 <td class="col-md-3 text-primary text-center">@Model.InternalRepairParts[i].PartAcquiredFromName</td>
-                                <td class="col-md-2 text-primary text-center">$ @Model.InternalRepairParts[i].PartPrice</td>
                                 <td class="col-md-1 text-primary text-center">@Model.InternalRepairParts[i].Quantity</td>
-                                <td class="col-md-2 text-primary text-center">$ @(Model.InternalRepairParts[i].Quantity * Model.InternalRepairParts[i].PartPrice)</td>
+                                <td class="col-md-1 text-primary text-right">$ @Model.InternalRepairParts[i].PartPrice</td>
+                                <td class="col-md-2 text-primary text-right">$ @(Model.InternalRepairParts[i].Quantity * Model.InternalRepairParts[i].PartPrice)</td>
                                 @if (@Model.InternalRepairParts[i].PartIsDeleted == true)
                                 {
-                                    <td class="col-md-1 text-primary text-center">Removed</td>
+                                    <td class="col-md-2 text-primary text-center">Removed</td>
                                 }
                                 else
                                 {
-                                    <td class="col-md-1 text-primary text-center">
+                                    <td class="col-md-2 text-primary text-center">
                                         <a href="/Part/Details?name=@Model.InternalRepairParts[i].PartName">Details</a>
                                     </td>
                                 }
-                              
+
                             </tr>
                         }
                     </tbody>

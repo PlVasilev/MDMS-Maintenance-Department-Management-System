@@ -64,6 +64,10 @@ namespace MDMS.Web.BindingModels.Vehicle.Create
             {
                 yield return new ValidationResult(ModelConstants.VehicleAcquiredAfterManufactured);
             }
+            if (Depreciation > Price)
+            {
+                yield return new ValidationResult(ModelConstants.VehiclePriceMoreThanDepreciation);
+            }
         }
 
         public void CreateMappings(IProfileExpression configuration)

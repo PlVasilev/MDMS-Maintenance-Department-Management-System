@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MDMS.GlobalConstants;
 using MDMS.Services;
 using MDMS.Services.Mapping;
@@ -97,8 +98,19 @@ namespace MDMS.Web.Areas.Administration.Controllers
         }
 
         [HttpGet(Name = "Edit")]
-        public async Task<IActionResult> Edit(string name) => await Task.Run((() => 
-            this.View(_vehicleService.GetVehicleByName(name).To<VehicleEditViewModel>())));
+        public async Task<IActionResult> Edit(string name)
+        {
+            try
+            {
+                return await Task.Run((() =>
+                    this.View(_vehicleService.GetVehicleByName(name).To<VehicleEditViewModel>())));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("All");
+        } 
 
 
         [HttpPost(Name = "Edit")]

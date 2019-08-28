@@ -21,8 +21,8 @@ namespace MDMS.Services
 
         Task<ExternalRepairServiceModel> GetExternalActiveRepair(string name);
         Task<InternalRepairServiceModel> GetActiveRepair(string id);
-
         IQueryable<ExternalRepairServiceModel> GetActiveRepairs(string id);
+
         IQueryable<RepairedSystemServiceModel> GetAllRepairedSystems();
         Task<IEnumerable<ExternalRepairServiceModel>>  GetAllExternalActiveRepairs();
         Task<IEnumerable<InternalRepairServiceModel>>  GetAllInternalActiveRepairs();

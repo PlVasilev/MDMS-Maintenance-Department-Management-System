@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using MDMS.GlobalConstants;
 using MDMS.Services;
 using MDMS.Services.Mapping;
@@ -92,10 +93,20 @@ namespace MDMS.Web.Areas.Administration.Controllers
         }
 
         [HttpGet(Name = "Edit")]
-        public async Task<IActionResult> Edit(string name) => await Task.Run((() =>
-            this.View(_partService.GetPartByName(name).Result.To<PartEditViewModel>())));
-
-
+        public async Task<IActionResult> Edit(string name)
+        {
+            try
+            {
+              return  await Task.Run((() =>
+                    this.View(_partService.GetPartByName(name).Result.To<PartEditViewModel>())));
+            }
+            catch (AggregateException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("All");
+        }
+        
         [HttpPost(Name = "Edit")]
         public async Task<IActionResult> Edit(PartEditBindingModel partEditBindingModel)
         {

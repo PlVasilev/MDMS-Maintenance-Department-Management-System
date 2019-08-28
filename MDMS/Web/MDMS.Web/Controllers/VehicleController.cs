@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Mdms.Data.Models;
 using MDMS.Services;
@@ -29,10 +30,18 @@ namespace MDMS.Web.Controllers
         [HttpGet(Name = "Details")]
         public async Task<IActionResult> Details(string name)
         {
-            var user = await _userManager.GetUserAsync(User);
-            var vehicleDetails = _vehicleService.GetVehicleByName(name).To<VehicleDetailsViewModel>();
-            vehicleDetails.MDMSUserServiceModelIsRepairing = user.IsRepairing;
-            return this.View(vehicleDetails);
+            try
+            {
+                var user = await _userManager.GetUserAsync(User);
+                var vehicleDetails = _vehicleService.GetVehicleByName(name).To<VehicleDetailsViewModel>();
+                vehicleDetails.MDMSUserServiceModelIsRepairing = user.IsRepairing;
+                return this.View(vehicleDetails);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("All");
         }
     }
 }

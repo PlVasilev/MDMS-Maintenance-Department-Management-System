@@ -8,7 +8,6 @@ using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using MDMS.Web.BindingModels.Repair.Add;
-using MDMS.Web.ViewModels.Part;
 using MDMS.Web.ViewModels.Part.All;
 using MDMS.Web.ViewModels.Part.Details;
 using Microsoft.AspNetCore.Identity;
@@ -57,8 +56,20 @@ namespace MDMS.Web.Controllers
         }
 
         [HttpGet(Name = "Details")]
-        public async Task<IActionResult> Details(string name) => await Task.Run((() =>
-            View(_partService.GetPartByName(name).Result.To<PartDetailsViewModel>())));
+        public async Task<IActionResult> Details(string name)
+        {
+            try
+            {
+                var part =  _partService.GetPartByName(name).Result.To<PartDetailsViewModel>();
+                return View(await Task.Run((() => part)));
+            }
+            catch (AggregateException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return RedirectToAction("All");
+        }
+            
 
 
         [HttpPost(Name = "AddParts")]
