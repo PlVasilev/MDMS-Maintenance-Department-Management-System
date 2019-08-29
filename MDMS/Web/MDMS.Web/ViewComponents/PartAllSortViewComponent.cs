@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MDMS.GlobalConstants;
 using MDMS.Web.ViewModels.ViewComponents;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,13 +13,13 @@ namespace MDMS.Web.ViewComponents
         {
             List<string> orderByList = new List<string>
             {
-                "None",
-                "Price From Lowest To Highest",
-                "Price From Highest To Lowest",
-                "Stock From Lowest To Highest",
-                "Stock From Highest To Lowest",
-                "Used From Lowest To Highest",
-                "Used From Highest To Lowest"
+               ServiceConstants.PartOrderName,
+               ServiceConstants.PartOrderByPriceAscending,
+               ServiceConstants.PartOrderByPriceDescending,
+               ServiceConstants.PartOrderByStockAscending,
+               ServiceConstants.PartOrderByStockDescending,
+               ServiceConstants.PartOrderByUsedCountAscending,
+               ServiceConstants.PartOrderByUsedCountDescending,
             };
             var partAllSortViewComponentModels = await Task.Run((() => 
                 orderByList

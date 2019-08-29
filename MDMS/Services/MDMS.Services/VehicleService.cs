@@ -86,16 +86,16 @@ namespace MDMS.Services
 
         public IQueryable<VehicleServiceModel> GetAllVehicles() => _context.Vehicles.Where(x => x.IsDeleted == false).To<VehicleServiceModel>();
 
-        public IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes() => _context.VehicleTypes.To<VehicleTypeServiceModel>();
+        public IQueryable<VehicleTypeServiceModel> GetAllVehicleTypes() => _context.VehicleTypes.OrderBy(x => x.Name).To<VehicleTypeServiceModel>();
 
-        public IQueryable<VehicleProviderServiceModel> GetAllVehicleProviders() => _context.VehicleProviders.To<VehicleProviderServiceModel>();
+        public IQueryable<VehicleProviderServiceModel> GetAllVehicleProviders() => _context.VehicleProviders.OrderBy(x => x.Name).To<VehicleProviderServiceModel>();
 
-        public VehicleServiceModel GetVehicleByName(string name) => _context.Vehicles
-            .Include(x=> x.VehicleProvider)
+        public async Task<VehicleServiceModel> GetVehicleByName(string name) => await Task.Run((() => _context.Vehicles
+            .Include(x => x.VehicleProvider)
             .Include(x => x.InternalRepairs)
             .Include(x => x.ExternalRepairs)
             .Include(x => x.VehicleType)
-            .To<VehicleServiceModel>().SingleOrDefault(x => x.Name == name && x.IsDeleted == false);
-        
+            .To<VehicleServiceModel>().SingleOrDefaultAsync(x => x.Name == name && x.IsDeleted == false).Result));
+
     }
 }

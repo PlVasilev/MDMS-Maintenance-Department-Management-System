@@ -33,12 +33,13 @@ namespace MDMS.Web.Controllers
             try
             {
                 var user = await _userManager.GetUserAsync(User);
-                var vehicleDetails = _vehicleService.GetVehicleByName(name).To<VehicleDetailsViewModel>();
+                var vehicleDetails = _vehicleService.GetVehicleByName(name).Result.To<VehicleDetailsViewModel>();
                 vehicleDetails.MDMSUserServiceModelIsRepairing = user.IsRepairing;
                 return this.View(vehicleDetails);
             }
-            catch (Exception e)
+            catch (ArgumentNullException e)
             {
+                //TODO Refactor
                 Console.WriteLine(e.Message);
             }
             return RedirectToAction("All");

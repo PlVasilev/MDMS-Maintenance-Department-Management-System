@@ -29,8 +29,20 @@ namespace MDMS.Web.Controllers
         }
 
         [HttpGet(Name = "CreateInternal")]
-        public async Task<IActionResult> CreateInternal(string name) => await Task.Run(() =>
-            this.View(_vehicleService.GetVehicleByName(name).To<InternalRepairCreateBindingModel>()));
+        public async Task<IActionResult> CreateInternal(string name)
+        {
+            try
+            {
+              return await Task.Run(() =>
+                    this.View(_vehicleService.GetVehicleByName(name).Result.To<InternalRepairCreateBindingModel>()));
+            }
+            catch (ArgumentNullException e)
+            {
+                Console.WriteLine(e);
+                //TODO Refactor
+            }
+            return Redirect("/Vehicle/All");
+        } 
 
 
         [HttpPost(Name = "CreateInternal")]
@@ -96,6 +108,7 @@ namespace MDMS.Web.Controllers
             }
             catch (AggregateException e)
             {
+                //TODO Refactor
                 Console.WriteLine(e.Message);
             }
             return RedirectToAction("All");
@@ -112,6 +125,7 @@ namespace MDMS.Web.Controllers
             }
             catch (AggregateException e)
             {
+                //TODO Refactor
                 Console.WriteLine(e.Message);
             }
             return RedirectToAction("All");

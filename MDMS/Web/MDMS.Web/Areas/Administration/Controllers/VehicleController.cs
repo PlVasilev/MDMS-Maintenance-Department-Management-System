@@ -103,10 +103,11 @@ namespace MDMS.Web.Areas.Administration.Controllers
             try
             {
                 return await Task.Run((() =>
-                    this.View(_vehicleService.GetVehicleByName(name).To<VehicleEditViewModel>())));
+                    this.View(_vehicleService.GetVehicleByName(name).Result.To<VehicleEditViewModel>())));
             }
             catch (ArgumentNullException e)
             {
+                //TODO Refactor
                 Console.WriteLine(e.Message);
             }
             return RedirectToAction("All");

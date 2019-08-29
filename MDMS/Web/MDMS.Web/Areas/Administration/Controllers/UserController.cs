@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using MDMS.GlobalConstants;
 using MDMS.Services;
@@ -47,8 +48,20 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
         [HttpGet]
         [Route("/Administration/User/Payment/Edit/{name?}")]
-        public async Task<IActionResult> PaymentEdit(string name) => await Task.Run(() => 
-            this.View("Payment/Edit", _userService.GetCurrentUserByUsername(name).Result.To<MdmsUserEditPaymentBindingModel>()));
+        public async Task<IActionResult> PaymentEdit(string name)
+        {
+            try
+            {
+               return  await Task.Run(() =>
+                    this.View("Payment/Edit", _userService.GetCurrentUserByUsername(name).Result.To<MdmsUserEditPaymentBindingModel>()));
+            }
+            catch (AggregateException e)
+            {
+                Console.WriteLine(e);
+                //TODO Refactor
+            }
+            return RedirectToAction("All");
+        } 
 
 
         [HttpPost]
@@ -70,8 +83,20 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
         [HttpGet]
         [Route("/Administration/User/Payment/AddSalary/{name?}")]
-        public async Task<IActionResult> PaymentAddSalary(string name) => await Task.Run(() =>
-            this.View("Payment/AddSalary", _userService.GetCurrentUserByUsername(name).Result.To<MdmsUserAddMonthlySalaryBindingModel>()));
+        public async Task<IActionResult> PaymentAddSalary(string name)
+        {
+            try
+            {
+                return await Task.Run(() =>
+                    this.View("Payment/AddSalary", _userService.GetCurrentUserByUsername(name).Result.To<MdmsUserAddMonthlySalaryBindingModel>()));
+            }
+            catch (AggregateException e)
+            {
+                Console.WriteLine(e);
+                //TODO Refactor
+            }
+            return RedirectToAction("All");
+        } 
 
 
         [HttpPost]

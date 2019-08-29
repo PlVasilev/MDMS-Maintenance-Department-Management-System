@@ -32,18 +32,27 @@ namespace MDMS.Web.Controllers
         [HttpGet(Name = "All")]
         public async Task<IActionResult> All([FromQuery]string criteria = null)
         {
-            if (criteria == null) criteria = "None";
+            if (criteria == null) criteria = ServiceConstants.PartOrderName;
             
             var parts = await Task.Run(() => _partService.GetAllParts(criteria).To<PartAllViewModel>().ToList());
 
             this.ViewData["criteria"] = criteria.Replace("+", " ");
+            if ((string)ViewData["criteria"] != ServiceConstants.PartOrderByPriceAscending &&
+                (string)ViewData["criteria"] != ServiceConstants.PartOrderByPriceDescending &&
+                (string)ViewData["criteria"] != ServiceConstants.PartOrderByStockAscending &&
+                (string)ViewData["criteria"] != ServiceConstants.PartOrderByStockDescending &&
+                (string)ViewData["criteria"] != ServiceConstants.PartOrderByUsedCountAscending &&
+                (string)ViewData["criteria"] != ServiceConstants.PartOrderByUsedCountDescending )
+            {
+                this.ViewData["criteria"] = ServiceConstants.PartOrderName;
+            }
             return this.View(parts);
         }
 
         [HttpGet(Name = "AddParts")]
         public async Task<IActionResult> AddParts([FromQuery]string criteria = null)
         {
-            if (criteria == null) criteria = "None";
+            if (criteria == null) criteria = ServiceConstants.PartOrderName;
 
             var listOfParts = await _partService.GetAllParts(criteria).To<InternalRepairRepairPartBindingModel>().ToListAsync();
             var  name = _repairService.GetActiveRepair(_userManager.GetUserId(User)).Result.Name;
@@ -65,6 +74,7 @@ namespace MDMS.Web.Controllers
             }
             catch (AggregateException e)
             {
+                //TODO Refactor
                 Console.WriteLine(e.Message);
             }
             return RedirectToAction("All");

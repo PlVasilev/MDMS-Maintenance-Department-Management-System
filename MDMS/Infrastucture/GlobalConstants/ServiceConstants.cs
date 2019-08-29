@@ -8,5 +8,6 @@
         public const string PartOrderByStockDescending = "Stock From Highest To Lowest";
         public const string PartOrderByUsedCountAscending = "Used From Lowest To Highest" ;
         public const string PartOrderByUsedCountDescending = "Used From Highest To Lowest";
+        public const string PartOrderName = "Name";
     }
 }

@@ -51,8 +51,20 @@ namespace MDMS.Web.Areas.Administration.Controllers
         }
 
         [HttpGet(Name = "CreateExternal")]
-        public async Task<IActionResult> CreateExternal(string name) => await Task.Run(() =>
-            this.View(_vehicleService.GetVehicleByName(name).To<ExternalRepairCreateBindingModel>()));
+        public async Task<IActionResult> CreateExternal(string name)
+        {
+            try
+            {
+                return await Task.Run(() =>
+                    this.View(_vehicleService.GetVehicleByName(name).Result.To<ExternalRepairCreateBindingModel>()));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                //TODO Refactor
+            }
+            return Redirect("/Vehicle/All");
+        }
 
 
         [HttpPost(Name = "CreateExternal")]
@@ -64,7 +76,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
                 externalRepairServiceModel.MdmsUserId = _userManager.GetUserId(User);
                 externalRepairServiceModel.RepairedSystem = new RepairedSystemServiceModel { Name = externalRepairCreateBindingModel.RepairedSystemName };
                 externalRepairServiceModel.ExternalRepairProvider = new ExternalRepairProviderServiceModel { Name = externalRepairCreateBindingModel.ExternalRepairProviderName };
-                externalRepairServiceModel.Name = "External_" + 
+                externalRepairServiceModel.Name = "External_" +
                                                   externalRepairCreateBindingModel.RepairedSystemName + "_" +
                                                   externalRepairCreateBindingModel.Make + "_" +
                                                   externalRepairCreateBindingModel.Model + "_" +
@@ -96,15 +108,15 @@ namespace MDMS.Web.Areas.Administration.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                //TODO Refactor
             }
             return RedirectToAction("ExternalActive");
-        
         }
 
         [HttpPost(Name = "ExternalActiveFinish")]
         public async Task<IActionResult> ExternalActiveFinish(ExternalRepairFinishBindingModel externalRepairFinishBindingModel)
         {
-           
+
             if (!ModelState.IsValid)
             {
                 this.ViewData["error"] = ControllerConstants.InputErrorMessage;

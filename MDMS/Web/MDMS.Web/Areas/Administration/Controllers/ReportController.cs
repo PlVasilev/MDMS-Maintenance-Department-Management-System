@@ -64,6 +64,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                //TODO Refactor
             }
             return RedirectToAction("All");
         } 

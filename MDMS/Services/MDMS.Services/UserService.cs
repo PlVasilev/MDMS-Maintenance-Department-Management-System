@@ -92,6 +92,7 @@ namespace MDMS.Services
             return result > 0;
         }
 
-        public IQueryable<MDMSUserServiceModel> GetAllUsers() => _context.Users.Where(x => x.UserName != "Root").To<MDMSUserServiceModel>();
+        public IQueryable<MDMSUserServiceModel> GetAllUsers() => 
+            _context.Users.Where(x => x.UserName != "Root").OrderBy(x => x.Name).To<MDMSUserServiceModel>();
     }
 }

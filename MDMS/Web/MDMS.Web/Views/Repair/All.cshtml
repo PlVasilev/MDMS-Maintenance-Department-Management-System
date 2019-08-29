@@ -65,7 +65,7 @@
                         <td class="col-lg-2 text-primary text-center">@Model.ExternalRepairAllViewModels[i-@Model.InternalRepairAllViewModels.Count].FinishedOn?.ToString("f")</td>
                     }
                     <td class="col-lg-1 text-center">
-                        <a href="/Repair/ExternalDetails?name=@Model.ExternalRepairAllViewModels[i-@Model.InternalRepairAllViewModels.Count].Name">Details</a>
+                        <a href="/Repair/ExternalDetails?name=@Model.ExternalRepairAllViewModels[i-@Model.InternalRepairAllViewModels.Count].Name.Replace(" ", "_")">Details</a>
                     </td>
                 </tr>
             }

@@ -103,6 +103,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
             catch (AggregateException e)
             {
                 Console.WriteLine(e.Message);
+                //TODO Refactor
             }
             return RedirectToAction("All");
         }

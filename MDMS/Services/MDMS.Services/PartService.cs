@@ -83,8 +83,8 @@ namespace MDMS.Services
                 case ServiceConstants.PartOrderByStockDescending: return PartOrderByStockDescending();
                 case ServiceConstants.PartOrderByUsedCountAscending: return PartOrderByUsedCountAscending();
                 case ServiceConstants.PartOrderByUsedCountDescending: return PartOrderByUsedCountDescending();
+                default: return _context.Parts.Where(x => x.IsDeleted == false).OrderBy(x => x.Name).To<PartServiceModel>();
             }
-            return _context.Parts.Where(x => x.IsDeleted == false).OrderBy(x => x.Name).To<PartServiceModel>();
         }
 
         public async Task<PartServiceModel> GetPartByName(string name) => await Task.Run(()
