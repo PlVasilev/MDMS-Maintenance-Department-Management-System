@@ -31,18 +31,9 @@ namespace MDMS.Web.Controllers
         [HttpGet(Name = "CreateInternal")]
         public async Task<IActionResult> CreateInternal(string name)
         {
-            try
-            {
-              return await Task.Run(() =>
+            return await Task.Run(() =>
                     this.View(_vehicleService.GetVehicleByName(name).Result.To<InternalRepairCreateBindingModel>()));
-            }
-            catch (ArgumentNullException e)
-            {
-                Console.WriteLine(e);
-                //TODO Refactor
-            }
-            return Redirect("/Vehicle/All");
-        } 
+        }
 
 
         [HttpPost(Name = "CreateInternal")]
@@ -101,34 +92,17 @@ namespace MDMS.Web.Controllers
         [HttpGet(Name = "InternalDetails")]
         public async Task<IActionResult> InternalDetails(string name)
         {
-            try
-            {
-                return await Task.Run((() =>
+            return await Task.Run((() =>
                     View(_repairService.GetInternalRepairByName(name.Replace(" ", "_")).Result.To<InternalRepairDetailsViewModel>())));
-            }
-            catch (AggregateException e)
-            {
-                //TODO Refactor
-                Console.WriteLine(e.Message);
-            }
-            return RedirectToAction("All");
         }
-       
+
 
         [HttpGet(Name = "ExternalDetails")]
         public async Task<IActionResult> ExternalDetails(string name)
         {
-            try
-            {
-                return await Task.Run((() =>
-                    View(_repairService.GetExternalRepairByName(name.Replace(" ", "_")).Result.To<ExternalRepairDetailsViewModel>())));
-            }
-            catch (AggregateException e)
-            {
-                //TODO Refactor
-                Console.WriteLine(e.Message);
-            }
-            return RedirectToAction("All");
+
+            return await Task.Run((() =>
+                View(_repairService.GetExternalRepairByName(name.Replace(" ", "_")).Result.To<ExternalRepairDetailsViewModel>())));
         }
     }
 }

@@ -53,17 +53,8 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpGet(Name = "CreateExternal")]
         public async Task<IActionResult> CreateExternal(string name)
         {
-            try
-            {
-                return await Task.Run(() =>
+            return await Task.Run(() =>
                     this.View(_vehicleService.GetVehicleByName(name).Result.To<ExternalRepairCreateBindingModel>()));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                //TODO Refactor
-            }
-            return Redirect("/Vehicle/All");
         }
 
 
@@ -99,19 +90,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpGet(Name = "ExternalActiveFinish")]
         public async Task<IActionResult> ExternalActiveFinish(string name)
         {
-            try
-            {
-                var repair = await _repairService.GetExternalActiveRepair(name);
+            var repair = await _repairService.GetExternalActiveRepair(name);
                 var viewRepair = AutoMapper.Mapper.Map<ExternalRepairFinishBindingModel>(repair);
                 return this.View(viewRepair);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                //TODO Refactor
-            }
-            return RedirectToAction("ExternalActive");
-        }
 
         [HttpPost(Name = "ExternalActiveFinish")]
         public async Task<IActionResult> ExternalActiveFinish(ExternalRepairFinishBindingModel externalRepairFinishBindingModel)

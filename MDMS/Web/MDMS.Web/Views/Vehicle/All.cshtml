@@ -14,30 +14,37 @@
 </div>
 <hr class="hr-2 d-flex bg-primary">
 <div id="vehicles" class="mt-3">
-    @for (int i = 0; i < Model.Count; i += 5)
+    @if (@Model.Count == 0)
     {
-        <div class="products-row row d-flex justify-content-around my-5">
-            @for (int j = i; j < i + 5; j++)
-            {
-                if (j < Model.Count)
+        <h3 class="font-weight-bold text-bordered text-center"><ins>There are No Vehicles.</ins></h3>
+    }
+    else
+    {
+        @for (int i = 0; i < Model.Count; i += 5)
+        {
+            <div class="products-row row d-flex justify-content-around my-5">
+                @for (int j = i; j < i + 5; j++)
                 {
-                    <div class="vehicle  col-md-2">
-                        <div class="image-holder d-flex justify-content-center">
-                            <a href="/Vehicle/Details/@Model[j].Name">
-                            <img class="img-thumbnail product-image" src="@Model[j].Picture" alt="...">
-                            </a>
+                    if (j < Model.Count)
+                    {
+                        <div class="vehicle  col-md-2">
+                            <div class="image-holder d-flex justify-content-center">
+                                <a href="/Vehicle/Details/@Model[j].Name">
+                                    <img class="img-thumbnail product-image" src="@Model[j].Picture" alt="...">
+                                </a>
+                            </div>
+                            <h5 class="text-primary bg-white rounded border-dark text-center mt-3">@Model[j].Make @Model[j].Model</h5>
+                            <h5 class="text-primary bg-white rounded border-dark text-center mt-3">VSN @Model[j].VSN</h5>
                         </div>
-                        <h5 class="text-primary bg-white rounded border-dark text-center mt-3">@Model[j].Make @Model[j].Model</h5>
-                        <h5 class="text-primary bg-white rounded border-dark text-center mt-3">VSN @Model[j].VSN</h5>
-                    </div>
+                    }
+                    else
+                    {
+                        <div class="product col-md-2 empty">
+                        </div>
+                    }
                 }
-                else
-                {
-                    <div class="product col-md-2 empty">
-                    </div>
-                }
-            }
-        </div>
+            </div>
+        }
     }
 </div>
 

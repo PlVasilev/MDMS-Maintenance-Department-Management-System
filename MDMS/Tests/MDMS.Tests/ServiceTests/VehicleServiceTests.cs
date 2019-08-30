@@ -130,7 +130,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetAllVehicles_WithZeroData_ShouldReturnEmptyResults()
         {
-            string errorMessagePrefix = "PartService GetAllVehicles() method does not work properly.";
+            string errorMessagePrefix = "VehicleService GetAllVehicles() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             _vehicleService = new VehicleService(context);
@@ -142,7 +142,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetAllVehicles_WithDummyData_ShouldReturnCorrectResults()
         {
-            string errorMessagePrefix = "PartService GetAllVehicles() method does not work properly.";
+            string errorMessagePrefix = "VehicleService GetAllVehicles() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);
@@ -179,7 +179,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetAllVehicleTypes_WithZeroData_ShouldReturnEmptyResults()
         {
-            string errorMessagePrefix = "PartService GetAllVehicleTypes() method does not work properly.";
+            string errorMessagePrefix = "VehicleService GetAllVehicleTypes() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             _vehicleService = new VehicleService(context);
@@ -191,7 +191,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetAllVehicleTypes_WithDummyData_ShouldReturnCorrectResults()
         {
-            string errorMessagePrefix = "PartService GetAllVehicleTypes() method does not work properly.";
+            string errorMessagePrefix = "VehicleService GetAllVehicleTypes() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);
@@ -212,7 +212,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetAllVehicleProviders_WithZeroData_ShouldReturnEmptyResults()
         {
-            string errorMessagePrefix = "PartService GetAllVehicleProviders() method does not work properly.";
+            string errorMessagePrefix = "VehicleService GetAllVehicleProviders() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             _vehicleService = new VehicleService(context);
@@ -224,7 +224,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetAllVehicleProviders_WithDummyData_ShouldReturnCorrectResults()
         {
-            string errorMessagePrefix = "PartService GetAllVehicleProviders() method does not work properly.";
+            string errorMessagePrefix = "VehicleService GetAllVehicleProviders() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);
@@ -245,7 +245,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetVehicleByName_WithNonExistentName_ShouldReturnNull()
         {
-            string errorMessagePrefix = "PartService GetVehicleByName() method does not work properly.";
+            string errorMessagePrefix = "VehicleService GetVehicleByName() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);
@@ -258,7 +258,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetVehicleByName_WithExistentName_ShouldReturnCorrectResults()
         {
-            string errorMessagePrefix = "PartService GetVehicleByName() method does not work properly.";
+            string errorMessagePrefix = "VehicleService GetVehicleByName() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);
@@ -270,8 +270,8 @@ namespace MDMS.Tests.ServiceTests
             Assert.True(expectedData.Id == actualData.Id, errorMessagePrefix + " " + "Id is not returned properly.");
             Assert.True(expectedData.Name == actualData.Name, errorMessagePrefix + " " + "Name is not returned properly.");
             Assert.True(expectedData.Price == actualData.Price, errorMessagePrefix + " " + "Price is not returned properly.");
-            Assert.True(expectedData.Picture == actualData.Picture, errorMessagePrefix + " " + "Price is not returned properly.");
-            Assert.True(expectedData.Depreciation == actualData.Depreciation, errorMessagePrefix + " " + "Depreciation is not returned properly.");
+            Assert.True(expectedData.Picture == actualData.Picture, errorMessagePrefix + " " + "Picture is not returned properly.");
+            Assert.True(expectedData.Depreciation == actualData.Depreciation, errorMessagePrefix + "Depreciation" + "Depreciation is not returned properly.");
             Assert.True(expectedData.Model == actualData.Model, errorMessagePrefix + " " + "Model is not returned properly.");
             Assert.True(expectedData.Make == actualData.Make, errorMessagePrefix + " " + "Make is not returned properly.");
             Assert.True(expectedData.VSN == actualData.VSN, errorMessagePrefix + " " + "VSN is not returned properly.");
@@ -289,7 +289,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task CreateVehicleProvider_WithCorrectData_ShouldSuccessfullyVehicleProvider()
         {
-            string errorMessagePrefix = "PartService CreateVehicleProvider() method does not work properly.";
+            string errorMessagePrefix = "VehicleService CreateVehicleProvider() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);
@@ -305,7 +305,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task CreatePartProvider_WithDublicateName_ShouldFailToVehicleProvider()
         {
-            string errorMessagePrefix = "PartService CreateVehicleProvider() method does not work properly.";
+            string errorMessagePrefix = "VehicleService CreateVehicleProvider() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);
@@ -321,7 +321,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task CreateVehicleType_WithCorrectData_ShouldSuccessfullyCreateVehicleType()
         {
-            string errorMessagePrefix = "PartService CreateVehicleType() method does not work properly.";
+            string errorMessagePrefix = "VehicleService CreateVehicleType() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);
@@ -337,7 +337,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task CreateVehicleType_WithDublicateName_ShouldFailToCreateVehicleType()
         {
-            string errorMessagePrefix = "PartService CreateVehicleType() method does not work properly.";
+            string errorMessagePrefix = "VehicleService CreateVehicleType() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);

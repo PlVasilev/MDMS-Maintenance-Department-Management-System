@@ -11,7 +11,7 @@ using MDMS.Web.ViewModels.Part.Edit;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MDMS.Web.Areas.Administration.Controllers
-{ 
+{
     public class PartController : AdminController
     {
         private readonly IPartService _partService;
@@ -33,9 +33,9 @@ namespace MDMS.Web.Areas.Administration.Controllers
             if (ModelState.IsValid)
             {
                 PartsProviderServiceModel vehicleProviderServiceModel = AutoMapper.Mapper.Map<PartsProviderServiceModel>(partProviderBindingModel);
-               var result =  await _partService.CreatePartProvider(vehicleProviderServiceModel);
+                var result = await _partService.CreatePartProvider(vehicleProviderServiceModel);
 
-                if(result) return this.Redirect("/");
+                if (result) return this.Redirect("/");
 
                 this.ViewData["error"] = ControllerConstants.PartProviderErrorMessage;
                 return this.View("Provider/Create", partProviderBindingModel);
@@ -73,9 +73,9 @@ namespace MDMS.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _partService.AddStock(partAddStockBinding.Name,partAddStockBinding.Quantity);
+                var result = await _partService.AddStock(partAddStockBinding.Name, partAddStockBinding.Quantity);
 
-                if (result == false) 
+                if (result == false)
                 {
                     this.ViewData["error"] = ControllerConstants.PartAddStockErrorMessage;
                     return this.Redirect($"/Part/Details?name={partAddStockBinding.Name}");
@@ -95,29 +95,20 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [HttpGet(Name = "Edit")]
         public async Task<IActionResult> Edit(string name)
         {
-            try
-            {
-              return  await Task.Run((() =>
-                    this.View(_partService.GetPartByName(name).Result.To<PartEditViewModel>())));
-            }
-            catch (AggregateException e)
-            {
-                Console.WriteLine(e.Message);
-                //TODO Refactor
-            }
-            return RedirectToAction("All");
+            return await Task.Run((() =>
+                 this.View(_partService.GetPartByName(name).Result.To<PartEditViewModel>())));
         }
-        
+
         [HttpPost(Name = "Edit")]
         public async Task<IActionResult> Edit(PartEditBindingModel partEditBindingModel)
         {
             if (ModelState.IsValid)
             {
-               var result = await _partService.EditPart(partEditBindingModel.To<PartServiceModel>());
-              
-               if (result) return this.Redirect($"/Part/Details?name={partEditBindingModel.Name}");
+                var result = await _partService.EditPart(partEditBindingModel.To<PartServiceModel>());
 
-               this.ViewData["error"] = ControllerConstants.PartEditErrorMessage;
+                if (result) return this.Redirect($"/Part/Details?name={partEditBindingModel.Name}");
+
+                this.ViewData["error"] = ControllerConstants.PartEditErrorMessage;
                 return this.RedirectToAction("Edit", partEditBindingModel);
             }
 

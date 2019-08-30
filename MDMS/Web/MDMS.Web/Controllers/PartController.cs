@@ -33,7 +33,7 @@ namespace MDMS.Web.Controllers
         public async Task<IActionResult> All([FromQuery]string criteria = null)
         {
             if (criteria == null) criteria = ServiceConstants.PartOrderName;
-            
+
             var parts = await Task.Run(() => _partService.GetAllParts(criteria).To<PartAllViewModel>().ToList());
 
             this.ViewData["criteria"] = criteria.Replace("+", " ");
@@ -42,7 +42,7 @@ namespace MDMS.Web.Controllers
                 (string)ViewData["criteria"] != ServiceConstants.PartOrderByStockAscending &&
                 (string)ViewData["criteria"] != ServiceConstants.PartOrderByStockDescending &&
                 (string)ViewData["criteria"] != ServiceConstants.PartOrderByUsedCountAscending &&
-                (string)ViewData["criteria"] != ServiceConstants.PartOrderByUsedCountDescending )
+                (string)ViewData["criteria"] != ServiceConstants.PartOrderByUsedCountDescending)
             {
                 this.ViewData["criteria"] = ServiceConstants.PartOrderName;
             }
@@ -55,8 +55,8 @@ namespace MDMS.Web.Controllers
             if (criteria == null) criteria = ServiceConstants.PartOrderName;
 
             var listOfParts = await _partService.GetAllParts(criteria).To<InternalRepairRepairPartBindingModel>().ToListAsync();
-            var  name = _repairService.GetActiveRepair(_userManager.GetUserId(User)).Result.Name;
-            
+            var name = _repairService.GetActiveRepair(_userManager.GetUserId(User)).Result.Name;
+
             foreach (var part in listOfParts)
             {
                 part.RepairName = name;
@@ -67,19 +67,10 @@ namespace MDMS.Web.Controllers
         [HttpGet(Name = "Details")]
         public async Task<IActionResult> Details(string name)
         {
-            try
-            {
-                var part =  _partService.GetPartByName(name).Result.To<PartDetailsViewModel>();
-                return View(await Task.Run((() => part)));
-            }
-            catch (AggregateException e)
-            {
-                //TODO Refactor
-                Console.WriteLine(e.Message);
-            }
-            return RedirectToAction("All");
+            var part = _partService.GetPartByName(name).Result.To<PartDetailsViewModel>();
+            return View(await Task.Run((() => part)));
         }
-            
+
 
 
         [HttpPost(Name = "AddParts")]

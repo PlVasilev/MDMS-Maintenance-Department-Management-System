@@ -30,19 +30,11 @@ namespace MDMS.Web.Controllers
         [HttpGet(Name = "Details")]
         public async Task<IActionResult> Details(string name)
         {
-            try
-            {
-                var user = await _userManager.GetUserAsync(User);
-                var vehicleDetails = _vehicleService.GetVehicleByName(name).Result.To<VehicleDetailsViewModel>();
-                vehicleDetails.MDMSUserServiceModelIsRepairing = user.IsRepairing;
-                return this.View(vehicleDetails);
-            }
-            catch (ArgumentNullException e)
-            {
-                //TODO Refactor
-                Console.WriteLine(e.Message);
-            }
-            return RedirectToAction("All");
+
+            var user = await _userManager.GetUserAsync(User);
+            var vehicleDetails = _vehicleService.GetVehicleByName(name).Result.To<VehicleDetailsViewModel>();
+            vehicleDetails.MDMSUserServiceModelIsRepairing = user.IsRepairing;
+            return this.View(vehicleDetails);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace MDMS.Services
             reportServiceModel.Name =
                 $"Custom_{reportServiceModel.StartYear}_{reportServiceModel.StartMonth}_{reportServiceModel.EndYear}_{reportServiceModel.EndMonth}";
 
-            if (await _context.Reports.AnyAsync(x => x.Name == reportServiceModel.Name))
+            if (await _context.Reports.AnyAsync(x => x.Name == reportServiceModel.Name && x.IsDeleted == false))
                 return false;
 
             var report = reportServiceModel.To<Report>();
@@ -51,7 +51,8 @@ namespace MDMS.Services
         public async Task<bool> DeleteReport(string name)
         {
             var report = await _context.Reports.SingleOrDefaultAsync(x => x.Name == name);
-            _context.Remove(report);
+            report.IsDeleted = true;
+            _context.Update(report);
             var result = await _context.SaveChangesAsync();
             return result > 0;
         }
@@ -85,7 +86,7 @@ namespace MDMS.Services
         private List<Vehicle> GetVehiclesInReport(int startM, int startY,int endM, int endY)
         {
            var vehicles = _context.Vehicles
-                .Where(y => y.InternalRepairs
+                .Where(y => y.IsDeleted != true && y.InternalRepairs
                                 .Any(x => x.FinishedOn != null &&
                                           ((x.FinishedOn.Value.Year >= startY && x.FinishedOn.Value.Year <= endY)
                                            && (x.FinishedOn.Value.Month >= startM && x.FinishedOn.Value.Month <= endM)))

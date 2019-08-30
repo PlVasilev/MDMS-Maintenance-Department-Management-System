@@ -50,24 +50,16 @@ namespace MDMS.Web.Areas.Administration.Controllers
         }
 
         [HttpGet(Name = "All")]
-        public async Task<IActionResult> All() => await Task.Run(() => 
+        public async Task<IActionResult> All() => await Task.Run(() =>
             this.View(_reportService.GetAllReports().To<ReportAllViewModel>().ToList()));
 
         [HttpGet(Name = "Details")]
         public async Task<IActionResult> Details(string name)
         {
-            try
-            {
-                return await Task.Run(() =>
-                    this.View(_reportService.GetReportDetails(name.Replace(" ", "_")).Result.To<ReportDetailsViewModel>()));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-                //TODO Refactor
-            }
-            return RedirectToAction("All");
-        } 
+
+            return await Task.Run(() =>
+                this.View(_reportService.GetReportDetails(name.Replace(" ", "_")).Result.To<ReportDetailsViewModel>()));
+        }
 
         [HttpGet(Name = "Delete")]
         public async Task<IActionResult> Delete(string name)
@@ -75,8 +67,5 @@ namespace MDMS.Web.Areas.Administration.Controllers
             await _reportService.DeleteReport(name.Replace(" ", "_"));
             return RedirectToAction("All");
         }
-        
-
-
     }
 }

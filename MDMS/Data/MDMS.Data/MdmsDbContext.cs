@@ -67,20 +67,6 @@ namespace MDMS.Data
                 .HasIndex(rs => rs.Name)
                 .IsUnique();
 
-            builder.Entity<Report>()
-                .HasIndex(r => r.Name)
-                .IsUnique();
-
-            builder.Entity<Report>()
-                .HasMany(r => r.MonthlySalariesInReport)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.Entity<Report>()
-                .HasMany(r => r.VehiclesInReport)
-                .WithOne()
-                .OnDelete(DeleteBehavior.Restrict);
-
             builder.Entity<ReportType>()
                 .HasIndex(rt => rt.Name)
                 .IsUnique();
@@ -100,6 +86,7 @@ namespace MDMS.Data
                 .WithMany(p => p.InternalRepairParts)
                 .HasForeignKey(rp => rp.PartId)
                 .OnDelete(DeleteBehavior.Restrict);
+
 
             base.OnModelCreating(builder);
         }

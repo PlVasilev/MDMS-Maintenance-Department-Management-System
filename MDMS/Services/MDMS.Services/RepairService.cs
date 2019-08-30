@@ -21,7 +21,7 @@ namespace MDMS.Services
 
         public async Task<bool> CreateExternalRepairProvider(ExternalRepairProviderServiceModel externalRepairProviderServiceModel)
         {
-            if (_context.VehicleProviders.Any(v => v.Name == externalRepairProviderServiceModel.Name)) return false;
+            if (_context.ExternalRepairProviders.Any(v => v.Name == externalRepairProviderServiceModel.Name)) return false;
 
             _context.ExternalRepairProviders.Add(externalRepairProviderServiceModel.To<ExternalRepairProvider>());
             var result = await _context.SaveChangesAsync();
@@ -194,7 +194,8 @@ namespace MDMS.Services
                 .SingleOrDefaultAsync(x => x.Name == name).Result.To<ExternalRepairServiceModel>()));
 
         public async Task<InternalRepairServiceModel> GetActiveRepair(string id) =>
-            await Task.Run(() => AutoMapper.Mapper.Map<InternalRepairServiceModel>(_context.InternalRepairs.Include(x => x.MdmsUser)
+            await Task.Run(() => AutoMapper.Mapper.Map<InternalRepairServiceModel>(_context.InternalRepairs
+                .Include(x => x.MdmsUser)
                 .Include(x => x.InternalRepairParts).ThenInclude(x => x.Part).ThenInclude(x => x.AcquiredFrom)
                 .Include(x => x.Vehicle)
                 .Include(x => x.RepairedSystem)
@@ -204,7 +205,7 @@ namespace MDMS.Services
             _context.ExternalRepairs.Where(x => x.FinishedOn == null).To<ExternalRepairServiceModel>();
 
         public IQueryable<RepairedSystemServiceModel> GetAllRepairedSystems() =>
-            _context.RepairedSystems.To<RepairedSystemServiceModel>();
+            _context.RepairedSystems.OrderBy(x => x.Name).To<RepairedSystemServiceModel>();
 
         public async Task<IEnumerable<ExternalRepairServiceModel>> GetAllExternalActiveRepairs() => await Task.Run((() =>
             _context.ExternalRepairs.To<ExternalRepairServiceModel>().Where(x => x.FinishedOn == null).OrderByDescending(x => x.StartedOn).ToList()));
@@ -213,7 +214,7 @@ namespace MDMS.Services
             _context.InternalRepairs.To<InternalRepairServiceModel>().Where(x => x.FinishedOn == null).OrderByDescending(x => x.StartedOn).ToList()));
 
         public IQueryable<ExternalRepairProviderServiceModel> GetAllExternalRepairProviders() =>
-            _context.ExternalRepairProviders.To<ExternalRepairProviderServiceModel>();
+            _context.ExternalRepairProviders.OrderBy(x => x.Name).To<ExternalRepairProviderServiceModel>();
 
         public IQueryable<ExternalRepairServiceModel> GetAllExternalRepairs() =>
             _context.ExternalRepairs.OrderByDescending(x => x.StartedOn).To<ExternalRepairServiceModel>();

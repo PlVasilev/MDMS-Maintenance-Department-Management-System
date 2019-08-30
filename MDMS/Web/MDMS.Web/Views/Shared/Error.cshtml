@@ -4,8 +4,10 @@
 }
 
 <div class="jumbotron bg-white mt-3 mb-3">
-    <h1 class="text-danger">Error.</h1>
-    <h2 class="text-danger">An error occurred while processing your request.</h2>
+    <h1 class="text-danger">Error: @Model.StatusCode</h1>
+    <h1 class="text-danger">There was an error trying to process you request.</h1>
+    <h2 class="text-danger"> - Either you tried to access element that did not exists.</h2>
+    <h2 class="text-danger"> - Or server was not available at the moment.</h2>
 
     @if (Model.ShowRequestId)
     {
@@ -14,5 +16,5 @@
         </p>
     }
 
-    <h3>Please try again latter, if problem persists please contact administrator.</h3>
+    <h3><ins> Please try again, if problem persists please contact administrator.</ins></h3>
 </div>

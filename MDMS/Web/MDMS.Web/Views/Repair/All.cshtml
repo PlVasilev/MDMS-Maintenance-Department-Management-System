@@ -12,65 +12,72 @@
 </div>
 <hr class="hr-2 bg-primary">
 <div id="products" class="mt-3">
-    <table class="table table-sm table-hover bg-white">
-        <thead>
-            <tr class="row">
-                <th scope="col" class="col-lg-1 text-primary text-center">#</th>
-                <th scope="col" class="col-lg-4 text-primary text-center"><ins>NAME (Type RepairedSystem (Vehicle: Make Model VSN) Stated)</ins></th>
-                <th scope="col" class="col-lg-1 text-primary text-right">Cost</th>
-                <th scope="col" class="col-lg-1 text-primary text-center">Mechanic</th>
-                <th scope="col" class="col-lg-2 text-primary text-center">Started On</th>
-                <th scope="col" class="col-lg-2 text-primary text-center">Finished On</th>
-                <th scope="col" class="col-lg-1 text-primary text-center">Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < @Model.InternalRepairAllViewModels.Count; i++)
-            {
-
-                <tr class="repair row">
-                    <td class="col-lg-1 text-primary text-center">@(i + 1)</td>
-                    <td class="col-lg-4 text-primary text-center">@Model.InternalRepairAllViewModels[i].Name</td>
-                    <td class="col-lg-1 text-primary  text-right">@Model.InternalRepairAllViewModels[i].RepairCost</td>
-                    <td class="col-lg-1 text-primary text-center">@Model.InternalRepairAllViewModels[i].MdmsUserUserName</td>
-                    <td class="col-lg-2 text-primary text-center">@Model.InternalRepairAllViewModels[i].StartedOn.ToString("f")</td>
-                    @if (@Model.InternalRepairAllViewModels[i].FinishedOn == null)
-                    {
-                        <td class="col-lg-2 text-primary text-center">This repair has not been finished yet.</td>
-                    }
-                    else
-                    {
-                        <td class="col-lg-2 text-primary text-center">@Model.InternalRepairAllViewModels[i].FinishedOn?.ToString("f")</td>
-                    }
-                    <td class="col-lg-1 text-center">
-                        <a href="/Repair/InternalDetails?name=@Model.InternalRepairAllViewModels[i].Name.Replace(" ", "_")">Details</a>
-                    </td>
+    @if (@Model.ExternalRepairAllViewModels.Count + Model.InternalRepairAllViewModels.Count == 0)
+    {
+        <h3 class="font-weight-bold text-bordered text-center"><ins>There are No Repairs added yet.</ins></h3>
+    }
+    else
+    {
+        <table class="table table-sm table-hover bg-white">
+            <thead>
+                <tr class="row">
+                    <th scope="col" class="col-lg-1 text-primary text-center">#</th>
+                    <th scope="col" class="col-lg-4 text-primary text-center"><ins>NAME (Type RepairedSystem (Vehicle: Make Model VSN) Stated)</ins></th>
+                    <th scope="col" class="col-lg-1 text-primary text-right">Cost</th>
+                    <th scope="col" class="col-lg-1 text-primary text-center">Mechanic</th>
+                    <th scope="col" class="col-lg-2 text-primary text-center">Started On</th>
+                    <th scope="col" class="col-lg-2 text-primary text-center">Finished On</th>
+                    <th scope="col" class="col-lg-1 text-primary text-center">Details</th>
                 </tr>
-            }
-            @for (int i = @Model.InternalRepairAllViewModels.Count; i < @Model.ExternalRepairAllViewModels.Count + @Model.InternalRepairAllViewModels.Count; i++)
-            {
+            </thead>
+            <tbody>
+                @for (int i = 0; i < @Model.InternalRepairAllViewModels.Count; i++)
+                {
 
-                <tr class="repair row">
-                    <td class="col-lg-1 text-primary text-center">@(i + 1)</td>
-                    <td class="col-lg-4 text-primary text-center">@Model.ExternalRepairAllViewModels[i-@Model.InternalRepairAllViewModels.Count].Name</td>
-                    <td class="col-lg-1 text-primary  text-right">@Model.ExternalRepairAllViewModels[i-@Model.InternalRepairAllViewModels.Count].RepairCost</td>
-                    <td class="col-lg-1 text-primary text-center">@Model.ExternalRepairAllViewModels[i-@Model.InternalRepairAllViewModels.Count].MdmsUserUserName</td>
-                    <td class="col-lg-2 text-primary text-center">@Model.ExternalRepairAllViewModels[i-@Model.InternalRepairAllViewModels.Count].StartedOn.ToString("f")</td>
-                    @if (@Model.ExternalRepairAllViewModels[i-@Model.InternalRepairAllViewModels.Count].FinishedOn == null)
-                    {
-                        <td class="col-lg-2 text-primary text-center">This repair has not been finished yet.</td>
-                    }
-                    else
-                    {
-                        <td class="col-lg-2 text-primary text-center">@Model.ExternalRepairAllViewModels[i-@Model.InternalRepairAllViewModels.Count].FinishedOn?.ToString("f")</td>
-                    }
-                    <td class="col-lg-1 text-center">
-                        <a href="/Repair/ExternalDetails?name=@Model.ExternalRepairAllViewModels[i-@Model.InternalRepairAllViewModels.Count].Name.Replace(" ", "_")">Details</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                    <tr class="repair row">
+                        <td class="col-lg-1 text-primary text-center">@(i + 1)</td>
+                        <td class="col-lg-4 text-primary text-center">@Model.InternalRepairAllViewModels[i].Name</td>
+                        <td class="col-lg-1 text-primary  text-right">@Model.InternalRepairAllViewModels[i].RepairCost</td>
+                        <td class="col-lg-1 text-primary text-center">@Model.InternalRepairAllViewModels[i].MdmsUserUserName</td>
+                        <td class="col-lg-2 text-primary text-center">@Model.InternalRepairAllViewModels[i].StartedOn.ToString("f")</td>
+                        @if (@Model.InternalRepairAllViewModels[i].FinishedOn == null)
+                        {
+                            <td class="col-lg-2 text-primary text-center">This repair has not been finished yet.</td>
+                        }
+                        else
+                        {
+                            <td class="col-lg-2 text-primary text-center">@Model.InternalRepairAllViewModels[i].FinishedOn?.ToString("f")</td>
+                        }
+                        <td class="col-lg-1 text-center">
+                            <a href="/Repair/InternalDetails?name=@Model.InternalRepairAllViewModels[i].Name.Replace(" ", "_")">Details</a>
+                        </td>
+                    </tr>
+                }
+                @for (int i = @Model.InternalRepairAllViewModels.Count; i < @Model.ExternalRepairAllViewModels.Count + @Model.InternalRepairAllViewModels.Count; i++)
+                {
+
+                    <tr class="repair row">
+                        <td class="col-lg-1 text-primary text-center">@(i + 1)</td>
+                        <td class="col-lg-4 text-primary text-center">@Model.ExternalRepairAllViewModels[i - @Model.InternalRepairAllViewModels.Count].Name</td>
+                        <td class="col-lg-1 text-primary  text-right">@Model.ExternalRepairAllViewModels[i - @Model.InternalRepairAllViewModels.Count].RepairCost</td>
+                        <td class="col-lg-1 text-primary text-center">@Model.ExternalRepairAllViewModels[i - @Model.InternalRepairAllViewModels.Count].MdmsUserUserName</td>
+                        <td class="col-lg-2 text-primary text-center">@Model.ExternalRepairAllViewModels[i - @Model.InternalRepairAllViewModels.Count].StartedOn.ToString("f")</td>
+                        @if (@Model.ExternalRepairAllViewModels[i - @Model.InternalRepairAllViewModels.Count].FinishedOn == null)
+                        {
+                            <td class="col-lg-2 text-primary text-center">This repair has not been finished yet.</td>
+                        }
+                        else
+                        {
+                            <td class="col-lg-2 text-primary text-center">@Model.ExternalRepairAllViewModels[i - @Model.InternalRepairAllViewModels.Count].FinishedOn?.ToString("f")</td>
+                        }
+                        <td class="col-lg-1 text-center">
+                            <a href="/Repair/ExternalDetails?name=@Model.ExternalRepairAllViewModels[i - @Model.InternalRepairAllViewModels.Count].Name.Replace(" ", "_")">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 </div>
 
 <script>

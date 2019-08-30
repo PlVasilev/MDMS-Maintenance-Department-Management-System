@@ -50,19 +50,10 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [Route("/Administration/User/Payment/Edit/{name?}")]
         public async Task<IActionResult> PaymentEdit(string name)
         {
-            try
-            {
-               return  await Task.Run(() =>
-                    this.View("Payment/Edit", _userService.GetCurrentUserByUsername(name).Result.To<MdmsUserEditPaymentBindingModel>()));
-            }
-            catch (AggregateException e)
-            {
-                Console.WriteLine(e);
-                //TODO Refactor
-            }
-            return RedirectToAction("All");
-        } 
 
+            return await Task.Run(() =>
+                this.View("Payment/Edit", _userService.GetCurrentUserByUsername(name).Result.To<MdmsUserEditPaymentBindingModel>()));
+        }
 
         [HttpPost]
         [Route("/Administration/User/Payment/Edit/{id?}")]
@@ -70,7 +61,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
         {
             if (ModelState.IsValid)
             {
-               var result = await _userService.EditPayment(mdmsUserEditPaymentBindingModel.To<MDMSUserServiceModel>());
+                var result = await _userService.EditPayment(mdmsUserEditPaymentBindingModel.To<MDMSUserServiceModel>());
 
                 if (result) return this.Redirect("/");
 
@@ -85,18 +76,9 @@ namespace MDMS.Web.Areas.Administration.Controllers
         [Route("/Administration/User/Payment/AddSalary/{name?}")]
         public async Task<IActionResult> PaymentAddSalary(string name)
         {
-            try
-            {
-                return await Task.Run(() =>
-                    this.View("Payment/AddSalary", _userService.GetCurrentUserByUsername(name).Result.To<MdmsUserAddMonthlySalaryBindingModel>()));
-            }
-            catch (AggregateException e)
-            {
-                Console.WriteLine(e);
-                //TODO Refactor
-            }
-            return RedirectToAction("All");
-        } 
+            return await Task.Run(() =>
+                     this.View("Payment/AddSalary", _userService.GetCurrentUserByUsername(name).Result.To<MdmsUserAddMonthlySalaryBindingModel>()));
+        }
 
 
         [HttpPost]

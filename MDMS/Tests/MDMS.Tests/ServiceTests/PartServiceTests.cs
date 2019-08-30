@@ -490,5 +490,6 @@ namespace MDMS.Tests.ServiceTests
 
             await Assert.ThrowsAsync<NullReferenceException>(() => _partService.AddStock("name",5));
         }
+
     }
 }
