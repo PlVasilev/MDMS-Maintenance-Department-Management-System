@@ -58,7 +58,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
         {
 
             return await Task.Run(() =>
-                this.View(_reportService.GetReportDetails(name.Replace(" ", "_")).Result.To<ReportDetailsViewModel>()));
+                this.View(_reportService.GetReportDetails(name).Result.To<ReportDetailsViewModel>()));
         }
 
         [HttpGet(Name = "Delete")]

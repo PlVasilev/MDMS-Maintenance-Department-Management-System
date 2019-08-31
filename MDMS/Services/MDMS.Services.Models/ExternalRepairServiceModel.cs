@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MDMS.Data.Models;
+﻿using MDMS.Data.Models;
 using MDMS.Services.Mapping;
 
 namespace MDMS.Services.Models

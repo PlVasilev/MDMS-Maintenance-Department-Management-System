@@ -7,7 +7,6 @@ using MDMS.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace MDMS.Web.Areas.Identity.Pages.Account
 {
@@ -18,20 +17,17 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
         private readonly IUserService _userService;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly UserManager<MdmsUser> _userManager;
-       // private readonly IEmailSender _emailSender;
 
         public RegisterModel(
             UserManager<MdmsUser> userManager,
             RoleManager<IdentityRole> roleManager,
             SignInManager<MdmsUser> signInManager, 
             IUserService userService)
-           // IEmailSender emailSender)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _signInManager = signInManager;
             _userService = userService;
-            // _emailSender = emailSender;
         }
 
         [BindProperty]
@@ -116,17 +112,6 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                     {
                         await _userManager.AddToRoleAsync(user, "Guest");
                     }
-                    
-                    // EMAIL sender
-                   //     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                   //     var callbackUrl = Url.Page(
-                   //     "/Account/ConfirmEmail",
-                   //     pageHandler: null,
-                   //     values: new { userId = user.Id, code = code },
-                   //     protocol: Request.Scheme);
-                   //
-                   //     await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                   //     $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     return LocalRedirect(returnUrl);
                 }

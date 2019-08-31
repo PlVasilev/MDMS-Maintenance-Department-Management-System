@@ -365,7 +365,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task CreateExternalRepairProvider_WithCorrectData_ShouldSuccessfullyCreateExternalRepairProvider()
         {
-            string errorMessagePrefix = "RepairService SeedExternalRepair() method does not work properly.";
+            string errorMessagePrefix = "RepairService CreateExternalRepairProvider() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedExternalRepair(context);
@@ -774,7 +774,7 @@ namespace MDMS.Tests.ServiceTests
         }
 
         [Fact]
-        public async Task AddPartsToInternalRepair_WithCorrectData_ShouldSuccessfullyGetInternalRepairIdByName()
+        public async Task AddPartsToInternalRepair_WithCorrectData_ShouldSuccessfullyAddPartsToInternalRepair()
         {
             string errorMessagePrefix = "RepairService AddPartsToInternalRepair() method does not work properly.";
 
@@ -893,7 +893,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetActiveRepair_WithExistentId_ShouldReturnCorrectResults()
         {
-            string errorMessagePrefix = "RepairService GetInternalRepairByName() method does not work properly.";
+            string errorMessagePrefix = "RepairService GetActiveRepai() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedInternalRepair(context);
@@ -1110,7 +1110,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetAllExternalActiveRepairs_WithZeroData_ShouldReturnEmptyResults()
         {
-            string errorMessagePrefix = "VehicleService GetAllExternalActiveRepairs() method does not work properly.";
+            string errorMessagePrefix = "RepairService GetAllExternalActiveRepairs() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             _repairService = new RepairService(context);
@@ -1166,7 +1166,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetAllInternalActiveRepairs_WithZeroData_ShouldReturnEmptyResults()
         {
-            string errorMessagePrefix = "VehicleService GetAllInternalActiveRepairs() method does not work properly.";
+            string errorMessagePrefix = "RepairService GetAllInternalActiveRepairs() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             _repairService = new RepairService(context);
@@ -1222,7 +1222,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetAllInternalRepairs_WithZeroData_ShouldReturnEmptyResults()
         {
-            string errorMessagePrefix = "VehicleService GetAllInternalRepairs() method does not work properly.";
+            string errorMessagePrefix = "RepairService GetAllInternalRepairs() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             _repairService = new RepairService(context);
@@ -1279,7 +1279,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task GetAllExternalRepairs_WithZeroData_ShouldReturnEmptyResults()
         {
-            string errorMessagePrefix = "VehicleService GetAllExternalRepairs() method does not work properly.";
+            string errorMessagePrefix = "RepairService GetAllExternalRepairs() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             _repairService = new RepairService(context);

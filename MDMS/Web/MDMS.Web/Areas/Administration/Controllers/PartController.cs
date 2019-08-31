@@ -59,7 +59,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
                 PartServiceModel partServiceModel = AutoMapper.Mapper.Map<PartServiceModel>(partCreateBindingModel);
                 var result = await _partService.Create(partServiceModel);
 
-                if (result) return this.Redirect("/");
+                if (result) return this.RedirectToAction("All");
 
                 this.ViewData["error"] = ControllerConstants.PartErrorMessage;
                 return this.View(partCreateBindingModel);

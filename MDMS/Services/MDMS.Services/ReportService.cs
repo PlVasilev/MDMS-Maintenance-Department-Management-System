@@ -68,7 +68,7 @@ namespace MDMS.Services
 
         public async Task<ReportServiceModel> GetReportDetails(string name)
         {
-            var reportDetails = await _context.Reports.SingleOrDefaultAsync(x => x.Name == name);
+            var reportDetails = await _context.Reports.SingleOrDefaultAsync(x => x.Name == name && x.IsDeleted == false);
             reportDetails.VehiclesInReport = GetVehiclesInReport(reportDetails.StartMonth, reportDetails.StartYear,
                 reportDetails.EndMonth, reportDetails.EndYear);
 

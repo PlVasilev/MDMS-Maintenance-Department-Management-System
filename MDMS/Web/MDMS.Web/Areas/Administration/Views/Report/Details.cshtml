@@ -116,7 +116,7 @@
                                 {
                                     <tr class="row">
 
-                                        <td class="col-md-6 text-primary text-center"><a href="/Repair/InternalDetails?name=@internalRep.Name">@internalRep.Name</a></td>
+                                        <td class="col-md-6 text-primary text-center"><a href="/Repair/InternalDetails?name=@internalRep.Name.Replace(" ","_")">@internalRep.Name</a></td>
                                         <td class="col-md-1 text-primary text-center">@internalRep.MdmsUserUsername</td>
                                         <td class="col-md-1 text-primary text-center">@internalRep.RepairedSystemName</td>
                                         <td class="col-md-1 text-primary text-center">@internalRep.Mileage</td>
@@ -155,7 +155,7 @@
                                 @foreach (var externalRep in vehicle.ExternalRepairs)
                                 {
                                     <tr class="row">
-                                        <td class="col-md-6 text-primary text-center"><a href="/Repair/ExternalDetails?name=@externalRep.Name">@externalRep.Name     </a></td>
+                                        <td class="col-md-6 text-primary text-center"><a href="/Repair/ExternalDetails?name=@externalRep.Name.Replace(" ","_")">@externalRep.Name     </a></td>
                                         <td class="col-md-1 text-primary text-center">@externalRep.ExternalRepairProviderName</td>
                                         <td class="col-md-1 text-primary text-center">@externalRep.RepairedSystemName</td>
                                         <td class="col-md-1 text-primary text-center">@externalRep.Mileage</td>

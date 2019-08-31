@@ -48,7 +48,7 @@
                         <td class="col-lg-1 text-primary text-right">@Model[i].InternalRepairCosts</td>
                         <td class="col-lg-1 text-primary text-right">@Model[i].ExternalRepairCosts</td>
                         <td class="col-lg-1 text-primary text-center">
-                            <a href="/Administration/Report/Details?name=@Model[i].Name">Details</a>
+                            <a href="/Administration/Report/Details?name=@Model[i].Name.Replace(" ","_")">Details</a>
                         </td>
                         <td class="col-lg-1 text-primary text-center">
                             <a href="/Administration/Report/Delete?name=@Model[i].Name">Delete</a>

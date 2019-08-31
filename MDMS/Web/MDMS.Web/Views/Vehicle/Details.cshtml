@@ -93,7 +93,7 @@
                         <tr class="row">
                             <td class="col-md-1 text-primary text-center">@(i + 1)</td>
                             <td class="col-md-9 text-primary text-center">@Model.InternalRepairs[i].Name</td>
-                            <td class="col-md-2 text-primary text-center"><a href="/Repair/InternalDetails?name=@Model.InternalRepairs[i].Name">Details</a></td>
+                            <td class="col-md-2 text-primary text-center"><a href="/Repair/InternalDetails?name=@Model.InternalRepairs[i].Name.Replace(" ","_")">Details</a></td>
                         </tr>
                     }
                 </tbody>
@@ -131,7 +131,7 @@
                     <tr class="row">
                         <td class="col-md-1 text-primary text-center">@(i + 1)</td>
                         <td class="col-md-9 text-primary text-center">@Model.ExternalRepairs[i].Name</td>
-                        <td class="col-md-2 text-primary text-center"><a href="/Repair/ExternalDetails?name=@Model.ExternalRepairs[i].Name">Details</a></td>
+                        <td class="col-md-2 text-primary text-center"><a href="/Repair/ExternalDetails?name=@Model.ExternalRepairs[i].Name.Replace(" ","_")">Details</a></td>
                     </tr>
                 }
                 </tbody>

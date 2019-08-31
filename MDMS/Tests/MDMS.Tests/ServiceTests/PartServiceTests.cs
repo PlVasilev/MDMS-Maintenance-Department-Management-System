@@ -359,7 +359,7 @@ namespace MDMS.Tests.ServiceTests
         [Fact]
         public async Task CreatePart_WithCorrectData_ShouldSuccessfullyCreatePart()
         {
-            string errorMessagePrefix = "PartService GetPartByName() method does not work properly.";
+            string errorMessagePrefix = "PartService CreatePart() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);
@@ -383,7 +383,7 @@ namespace MDMS.Tests.ServiceTests
         }
 
         [Fact]
-        public async Task CreatePart_NotExistentPartProvider_ShouldNotCreatePart()
+        public async Task CreatePart_NotExistentPartProvider_ShouldThrowException()
         {
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedData(context);

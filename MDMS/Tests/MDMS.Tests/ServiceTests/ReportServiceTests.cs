@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using MDMS.Data;
 using Mdms.Data.Models;
@@ -532,9 +531,9 @@ namespace MDMS.Tests.ServiceTests
         }
 
         [Fact]
-        public async Task CreateVehicle_NotExistentPartProvider_ShouldNotCreatePart()
+        public async Task CreateCustomReport_NotExistentPartProvider_ShouldNotCreatePart()
         {
-            string errorMessagePrefix = "VehicleService Create() method does not work properly.";
+            string errorMessagePrefix = "ReportService CreateCustomReport() method does not work properly.";
 
             var context = MdmsDbContextInMemoryFactory.InitializeContext();
             await SeedVehicleAndMonthlySalarytData(context);
@@ -553,7 +552,7 @@ namespace MDMS.Tests.ServiceTests
         }
 
         [Fact]
-        public async Task DeleteReport_WithCorrectData_ShouldSuccessfullyCreateCustomReport()
+        public async Task DeleteReport_WithCorrectData_ShouldSuccessfullyDeleteReport()
         {
             string errorMessagePrefix = "ReportService DeleteReport() method does not work properly.";
 
@@ -577,7 +576,7 @@ namespace MDMS.Tests.ServiceTests
 
 
         [Fact]
-        public async Task GetReportDetails_WithCorrectData_ShouldSuccessfullyCreateCustomReport()
+        public async Task GetReportDetails_WithCorrectData_ShouldSuccessfullyGetReportDetails()
         {
             string errorMessagePrefix = "ReportService GetReportDetails() method does not work properly.";
 
