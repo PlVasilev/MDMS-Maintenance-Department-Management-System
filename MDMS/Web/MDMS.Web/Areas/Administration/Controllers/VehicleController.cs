@@ -88,7 +88,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
 
                 var result = await _vehicleService.Create(vehicleServiceModel);
 
-                if (result) return this.Redirect("/");
+                if (result) return this.RedirectToAction("All");
 
                 this.ViewData["error"] = ControllerConstants.VehicleCreateErrorMessage;
                 return this.View(vehicleCreateBindingModel);

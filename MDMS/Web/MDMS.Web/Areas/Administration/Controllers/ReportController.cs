@@ -46,7 +46,7 @@ namespace MDMS.Web.Areas.Administration.Controllers
                 this.ViewData["error"] = ControllerConstants.ReportCreateErrorMessage;
                 return View(reportCreateBindingModel);
             }
-            return Redirect("/");
+            return RedirectToAction("All");
         }
 
         [HttpGet(Name = "All")]

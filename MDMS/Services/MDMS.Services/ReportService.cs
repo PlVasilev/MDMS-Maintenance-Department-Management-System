@@ -28,6 +28,15 @@ namespace MDMS.Services
                 return false;
 
             var report = reportServiceModel.To<Report>();
+            if (report.StartYear > report.EndYear)
+            {
+                return false;
+            }
+            else if (report.StartMonth > report.EndMonth)
+            {
+                return false;
+            }
+
             report.ReportType = reportType;
 
             report.VehiclesInReport = GetVehiclesInReport(reportServiceModel.StartMonth, reportServiceModel.StartYear,
@@ -40,7 +49,7 @@ namespace MDMS.Services
             report.MechanicsBaseCosts = report.MonthlySalariesInReport.Sum(x => x.BaseSalary);
             report.VehicleBaseCost = report.VehiclesInReport.Sum(x => x.Depreciation);
             report.ExternalRepairCosts = report.VehiclesInReport.Sum(x => x.ExternalRepairs.Sum(y => y.LaborCost + y.PartsCost));
-            report.InternalRepairCosts = report.VehiclesInReport.Sum(x => x.InternalRepairs.Sum(y =>(decimal) y.HoursWorked * y.MdmsUser.AdditionalOnHourPayment) +
+            report.InternalRepairCosts = report.VehiclesInReport.Sum(x => x.InternalRepairs.Sum(y => (decimal)y.HoursWorked * y.MdmsUser.AdditionalOnHourPayment) +
                 x.InternalRepairs.Sum(y => y.InternalRepairParts.Sum(z => z.Quantity * z.Part.Price)));
 
             await _context.AddAsync(report);
@@ -80,36 +89,42 @@ namespace MDMS.Services
             return reportDetailsService;
         }
 
-        public IQueryable<ReportServiceModel> GetAllReports() => 
+        public IQueryable<ReportServiceModel> GetAllReports() =>
             _context.Reports.Where(x => x.IsDeleted == false).OrderBy(x => x.Name).To<ReportServiceModel>();
 
-        private List<Vehicle> GetVehiclesInReport(int startM, int startY,int endM, int endY)
+        private List<Vehicle> GetVehiclesInReport(int startM, int startY, int endM, int endY)
         {
-           var vehicles = _context.Vehicles
-                .Where(y => y.IsDeleted != true && y.InternalRepairs
-                                .Any(x => x.FinishedOn != null &&
-                                          ((x.FinishedOn.Value.Year >= startY && x.FinishedOn.Value.Year <= endY)
-                                           && (x.FinishedOn.Value.Month >= startM && x.FinishedOn.Value.Month <= endM)))
-                            || y.ExternalRepairs
-                                .Any(x => x.FinishedOn != null &&
-                                          ((x.FinishedOn.Value.Year >= startY && x.FinishedOn.Value.Year <= endY)
-                                           && (x.FinishedOn.Value.Month >= startM && x.FinishedOn.Value.Month <= endM))))
-                .Include(x => x.InternalRepairs).ThenInclude(x => x.InternalRepairParts).ThenInclude(x => x.Part)
-                .Include(x => x.InternalRepairs).ThenInclude(x => x.MdmsUser)
-                .Include(x => x.InternalRepairs).ThenInclude(x => x.RepairedSystem)
-                .Include(x => x.ExternalRepairs).ThenInclude(x => x.ExternalRepairProvider)
-                .Include(x => x.ExternalRepairs).ThenInclude(x => x.RepairedSystem)
-                .Distinct()
-                .ToList();
+            var vehicles = _context.Vehicles
+                 .Where(y => y.IsDeleted != true && y.InternalRepairs
+                                 .Any(x => x.FinishedOn != null &&
+                                           ((x.FinishedOn.Value.Year >= startY && x.FinishedOn.Value.Year <= endY)
+                                            && (x.FinishedOn.Value.Month >= startM && x.FinishedOn.Value.Month <= endM)))
+                             || y.ExternalRepairs
+                                 .Any(x => x.FinishedOn != null &&
+                                           ((x.FinishedOn.Value.Year >= startY && x.FinishedOn.Value.Year <= endY)
+                                            && (x.FinishedOn.Value.Month >= startM && x.FinishedOn.Value.Month <= endM))))
+                 .Include(x => x.InternalRepairs).ThenInclude(x => x.InternalRepairParts).ThenInclude(x => x.Part)
+                 .Include(x => x.InternalRepairs).ThenInclude(x => x.MdmsUser)
+                 .Include(x => x.InternalRepairs).ThenInclude(x => x.RepairedSystem)
+                 .Include(x => x.ExternalRepairs).ThenInclude(x => x.ExternalRepairProvider)
+                 .Include(x => x.ExternalRepairs).ThenInclude(x => x.RepairedSystem)
+                 .Distinct()
+                 .OrderByDescending(x => x.Name)
+                 .ToList();
 
-           return vehicles;
+            return vehicles;
         }
 
         private ICollection<MonthlySalary> GetSalariesInReport(int startMonth, int startYear, int endMonth, int endYear)
         {
             return _context.MonthlySalaries
+                .Include(x => x.Mechanic)
                 .Where(x => (x.Year >= startYear && x.Year <= endYear) &&
-                            (x.Month >= startMonth && x.Month <= endMonth)).ToList();
+                            (x.Month >= startMonth && x.Month <= endMonth))
+                .OrderBy(x => x.Mechanic.Name)
+                .ThenByDescending(x => x.Year)
+                .ThenByDescending(x => x.Month)
+                .ToList();
         }
     }
 }

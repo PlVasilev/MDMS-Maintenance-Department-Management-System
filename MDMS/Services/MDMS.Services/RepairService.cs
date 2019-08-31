@@ -60,7 +60,7 @@ namespace MDMS.Services
             externalRepairServiceModel.Name = externalRepairServiceModel.Name + "_" +
                                               externalRepairServiceModel.StartedOn.ToString("yyyy/MM/dd_HH:mm");
 
-            if (_context.InternalRepairs.Any(x => x.Name == externalRepairServiceModel.Name)) return false;
+            if (_context.ExternalRepairs.Any(x => x.Name == externalRepairServiceModel.Name)) return false;
 
             var externalRepair = externalRepairServiceModel.To<ExternalRepair>();
             externalRepair.RepairedSystem = await GetRepairedSystemIdByName(externalRepairServiceModel.RepairedSystem.Name);
