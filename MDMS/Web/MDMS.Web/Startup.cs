@@ -49,7 +49,7 @@ namespace MDMS.Web
                 .AddDefaultTokenProviders();
 
 
-            //Cloud
+            //Cloud setup
             Account cloudinaryCredentials = new Account(
                 this.Configuration["Cloudinary:CloudName"],
                 this.Configuration["Cloudinary:ApiKey"],
