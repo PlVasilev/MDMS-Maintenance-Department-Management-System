@@ -94,7 +94,8 @@ namespace MDMS.Web
             CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
             if (env.IsDevelopment())
-            {
+            { 
+                //
                // app.UseDeveloperExceptionPage();
                // app.UseDeveloperExceptionPage(new DeveloperExceptionPageOptions() { SourceCodeLineCount = 100 });
                app.UseExceptionHandler("/Home/Error");
