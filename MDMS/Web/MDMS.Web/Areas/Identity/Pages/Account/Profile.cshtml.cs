@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using MDMS.Data;
 using MDMS.Data.Migrations;
 using Mdms.Data.Models;
+using MDMS.Services;
 using MDMS.Services.Mapping;
 using MDMS.Services.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -19,12 +20,12 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
     public class ProfileModel : PageModel, IMapFrom<MdmsUser>
     {
         private readonly UserManager<MdmsUser> _userManager;
-        private readonly MdmsDbContext _context;
+        private readonly IUserService _userService;
 
-        public ProfileModel(UserManager<MdmsUser> userManager, MdmsDbContext context)
+        public ProfileModel(UserManager<MdmsUser> userManager, IUserService userService)
         {
             _userManager = userManager;
-            _context = context;
+            _userService = userService;
         }
 
         public string FirstName { get; set; }
@@ -50,7 +51,7 @@ namespace MDMS.Web.Areas.Identity.Pages.Account
                 return LocalRedirect("/");
             }
 
-            MDMSUserServiceModel user = _context.Users
+            MDMSUserServiceModel user = _userService.GetAllUsers()
                 .Include(x => x.Salaries)
                 .Include(x => x.ExternalRepairs)
                 .Include(x => x.InternalRepairs)
